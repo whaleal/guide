@@ -1,1 +1,2 @@
 # guide
+whaleal platform  document
