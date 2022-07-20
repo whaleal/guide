@@ -1,9 +1,9 @@
-#Mongo接口
+# Mongo接口
 此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息。
 
 
 
-###请求头默认格式，特殊情况特殊声明
+### 请求头默认格式，特殊情况特殊声明
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
@@ -131,7 +131,7 @@ GET http://192.167.3.200:9600/api/server/mongo/standaloneToReplicate/{{clusterId
 | clusterId          |         Path           |            集群id            |        Yes       |String        |
 
 
-![postman_mongo_standaloneToReplicate](https://github.com/whaleal/guide/blob/main/Images/standaloneToReplicate.png)
+![postman_mongo_standaloneToReplicate](../Images/standaloneToReplicate.png)
 ----
 
 2.3 返回结果
@@ -142,7 +142,7 @@ GET http://192.167.3.200:9600/api/server/mongo/standaloneToReplicate/{{clusterId
 | code        |   状态符:1000成功,其余异常 |                       |    
 | msg       |         返回消息         |                        |        
 
-![postman_mongo_standaloneToReplicate_result](https://github.com/whaleal/guide/blob/main/Images/standaloneToReplicate_r.png)
+![postman_mongo_standaloneToReplicate_result](../Images/standaloneToReplicate_r.png)
 ---
 
 
@@ -178,21 +178,7 @@ POST http://192.168.3.200:9600/api/server/mongo/createMongoReplica/{{isNewCluste
     "operaLog": [],
     "memberList": [
         {
-            "type": 31,
-            "hostName": "chen",
-            "hostId": "62bbfbe9a46517610435d615",
-            "port": "25025",
-            "version": "mongodb-linux-x86_64-rhel70-4.2.21",
-            "votes": "1",
-            "priority": "1",
-            "delay": "",
-            "buildIndexes": true,
-            "dataDirectory": "/home/chen/data25025",
-            "logFile": "/home/chen/log25025.log",
-            "configurationOptions": {
-                "storage.wiredTiger.engineConfig.cacheSizeGB": "0.3"
-            }
-        }
+           ...
     ],
     "replicationSettings": {
         "protocolVersion": null,
@@ -280,81 +266,23 @@ POST http://192.168.3.200:9600/api/server/mongo/createMongoSharded/{{isNewCluste
     "shardingMap": {
         "shard1": {
             "memberList": [
-                {
-                    "type": 1,
-                    "hostName": "chen",
-                    "hostId": "62bbfbe9a46517610435d615",
-                    "port": "44567",
-                    "version": "mongodb-linux-x86_64-rhel70-4.2.21",
-                    "votes": "1",
-                    "priority": "1",
-                    "delay": "",
-                    "buildIndexes": "true",
-                    "dataDirectory": "/home/chen/data44567",
-                    "logFile": "/home/chen/log44567.log",
-                    "configurationOptions": {
-                        "storage.wiredTiger.engineConfig.cacheSizeGB": "0.3"
-                    }
-                }
+                ...
             ],
             "replicationSettings": {
-                "replicaSetId": "shard1",
-                "protocolVersion": null,
-                "chainingAllowed": null,
-                "writeConcernMajorityJournalDefault": null,
-                "heartbeatTimeoutSecs": null,
-                "electionTimeoutMillis": null,
-                "catchUpTimeoutMillis": null,
-                "catchUpTakeoverDelayMillis": null,
-                "getLastErrorDefaults": null,
-                "forceReconfigure": null
+               ...
             }
         }
     },
     "config": {
         "memberList": [
-            {
-                "type": 1,
-                "hostName": "server100",
-                "hostId": "62b153a344ba1b7771c42df7",
-                "port": "44567",
-                "version": "mongodb-linux-x86_64-rhel70-4.2.21",
-                "votes": "1",
-                "priority": "1",
-                "delay": "",
-                "buildIndexes": "true",
-                "dataDirectory": "/home/chen/data44567",
-                "logFile": "/home/chen/log44567.log",
-                "configurationOptions": {
-                    "storage.wiredTiger.engineConfig.cacheSizeGB": "0.3"
-                }
-            }
+           ...
         ],
         "replicationSettings": {
-            "replicaSetId": "config",
-            "protocolVersion": "",
-            "chainingAllowed": "",
-            "writeConcernMajorityJournalDefault": "",
-            "heartbeatTimeoutSecs": "",
-            "electionTimeoutMillis": "",
-            "catchUpTimeoutMillis": "",
-            "catchUpTakeoverDelayMillis": "",
-            "getLastErrorDefaults": "",
-            "forceReconfigure": ""
+            ...
         }
     },
     "mongoS": [
-        {
-            "logFile": "/home/chen/log44567.log",
-            "dataDirectory": "/home/chen/data44567",
-            "hostName": "server200",
-            "version": "mongodb-linux-x86_64-rhel70-4.2.21",
-            "port": "44567",
-            "configurationOptions": {
-                "storage.wiredTiger.engineConfig.cacheSizeGB": "0.3"
-            },
-            "hostId": "62cbbd7607bebb71b8429e5e"
-        }
+        ...
     ]
 }
 ~~~
@@ -415,7 +343,7 @@ POST http://192.168.3.200:9600/api/server/mongo/operateClusterAbleAuth/{{cluster
 | map          |         body           |           传参            |        Yes       |map        |
 
 
-![postman_mongo_operateClusterAbleAuth](https://github.com/whaleal/guide/blob/main/Images/operateClusterAbleAuth.png)
+![postman_mongo_operateClusterAbleAuth](../Images/operateClusterAbleAuth.png)
 ----
 
 5.3 返回结果
@@ -427,7 +355,7 @@ POST http://192.168.3.200:9600/api/server/mongo/operateClusterAbleAuth/{{cluster
 | msg       |         返回消息         |                        |        
 | eventId       |         事件id         |                        |        
 
-![postman_mongo_operateClusterAbleAuth_result](https://github.com/whaleal/guide/blob/main/Images/operateClusterAbleAuth_r.png)
+![postman_mongo_operateClusterAbleAuth_result](../Images/operateClusterAbleAuth_r.png)
 ---
 
 ####  6 添加shard
@@ -478,18 +406,7 @@ POST http://192.168.3.200:9600/api/server/mongo/addShard/{{clusterId}}
                 "storage.wiredTiger.engineConfig.cacheSizeGB": "0.3"
             }
         }
-    ],
-    "replicationSettings": {
-        "protocolVersion": null,
-        "chainingAllowed": null,
-        "writeConcernMajorityJournalDefault": null,
-        "heartbeatTimeoutSecs": null,
-        "electionTimeoutMillis": null,
-        "catchUpTimeoutMillis": null,
-        "catchUpTakeoverDelayMillis": null,
-        "getLastErrorDefaults": null,
-        "forceReconfigure": null
-    }
+    ]
 }
 ~~~
 
@@ -503,7 +420,7 @@ POST http://192.168.3.200:9600/api/server/mongo/addShard/{{clusterId}}
 | code        |   状态符:1000成功,其余异常 |                       |    
 | msg       |         返回消息         |                        |        
 
-![postman_mongo_addShard_result](https://github.com/whaleal/guide/blob/main/Images/addShard_r.png)
+![postman_mongo_addShard_result](../Images/addShard_r.png)
 ---
 
 
@@ -525,7 +442,7 @@ POST http://192.168.3.200:9600/api/server/mongo/mongoManaged
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 |        mongoMember    |        body             |           实体类              |     yes           |   mongoMember      |
 
-![postman_mongo_mongoManaged](https://github.com/whaleal/guide/blob/main/Images/mongoManaged.png)
+![postman_mongo_mongoManaged](../Images/mongoManaged.png)
 
 
 
@@ -551,48 +468,7 @@ POST http://192.168.3.200:9600/api/server/mongo/mongoManaged
         "clusterName": "fp",
         "type": 1,
         "mongoMember": {
-            "id": null,
-            "createTime": 0,
-            "updateTime": 0,
-            "memberName": "chen:27017",
-            "hostName": "chen",
-            "hostId": "62bbfbe9a46517610435d615",
-            "port": "27017",
-            "version": null,
-            "upgradeVersion": null,
-            "userName": "",
-            "password": "",
-            "authDbName": "admin",
-            "currentTimeMillis": 1657775135291,
-            "dataDirectory": "/var/ops/mongodb1657775135291/data/",
-            "logFile": "/var/ops/mongodb1657775135291/log/log.log",
-            "confPath": "/var/ops/mongodb1657775135291/mongo.conf",
-            "deleteDataAndLogAble": false,
-            "authAble": false,
-            "runShCmd": null,
-            "type": 11,
-            "status": "无状态",
-            "monitorServerStatus": false,
-            "monitorTopAndOp": false,
-            "collectMongoLog": false,
-            "mongoLogFileOffset": 0,
-            "operaLogTemp": [],
-            "votes": 1,
-            "priority": 1.0,
-            "delay": 0,
-            "buildIndexes": true,
-            "procId": "",
-            "clusterId": "62cfa41fed494511782ff7a2",
-            "replId": null,
-            "clusterName": "fp",
-            "tags": {},
-            "configurationOptions": {
-                "systemLog_destination": "file",
-                "processManagement_fork": "true",
-                "systemLog_logAppend": "true",
-                "net_bindIp": "0.0.0.0"
-            },
-            "operateVersion": 0
+            ...
         },
         "mongoReplica": null,
         "mongoShard": null,
@@ -625,7 +501,7 @@ GET http://192.168.3.200:9600/api/server/mongo/upgrade/{{clusterId}}/{{version}}
 | type          |         path           |            集群类型            |        Yes       |String        |
 
 
-![postman_mongo_upgrade](https://github.com/whaleal/guide/blob/main/Images/upgrade.png)
+![postman_mongo_upgrade](../Images/upgrade.png)
 
 ~~~
 
@@ -641,7 +517,7 @@ GET http://192.168.3.200:9600/api/server/mongo/upgrade/{{clusterId}}/{{version}}
 | code        |   状态符:1000成功,其余异常 |                       |    
 | msg       |         返回消息         |                        |        
 
-![postman_mongo_upgrade_result](https://github.com/whaleal/guide/blob/main/Images/upgrade_r.png)
+![postman_mongo_upgrade_result](../Images/upgrade_r.png)
 
 
 
@@ -666,7 +542,7 @@ GET http://192.168.3.200:9600/api/server/mongo/operate/{{clusterId}}/{{mongoMemb
 | operateType          |         path           |            操作类型            |        Yes       |String        |
 | mongoMemberName          |         path           |            mongo集群名称            |        Yes       |String        |
 
-![postman_mongo_operate](https://github.com/whaleal/guide/blob/main/Images/operate_Single.png)
+![postman_mongo_operate](../Images/operate_Single.png)
 
 
 ----
@@ -678,7 +554,7 @@ GET http://192.168.3.200:9600/api/server/mongo/operate/{{clusterId}}/{{mongoMemb
 | code        |   状态符:1000成功,其余异常 |                       |    
 | msg       |         返回消息         |                        |        
 
-![postman_mongo_operate_result](https://github.com/whaleal/guide/blob/main/Images/operate_Single_r.png)
+![postman_mongo_operate_result](../Images/operate_Single_r.png)
 
 
 ---
@@ -700,7 +576,7 @@ GET http://192.168.3.200:9600/api/server/mongo/operate/{{clusterId}}/{{operateTy
 | clusterId          |         path           |            集群id            |        Yes       |String        |
 | operateType          |         path           |            操作类型            |        Yes       |String        |
 
-![postman_mongo_operate](https://github.com/whaleal/guide/blob/main/Images/operate_cluster.png)
+![postman_mongo_operate](../Images/operate_cluster.png)
 
 
 ----
@@ -713,7 +589,7 @@ GET http://192.168.3.200:9600/api/server/mongo/operate/{{clusterId}}/{{operateTy
 | code        |   状态符:1000成功,其余异常 |                       |    
 | msg       |         返回消息         |                        |     
 
-![postman_mongo_operate_result](https://github.com/whaleal/guide/blob/main/Images/operate_cluster_r.png)
+![postman_mongo_operate_result](../Images/operate_cluster_r.png)
 
 
 
@@ -811,7 +687,7 @@ POST http://192.168.3.200:9600/api/server/mongo/updateClusterInfo
 | msg       |         返回消息         |                        |        
 
 
-![postman_mongo_updateClusterInfo_result](https://github.com/whaleal/guide/blob/main/Images/updateClusterInfo_r.png)
+![postman_mongo_updateClusterInfo_result](../Images/updateClusterInfo_r.png)
 
 
 
@@ -820,7 +696,7 @@ POST http://192.168.3.200:9600/api/server/mongo/updateClusterInfo
 ---
 
 
-##MongoMember
+## MongoMember
 
 
 |       Name         |     Type             |    Description      |   
@@ -903,7 +779,7 @@ type:
 ---
 ---
 
-##MongoShard
+## MongoShard
 
 
 |       Name         |     Type             |    Description      |   
@@ -927,7 +803,7 @@ type:
 
 
 
-##MongoClusterInformation
+## MongoClusterInformation
 
 
 |       Name         |     Type             |    Description      |   
@@ -955,5 +831,3 @@ type:
 * 3 分片
 
 
----
----

@@ -1,7 +1,7 @@
 #Member接口
 此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息。
 
-###请求头默认格式，特殊情况特殊声明
+### 请求头默认格式，特殊情况特殊声明
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
@@ -31,7 +31,7 @@ POST http://192.168.3.200:9600/api/server/member/login
 | password          |         formData           |            密码            |        Yes       |String        |
 
 
-![img_38.png](https://github.com/whaleal/guide/blob/main/Images/login.png)
+![img_38.png](../Images/login.png)
 
 ----
 
@@ -45,7 +45,7 @@ POST http://192.168.3.200:9600/api/server/member/login
 | generateAgentIdAble       |         是否有权限生成agentid         |         Boolean               |        
 | token       |         Token令牌         |                        |        String
 
-![img_39.png](https://github.com/whaleal/guide/blob/main/Images/login_r.png)
+![img_39.png](../Images/login_r.png)
 
 
 ---
@@ -71,7 +71,7 @@ POST http://192.168.3.200:9600/api/server/member/register
 | phone          |         formData           |            手机号            |        Yes       |String        |
 
 
-![img_40.png](https://github.com/whaleal/guide/blob/main/Images/register.png)
+![img_40.png](../Images/register.png)
 
 ----
 
@@ -85,7 +85,7 @@ POST http://192.168.3.200:9600/api/server/member/register
 
 
 
-![img_41.png](https://github.com/whaleal/guide/blob/main/Images/register_r.png)
+![img_41.png](../Images/register_r.png)
 
 
 
@@ -115,7 +115,7 @@ POST http://192.168.3.200:9600/api/server/member/update
 | Id          |         formData           |            Id            |        Yes       |String        |
 
 
-![img_42.png](https://github.com/whaleal/guide/blob/main/Images/update.png)
+![img_42.png](../Images/update.png)
 
 ----
 
@@ -127,7 +127,7 @@ POST http://192.168.3.200:9600/api/server/member/update
 | code        |   状态符:1000成功,其余异常 |                       |    
 | data       |         返回数据|       MemberMongoEntity                 |        
 
-![img_43.png](https://github.com/whaleal/guide/blob/main/Images/update_r.png)
+![img_43.png](../Images/update_r.png)
 
 ---
 
@@ -153,7 +153,7 @@ POST http://192.168.3.200:9600/api/server/member/findMemberData/{{pageSize}}/{{p
 | email          |         formData           |            邮箱            |        Yes       |String        |
 | phone          |         formData           |            手机号            |        Yes       |String        |
 
-![img_44.png](https://github.com/whaleal/guide/blob/main/Images/findMemberData.png)
+![img_44.png](../Images/findMemberData.png)
 
 ----
 
@@ -166,7 +166,7 @@ POST http://192.168.3.200:9600/api/server/member/findMemberData/{{pageSize}}/{{p
 | data       |         返回数据|       MemberMongoEntity                 |        
 
 
-![img_45.png](https://github.com/whaleal/guide/blob/main/Images/findMemberData_r.png)
+![img_45.png](../Images/findMemberData_r.png)
 
 
 ---
@@ -191,7 +191,7 @@ POST http://192.168.3.200:9600/api/server/member/findMemberCount
 | email          |         formData           |            邮箱            |        Yes       |String        |
 | phone          |         formData           |            手机号            |        Yes       |String        |
 
-![img_46.png](https://github.com/whaleal/guide/blob/main/Images/findMemberCount.png)
+![img_46.png](../Images/findMemberCount.png)
 
 ----
 
@@ -203,7 +203,7 @@ POST http://192.168.3.200:9600/api/server/member/findMemberCount
 | code        |   状态符:1000成功,其余异常 |                       |    
 | data       |         返回数量         |                        |        
 
-![img_47.png](https://github.com/whaleal/guide/blob/main/Images/findMemberCount_r.png)
+![img_47.png](../Images/findMemberCount_r.png)
 
 ---
 
@@ -226,7 +226,7 @@ GET http://192.168.3.200:9600/api/server/member/update/receiveAlert/{{memberId}}
 | value          |         Path           |            是否开启            |        Yes       |Boolean        |
 
 
-![img_48.png](https://github.com/whaleal/guide/blob/main/Images/receiveAlert.png)
+![img_48.png](../Images/receiveAlert.png)
 
 ----
 
@@ -238,7 +238,7 @@ GET http://192.168.3.200:9600/api/server/member/update/receiveAlert/{{memberId}}
 | code        |   状态符:1000成功,其余异常 |                       |    
 | msg       |         返回消息|                        |        
 
-![img_49.png](https://github.com/whaleal/guide/blob/main/Images/receiveAlert_r.png)
+![img_49.png](../Images/receiveAlert_r.png)
 
 ---
 
@@ -260,7 +260,7 @@ GET http://192.168.3.200:9600/api/server/member/update/timezone/{{memberId}}
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | timezone          |         参数           |            时区            |        Yes       |String        |
 
-![img_50.png](https://github.com/whaleal/guide/blob/main/Images/timezone.png)
+![img_50.png](../Images/timezone.png)
 
 ----
 
@@ -272,7 +272,7 @@ GET http://192.168.3.200:9600/api/server/member/update/timezone/{{memberId}}
 | code        |   状态符:1000成功,其余异常 |                       |    
 | msg       |         返回消息|                        |        
 
-![img_51.png](https://github.com/whaleal/guide/blob/main/Images/timezone_r.png)
+![img_51.png](../Images/timezone_r.png)
 
 
 
@@ -297,7 +297,7 @@ GET http://192.168.3.200:9600/api/server/member/update/role/{{memberId}}/{{value
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | value          |         Path           |            角色:user,admin            |        Yes       |String        |
 
-![img_52.png](https://github.com/whaleal/guide/blob/main/Images/role.png)
+![img_52.png](../Images/role.png)
 
 ----
 
@@ -309,7 +309,7 @@ GET http://192.168.3.200:9600/api/server/member/update/role/{{memberId}}/{{value
 | code        |   状态符:1000成功,其余异常 |                       |    
 | msg       |         返回消息|                        |    
 
-![img_53.png](https://github.com/whaleal/guide/blob/main/Images/role_r.png)
+![img_53.png](../Images/role_r.png)
 
 ---
 
@@ -330,7 +330,7 @@ GET http://192.168.3.200:9600/api/server/member/update/createMongoDBAble/{{membe
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | value          |         Path           |            是否开启            |        Yes       |Boolean        |
 
-![img_54.png](https://github.com/whaleal/guide/blob/main/Images/update_createMongoDBAble.png)
+![img_54.png](../Images/update_createMongoDBAble.png)
 
 ----
 
@@ -342,7 +342,7 @@ GET http://192.168.3.200:9600/api/server/member/update/createMongoDBAble/{{membe
 | code        |   状态符:1000成功,其余异常 |                       |    
 | msg       |         返回消息|                        |    
 
-![img_55.png](https://github.com/whaleal/guide/blob/main/Images/update_createMongoDBAble_r.png)
+![img_55.png](../Images/update_createMongoDBAble_r.png)
 
 
 ---
@@ -364,7 +364,7 @@ GET http://192.168.3.200:9600/api/server/member/update/generateAgentIdAble/{{mem
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | value          |         Path           |            是否开启            |        Yes       |Boolean        |
 
-![img_56.png](https://github.com/whaleal/guide/blob/main/Images/update_generateAgentIdAble.png)
+![img_56.png](../Images/update_generateAgentIdAble.png)
 
 ----
 
@@ -377,7 +377,7 @@ GET http://192.168.3.200:9600/api/server/member/update/generateAgentIdAble/{{mem
 | msg       |         返回消息|                        |    
 
 
-![img_57.png](https://github.com/whaleal/guide/blob/main/Images/update_generateAgentIdAble_r.png)
+![img_57.png](../Images/update_generateAgentIdAble_r.png)
 
 
 
@@ -401,7 +401,7 @@ GET http://192.168.3.200:9600/api/server/member/update/userResourceInfo/{{member
 | objectId          |         Path           |            根据type类型提供id            |        Yes       |String        |
 | type          |         Path           |            类型：mongo,host            |        Yes       |String        |
 
-![img_58.png](https://github.com/whaleal/guide/blob/main/Images/update_userResourceInfo.png)
+![img_58.png](../Images/update_userResourceInfo.png)
 
 ----
 
@@ -413,7 +413,7 @@ GET http://192.168.3.200:9600/api/server/member/update/userResourceInfo/{{member
 | code        |   状态符:1000成功,其余异常 |                       |
 | msg       |         返回消息|                        |
 
-![img_59.png](https://github.com/whaleal/guide/blob/main/Images/update_userResourceInfo_r.png)
+![img_59.png](../Images/update_userResourceInfo_r.png)
 
 ---
 
@@ -436,7 +436,7 @@ GET http://170.187.230.78:9602/api/server/member/delete/user/{{memberId}}
 
 
 
-![img_60.png](https://github.com/whaleal/guide/blob/main/Images/delete_user.png)
+![img_60.png](../Images/delete_user.png)
 
 ----
 
@@ -448,7 +448,7 @@ GET http://170.187.230.78:9602/api/server/member/delete/user/{{memberId}}
 | code        |   状态符:1000成功,其余异常 |                       |
 | msg       |         返回消息|                        |
 
-![img_61.png](https://github.com/whaleal/guide/blob/main/Images/delete_user_r.png)
+![img_61.png](../Images/delete_user_r.png)
 
 ---
 
@@ -469,7 +469,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserResource/{{memberId}}
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 
-![img_62.png](https://github.com/whaleal/guide/blob/main/Images/getUserResource.png)
+![img_62.png](../Images/getUserResource.png)
 
 ----
 
@@ -481,7 +481,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserResource/{{memberId}}
 | code        |   状态符:1000成功,其余异常 |                       |
 | data       |         返回数据|                   MemberMongoEntity     |
 
-![img_63.png](https://github.com/whaleal/guide/blob/main/Images/getUserResource_r.png)
+![img_63.png](../Images/getUserResource_r.png)
 
 ---
 
@@ -505,7 +505,7 @@ GET https://170.187.230.78:9600/api/server/member/getUserServerResourceData/{{me
 | pageSize          |         Path           |            每页大小            |        Yes       |Int        |
 | pageIndex          |         Path           |            第几页            |        Yes       |Int        |
 
-![img_64.png](https://github.com/whaleal/guide/blob/main/Images/getUserServerResourceData.png)
+![img_64.png](../Images/getUserServerResourceData.png)
 
 ----
 
@@ -518,7 +518,7 @@ GET https://170.187.230.78:9600/api/server/member/getUserServerResourceData/{{me
 | data.hostName       |         主机名称|            String            |
 | data.osVersion       |         系统版本|         String               |
 
-![img_65.png](https://github.com/whaleal/guide/blob/main/Images/getUserServerResourceData_r.png)
+![img_65.png](../Images/getUserServerResourceData_r.png)
 
 
 
@@ -542,7 +542,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserServerResourceCount/{{me
 | competence          |         Path           |            权限:write,read,null            |        Yes       |String        |
 
 
-![img_66.png](https://github.com/whaleal/guide/blob/main/Images/getUserServerResourceCount.png)
+![img_66.png](../Images/getUserServerResourceCount.png)
 
 ----
 
@@ -554,7 +554,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserServerResourceCount/{{me
 | code        |   状态符:1000成功,其余异常 |                       |
 | data       |         返回数量|                        |
 
-![img_67.png](https://github.com/whaleal/guide/blob/main/Images/getUserServerResourceCount_r.png)
+![img_67.png](../Images/getUserServerResourceCount_r.png)
 
 ---
 
@@ -579,7 +579,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserMongoDBClusterResourceDa
 
 
 
-![img_68.png](https://github.com/whaleal/guide/blob/main/Images/getUserMongoDBClusterResourceData.png)
+![img_68.png](../Images/getUserMongoDBClusterResourceData.png)
 
 ----
 
@@ -593,7 +593,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserMongoDBClusterResourceDa
 | data.type       |         类型:单节点,复制集,分片，纳管|                        |
 
 
-![img_69.png](https://github.com/whaleal/guide/blob/main/Images/getUserMongoDBClusterResourceData_r.png)
+![img_69.png](../Images/getUserMongoDBClusterResourceData_r.png)
 
 ---
 
@@ -615,7 +615,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserMongoDBClusterResourceCo
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | competence          |         Path           |            权限:write,read,null            |        Yes       |String        |
 
-![img_70.png](https://github.com/whaleal/guide/blob/main/Images/getUserMongoDBClusterResourceCount.png)
+![img_70.png](../Images/getUserMongoDBClusterResourceCount.png)
 
 ----
 
@@ -627,7 +627,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserMongoDBClusterResourceCo
 | code        |   状态符:1000成功,其余异常 |                       |
 | data       |         返回数量|                        |
 
-![img_71.png](https://github.com/whaleal/guide/blob/main/Images/getUserMongoDBClusterResourceCount_r.png)
+![img_71.png](../Images/getUserMongoDBClusterResourceCount_r.png)
 
 
 
@@ -662,7 +662,7 @@ GET http://170.187.230.78:9600/api/server/member/getMessageData/{{memberId}}/{{p
 | startTime          |         参数           |            开始时间            |        Yes       |Long        |
 | endTime          |         参数           |            结束时间            |        Yes       |Long        |
 
-![img_72.png](https://github.com/whaleal/guide/blob/main/Images/getMessageData.png)
+![img_72.png](../Images/getMessageData.png)
 
 ----
 
@@ -674,7 +674,7 @@ GET http://170.187.230.78:9600/api/server/member/getMessageData/{{memberId}}/{{p
 | code        |   状态符:1000成功,其余异常 |                       |
 | data       |         返回数据|            MessageEntity            |
 
-![img_73.png](https://github.com/whaleal/guide/blob/main/Images/getMessageData_r.png)
+![img_73.png](../Images/getMessageData_r.png)
 
 
 ---
@@ -705,7 +705,7 @@ GET http://170.187.230.78:9600/api/server/member/getMessageCount/{{memberId}}
 | startTime          |         参数           |            开始时间            |        Yes       |Long        |
 | endTime          |         参数           |            结束时间            |        Yes       |Long        |
 
-![img_74.png](https://github.com/whaleal/guide/blob/main/Images/getMessageCount.png)
+![img_74.png](../Images/getMessageCount.png)
 
 ----
 
@@ -717,7 +717,7 @@ GET http://170.187.230.78:9600/api/server/member/getMessageCount/{{memberId}}
 | code        |   状态符:1000成功,其余异常 |                       |
 | data     |         返回数量|                        |
 
-![img_75.png](https://github.com/whaleal/guide/blob/main/Images/getMessageCount_r.png)
+![img_75.png](../Images/getMessageCount_r.png)
 
 
 ---
@@ -739,7 +739,7 @@ GET http://170.187.230.78:9600/api/server/member/update/messageStatus/{{memberId
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | messageId          |         Path           |            消息id            |        Yes       |String        |
 
-![img_76.png](https://github.com/whaleal/guide/blob/main/Images/messageStatus.png)
+![img_76.png](../Images/messageStatus.png)
 
 ----
 
@@ -752,7 +752,7 @@ GET http://170.187.230.78:9600/api/server/member/update/messageStatus/{{memberId
 | msg       |         返回消息|                        |
 
 
-![img_77.png](https://github.com/whaleal/guide/blob/main/Images/messageStatus_r.png)
+![img_77.png](../Images/messageStatus_r.png)
 
 
 
@@ -776,7 +776,7 @@ GET http://170.187.230.78:9600/api/server/member/update/allMessageStatus/{{membe
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 
-![img_78.png](https://github.com/whaleal/guide/blob/main/Images/allMessageStatus.png)
+![img_78.png](../Images/allMessageStatus.png)
 
 ----
 
@@ -788,7 +788,7 @@ GET http://170.187.230.78:9600/api/server/member/update/allMessageStatus/{{membe
 | code        |   状态符:1000成功,其余异常 |                       |
 | msg       |         返回消息|                        |
 
-![img_79.png](https://github.com/whaleal/guide/blob/main/Images/allMessageStatus_r.png)
+![img_79.png](../Images/allMessageStatus_r.png)
 
 
 
@@ -796,7 +796,7 @@ GET http://170.187.230.78:9600/api/server/member/update/allMessageStatus/{{membe
 ---
 
 
-##MemberMongoEntity
+## MemberMongoEntity
 
 
 |       Name         |     Type             |    Description      |
@@ -813,7 +813,7 @@ GET http://170.187.230.78:9600/api/server/member/update/allMessageStatus/{{membe
 
 ---
 
-##MessageEntity
+## MessageEntity
 
 
 |       Name         |     Type             |    Description      |
