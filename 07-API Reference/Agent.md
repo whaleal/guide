@@ -32,7 +32,7 @@ Get : http://192.168.3.200:9600/api/server/agent/getAllAgentHostNameAndHostId
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostName          |         参数           |            主机名称            |        No       |string        |
+| hostName          |         params           |            主机名称            |        No       |string        |
 
 
 ![img.png](../Images/getAllAgentHostNameAndHostId.png)
@@ -108,9 +108,9 @@ GET  http://192.168.3.200:9600/api/server/agent/getAllAgentData/{{pageIndex}}/{{
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | pageIndex          |         path           |            第几页           |        yes       |int        |
 | pageSize          |         path         |            每页大小            |        yes      |int        |
-| hostName          |         参数           |            主机名称            |        No       |string        |
-| Ip          |         参数           |            主机ip            |        No       |string        |
-| Status          |         参数           |            主机状态            |        No       |Boolean        |
+| hostName          |         params           |            主机名称            |        No       |string        |
+| Ip          |         params           |            主机ip            |        No       |string        |
+| Status          |         params           |            主机状态            |        No       |Boolean        |
 
 
 ![img_4.png](../Images/getAllAgentData.png)
@@ -179,9 +179,9 @@ GET http://192.168.3.200:9600/api/server/agent/getAllAgentCount
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostName          |         参数           |            主机名称            |        No       |string        |
-| ip          |         参数           |            主机ip            |        No       |string        |
-| status          |         参数           |            主机状态            |        No       |Boolean        |
+| hostName          |         params           |            主机名称            |        No       |string        |
+| ip          |         params           |            主机ip            |        No       |string        |
+| status          |         params           |            主机状态            |        No       |Boolean        |
 
 
 ![img_5.png](../Images/getAllAgentCount.png)
@@ -283,9 +283,9 @@ GET http://192.168.3.200:9600/api/server/agent/getAgentMonitor/map/{{hostId}}/{{
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostId         |         path           |            主机id            |        yes       |string        |
 | type         |         path           |            监控类型            |        yes       |string        |
-| startTimeForTimeInterval         |         参数           |      某时间段的开始时间            |        yes       |long        |
-| endTimeForTimeInterval         |         参数           |            某时间段的结束时间    |        yes       |long        |
-| timeGranularity         |         参数           |            时间粒度            |        yes       |long        |
+| startTimeForTimeInterval         |         params           |      某时间段的开始时间            |        yes       |long        |
+| endTimeForTimeInterval         |         params           |            某时间段的结束时间    |        yes       |long        |
+| timeGranularity         |         params           |            时间粒度            |        yes       |long        |
 
 
 ![img_8.png](../Images/getAgentMonitor.png)
@@ -380,10 +380,10 @@ GET http://192.168.3.200:9600/api/server/agent/logData/{{hostId}}/{{pageIndex}}/
 | hostid          |         path           |            主机id           |        yes       |string        |
 | pageIndex          |         path           |            第几页            |        yes       |Integer        |
 | pageSize          |         path           |            每页数量            |        yes       |Integer        |
-| type          |         参数           |            日志类别            |        No       |string        |
-| startTime          |         参数           |            开始时间            |        yes       |long        |
-| endTime          |         参数           |            结束时间            |        yes       |long        |
-| content          |         参数           |            关键字            |        No       |string        |
+| type          |         params           |            日志类别            |        No       |string        |
+| startTime          |         params           |            开始时间            |        yes       |long        |
+| endTime          |         params           |            结束时间            |        yes       |long        |
+| content          |         params           |            关键字            |        No       |string        |
 
 
 ![img_9.png](../Images/logData.png)
@@ -422,10 +422,10 @@ GET http://192.168.3.200:9600/api/server/agent/logCount/{{hostId}}
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostid          |         path           |            主机id           |        yes       |string        |
-| type          |         参数           |            日志类别            |        No       |string        |
-| startTime          |         参数           |            开始时间            |        yes       |long        |
-| endTime          |         参数           |            结束时间            |        yes       |long        |
-| content          |         参数           |            关键字            |        No       |string        |
+| type          |         params           |            日志类别            |        No       |string        |
+| startTime          |         params           |            开始时间            |        yes       |long        |
+| endTime          |         params           |            结束时间            |        yes       |long        |
+| content          |         params           |            关键字            |        No       |string        |
 
 
 ![img_11.png](../Images/logCount.png)
@@ -571,12 +571,12 @@ GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataList/{{hostId}}
 | hostId          |         Path           |            主机名称            |        Yes       |string        |
 | pageIndex          |         Path           |            分页页数            |        Yes       |Integer        |
 | pageSize          |         Path           |            分页大小            |        Yes       |Integer        |
-| Status          |         参数           |            状态            |        No       |Int        |
-| startTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
-| commandType          |         参数           |            命令类型            |        No       |string        |
-| result          |         参数           |            结果            |        No       |string        |
-| eventId          |         参数           |            事件id            |        No       |string        |
+| Status          |         params           |            状态            |        No       |Int        |
+| startTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
+| commandType          |         params           |            命令类型            |        No       |string        |
+| result          |         params           |            结果            |        No       |string        |
+| eventId          |         params           |            事件id            |        No       |string        |
 
 
 ![img_18.png](../Images/getExecCommandDataList.png)
@@ -610,12 +610,12 @@ GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataCount/{{hostId}
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostId          |         Path           |            主机名称            |        Yes       |string        |
-| Status          |         参数           |            状态            |        No       |int|
-| startTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
-| commandType          |         参数           |            命令类型            |        No       |string        |
-| result          |         参数           |            结果            |        No       |string        |
-| eventId          |         参数           |            时间id            |        No       |string        |
+| Status          |         params           |            状态            |        No       |int|
+| startTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
+| commandType          |         params           |            命令类型            |        No       |string        |
+| result          |         params           |            结果            |        No       |string        |
+| eventId          |         params           |            时间id            |        No       |string        |
 
 
 ![img_20.png](../Images/getExecCommandDataCount.png)
@@ -651,8 +651,8 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/CpuUsage/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| beginTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
 
 ![img_22.png](../Images/CpuUsage.png)
@@ -689,8 +689,8 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/MemUsage/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| beginTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
 
 ![img_24.png](../Images/MemUsage.png)
@@ -726,8 +726,8 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/DiskUsage/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| beginTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
 
 ![img_26.png](../Images/DiskUsage.png)
@@ -764,8 +764,8 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/NetIn/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| beginTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
 
 ![img_28.png](../Images/NetIn.png)
@@ -800,8 +800,8 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/NetOut/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| beginTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
 
 ![img_30.png](../Images/NetOut.png)
