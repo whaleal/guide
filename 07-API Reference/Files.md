@@ -28,7 +28,7 @@ POST http://192.168.3.200:9600/api/server/file/web/upload/file
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| File          |         formData           |            上传的文件            |        Yes       |MultipartFile
+| File          |         body           |            上传的文件            |        Yes       |MultipartFile
 
 
 ![img_32.png](../Images/upload.png)

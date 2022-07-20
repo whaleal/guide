@@ -27,8 +27,8 @@ POST http://192.168.3.200:9600/api/server/member/login
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| account          |         formData           |            账户名            |        Yes       |String        |
-| password          |         formData           |            密码            |        Yes       |String        |
+| account          |         body           |            账户名            |        Yes       |String        |
+| password          |         body           |            密码            |        Yes       |String        |
 
 
 ![img_38.png](../Images/login.png)
@@ -65,10 +65,10 @@ POST http://192.168.3.200:9600/api/server/member/register
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| account          |         formData           |            账户名            |        Yes       |String        |
-| password          |         formData           |            密码            |        Yes       |String        |
-| email          |         formData           |            邮箱            |        Yes       |String        |
-| phone          |         formData           |            手机号            |        Yes       |String        |
+| account          |         body           |            账户名            |        Yes       |String        |
+| password          |         body           |            密码            |        Yes       |String        |
+| email          |         body           |            邮箱            |        Yes       |String        |
+| phone          |         body           |            手机号            |        Yes       |String        |
 
 
 ![img_40.png](../Images/register.png)
@@ -108,11 +108,11 @@ POST http://192.168.3.200:9600/api/server/member/update
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| account          |         formData           |            账户名            |        Yes       |String        |
-| password          |         formData           |            密码            |        Yes       |String        |
-| email          |         formData           |            邮箱            |        Yes       |String        |
-| phone          |         formData           |            手机号            |        Yes       |String        |
-| Id          |         formData           |            Id            |        Yes       |String        |
+| account          |         body           |            账户名            |        Yes       |String        |
+| password          |         body           |            密码            |        Yes       |String        |
+| email          |         body           |            邮箱            |        Yes       |String        |
+| phone          |         body           |            手机号            |        Yes       |String        |
+| Id          |         body           |            Id            |        Yes       |String        |
 
 
 ![img_42.png](../Images/update.png)
@@ -148,10 +148,10 @@ POST http://192.168.3.200:9600/api/server/member/findMemberData/{{pageSize}}/{{p
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | pageSize          |         path           |            每页大小            |        Yes       |int        |
 | pageIndex          |         path           |            第几页            |        Yes       |int        |
-| account          |         formData           |            账户名            |        Yes       |String        |
-| password          |         formData           |            密码            |        Yes       |String        |
-| email          |         formData           |            邮箱            |        Yes       |String        |
-| phone          |         formData           |            手机号            |        Yes       |String        |
+| account          |         body           |            账户名            |        Yes       |String        |
+| password          |         body           |            密码            |        Yes       |String        |
+| email          |         body           |            邮箱            |        Yes       |String        |
+| phone          |         body           |            手机号            |        Yes       |String        |
 
 ![img_44.png](../Images/findMemberData.png)
 
@@ -186,10 +186,10 @@ POST http://192.168.3.200:9600/api/server/member/findMemberCount
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| account          |         formData           |            账户名            |        Yes       |String        |
-| password          |         formData           |            密码            |        Yes       |String        |
-| email          |         formData           |            邮箱            |        Yes       |String        |
-| phone          |         formData           |            手机号            |        Yes       |String        |
+| account          |         body           |            账户名            |        Yes       |String        |
+| password          |         body           |            密码            |        Yes       |String        |
+| email          |         body           |            邮箱            |        Yes       |String        |
+| phone          |         body           |            手机号            |        Yes       |String        |
 
 ![img_46.png](../Images/findMemberCount.png)
 
@@ -252,13 +252,13 @@ GET http://192.168.3.200:9600/api/server/member/update/timezone/{{memberId}}
 
 ---
 
-7.2 请求参数：
+7.2 请求params：
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
-| timezone          |         参数           |            时区            |        Yes       |String        |
+| timezone          |         params           |            时区            |        Yes       |String        |
 
 ![img_50.png](../Images/timezone.png)
 
@@ -654,13 +654,13 @@ GET http://170.187.230.78:9600/api/server/member/getMessageData/{{memberId}}/{{p
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | pageSize          |         Path           |            每页大小            |        Yes       |Int        |
 | pageIndex          |         Path           |            第几页            |        Yes       |Int        |
-| operatorName          |         参数           |            操作者名称            |        No       |String        |
-| objectName          |         参数           |            被操作的对象名称            |        No       |String        |
-| type          |         参数           |            主机 mongodb 用户 告警            |        No       |String        |
-| status          |         参数           |            状态            |        Yes       |Boolean        |
-| message          |         参数           |            消息            |        No       |String        |
-| startTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| operatorName          |         params           |            操作者名称            |        No       |String        |
+| objectName          |         params           |            被操作的对象名称            |        No       |String        |
+| type          |         params           |            主机 mongodb 用户 告警            |        No       |String        |
+| status          |         params           |            状态            |        Yes       |Boolean        |
+| message          |         params           |            消息            |        No       |String        |
+| startTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
 ![img_72.png](../Images/getMessageData.png)
 
@@ -697,13 +697,13 @@ GET http://170.187.230.78:9600/api/server/member/getMessageCount/{{memberId}}
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | pageSize          |         Path           |            每页大小            |        Yes       |Int        |
 | pageIndex          |         Path           |            第几页            |        Yes       |Int        |
-| operatorName          |         参数           |            操作者名称            |        No       |String        |
-| objectName          |         参数           |            被操作的对象名称            |        No       |String        |
-| type          |         参数           |            主机 mongodb 用户 告警            |        No       |String        |
-| status          |         参数           |            状态            |        Yes       |Boolean        |
-| message          |         参数           |            消息            |        No       |String        |
-| startTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| operatorName          |         params           |            操作者名称            |        No       |String        |
+| objectName          |         params           |            被操作的对象名称            |        No       |String        |
+| type          |         params           |            主机 mongodb 用户 告警            |        No       |String        |
+| status          |         params           |            状态            |        Yes       |Boolean        |
+| message          |         params           |            消息            |        No       |String        |
+| startTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
 ![img_74.png](../Images/getMessageCount.png)
 
