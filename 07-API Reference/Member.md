@@ -1,7 +1,21 @@
 #Member接口
-此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息。
+接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
 
-###请求头默认格式，特殊情况特殊声明
+
+
+有些接口调用时需用到ID、memberId、messageId
+~~~
+Id为用户ID，在“保存新用户信息”接口处返回data里的id为用户ID。
+
+memberId为用户ID，在“保存新用户信息”接口处返回data里的id为用户ID。
+
+messageId为消息id，在“获取信息数据”接口处返回的实体类中的id。
+~~~
+
+
+### 请求头默认格式，特殊情况特殊声明
+    
+    OPS-Token在调用登录接口时返回，在之后调用接口时将OPS-Token放置请求头中。
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
@@ -9,6 +23,10 @@
 | Connection          |         keep-alive           |          
 | Content-Type          |         application/json |    
 | OPS-Token          |         "token"           |     
+
+
+
+
 ---
 ---
 
@@ -27,11 +45,11 @@ POST http://192.168.3.200:9600/api/server/member/login
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| account          |         formData           |            账户名            |        Yes       |String        |
-| password          |         formData           |            密码            |        Yes       |String        |
+| account          |         body           |            账户名            |        Yes       |String        |
+| password          |         body           |            密码            |        Yes       |String        |
 
 
-![img_38.png](https://github.com/whaleal/guide/blob/main/Images/login.png)
+![img_38.png](../Images/login.png)
 
 ----
 
@@ -40,12 +58,12 @@ POST http://192.168.3.200:9600/api/server/member/login
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |         int              |    
 | data       |         返回数据|       MemberMongoEntity                 |        
-| generateAgentIdAble       |         是否有权限生成agentid         |         Boolean               |        
-| token       |         Token令牌         |                        |        String
+| generateAgentIdAble       |         是否有权限生成agentId         |         Boolean               |        
+| token       |         Token令牌         |         String               |   
 
-![img_39.png](https://github.com/whaleal/guide/blob/main/Images/login_r.png)
+![img_39.png](../Images/login_r.png)
 
 
 ---
@@ -65,13 +83,13 @@ POST http://192.168.3.200:9600/api/server/member/register
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| account          |         formData           |            账户名            |        Yes       |String        |
-| password          |         formData           |            密码            |        Yes       |String        |
-| email          |         formData           |            邮箱            |        Yes       |String        |
-| phone          |         formData           |            手机号            |        Yes       |String        |
+| account          |         body           |            账户名            |        Yes       |String        |
+| password          |         body           |            密码            |        Yes       |String        |
+| email          |         body           |            邮箱            |        Yes       |String        |
+| phone          |         body           |            手机号            |        Yes       |String        |
 
 
-![img_40.png](https://github.com/whaleal/guide/blob/main/Images/register.png)
+![img_40.png](../Images/register.png)
 
 ----
 
@@ -80,12 +98,12 @@ POST http://192.168.3.200:9600/api/server/member/register
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |         int              |    
 | data       |         返回数据|       MemberMongoEntity                 |        
 
 
 
-![img_41.png](https://github.com/whaleal/guide/blob/main/Images/register_r.png)
+![img_41.png](../Images/register_r.png)
 
 
 
@@ -104,18 +122,20 @@ POST http://192.168.3.200:9600/api/server/member/update
 
 3.2 请求参数：
 
+     
+
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| account          |         formData           |            账户名            |        Yes       |String        |
-| password          |         formData           |            密码            |        Yes       |String        |
-| email          |         formData           |            邮箱            |        Yes       |String        |
-| phone          |         formData           |            手机号            |        Yes       |String        |
-| Id          |         formData           |            Id            |        Yes       |String        |
+| account          |         body           |            账户名            |        Yes       |String        |
+| password          |         body           |            密码            |        Yes       |String        |
+| email          |         body           |            邮箱            |        Yes       |String        |
+| phone          |         body           |            手机号            |        Yes       |String        |
+| Id          |         body           |            Id            |        Yes       |String        |
 
 
-![img_42.png](https://github.com/whaleal/guide/blob/main/Images/update.png)
+![img_42.png](../Images/update.png)
 
 ----
 
@@ -124,10 +144,10 @@ POST http://192.168.3.200:9600/api/server/member/update
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |         int              |    
 | data       |         返回数据|       MemberMongoEntity                 |        
 
-![img_43.png](https://github.com/whaleal/guide/blob/main/Images/update_r.png)
+![img_43.png](../Images/update_r.png)
 
 ---
 
@@ -144,16 +164,17 @@ POST http://192.168.3.200:9600/api/server/member/findMemberData/{{pageSize}}/{{p
 4.2 请求参数：
 
 
+
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | pageSize          |         path           |            每页大小            |        Yes       |int        |
 | pageIndex          |         path           |            第几页            |        Yes       |int        |
-| account          |         formData           |            账户名            |        Yes       |String        |
-| password          |         formData           |            密码            |        Yes       |String        |
-| email          |         formData           |            邮箱            |        Yes       |String        |
-| phone          |         formData           |            手机号            |        Yes       |String        |
+| account          |         body           |            账户名            |       No     |String        |
+| password          |         body           |            密码            |        No       |String        |
+| email          |         body           |            邮箱            |        No       |String        |
+| phone          |         body           |            手机号            |        No       |String        |
 
-![img_44.png](https://github.com/whaleal/guide/blob/main/Images/findMemberData.png)
+![img_44.png](../Images/findMemberData.png)
 
 ----
 
@@ -162,11 +183,11 @@ POST http://192.168.3.200:9600/api/server/member/findMemberData/{{pageSize}}/{{p
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |         int              |    
 | data       |         返回数据|       MemberMongoEntity                 |        
 
 
-![img_45.png](https://github.com/whaleal/guide/blob/main/Images/findMemberData_r.png)
+![img_45.png](../Images/findMemberData_r.png)
 
 
 ---
@@ -183,15 +204,14 @@ POST http://192.168.3.200:9600/api/server/member/findMemberCount
 5.2 请求参数：
 
 
-
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| account          |         formData           |            账户名            |        Yes       |String        |
-| password          |         formData           |            密码            |        Yes       |String        |
-| email          |         formData           |            邮箱            |        Yes       |String        |
-| phone          |         formData           |            手机号            |        Yes       |String        |
+| account          |         body           |            账户名            |        Yes       |String        |
+| password          |         body           |            密码            |        Yes       |String        |
+| email          |         body           |            邮箱            |        No       |String        |
+| phone          |         body           |            手机号            |        No       |String        |
 
-![img_46.png](https://github.com/whaleal/guide/blob/main/Images/findMemberCount.png)
+![img_46.png](../Images/findMemberCount.png)
 
 ----
 
@@ -200,10 +220,10 @@ POST http://192.168.3.200:9600/api/server/member/findMemberCount
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数量         |                        |        
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回数量         |       int                 |        
 
-![img_47.png](https://github.com/whaleal/guide/blob/main/Images/findMemberCount_r.png)
+![img_47.png](../Images/findMemberCount_r.png)
 
 ---
 
@@ -220,13 +240,14 @@ GET http://192.168.3.200:9600/api/server/member/update/receiveAlert/{{memberId}}
 6.2 请求参数：
 
 
+
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | value          |         Path           |            是否开启            |        Yes       |Boolean        |
 
 
-![img_48.png](https://github.com/whaleal/guide/blob/main/Images/receiveAlert.png)
+![img_48.png](../Images/receiveAlert.png)
 
 ----
 
@@ -235,10 +256,10 @@ GET http://192.168.3.200:9600/api/server/member/update/receiveAlert/{{memberId}}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回消息|                        |        
+| code        |   状态符:1000成功,其余异常 |       int                |    
+| msg       |         返回消息|           String             |        
 
-![img_49.png](https://github.com/whaleal/guide/blob/main/Images/receiveAlert_r.png)
+![img_49.png](../Images/receiveAlert_r.png)
 
 ---
 
@@ -258,9 +279,9 @@ GET http://192.168.3.200:9600/api/server/member/update/timezone/{{memberId}}
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
-| timezone          |         参数           |            时区            |        Yes       |String        |
+| timezone          |         params           |            时区            |        Yes       |String        |
 
-![img_50.png](https://github.com/whaleal/guide/blob/main/Images/timezone.png)
+![img_50.png](../Images/timezone.png)
 
 ----
 
@@ -269,10 +290,10 @@ GET http://192.168.3.200:9600/api/server/member/update/timezone/{{memberId}}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回消息|                        |        
+| code        |   状态符:1000成功,其余异常 |       int                |    
+| msg       |         返回消息|          String              |        
 
-![img_51.png](https://github.com/whaleal/guide/blob/main/Images/timezone_r.png)
+![img_51.png](../Images/timezone_r.png)
 
 
 
@@ -292,12 +313,13 @@ GET http://192.168.3.200:9600/api/server/member/update/role/{{memberId}}/{{value
 8.2 请求参数：
 
 
+
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | value          |         Path           |            角色:user,admin            |        Yes       |String        |
 
-![img_52.png](https://github.com/whaleal/guide/blob/main/Images/role.png)
+![img_52.png](../Images/role.png)
 
 ----
 
@@ -306,10 +328,10 @@ GET http://192.168.3.200:9600/api/server/member/update/role/{{memberId}}/{{value
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回消息|                        |    
+| code        |   状态符:1000成功,其余异常 |            int           |    
+| msg       |         返回消息|           string             |    
 
-![img_53.png](https://github.com/whaleal/guide/blob/main/Images/role_r.png)
+![img_53.png](../Images/role_r.png)
 
 ---
 
@@ -330,7 +352,7 @@ GET http://192.168.3.200:9600/api/server/member/update/createMongoDBAble/{{membe
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | value          |         Path           |            是否开启            |        Yes       |Boolean        |
 
-![img_54.png](https://github.com/whaleal/guide/blob/main/Images/update_createMongoDBAble.png)
+![img_54.png](../Images/update_createMongoDBAble.png)
 
 ----
 
@@ -339,10 +361,10 @@ GET http://192.168.3.200:9600/api/server/member/update/createMongoDBAble/{{membe
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回消息|                        |    
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| msg       |         返回消息|            string            |    
 
-![img_55.png](https://github.com/whaleal/guide/blob/main/Images/update_createMongoDBAble_r.png)
+![img_55.png](../Images/update_createMongoDBAble_r.png)
 
 
 ---
@@ -364,7 +386,7 @@ GET http://192.168.3.200:9600/api/server/member/update/generateAgentIdAble/{{mem
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | value          |         Path           |            是否开启            |        Yes       |Boolean        |
 
-![img_56.png](https://github.com/whaleal/guide/blob/main/Images/update_generateAgentIdAble.png)
+![img_56.png](../Images/update_generateAgentIdAble.png)
 
 ----
 
@@ -373,11 +395,11 @@ GET http://192.168.3.200:9600/api/server/member/update/generateAgentIdAble/{{mem
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回消息|                        |    
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| msg       |         返回消息|         string               |    
 
 
-![img_57.png](https://github.com/whaleal/guide/blob/main/Images/update_generateAgentIdAble_r.png)
+![img_57.png](../Images/update_generateAgentIdAble_r.png)
 
 
 
@@ -394,6 +416,7 @@ GET http://192.168.3.200:9600/api/server/member/update/userResourceInfo/{{member
 
 11.2 请求参数：
 
+
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
@@ -401,7 +424,7 @@ GET http://192.168.3.200:9600/api/server/member/update/userResourceInfo/{{member
 | objectId          |         Path           |            根据type类型提供id            |        Yes       |String        |
 | type          |         Path           |            类型：mongo,host            |        Yes       |String        |
 
-![img_58.png](https://github.com/whaleal/guide/blob/main/Images/update_userResourceInfo.png)
+![img_58.png](../Images/update_userResourceInfo.png)
 
 ----
 
@@ -410,10 +433,10 @@ GET http://192.168.3.200:9600/api/server/member/update/userResourceInfo/{{member
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| msg       |         返回消息|                        |
+| code        |   状态符:1000成功,其余异常 |         int              |
+| msg       |         返回消息|           string             |
 
-![img_59.png](https://github.com/whaleal/guide/blob/main/Images/update_userResourceInfo_r.png)
+![img_59.png](../Images/update_userResourceInfo_r.png)
 
 ---
 
@@ -436,7 +459,7 @@ GET http://170.187.230.78:9602/api/server/member/delete/user/{{memberId}}
 
 
 
-![img_60.png](https://github.com/whaleal/guide/blob/main/Images/delete_user.png)
+![img_60.png](../Images/delete_user.png)
 
 ----
 
@@ -445,10 +468,10 @@ GET http://170.187.230.78:9602/api/server/member/delete/user/{{memberId}}
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| msg       |         返回消息|                        |
+| code        |   状态符:1000成功,其余异常 |         int              |
+| msg       |         返回消息|             string           |
 
-![img_61.png](https://github.com/whaleal/guide/blob/main/Images/delete_user_r.png)
+![img_61.png](../Images/delete_user_r.png)
 
 ---
 
@@ -469,7 +492,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserResource/{{memberId}}
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 
-![img_62.png](https://github.com/whaleal/guide/blob/main/Images/getUserResource.png)
+![img_62.png](../Images/getUserResource.png)
 
 ----
 
@@ -478,10 +501,10 @@ GET http://170.187.230.78:9600/api/server/member/getUserResource/{{memberId}}
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
+| code        |   状态符:1000成功,其余异常 |        int               |
 | data       |         返回数据|                   MemberMongoEntity     |
 
-![img_63.png](https://github.com/whaleal/guide/blob/main/Images/getUserResource_r.png)
+![img_63.png](../Images/getUserResource_r.png)
 
 ---
 
@@ -505,7 +528,7 @@ GET https://170.187.230.78:9600/api/server/member/getUserServerResourceData/{{me
 | pageSize          |         Path           |            每页大小            |        Yes       |Int        |
 | pageIndex          |         Path           |            第几页            |        Yes       |Int        |
 
-![img_64.png](https://github.com/whaleal/guide/blob/main/Images/getUserServerResourceData.png)
+![img_64.png](../Images/getUserServerResourceData.png)
 
 ----
 
@@ -514,11 +537,11 @@ GET https://170.187.230.78:9600/api/server/member/getUserServerResourceData/{{me
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
+| code        |   状态符:1000成功,其余异常 |          int             |
 | data.hostName       |         主机名称|            String            |
 | data.osVersion       |         系统版本|         String               |
 
-![img_65.png](https://github.com/whaleal/guide/blob/main/Images/getUserServerResourceData_r.png)
+![img_65.png](../Images/getUserServerResourceData_r.png)
 
 
 
@@ -542,7 +565,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserServerResourceCount/{{me
 | competence          |         Path           |            权限:write,read,null            |        Yes       |String        |
 
 
-![img_66.png](https://github.com/whaleal/guide/blob/main/Images/getUserServerResourceCount.png)
+![img_66.png](../Images/getUserServerResourceCount.png)
 
 ----
 
@@ -551,10 +574,10 @@ GET http://170.187.230.78:9600/api/server/member/getUserServerResourceCount/{{me
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| data       |         返回数量|                        |
+| code        |   状态符:1000成功,其余异常 |         int              |
+| data       |         返回数量|           int             |
 
-![img_67.png](https://github.com/whaleal/guide/blob/main/Images/getUserServerResourceCount_r.png)
+![img_67.png](../Images/getUserServerResourceCount_r.png)
 
 ---
 
@@ -570,6 +593,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserMongoDBClusterResourceDa
 
 16.2 请求参数：
 
+
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
@@ -579,7 +603,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserMongoDBClusterResourceDa
 
 
 
-![img_68.png](https://github.com/whaleal/guide/blob/main/Images/getUserMongoDBClusterResourceData.png)
+![img_68.png](../Images/getUserMongoDBClusterResourceData.png)
 
 ----
 
@@ -588,12 +612,12 @@ GET http://170.187.230.78:9600/api/server/member/getUserMongoDBClusterResourceDa
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| data.clusterName       |         集群名称|                        |
-| data.type       |         类型:单节点,复制集,分片，纳管|                        |
+| code        |   状态符:1000成功,其余异常 |          int             |
+| data.clusterName       |         集群名称|           string             |
+| data.type       |         类型:单节点,复制集,分片，纳管|       string                 |
 
 
-![img_69.png](https://github.com/whaleal/guide/blob/main/Images/getUserMongoDBClusterResourceData_r.png)
+![img_69.png](../Images/getUserMongoDBClusterResourceData_r.png)
 
 ---
 
@@ -609,13 +633,12 @@ GET http://170.187.230.78:9600/api/server/member/getUserMongoDBClusterResourceCo
 17.2 请求参数：
 
 
-
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | competence          |         Path           |            权限:write,read,null            |        Yes       |String        |
 
-![img_70.png](https://github.com/whaleal/guide/blob/main/Images/getUserMongoDBClusterResourceCount.png)
+![img_70.png](../Images/getUserMongoDBClusterResourceCount.png)
 
 ----
 
@@ -624,10 +647,10 @@ GET http://170.187.230.78:9600/api/server/member/getUserMongoDBClusterResourceCo
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| data       |         返回数量|                        |
+| code        |   状态符:1000成功,其余异常 |          int             |
+| data       |         返回数量|            int            |
 
-![img_71.png](https://github.com/whaleal/guide/blob/main/Images/getUserMongoDBClusterResourceCount_r.png)
+![img_71.png](../Images/getUserMongoDBClusterResourceCount_r.png)
 
 
 
@@ -654,15 +677,15 @@ GET http://170.187.230.78:9600/api/server/member/getMessageData/{{memberId}}/{{p
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | pageSize          |         Path           |            每页大小            |        Yes       |Int        |
 | pageIndex          |         Path           |            第几页            |        Yes       |Int        |
-| operatorName          |         参数           |            操作者名称            |        No       |String        |
-| objectName          |         参数           |            被操作的对象名称            |        No       |String        |
-| type          |         参数           |            主机 mongodb 用户 告警            |        No       |String        |
-| status          |         参数           |            状态            |        Yes       |Boolean        |
-| message          |         参数           |            消息            |        No       |String        |
-| startTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| operatorName          |         params           |            操作者名称            |        No       |String        |
+| objectName          |         params           |            被操作的对象名称            |        No       |String        |
+| type          |         params           |            主机 mongodb 用户 告警            |        No       |String        |
+| status          |         params           |            状态            |        Yes       |Boolean        |
+| message          |         params           |            消息            |        No       |String        |
+| startTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
-![img_72.png](https://github.com/whaleal/guide/blob/main/Images/getMessageData.png)
+![img_72.png](../Images/getMessageData.png)
 
 ----
 
@@ -671,10 +694,10 @@ GET http://170.187.230.78:9600/api/server/member/getMessageData/{{memberId}}/{{p
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
+| code        |   状态符:1000成功,其余异常 |       int                |
 | data       |         返回数据|            MessageEntity            |
 
-![img_73.png](https://github.com/whaleal/guide/blob/main/Images/getMessageData_r.png)
+![img_73.png](../Images/getMessageData_r.png)
 
 
 ---
@@ -692,20 +715,21 @@ GET http://170.187.230.78:9600/api/server/member/getMessageCount/{{memberId}}
 
 19.2 请求参数：
 
+
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | pageSize          |         Path           |            每页大小            |        Yes       |Int        |
 | pageIndex          |         Path           |            第几页            |        Yes       |Int        |
-| operatorName          |         参数           |            操作者名称            |        No       |String        |
-| objectName          |         参数           |            被操作的对象名称            |        No       |String        |
-| type          |         参数           |            主机 mongodb 用户 告警            |        No       |String        |
-| status          |         参数           |            状态            |        Yes       |Boolean        |
-| message          |         参数           |            消息            |        No       |String        |
-| startTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| operatorName          |         params           |            操作者名称            |        No       |String        |
+| objectName          |         params           |            被操作的对象名称            |        No       |String        |
+| type          |         params           |            主机 mongodb 用户 告警            |        No       |String        |
+| status          |         params           |            状态            |        Yes       |Boolean        |
+| message          |         params           |            消息            |        No       |String        |
+| startTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
-![img_74.png](https://github.com/whaleal/guide/blob/main/Images/getMessageCount.png)
+![img_74.png](../Images/getMessageCount.png)
 
 ----
 
@@ -714,10 +738,10 @@ GET http://170.187.230.78:9600/api/server/member/getMessageCount/{{memberId}}
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| data     |         返回数量|                        |
+| code        |   状态符:1000成功,其余异常 |         int              |
+| data     |         返回数量|             int           |
 
-![img_75.png](https://github.com/whaleal/guide/blob/main/Images/getMessageCount_r.png)
+![img_75.png](../Images/getMessageCount_r.png)
 
 
 ---
@@ -739,7 +763,7 @@ GET http://170.187.230.78:9600/api/server/member/update/messageStatus/{{memberId
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | messageId          |         Path           |            消息id            |        Yes       |String        |
 
-![img_76.png](https://github.com/whaleal/guide/blob/main/Images/messageStatus.png)
+![img_76.png](../Images/messageStatus.png)
 
 ----
 
@@ -748,11 +772,11 @@ GET http://170.187.230.78:9600/api/server/member/update/messageStatus/{{memberId
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| msg       |         返回消息|                        |
+| code        |   状态符:1000成功,其余异常 |         int              |
+| msg       |         返回消息|           string             |
 
 
-![img_77.png](https://github.com/whaleal/guide/blob/main/Images/messageStatus_r.png)
+![img_77.png](../Images/messageStatus_r.png)
 
 
 
@@ -771,12 +795,11 @@ GET http://170.187.230.78:9600/api/server/member/update/allMessageStatus/{{membe
 21.2 请求参数：
 
 
-
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 
-![img_78.png](https://github.com/whaleal/guide/blob/main/Images/allMessageStatus.png)
+![img_78.png](../Images/allMessageStatus.png)
 
 ----
 
@@ -785,10 +808,10 @@ GET http://170.187.230.78:9600/api/server/member/update/allMessageStatus/{{membe
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| msg       |         返回消息|                        |
+| code        |   状态符:1000成功,其余异常 |        int               |
+| msg       |         返回消息|         string               |
 
-![img_79.png](https://github.com/whaleal/guide/blob/main/Images/allMessageStatus_r.png)
+![img_79.png](../Images/allMessageStatus_r.png)
 
 
 
@@ -796,7 +819,7 @@ GET http://170.187.230.78:9600/api/server/member/update/allMessageStatus/{{membe
 ---
 
 
-##MemberMongoEntity
+## MemberMongoEntity
 
 
 |       Name         |     Type             |    Description      |
@@ -813,7 +836,7 @@ GET http://170.187.230.78:9600/api/server/member/update/allMessageStatus/{{membe
 
 ---
 
-##MessageEntity
+## MessageEntity
 
 
 |       Name         |     Type             |    Description      |

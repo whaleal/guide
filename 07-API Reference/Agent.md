@@ -1,8 +1,22 @@
 
-#Agent接口
-此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息。
+# Agent接口
 
-###请求头默认格式，特殊情况特殊声明
+接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+其参数为时间类型都以时间戳形式传递。
+
+有些接口调用时需用到hostId、agentId、eventId.
+~~~
+hostId在“根据主机名模糊查询主机基本信息”接口处获取。
+
+agentId在"生成agentId"接口处获取。
+
+eventId在"获取集群日志信息"接口处找到所需事件的id
+~~~
+
+### 请求头默认格式，特殊情况特殊声明
+
+    OPS-Token在调用登录接口时返回，在之后调用接口时将token放置请求头中。
+[登录接口调用获取OPS-Token](Member.md)
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
@@ -11,6 +25,9 @@
 | Content-Type          |         application/json |    
 | OPS-Token          |         "token"           |     
 ---
+
+
+
 
 
 
@@ -24,7 +41,7 @@
 1.1 请求路径：
 
 
-Get : http://192.168.3.200:9600/api/server/agent/getAllAgentHostNameAndHostId
+Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostId
 
 ---
 1.2 请求参数：
@@ -32,10 +49,10 @@ Get : http://192.168.3.200:9600/api/server/agent/getAllAgentHostNameAndHostId
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostName          |         参数           |            主机名称            |        No       |string        |
+| hostName          |         params           |            主机名称            |        No       |string        |
 
 
-![img.png](https://github.com/whaleal/guide/blob/main/Images/getAllAgentHostNameAndHostId.png)
+![img.png](../Images/getAllAgentHostNameAndHostId.png)
 
 ----
 
@@ -44,34 +61,30 @@ Get : http://192.168.3.200:9600/api/server/agent/getAllAgentHostNameAndHostId
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data.id       |         主机id         |          string|        
+| data.name      |         主机名称         |          string|        
 
-![img_1.png](https://github.com/whaleal/guide/blob/main/Images/getAllAgentHostNameAndHostId_r.png)
+![img_1.png](../Images/getAllAgentHostNameAndHostId_r.png)
 
 ---
 
 
 
-####2. 获取Agent的统计信息
+#### 2.获取Agent的统计信息
 
 
 2.1 请求路径：
 
-Get : http://192.168.3.200:9600/api/server/agent/getAgentStatistics
+Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 
 
-2.2 请求参数：
+2.2 请求：
 
 
 
 
-| Name                |     Located in     |           Description         |     Required    |        Schema   |
-| -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       |                    |                        |               |        |
-
-
-![img_2.png](https://github.com/whaleal/guide/blob/main/Images/getAgentStatistics.png)
+![img_2.png](../Images/getAgentStatistics.png)
 
 
 2.3 返回结果:
@@ -90,30 +103,30 @@ Get : http://192.168.3.200:9600/api/server/agent/getAgentStatistics
 | data.deadAgentDiskNum    |         Agent 磁盘死亡数         |            long            |    
 
 
-![img_3.png](https://github.com/whaleal/guide/blob/main/Images/getAgentStatistics_r.png)
+![img_3.png](../Images/getAgentStatistics_r.png)
 
 #### 3.获取所有主机信息
 
-
+    
 
 3.1 请求路径：
 
-GET  http://192.168.3.200:9600/api/server/agent/getAllAgentData/{{pageIndex}}/{{pageSize}}
+GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}}/{{pageSize}}
 
 ---
-1.2 请求参数：
+3.2 请求参数：
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | pageIndex          |         path           |            第几页           |        yes       |int        |
 | pageSize          |         path         |            每页大小            |        yes      |int        |
-| hostName          |         参数           |            主机名称            |        No       |string        |
-| Ip          |         参数           |            主机ip            |        No       |string        |
-| Status          |         参数           |            主机状态            |        No       |Boolean        |
+| hostName          |         params           |            主机名称            |        No       |string        |
+| Ip          |         params           |            主机ip            |        No       |string        |
+| Status          |         params           |            主机状态            |        No       |Boolean        |
 
 
-![img_4.png](https://github.com/whaleal/guide/blob/main/Images/getAllAgentData.png)
+![img_4.png](../Images/getAllAgentData.png)
 
 ----
 
@@ -122,7 +135,7 @@ GET  http://192.168.3.200:9600/api/server/agent/getAllAgentData/{{pageIndex}}/{{
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |         int|    
 | data       |         返回数据         |            List\<HostInfoMongoEntity>            |        
 
 ~~~
@@ -155,34 +168,7 @@ GET  http://192.168.3.200:9600/api/server/agent/getAllAgentData/{{pageIndex}}/{{
             "totalDiskSize": 7893956,
             "run": true,
             "systemPropertyInfo": {
-                "javaVersion": "11.0.9",
-                "javaVendor": "Oracle Corporation",
-                "javaVendorUrl": null,
-                "javaHome": "/root/jdk-11.0.9",
-                "javaVmSpecificationVersion": "11",
-                "javaVmSpecificationVendor": null,
-                "javaVmSpecificationName": "Java Virtual Machine Specification",
-                "javaVmVersion": "11.0.9+7-LTS",
-                "javaVmVendor": "Oracle Corporation",
-                "javaVmName": "Java HotSpot(TM) 64-Bit Server VM",
-                "javaSpecificationVersion": null,
-                "javaSpecificationVendor": "Oracle Corporation",
-                "javaSpecificationName": "Java Platform API Specification",
-                "javaClassVersion": "55.0",
-                "javaClassPath": "agent-collection-1.0.0.jar",
-                "javaLibraryPath": "/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib",
-                "javaIoTmpdir": "/tmp",
-                "javaCompiler": null,
-                "javaExtDirs": null,
-                "fileSeparator": "/",
-                "pathSeparator": ":",
-                "lineSeparator": "\n",
-                "userName": "root",
-                "userHome": "/root",
-                "userDir": "/home/jmops",
-                "osversion": "3.10.0-1160.24.1.el7.x86_64",
-                "osname": "Linux",
-                "osarch": "amd64"
+                ...
             }
         }
     ]
@@ -196,7 +182,7 @@ GET  http://192.168.3.200:9600/api/server/agent/getAllAgentData/{{pageIndex}}/{{
 4.1 请求路径：
 
 
-GET http://192.168.3.200:9600/api/server/agent/getAllAgentCount
+GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 
 ---
 
@@ -206,12 +192,12 @@ GET http://192.168.3.200:9600/api/server/agent/getAllAgentCount
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostName          |         参数           |            主机名称            |        No       |string        |
-| ip          |         参数           |            主机ip            |        No       |string        |
-| status          |         参数           |            主机状态            |        No       |Boolean        |
+| hostName          |         params           |            主机名称            |        No       |string        |
+| ip          |         params           |            主机ip            |        No       |string        |
+| status          |         params           |            主机状态            |        No       |Boolean        |
 
 
-![img_5.png](https://github.com/whaleal/guide/blob/main/Images/getAllAgentCount.png)
+![img_5.png](../Images/getAllAgentCount.png)
 
 ----
 
@@ -220,10 +206,10 @@ GET http://192.168.3.200:9600/api/server/agent/getAllAgentCount
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                      |    
-| data       |         返回数量         |                       |        
+| code        |   状态符:1000成功,其余异常 |        int|    
+| data       |         返回数量         |         int              |        
 
-![img_6.png](https://github.com/whaleal/guide/blob/main/Images/getAllAgentCount_r.png)
+![img_6.png](../Images/getAllAgentCount_r.png)
 
 ---
 
@@ -232,7 +218,7 @@ GET http://192.168.3.200:9600/api/server/agent/getAllAgentCount
 
 5.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getAgentInfo/{{hostId}}
+GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 
 ---
 5.2 请求参数：
@@ -243,7 +229,7 @@ GET http://192.168.3.200:9600/api/server/agent/getAgentInfo/{{hostId}}
 | hostId         |         path           |            主机id           |        yes       |string        |
 
 
-![img_7.png](https://github.com/whaleal/guide/blob/main/Images/getAgentInfo.png)
+![img_7.png](../Images/getAgentInfo.png)
 
 ----
 
@@ -284,34 +270,7 @@ GET http://192.168.3.200:9600/api/server/agent/getAgentInfo/{{hostId}}
         "totalDiskSize": 213035,
         "run": true,
         "systemPropertyInfo": {
-            "javaVersion": "1.8.0_172",
-            "javaVendor": "Oracle Corporation",
-            "javaVendorUrl": null,
-            "javaHome": "/home/docker20220629BAK/java/jre",
-            "javaVmSpecificationVersion": "1.8",
-            "javaVmSpecificationVendor": null,
-            "javaVmSpecificationName": "Java Virtual Machine Specification",
-            "javaVmVersion": "25.172-b11",
-            "javaVmVendor": "Oracle Corporation",
-            "javaVmName": "Java HotSpot(TM) 64-Bit Server VM",
-            "javaSpecificationVersion": null,
-            "javaSpecificationVendor": "Oracle Corporation",
-            "javaSpecificationName": "Java Platform API Specification",
-            "javaClassVersion": "52.0",
-            "javaClassPath": "agent-collection-1.0.0.jar",
-            "javaLibraryPath": "/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib",
-            "javaIoTmpdir": "/tmp",
-            "javaCompiler": null,
-            "javaExtDirs": "/home/docker20220629BAK/java/jre/lib/ext:/usr/java/packages/lib/ext",
-            "fileSeparator": "/",
-            "pathSeparator": ":",
-            "lineSeparator": "\n",
-            "userName": "root",
-            "userHome": "/root",
-            "userDir": "/home",
-            "osversion": "3.10.0-1062.el7.x86_64",
-            "osname": "Linux",
-            "osarch": "amd64"
+           ...
         }
     }
 }
@@ -326,23 +285,24 @@ GET http://192.168.3.200:9600/api/server/agent/getAgentInfo/{{hostId}}
 
 6.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getAgentMonitor/map/{{hostId}}/{{type}}
+GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}}/{{type}}
 
 ---
 
 6.2 请求参数：
-
+    
+    type类型：REAL_TIME，ONE_DAY，ONE_WEEK
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostId         |         path           |            主机id            |        yes       |string        |
 | type         |         path           |            监控类型            |        yes       |string        |
-| startTimeForTimeInterval         |         参数           |      某时间段的开始时间            |        yes       |long        |
-| endTimeForTimeInterval         |         参数           |            某时间段的结束时间    |        yes       |long        |
-| timeGranularity         |         参数           |            时间粒度            |        yes       |long        |
+| startTimeForTimeInterval         |         params           |      某时间段的开始时间            |        yes       |long        |
+| endTimeForTimeInterval         |         params           |            某时间段的结束时间    |        yes       |long        |
+| timeGranularity         |         params           |            时间粒度            |        yes       |long        |
 
 
-![img_8.png](https://github.com/whaleal/guide/blob/main/Images/getAgentMonitor.png)
+![img_8.png](../Images/getAgentMonitor.png)
 
 ----
 
@@ -351,7 +311,7 @@ GET http://192.168.3.200:9600/api/server/agent/getAgentMonitor/map/{{hostId}}/{{
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                      |    
+| code        |   状态符:1000成功,其余异常 |           int           |    
 | data       |         返回数据         |        Map<String,Object>                |        
 
 ~~~
@@ -368,201 +328,7 @@ GET http://192.168.3.200:9600/api/server/agent/getAgentMonitor/map/{{hostId}}/{{
                 48.12,
                 47.66,
                 46.84
-            ],
-            "name": "memory",
-            "used": [
-                67.82,
-                69.8,
-                73.28,
-                72.63,
-                75.38,
-                76.37,
-                76.82,
-                77.43
-            ],
-            "free": [
-                33.03,
-                19.57,
-                14.85,
-                10.02,
-                1.08,
-                1.21,
-                1.22,
-                1.43
-            ],
-            "message": {
-                "free": "空闲内存 单位MB",
-                "used": "已使用内存 单位MB",
-                "cache": "缓存内存 单位MB",
-                "ava": "可用内存 单位MB"
-            },
-            "ava": [
-                57.27,
-                55.3,
-                51.81,
-                52.46,
-                49.71,
-                48.72,
-                48.27,
-                47.66
             ]
-        },
-        "cpu/%": {
-            "sy": [
-                0.48,
-                0.58,
-                0.64,
-                0.83,
-                0.96,
-                1.11,
-                1.24,
-                1.38
-            ],
-            "name": "cpu",
-            "id": [
-                98.95,
-                98.69,
-                98.54,
-                97.8,
-                97.38,
-                97.1,
-                96.86,
-                96.52
-            ],
-            "message": {
-                "id": "cpu空闲率 单位百分比%",
-                "us": "cpu用户使用率 单位百分比%",
-                "sy": "cpu系统使用率 单位百分比%"
-            },
-            "us": [
-                0.57,
-                0.72,
-                0.79,
-                1.3,
-                1.53,
-                1.73,
-                1.83,
-                2.02
-            ]
-        },
-        "net/KB": {
-            "data": {
-                "lo": {
-                    "in": [
-                        2196.86,
-                        2279.41,
-                        3231.01,
-                        8018.15,
-                        9043.2,
-                        9681.84,
-                        12201.41,
-                        14372.73
-                    ],
-                    "name": "lo",
-                    "out": [
-                        2196.99,
-                        2280.6,
-                        3231.44,
-                        8018.37,
-                        9044.2,
-                        9682.23,
-                        12201.73,
-                        14373.14
-                    ]
-                },
-                "em1": {
-                    "in": [
-                        656.26,
-                        876.46,
-                        820.59,
-                        1801.78,
-                        1622.69,
-                        661.78,
-                        630.79,
-                        647.14
-                    ],
-                    "name": "em1",
-                    "out": [
-                        656.31,
-                        876.51,
-                        820.61,
-                        1801.78,
-                        1622.71,
-                        661.8,
-                        630.8,
-                        647.15
-                    ]
-                },
-                "em3": {
-                    "in": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "name": "em3",
-                    "out": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ]
-                },
-                "em2": {
-                    "in": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "name": "em2",
-                    "out": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ]
-                },
-                "em4": {
-                    "in": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "name": "em4",
-                    "out": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ]
-                }
-            },
             "name": "net",
             "message": {
                 "in": "流入流量 单位KB/S",
@@ -581,126 +347,6 @@ GET http://192.168.3.200:9600/api/server/agent/getAgentMonitor/map/{{hostId}}/{{
                         0.59,
                         0.58,
                         0.58
-                    ],
-                    "name": "dm-2",
-                    "rkB": [
-                        2.23,
-                        2.16,
-                        2.13,
-                        2.13,
-                        2.42,
-                        2.56,
-                        2.68,
-                        2.8
-                    ],
-                    "wkB": [
-                        49309.07,
-                        7023.58,
-                        47269.53,
-                        47155.17,
-                        53426.61,
-                        56430.74,
-                        59026.42,
-                        61681.28
-                    ]
-                },
-                "sda": {
-                    "util": [
-                        0.83,
-                        0.82,
-                        0.81,
-                        0.81,
-                        0.83,
-                        0.83,
-                        0.82,
-                        0.81
-                    ],
-                    "name": "sda",
-                    "rkB": [
-                        3.89,
-                        4.12,
-                        4.06,
-                        4.16,
-                        10.6,
-                        10.6,
-                        10.56,
-                        10.51
-                    ],
-                    "wkB": [
-                        85412.74,
-                        12577.95,
-                        89132.09,
-                        91171.64,
-                        230346.14,
-                        230303.49,
-                        229439.3,
-                        228407.05
-                    ]
-                },
-                "dm-1": {
-                    "util": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.01,
-                        0.01,
-                        0.01,
-                        0.01
-                    ],
-                    "name": "dm-1",
-                    "rkB": [
-                        0.04,
-                        0.04,
-                        0.04,
-                        0.14,
-                        0.46,
-                        0.45,
-                        0.44,
-                        0.44
-                    ],
-                    "wkB": [
-                        864.14,
-                        108.21,
-                        864.13,
-                        2935.93,
-                        9938.06,
-                        9780.45,
-                        9604.71,
-                        9433.55
-                    ]
-                },
-                "dm-0": {
-                    "util": [
-                        0.26,
-                        0.26,
-                        0.26,
-                        0.25,
-                        0.27,
-                        0.27,
-                        0.26,
-                        0.26
-                    ],
-                    "name": "dm-0",
-                    "rkB": [
-                        1.6,
-                        1.9,
-                        1.87,
-                        1.88,
-                        7.7,
-                        7.57,
-                        7.42,
-                        7.25
-                    ],
-                    "wkB": [
-                        34892.1,
-                        5451.67,
-                        40710.06,
-                        40798.14,
-                        166637.73,
-                        163782.31,
-                        160518.73,
-                        157011.22
                     ]
                 }
             },
@@ -736,25 +382,26 @@ GET http://192.168.3.200:9600/api/server/agent/getAgentMonitor/map/{{hostId}}/{{
 7.1 请求路径：
 
 
-GET http://192.168.3.200:9600/api/server/agent/logData/{{hostId}}/{{pageIndex}}/{{pageSize}}
+GET http://{Server-Host}:{端口}/api/server/agent/logData/{{hostId}}/{{pageIndex}}/{{pageSize}}
 
 ---
 
 7.2 请求参数：
 
+    type类型：info,warn,trace,error,mongodb
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostid          |         path           |            主机id           |        yes       |string        |
+| hostId         |         path           |            主机id           |        yes       |string        |
 | pageIndex          |         path           |            第几页            |        yes       |Integer        |
 | pageSize          |         path           |            每页数量            |        yes       |Integer        |
-| type          |         参数           |            日志类别            |        No       |string        |
-| startTime          |         参数           |            开始时间            |        yes       |long        |
-| endTime          |         参数           |            结束时间            |        yes       |long        |
-| content          |         参数           |            关键字            |        No       |string        |
+| type          |         params           |            日志类别            |        No       |string        |
+| startTime          |         params           |            开始时间            |        yes       |long        |
+| endTime          |         params           |            结束时间            |        yes       |long        |
+| content          |         params           |            关键字            |        No       |string        |
 
 
-![img_9.png](https://github.com/whaleal/guide/blob/main/Images/logData.png)
+![img_9.png](../Images/logData.png)
 
 ----
 
@@ -763,11 +410,11 @@ GET http://192.168.3.200:9600/api/server/agent/logData/{{hostId}}/{{pageIndex}}/
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |       int       |    
 | data       |         返回数据         |     AgentLogEntity         |       
 
 
-![img_10.png](https://github.com/whaleal/guide/blob/main/Images/logData_r.png)
+![img_10.png](../Images/logData_r.png)
 
 
 ---
@@ -780,23 +427,24 @@ GET http://192.168.3.200:9600/api/server/agent/logData/{{hostId}}/{{pageIndex}}/
 8.1 请求路径：
 
 
-GET http://192.168.3.200:9600/api/server/agent/logCount/{{hostId}}
+GET http://{Server-Host}:{端口}/api/server/agent/logCount/{{hostId}}
 
 ---
 
 8.2 请求参数：
 
+    type类型：info,warn,trace,error,mongodb
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostid          |         path           |            主机id           |        yes       |string        |
-| type          |         参数           |            日志类别            |        No       |string        |
-| startTime          |         参数           |            开始时间            |        yes       |long        |
-| endTime          |         参数           |            结束时间            |        yes       |long        |
-| content          |         参数           |            关键字            |        No       |string        |
+| hostId          |         path           |            主机id           |        yes       |string        |
+| type          |         params           |            日志类别            |        No       |string        |
+| startTime          |         params           |            开始时间            |        yes       |long        |
+| endTime          |         params           |            结束时间            |        yes       |long        |
+| content          |         params           |            关键字            |        No       |string        |
 
 
-![img_11.png](https://github.com/whaleal/guide/blob/main/Images/logCount.png)
+![img_11.png](../Images/logCount.png)
 
 ----
 
@@ -805,12 +453,12 @@ GET http://192.168.3.200:9600/api/server/agent/logCount/{{hostId}}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数量        |                        |       
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| data       |         返回数量        |          int              |       
 
 
 
-![img_12.png](https://github.com/whaleal/guide/blob/main/Images/logCount_r.png)
+![img_12.png](../Images/logCount_r.png)
 
 
 ---
@@ -822,7 +470,7 @@ GET http://192.168.3.200:9600/api/server/agent/logCount/{{hostId}}
 9.1 请求路径：
 
 
-GET http://192.168.3.200:9600/api/server/agent/operate/{{hostId}}/{{operateType}}
+GET http://{Server-Host}:{端口}/api/server/agent/operate/{{hostId}}/{{operateType}}
 
 ---
 
@@ -835,7 +483,7 @@ GET http://192.168.3.200:9600/api/server/agent/operate/{{hostId}}/{{operateType}
 | operateType          |         path           |   操作类别:mongo,host      |        yes       |string        |
 
 
-![img_13.png](https://github.com/whaleal/guide/blob/main/Images/operate.png)
+![img_13.png](../Images/operate.png)
 
 ----
 
@@ -844,10 +492,10 @@ GET http://192.168.3.200:9600/api/server/agent/operate/{{hostId}}/{{operateType}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |           int            |    
 | msg       |         返回消息         |            string            |       
 
-![img_14.png](https://github.com/whaleal/guide/blob/main/Images/operate_r.png)
+![img_14.png](../Images/operate_r.png)
 
 
 #### 10.生成agentId
@@ -855,21 +503,17 @@ GET http://192.168.3.200:9600/api/server/agent/operate/{{hostId}}/{{operateType}
 
 10.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/generateAgentId
+GET http://{Server-Host}:{端口}/api/server/agent/generateAgentId
 
 
 ---
 
 
-10.2 请求参数：
+10.2 请求：
 
 
-| Name                |     Located in     |           Description         |     Required    |        Schema   |
-| -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|           |                     |                        |               |        |
 
-
-![img_15.png](https://github.com/whaleal/guide/blob/main/Images/generateAgentId.png)
+![img_15.png](../Images/generateAgentId.png)
 
 ----
 
@@ -878,10 +522,10 @@ GET http://192.168.3.200:9600/api/server/agent/generateAgentId
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         agentid         |       string                 |        
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         agentId         |       string                 |        
 
-![img_16.png](https://github.com/whaleal/guide/blob/main/Images/generateAgentId_r.png)
+![img_16.png](../Images/generateAgentId_r.png)
 
 ---
 
@@ -894,20 +538,20 @@ GET http://192.168.3.200:9600/api/server/agent/generateAgentId
 
 11.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/downAgentFile/{{agentId}}/agent-collection-1.0.0.jar
+GET http://{Server-Host}:{端口}/api/server/agent/downAgentFile/{{agentId}}/agent-collection-1.0.0.jar
 
 ---
 
 11.2 请求参数：
 
-
+ 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | agentId          |         Path           |            agentId            |        Yes       |string        |
 
 
-![img_17.png](https://github.com/whaleal/guide/blob/main/Images/downAgentFile.png)
+![img_17.png](../Images/downAgentFile.png)
 
 ----
 
@@ -916,7 +560,7 @@ GET http://192.168.3.200:9600/api/server/agent/downAgentFile/{{agentId}}/agent-c
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |            int           |    
 | File       |         二进制流形式返回文件         |       File                 |        
 
 
@@ -927,27 +571,28 @@ GET http://192.168.3.200:9600/api/server/agent/downAgentFile/{{agentId}}/agent-c
 
 12.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataList/{{hostId}}/{{pageIndex}}/{{pageSize}}
+GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataList/{{hostId}}/{{pageIndex}}/{{pageSize}}
 
 ---
 
 12.2 请求参数：
 
+    Status类型：-1为全部，1为已下发，2正在执行，3成功完成，4异常执行，5异常完成
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostId          |         Path           |            主机名称            |        Yes       |string        |
 | pageIndex          |         Path           |            分页页数            |        Yes       |Integer        |
 | pageSize          |         Path           |            分页大小            |        Yes       |Integer        |
-| Status          |         参数           |            状态            |        No       |Int        |
-| startTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
-| commandType          |         参数           |            命令类型            |        No       |string        |
-| result          |         参数           |            结果            |        No       |string        |
-| eventId          |         参数           |            事件id            |        No       |string        |
+| Status          |         params           |            状态            |        No       |Int        |
+| startTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
+| content          |         params           |            内容            |        No       |string        |
+| result          |         params           |            结果            |        No       |string        |
+| eventId          |         params           |            事件id            |        No       |string        |
 
 
-![img_18.png](https://github.com/whaleal/guide/blob/main/Images/getExecCommandDataList.png)
+![img_18.png](../Images/getExecCommandDataList.png)
 
 ----
 
@@ -956,10 +601,10 @@ GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataList/{{hostId}}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |        int               |    
 | data       |         返回数据         |             List\<CommandEntity>            |        
 
-![img_19.png](https://github.com/whaleal/guide/blob/main/Images/getExecCommandDataList_r.png)
+![img_19.png](../Images/getExecCommandDataList_r.png)
 
 ---
 
@@ -968,25 +613,27 @@ GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataList/{{hostId}}
 
 13.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataCount/{{hostId}}
+GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataCount/{{hostId}}
 
 ---
 
 13.2 请求参数
 
+    Status类型：-1为全部，1为已下发，2正在执行，3成功完成，4异常执行，5异常完成
+
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostId          |         Path           |            主机名称            |        Yes       |string        |
-| Status          |         参数           |            状态            |        No       |int|
-| startTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
-| commandType          |         参数           |            命令类型            |        No       |string        |
-| result          |         参数           |            结果            |        No       |string        |
-| eventId          |         参数           |            时间id            |        No       |string        |
+| Status          |         params           |            状态            |        No       |int|
+| startTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
+| content          |         params           |            命令类型            |        No       |string        |
+| result          |         params           |            结果            |        No       |string        |
+| eventId          |         params           |            事件id            |        No       |string        |
 
 
-![img_20.png](https://github.com/whaleal/guide/blob/main/Images/getExecCommandDataCount.png)
+![img_20.png](../Images/getExecCommandDataCount.png)
 
 ----
 
@@ -995,11 +642,11 @@ GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataCount/{{hostId}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |            int           |    
 | data       |         返回数数量         |            long            |        
 
 
-![img_21.png](https://github.com/whaleal/guide/blob/main/Images/getExecCommandDataCount_r.png)
+![img_21.png](../Images/getExecCommandDataCount_r.png)
 
 
 ---
@@ -1011,7 +658,7 @@ GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataCount/{{hostId}
 
 14.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getHost/CpuUsage/top/five
+GET http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
 
 ---
 
@@ -1019,11 +666,11 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/CpuUsage/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| beginTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
 
-![img_22.png](https://github.com/whaleal/guide/blob/main/Images/CpuUsage.png)
+![img_22.png](../Images/CpuUsage.png)
 
 ----
 
@@ -1032,13 +679,13 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/CpuUsage/top/five
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |           int            |    
 | data.\[index].host       |         主机id         |         String               |        
 | data.\[index].hostName       |         主机名称         |         String               |        
 | data.\[index].usage       |         使用率         |         Double               |        
 
 
-![img_23.png](https://github.com/whaleal/guide/blob/main/Images/CpuUsage_r.png)
+![img_23.png](../Images/CpuUsage_r.png)
 
 ---
 
@@ -1048,7 +695,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/CpuUsage/top/five
 
 15.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getHost/MemUsage/top/five
+GET http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
 
 ---
 
@@ -1057,11 +704,11 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/MemUsage/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| beginTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
 
-![img_24.png](https://github.com/whaleal/guide/blob/main/Images/MemUsage.png)
+![img_24.png](../Images/MemUsage.png)
 
 ----
 
@@ -1070,12 +717,12 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/MemUsage/top/five
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |       int                |    
 | data.\[index].host       |         主机id         |         String               |        
 | data.\[index].hostName       |         主机名称         |         String               |        
 | data.\[index].usage       |         使用率         |         Double               |      
 
-![img_25.png](https://github.com/whaleal/guide/blob/main/Images/MemUsage_r.png)
+![img_25.png](../Images/MemUsage_r.png)
 
 ---
 
@@ -1086,7 +733,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/MemUsage/top/five
 
 16.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getHost/DiskUsage/top/five
+GET http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
 
 ---
 
@@ -1094,11 +741,11 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/DiskUsage/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| beginTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
 
-![img_26.png](https://github.com/whaleal/guide/blob/main/Images/DiskUsage.png)
+![img_26.png](../Images/DiskUsage.png)
 
 ----
 
@@ -1112,7 +759,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/DiskUsage/top/five
 | data.\[index].hostName       |         主机名称         |         String               |        
 | data.\[index].usage       |         使用率         |         Double               |  
 
-![img_27.png](https://github.com/whaleal/guide/blob/main/Images/DiskUsage_r.png)
+![img_27.png](../Images/DiskUsage_r.png)
 
 ---
 
@@ -1124,7 +771,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/DiskUsage/top/five
 17.1 请求路径：
 
 
-GET http://192.168.3.200:9600/api/server/agent/getHost/NetIn/top/five
+GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
 
 ---
 
@@ -1132,11 +779,11 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/NetIn/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| beginTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
 
-![img_28.png](https://github.com/whaleal/guide/blob/main/Images/NetIn.png)
+![img_28.png](../Images/NetIn.png)
 
 ----
 
@@ -1144,13 +791,13 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/NetIn/top/five
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |         int              |    
 | data.\[index].host       |         主机id         |         String               |        
 | data.\[index].hostName       |         主机名称         |         String               |        
 | data.\[index].usage       |         使用率         |         Double               |  
 
 
-![img_29.png](https://github.com/whaleal/guide/blob/main/Images/NetIn_r.png)
+![img_29.png](../Images/NetIn_r.png)
 
 ---
 
@@ -1160,7 +807,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/NetIn/top/five
 
 18.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getHost/NetOut/top/five
+GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetOut/top/five
 
 ---
 
@@ -1168,11 +815,11 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/NetOut/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         参数           |            开始时间            |        Yes       |Long        |
-| endTime          |         参数           |            结束时间            |        Yes       |Long        |
+| beginTime          |         params           |            开始时间            |        Yes       |Long        |
+| endTime          |         params           |            结束时间            |        Yes       |Long        |
 
 
-![img_30.png](https://github.com/whaleal/guide/blob/main/Images/NetOut.png)
+![img_30.png](../Images/NetOut.png)
 
 ----
 
@@ -1181,17 +828,17 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/NetOut/top/five
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |        int               |    
 | data.\[index].host       |         主机id         |         String               |        
 | data.\[index].hostName       |         主机名称         |         String               |        
 | data.\[index].usage       |         使用率         |         Double               |  
 
-![img_31.png](https://github.com/whaleal/guide/blob/main/Images/NetOut_r.png)
+![img_31.png](../Images/NetOut_r.png)
 
 ---
 ---
 
-##Info
+## Info
 
 
 |       Name        |     Type    |           Description       |   
@@ -1202,7 +849,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/NetOut/top/five
 
 ___
 
-##ipInfo
+## ipInfo
 
 |       Name        |     Type    |           Description       |   
 | --------------|----------------------|--------------------|
@@ -1212,7 +859,7 @@ ___
 
 ---  
 
-##HostInfoMongoEntity
+## HostInfoMongoEntity
 
 
 |       Name         |     Type             |    Description      |   
