@@ -1,10 +1,12 @@
 
 # Third_party接口
-此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息。
+此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
 
 
 
 ### 请求头默认格式，特殊情况特殊声明
+
+
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
@@ -21,7 +23,7 @@
 
 1.1 请求路径：
 
-GET http://192.168.3.200:9600/api/third/ding/sendMsg
+GET http://{Server-Host}:{端口}/api/third/ding/sendMsg
 
 
 ---
@@ -45,8 +47,8 @@ GET http://192.168.3.200:9600/api/third/ding/sendMsg
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回信息        |                         | 
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回信息        |           string              | 
 ![img_25.png](../Images/ding_sendMsg_r.png)
 
 ---
@@ -57,7 +59,7 @@ GET http://192.168.3.200:9600/api/third/ding/sendMsg
 
 2.1 请求路径：
 
-GET http://192.168.3.200:9600/api/third/email/sendMsg
+GET http://{Server-Host}:{端口}/api/third/email/sendMsg
 
 
 ---
@@ -79,8 +81,8 @@ GET http://192.168.3.200:9600/api/third/email/sendMsg
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回信息        |                         | 
+| code        |   状态符:1000成功,其余异常 |           int            |    
+| data       |         返回信息        |             string            | 
 ![img_27.png](../Images/email_sendMsg_r.png)
 
 ---
@@ -91,7 +93,7 @@ GET http://192.168.3.200:9600/api/third/email/sendMsg
 
 3.1 请求路径：
 
-GET http://192.168.3.200:9600/api/third/sms/sendMsg
+GET http://{Server-Host}:{端口}/api/third/sms/sendMsg
 
 
 ---
@@ -113,8 +115,8 @@ GET http://192.168.3.200:9600/api/third/sms/sendMsg
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回信息        |                         | 
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| data       |         返回信息        |           string              | 
 
 
 ---

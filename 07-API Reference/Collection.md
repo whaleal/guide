@@ -1,9 +1,23 @@
 # Collection接口
-此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息。
+接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+其参数为时间类型都以时间戳形式传递。
 
+
+有些接口调用时需用到hostId、agentId、clusterId、eventId
+~~~
+hostId在“根据主机名模糊查询主机基本信息”接口处获取。
+
+agentId在"生成agentId"接口处获取。
+
+eventId在"获取集群日志信息"接口处找到所需事件的id
+
+clusterId在“查找mongoDB集群信息数据”接口返回结果集中。
+~~~
 
 
 ### 请求头默认格式，特殊情况特殊声明
+
+agentId在"生成agentId"接口处获取。
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
@@ -19,7 +33,7 @@
 
 1.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/agent/save/log
+POST http://{Server-Host}:{端口}/api/collection/agent/save/log
 
 
 ---
@@ -42,8 +56,8 @@ POST http://192.168.3.200:9600/api/collection/agent/save/log
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回消息         |                         | 
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| msg       |         返回消息         |         string                | 
 
 
 ![img_1.png](../Images/save_log_r.png)
@@ -57,7 +71,7 @@ POST http://192.168.3.200:9600/api/collection/agent/save/log
 
 2.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/agent/updateAgentMongoFile/{{agentId}}
+POST http://{Server-Host}:{端口}/api/collection/agent/updateAgentMongoFile/{{agentId}}
 
 
 ---
@@ -82,8 +96,8 @@ POST http://192.168.3.200:9600/api/collection/agent/updateAgentMongoFile/{{agent
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回消息         |                         | 
+| code        |   状态符:1000成功,其余异常 |       int                |    
+| msg       |         返回消息         |          string               | 
 
 
 ![img_30.png](../Images/updateAgentMongoFile_r.png)
@@ -97,7 +111,7 @@ POST http://192.168.3.200:9600/api/collection/agent/updateAgentMongoFile/{{agent
 
 3.1 请求路径：
 
-GET http://192.168.3.200:9600/api/collection/command/agent/get/{{hostId}}
+GET http://{Server-Host}:{端口}/api/collection/command/agent/get/{{hostId}}
 
 
 ---
@@ -119,8 +133,8 @@ GET http://192.168.3.200:9600/api/collection/command/agent/get/{{hostId}}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                         | 
+| code        |   状态符:1000成功,其余异常 |       int                |    
+| data       |         返回数据         |         list                | 
 
 
 ![img_3.png](../Images/get_by_hostId_r.png)
@@ -134,7 +148,7 @@ GET http://192.168.3.200:9600/api/collection/command/agent/get/{{hostId}}
 
 4.1 请求路径：
 
-PUT http://192.168.3.200:9600/api/collection/command/agent/update
+PUT http://{Server-Host}:{端口}/api/collection/command/agent/update
 
 
 ---
@@ -157,8 +171,8 @@ PUT http://192.168.3.200:9600/api/collection/command/agent/update
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息         |                         | 
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回消息         |            string             | 
 
 
 ![img_5.png](../Images/agent_update_r.png)
@@ -172,7 +186,7 @@ PUT http://192.168.3.200:9600/api/collection/command/agent/update
 
 5.1 请求路径：
 
-GET http://192.168.3.200:9600/api/collection/hostInfo/updateRunTime/{{hostId}}/{{timeStamp}}
+GET http://{Server-Host}:{端口}/api/collection/hostInfo/updateRunTime/{{hostId}}/{{timeStamp}}
 
 
 ---
@@ -194,8 +208,8 @@ GET http://192.168.3.200:9600/api/collection/hostInfo/updateRunTime/{{hostId}}/{
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回消息        |           string              | 
 
 
 ![img_7.png](../Images/updateRunTime_r.png)
@@ -209,7 +223,7 @@ GET http://192.168.3.200:9600/api/collection/hostInfo/updateRunTime/{{hostId}}/{
 
 6.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/hostInfo
+POST http://{Server-Host}:{端口}/api/collection/hostInfo
 
 ---
 
@@ -229,8 +243,8 @@ POST http://192.168.3.200:9600/api/collection/hostInfo
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| data       |         返回消息        |           string              | 
 
 
 ![img_9.png](../Images/save_hostInfo_r.png)
@@ -245,7 +259,7 @@ POST http://192.168.3.200:9600/api/collection/hostInfo
 
 7.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/hostRealTime/addHostRealTimeData
+POST http://{Server-Host}:{端口}/api/collection/hostRealTime/addHostRealTimeData
 
 
 ---
@@ -266,8 +280,8 @@ POST http://192.168.3.200:9600/api/collection/hostRealTime/addHostRealTimeData
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回消息        |            string             | 
 
 
 ![img_11.png](../Images/addHostRealTimeData_r.png)
@@ -283,17 +297,15 @@ POST http://192.168.3.200:9600/api/collection/hostRealTime/addHostRealTimeData
 
 8.1 请求路径：
 
-GET http://192.168.3.200:9600/api/collection/util/get/server/date
+GET http://{Server-Host}:{端口}/api/collection/util/get/server/date
 
 
 ---
 
-8.2 请求参数：
+8.2 请求：
 
 
-| Name                |     Located in     |           Description         |     Required    |        Schema   |
-| -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|             |                      |                          |                  |  
+
 
 ![img_12.png](../Images/get_serverdate.png)
 
@@ -304,8 +316,8 @@ GET http://192.168.3.200:9600/api/collection/util/get/server/date
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         时间戳        |                         | 
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         时间戳        |             string           | 
 
 
 ![img_13.png](../Images/get_serverdate_r.png)
@@ -320,17 +332,13 @@ GET http://192.168.3.200:9600/api/collection/util/get/server/date
 
 9.1 请求路径：
 
-GET http://192.168.3.200:9600/api/collection/util/get/agent/ip
+GET http://{Server-Host}:{端口}/api/collection/util/get/agent/ip
 
 
 ---
 
-9.2 请求参数：
+9.2 请求：
 
-
-| Name                |     Located in     |           Description         |     Required    |        Schema   |
-| -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|             |                      |                          |                  |   
 
 ![img_14.png](../Images/get_agentip.png)
 
@@ -341,8 +349,8 @@ GET http://192.168.3.200:9600/api/collection/util/get/agent/ip
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回ip        |                         | 
+| code        |   状态符:1000成功,其余异常 |       int                |    
+| data       |         返回ip        |           string              | 
 
 
 ![img_15.png](../Images/get_agentip_r.png)
@@ -355,7 +363,7 @@ GET http://192.168.3.200:9600/api/collection/util/get/agent/ip
 
 10.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/mongo/insertMongoClusterLog/{{clusterId}}/{{eventId}}
+POST http://{Server-Host}:{端口}/api/collection/mongo/insertMongoClusterLog/{{clusterId}}/{{eventId}}
 
 
 ---
@@ -378,8 +386,8 @@ POST http://192.168.3.200:9600/api/collection/mongo/insertMongoClusterLog/{{clus
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回消息        |          string              | 
 
 
 ![img_1.png](../Images/insertMongoClusterLog_r.png)
@@ -393,7 +401,7 @@ POST http://192.168.3.200:9600/api/collection/mongo/insertMongoClusterLog/{{clus
 
 11.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/mongo/insertMongoMemberLog/{{clusterId}}/{{memberInfo}}/{{eventId}}
+POST http://{Server-Host}:{端口}/api/collection/mongo/insertMongoMemberLog/{{clusterId}}/{{memberInfo}}/{{eventId}}
 
 
 ---
@@ -417,8 +425,8 @@ POST http://192.168.3.200:9600/api/collection/mongo/insertMongoMemberLog/{{clust
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |       int                |    
+| data       |         返回消息        |         string                | 
 
 ![img_3.png](../Images/insertMongoMemberLog_r.png)
 
@@ -432,7 +440,7 @@ POST http://192.168.3.200:9600/api/collection/mongo/insertMongoMemberLog/{{clust
 
 12.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/mongo/updateMongo
+POST http://{Server-Host}:{端口}/api/collection/mongo/updateMongo
 
 
 ---
@@ -453,8 +461,8 @@ POST http://192.168.3.200:9600/api/collection/mongo/updateMongo
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| data       |         返回消息        |          string               | 
 
 ![img_5.png](../Images/updateMongo_r.png)
 
@@ -469,7 +477,7 @@ POST http://192.168.3.200:9600/api/collection/mongo/updateMongo
 
 13.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/mongo/updateMongoRepl/{{isUpdateMemberList}}
+POST http://{Server-Host}:{端口}/api/collection/mongo/updateMongoRepl/{{isUpdateMemberList}}
 
 ---
 
@@ -490,8 +498,8 @@ POST http://192.168.3.200:9600/api/collection/mongo/updateMongoRepl/{{isUpdateMe
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回消息        |           string              | 
 
 ![img_7.png](../Images/updateMongoRepl_r.png)
 
@@ -505,7 +513,7 @@ POST http://192.168.3.200:9600/api/collection/mongo/updateMongoRepl/{{isUpdateMe
 
 14.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/mongo/updateCluster
+POST http://{Server-Host}:{端口}/api/collection/mongo/updateCluster
 
 ---
 
@@ -525,8 +533,8 @@ POST http://192.168.3.200:9600/api/collection/mongo/updateCluster
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回消息        |            string             | 
 
 ![img_9.png](../Images/updateCluster_r.png)
 
@@ -540,7 +548,7 @@ POST http://192.168.3.200:9600/api/collection/mongo/updateCluster
 
 15.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/mongodb/realtime/save/one/{{tableName}}
+POST http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/one/{{tableName}}
 
 
 ---
@@ -562,8 +570,8 @@ POST http://192.168.3.200:9600/api/collection/mongodb/realtime/save/one/{{tableN
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |       int                |    
+| data       |         返回消息        |         string                | 
 
 ![img_11.png](../Images/realtime_save_one_r.png)
 
@@ -578,7 +586,7 @@ POST http://192.168.3.200:9600/api/collection/mongodb/realtime/save/one/{{tableN
 
 16.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/mongodb/realtime/save/many
+POST http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/many
 
 ---
 
@@ -598,8 +606,8 @@ POST http://192.168.3.200:9600/api/collection/mongodb/realtime/save/many
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回消息        |           string              | 
 
 ![img_13.png](../Images/realtime_save_many_r.png)
 
@@ -613,7 +621,7 @@ POST http://192.168.3.200:9600/api/collection/mongodb/realtime/save/many
 
 17.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/mongodb/agent/mongoMember/{{agentId}}
+POST http://{Server-Host}:{端口}/api/collection/mongodb/agent/mongoMember/{{agentId}}
 
 
 ---
@@ -623,7 +631,7 @@ POST http://192.168.3.200:9600/api/collection/mongodb/agent/mongoMember/{{agentI
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       agentId      |       path               |        agentid                  |       yes           |string
+|       agentId      |       path               |        agentId                  |       yes           |string
 
 ![img_14.png](../Images/agent_mongoMember.png)
 
@@ -634,8 +642,8 @@ POST http://192.168.3.200:9600/api/collection/mongodb/agent/mongoMember/{{agentI
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据        |                         | 
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回数据        |            list             | 
 
 ~~~
 {
@@ -708,7 +716,7 @@ POST http://192.168.3.200:9600/api/collection/mongodb/agent/mongoMember/{{agentI
 
 18.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/mongodb/save/mongoLog/{{mongoMemberId}}/{{fileOffset}}
+POST http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoLog/{{mongoMemberId}}/{{fileOffset}}
 
 
 ---
@@ -732,8 +740,8 @@ POST http://192.168.3.200:9600/api/collection/mongodb/save/mongoLog/{{mongoMembe
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         文件偏移量        |                         | 
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| data       |         文件偏移        |         string                | 
 
 ![img_16.png](../Images/save_mongoLog_r.png)
 
@@ -748,7 +756,7 @@ POST http://192.168.3.200:9600/api/collection/mongodb/save/mongoLog/{{mongoMembe
 
 19.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/mongodb/save/mongoTopAndOp
+POST http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoTopAndOp
 
 
 ---
@@ -769,8 +777,8 @@ POST http://192.168.3.200:9600/api/collection/mongodb/save/mongoTopAndOp
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| data       |         返回消息        |          string               | 
 
 ![img_18.png](../Images/save_mongoTopAndOp_r.png)
 
@@ -784,7 +792,7 @@ POST http://192.168.3.200:9600/api/collection/mongodb/save/mongoTopAndOp
 
 20.1 请求路径：
 
-GET http://192.168.3.200:9600/api/collection/mongodb/updateFCV/{{clusterId}}/{{fcv}}
+GET http://{Server-Host}:{端口}/api/collection/mongodb/updateFCV/{{clusterId}}/{{fcv}}
 
 
 ---
@@ -806,8 +814,8 @@ GET http://192.168.3.200:9600/api/collection/mongodb/updateFCV/{{clusterId}}/{{f
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回消息        |           string              | 
 
 
 
@@ -824,7 +832,7 @@ GET http://192.168.3.200:9600/api/collection/mongodb/updateFCV/{{clusterId}}/{{f
 
 21.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/mongodb/saveMongoDBCollections
+POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBCollections
 
 
 ---
@@ -845,8 +853,8 @@ POST http://192.168.3.200:9600/api/collection/mongodb/saveMongoDBCollections
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |       int                |    
+| data       |         返回消息        |          string               | 
 
 ![img_22.png](../Images/saveMongoDBCollections_r.png)
 
@@ -861,7 +869,7 @@ POST http://192.168.3.200:9600/api/collection/mongodb/saveMongoDBCollections
 
 22.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/mongodb/saveMongoDBClusterUser/{{clusterId}}
+POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterUser/{{clusterId}}
 
 
 ---
@@ -883,8 +891,8 @@ POST http://192.168.3.200:9600/api/collection/mongodb/saveMongoDBClusterUser/{{c
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| data       |         返回消息        |             string            | 
 
 ![img_24.png](../Images/saveMongoDBClusterUser_r.png)
 
@@ -899,7 +907,7 @@ POST http://192.168.3.200:9600/api/collection/mongodb/saveMongoDBClusterUser/{{c
 
 23.1 请求路径：
 
-POST http://192.168.3.200:9600/api/collection/mongodb/saveMongoDBClusterRole/{{clusterId}}
+POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterRole/{{clusterId}}
 
 
 ---
@@ -922,8 +930,8 @@ POST http://192.168.3.200:9600/api/collection/mongodb/saveMongoDBClusterRole/{{c
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回消息        |                         | 
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回消息        |              string           | 
 
 ![img_26.png](../Images/saveMongoDBClusterRole_r.png)
 

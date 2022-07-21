@@ -1,7 +1,15 @@
 
 
 # Alert接口
-此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息。
+接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+其参数为时间类型都以时间戳形式传递。
+
+有些接口调用时需用到hostId、objectId
+~~~
+hostId在“根据主机名模糊查询主机基本信息”接口处获取。
+
+objectId 为主机id或mongo节点id，mongo节点id在“查找mongoDB集群信息数据”接口返回结果集中data集合的中mongo集合的“id”。
+~~~
 
 
 
@@ -22,7 +30,7 @@
 
 1.1 请求路径：
 
-POST http://192.168.3.200:9600/api/alert/judgeAlertMsg
+POST http://{Server-Host}:{端口}/api/alert/judgeAlertMsg
 
 
 ---
@@ -43,8 +51,8 @@ POST http://192.168.3.200:9600/api/alert/judgeAlertMsg
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回信息        |                         | 
+| code        |   状态符:1000成功,其余异常 |           int            |    
+| data       |         返回信息        |                string         | 
 
 
 ![img_17.png](../Images/judgeAlertMsg_r.png)
@@ -62,7 +70,7 @@ POST http://192.168.3.200:9600/api/alert/judgeAlertMsg
 
 2.1 请求路径：
 
-GET http://192.168.3.200:9600/api/alert/getAlertStrategy
+GET http://{Server-Host}:{端口}/api/alert/getAlertStrategy
 
 
 ---
@@ -73,7 +81,7 @@ GET http://192.168.3.200:9600/api/alert/getAlertStrategy
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 |     objectId        |        params              |           对象id               |    yes              |string
-|     type        |         params             |            类型              |           yes       |string
+|     type        |         params             |            类型:1 agent,2 mongo             |           yes       |string
 
 ![img_18.png](../Images/getAlertStrategy.png)
 
@@ -84,8 +92,8 @@ GET http://192.168.3.200:9600/api/alert/getAlertStrategy
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据        |                         | 
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| data       |         返回数据        |             list            | 
 
 
 ![img_19.png](../Images/getAlertStrategy_r.png)
@@ -100,7 +108,7 @@ GET http://192.168.3.200:9600/api/alert/getAlertStrategy
 
 3.1 请求路径：
 
-GET http://192.168.3.200:9600/api/alert/getAllMongoMemberAlertStrategy
+GET http://{Server-Host}:{端口}/api/alert/getAllMongoMemberAlertStrategy
 
 
 ---
@@ -121,8 +129,8 @@ GET http://192.168.3.200:9600/api/alert/getAllMongoMemberAlertStrategy
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据        |                         | 
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回数据        |           list              | 
 
 
 ![img_21.png](../Images/getAllMongoMemberAlertStrategy_r.png)
@@ -137,7 +145,7 @@ GET http://192.168.3.200:9600/api/alert/getAllMongoMemberAlertStrategy
 
 4.1 请求路径：
 
-POST http://192.168.3.200:9600/api/alert/update
+POST http://{Server-Host}:{端口}/api/alert/update
 
 
 ---
@@ -158,8 +166,8 @@ POST http://192.168.3.200:9600/api/alert/update
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据        |                         | 
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回数据        |              string           | 
 
 
 ![img_23.png](../Images/alert_update_r.png)

@@ -1,8 +1,22 @@
 
 # Agent接口
-此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息。
+
+接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+其参数为时间类型都以时间戳形式传递。
+
+有些接口调用时需用到hostId、agentId、eventId.
+~~~
+hostId在“根据主机名模糊查询主机基本信息”接口处获取。
+
+agentId在"生成agentId"接口处获取。
+
+eventId在"获取集群日志信息"接口处找到所需事件的id
+~~~
 
 ### 请求头默认格式，特殊情况特殊声明
+
+    OPS-Token在调用登录接口时返回，在之后调用接口时将token放置请求头中。
+[登录接口调用获取OPS-Token](Member.md)
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
@@ -11,6 +25,9 @@
 | Content-Type          |         application/json |    
 | OPS-Token          |         "token"           |     
 ---
+
+
+
 
 
 
@@ -24,7 +41,7 @@
 1.1 请求路径：
 
 
-Get : http://192.168.3.200:9600/api/server/agent/getAllAgentHostNameAndHostId
+Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostId
 
 ---
 1.2 请求参数：
@@ -44,8 +61,9 @@ Get : http://192.168.3.200:9600/api/server/agent/getAllAgentHostNameAndHostId
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data.id       |         主机id         |          string|        
+| data.name      |         主机名称         |          string|        
 
 ![img_1.png](../Images/getAllAgentHostNameAndHostId_r.png)
 
@@ -58,17 +76,12 @@ Get : http://192.168.3.200:9600/api/server/agent/getAllAgentHostNameAndHostId
 
 2.1 请求路径：
 
-Get : http://192.168.3.200:9600/api/server/agent/getAgentStatistics
+Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 
 
-2.2 请求参数：
+2.2 请求：
 
 
-
-
-| Name                |     Located in     |           Description         |     Required    |        Schema   |
-| -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       |                    |                        |               |        |
 
 
 ![img_2.png](../Images/getAgentStatistics.png)
@@ -94,14 +107,14 @@ Get : http://192.168.3.200:9600/api/server/agent/getAgentStatistics
 
 #### 3.获取所有主机信息
 
-
+    
 
 3.1 请求路径：
 
-GET  http://192.168.3.200:9600/api/server/agent/getAllAgentData/{{pageIndex}}/{{pageSize}}
+GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}}/{{pageSize}}
 
 ---
-1.2 请求参数：
+3.2 请求参数：
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -122,7 +135,7 @@ GET  http://192.168.3.200:9600/api/server/agent/getAllAgentData/{{pageIndex}}/{{
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |         int|    
 | data       |         返回数据         |            List\<HostInfoMongoEntity>            |        
 
 ~~~
@@ -169,7 +182,7 @@ GET  http://192.168.3.200:9600/api/server/agent/getAllAgentData/{{pageIndex}}/{{
 4.1 请求路径：
 
 
-GET http://192.168.3.200:9600/api/server/agent/getAllAgentCount
+GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 
 ---
 
@@ -193,8 +206,8 @@ GET http://192.168.3.200:9600/api/server/agent/getAllAgentCount
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                      |    
-| data       |         返回数量         |                       |        
+| code        |   状态符:1000成功,其余异常 |        int|    
+| data       |         返回数量         |         int              |        
 
 ![img_6.png](../Images/getAllAgentCount_r.png)
 
@@ -205,7 +218,7 @@ GET http://192.168.3.200:9600/api/server/agent/getAllAgentCount
 
 5.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getAgentInfo/{{hostId}}
+GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 
 ---
 5.2 请求参数：
@@ -272,12 +285,13 @@ GET http://192.168.3.200:9600/api/server/agent/getAgentInfo/{{hostId}}
 
 6.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getAgentMonitor/map/{{hostId}}/{{type}}
+GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}}/{{type}}
 
 ---
 
 6.2 请求参数：
-
+    
+    type类型：REAL_TIME，ONE_DAY，ONE_WEEK
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -297,7 +311,7 @@ GET http://192.168.3.200:9600/api/server/agent/getAgentMonitor/map/{{hostId}}/{{
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                      |    
+| code        |   状态符:1000成功,其余异常 |           int           |    
 | data       |         返回数据         |        Map<String,Object>                |        
 
 ~~~
@@ -368,16 +382,17 @@ GET http://192.168.3.200:9600/api/server/agent/getAgentMonitor/map/{{hostId}}/{{
 7.1 请求路径：
 
 
-GET http://192.168.3.200:9600/api/server/agent/logData/{{hostId}}/{{pageIndex}}/{{pageSize}}
+GET http://{Server-Host}:{端口}/api/server/agent/logData/{{hostId}}/{{pageIndex}}/{{pageSize}}
 
 ---
 
 7.2 请求参数：
 
+    type类型：info,warn,trace,error,mongodb
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostid          |         path           |            主机id           |        yes       |string        |
+| hostId         |         path           |            主机id           |        yes       |string        |
 | pageIndex          |         path           |            第几页            |        yes       |Integer        |
 | pageSize          |         path           |            每页数量            |        yes       |Integer        |
 | type          |         params           |            日志类别            |        No       |string        |
@@ -395,7 +410,7 @@ GET http://192.168.3.200:9600/api/server/agent/logData/{{hostId}}/{{pageIndex}}/
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |       int       |    
 | data       |         返回数据         |     AgentLogEntity         |       
 
 
@@ -412,16 +427,17 @@ GET http://192.168.3.200:9600/api/server/agent/logData/{{hostId}}/{{pageIndex}}/
 8.1 请求路径：
 
 
-GET http://192.168.3.200:9600/api/server/agent/logCount/{{hostId}}
+GET http://{Server-Host}:{端口}/api/server/agent/logCount/{{hostId}}
 
 ---
 
 8.2 请求参数：
 
+    type类型：info,warn,trace,error,mongodb
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostid          |         path           |            主机id           |        yes       |string        |
+| hostId          |         path           |            主机id           |        yes       |string        |
 | type          |         params           |            日志类别            |        No       |string        |
 | startTime          |         params           |            开始时间            |        yes       |long        |
 | endTime          |         params           |            结束时间            |        yes       |long        |
@@ -437,8 +453,8 @@ GET http://192.168.3.200:9600/api/server/agent/logCount/{{hostId}}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数量        |                        |       
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| data       |         返回数量        |          int              |       
 
 
 
@@ -454,7 +470,7 @@ GET http://192.168.3.200:9600/api/server/agent/logCount/{{hostId}}
 9.1 请求路径：
 
 
-GET http://192.168.3.200:9600/api/server/agent/operate/{{hostId}}/{{operateType}}
+GET http://{Server-Host}:{端口}/api/server/agent/operate/{{hostId}}/{{operateType}}
 
 ---
 
@@ -476,7 +492,7 @@ GET http://192.168.3.200:9600/api/server/agent/operate/{{hostId}}/{{operateType}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |           int            |    
 | msg       |         返回消息         |            string            |       
 
 ![img_14.png](../Images/operate_r.png)
@@ -487,18 +503,14 @@ GET http://192.168.3.200:9600/api/server/agent/operate/{{hostId}}/{{operateType}
 
 10.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/generateAgentId
+GET http://{Server-Host}:{端口}/api/server/agent/generateAgentId
 
 
 ---
 
 
-10.2 请求参数：
+10.2 请求：
 
-
-| Name                |     Located in     |           Description         |     Required    |        Schema   |
-| -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|           |                     |                        |               |        |
 
 
 ![img_15.png](../Images/generateAgentId.png)
@@ -510,8 +522,8 @@ GET http://192.168.3.200:9600/api/server/agent/generateAgentId
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         agentid         |       string                 |        
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         agentId         |       string                 |        
 
 ![img_16.png](../Images/generateAgentId_r.png)
 
@@ -526,13 +538,13 @@ GET http://192.168.3.200:9600/api/server/agent/generateAgentId
 
 11.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/downAgentFile/{{agentId}}/agent-collection-1.0.0.jar
+GET http://{Server-Host}:{端口}/api/server/agent/downAgentFile/{{agentId}}/agent-collection-1.0.0.jar
 
 ---
 
 11.2 请求参数：
 
-
+ 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -548,7 +560,7 @@ GET http://192.168.3.200:9600/api/server/agent/downAgentFile/{{agentId}}/agent-c
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |            int           |    
 | File       |         二进制流形式返回文件         |       File                 |        
 
 
@@ -559,12 +571,13 @@ GET http://192.168.3.200:9600/api/server/agent/downAgentFile/{{agentId}}/agent-c
 
 12.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataList/{{hostId}}/{{pageIndex}}/{{pageSize}}
+GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataList/{{hostId}}/{{pageIndex}}/{{pageSize}}
 
 ---
 
 12.2 请求参数：
 
+    Status类型：-1为全部，1为已下发，2正在执行，3成功完成，4异常执行，5异常完成
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -574,7 +587,7 @@ GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataList/{{hostId}}
 | Status          |         params           |            状态            |        No       |Int        |
 | startTime          |         params           |            开始时间            |        Yes       |Long        |
 | endTime          |         params           |            结束时间            |        Yes       |Long        |
-| commandType          |         params           |            命令类型            |        No       |string        |
+| content          |         params           |            内容            |        No       |string        |
 | result          |         params           |            结果            |        No       |string        |
 | eventId          |         params           |            事件id            |        No       |string        |
 
@@ -588,7 +601,7 @@ GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataList/{{hostId}}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |        int               |    
 | data       |         返回数据         |             List\<CommandEntity>            |        
 
 ![img_19.png](../Images/getExecCommandDataList_r.png)
@@ -600,11 +613,13 @@ GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataList/{{hostId}}
 
 13.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataCount/{{hostId}}
+GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataCount/{{hostId}}
 
 ---
 
 13.2 请求参数
+
+    Status类型：-1为全部，1为已下发，2正在执行，3成功完成，4异常执行，5异常完成
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -613,9 +628,9 @@ GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataCount/{{hostId}
 | Status          |         params           |            状态            |        No       |int|
 | startTime          |         params           |            开始时间            |        Yes       |Long        |
 | endTime          |         params           |            结束时间            |        Yes       |Long        |
-| commandType          |         params           |            命令类型            |        No       |string        |
+| content          |         params           |            命令类型            |        No       |string        |
 | result          |         params           |            结果            |        No       |string        |
-| eventId          |         params           |            时间id            |        No       |string        |
+| eventId          |         params           |            事件id            |        No       |string        |
 
 
 ![img_20.png](../Images/getExecCommandDataCount.png)
@@ -627,7 +642,7 @@ GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataCount/{{hostId}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |            int           |    
 | data       |         返回数数量         |            long            |        
 
 
@@ -643,7 +658,7 @@ GET http://192.168.3.200:9600/api/server/agent/getExecCommandDataCount/{{hostId}
 
 14.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getHost/CpuUsage/top/five
+GET http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
 
 ---
 
@@ -664,7 +679,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/CpuUsage/top/five
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |           int            |    
 | data.\[index].host       |         主机id         |         String               |        
 | data.\[index].hostName       |         主机名称         |         String               |        
 | data.\[index].usage       |         使用率         |         Double               |        
@@ -680,7 +695,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/CpuUsage/top/five
 
 15.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getHost/MemUsage/top/five
+GET http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
 
 ---
 
@@ -702,7 +717,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/MemUsage/top/five
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |       int                |    
 | data.\[index].host       |         主机id         |         String               |        
 | data.\[index].hostName       |         主机名称         |         String               |        
 | data.\[index].usage       |         使用率         |         Double               |      
@@ -718,7 +733,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/MemUsage/top/five
 
 16.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getHost/DiskUsage/top/five
+GET http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
 
 ---
 
@@ -756,7 +771,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/DiskUsage/top/five
 17.1 请求路径：
 
 
-GET http://192.168.3.200:9600/api/server/agent/getHost/NetIn/top/five
+GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
 
 ---
 
@@ -776,7 +791,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/NetIn/top/five
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |         int              |    
 | data.\[index].host       |         主机id         |         String               |        
 | data.\[index].hostName       |         主机名称         |         String               |        
 | data.\[index].usage       |         使用率         |         Double               |  
@@ -792,7 +807,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/NetIn/top/five
 
 18.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/agent/getHost/NetOut/top/five
+GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetOut/top/five
 
 ---
 
@@ -813,7 +828,7 @@ GET http://192.168.3.200:9600/api/server/agent/getHost/NetOut/top/five
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |        int               |    
 | data.\[index].host       |         主机id         |         String               |        
 | data.\[index].hostName       |         主机名称         |         String               |        
 | data.\[index].usage       |         使用率         |         Double               |  
