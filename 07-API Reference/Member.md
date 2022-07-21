@@ -1,7 +1,21 @@
 #Member接口
-此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息。
+接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+
+
+
+有些接口调用时需用到ID、memberId、messageId
+~~~
+Id为用户ID，在“保存新用户信息”接口处返回data里的id为用户ID。
+
+memberId为用户ID，在“保存新用户信息”接口处返回data里的id为用户ID。
+
+messageId为消息id，在“获取信息数据”接口处返回的实体类中的id。
+~~~
+
 
 ### 请求头默认格式，特殊情况特殊声明
+    
+    OPS-Token在调用登录接口时返回，在之后调用接口时将OPS-Token放置请求头中。
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
@@ -9,6 +23,10 @@
 | Connection          |         keep-alive           |          
 | Content-Type          |         application/json |    
 | OPS-Token          |         "token"           |     
+
+
+
+
 ---
 ---
 
@@ -40,10 +58,10 @@ POST http://192.168.3.200:9600/api/server/member/login
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |         int              |    
 | data       |         返回数据|       MemberMongoEntity                 |        
-| generateAgentIdAble       |         是否有权限生成agentid         |         Boolean               |        
-| token       |         Token令牌         |                        |        String
+| generateAgentIdAble       |         是否有权限生成agentId         |         Boolean               |        
+| token       |         Token令牌         |         String               |   
 
 ![img_39.png](../Images/login_r.png)
 
@@ -80,7 +98,7 @@ POST http://192.168.3.200:9600/api/server/member/register
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |         int              |    
 | data       |         返回数据|       MemberMongoEntity                 |        
 
 
@@ -104,6 +122,8 @@ POST http://192.168.3.200:9600/api/server/member/update
 
 3.2 请求参数：
 
+     
+
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -124,7 +144,7 @@ POST http://192.168.3.200:9600/api/server/member/update
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |         int              |    
 | data       |         返回数据|       MemberMongoEntity                 |        
 
 ![img_43.png](../Images/update_r.png)
@@ -144,14 +164,15 @@ POST http://192.168.3.200:9600/api/server/member/findMemberData/{{pageSize}}/{{p
 4.2 请求参数：
 
 
+
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | pageSize          |         path           |            每页大小            |        Yes       |int        |
 | pageIndex          |         path           |            第几页            |        Yes       |int        |
-| account          |         body           |            账户名            |        Yes       |String        |
-| password          |         body           |            密码            |        Yes       |String        |
-| email          |         body           |            邮箱            |        Yes       |String        |
-| phone          |         body           |            手机号            |        Yes       |String        |
+| account          |         body           |            账户名            |       No     |String        |
+| password          |         body           |            密码            |        No       |String        |
+| email          |         body           |            邮箱            |        No       |String        |
+| phone          |         body           |            手机号            |        No       |String        |
 
 ![img_44.png](../Images/findMemberData.png)
 
@@ -162,7 +183,7 @@ POST http://192.168.3.200:9600/api/server/member/findMemberData/{{pageSize}}/{{p
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |         int              |    
 | data       |         返回数据|       MemberMongoEntity                 |        
 
 
@@ -183,13 +204,12 @@ POST http://192.168.3.200:9600/api/server/member/findMemberCount
 5.2 请求参数：
 
 
-
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | account          |         body           |            账户名            |        Yes       |String        |
 | password          |         body           |            密码            |        Yes       |String        |
-| email          |         body           |            邮箱            |        Yes       |String        |
-| phone          |         body           |            手机号            |        Yes       |String        |
+| email          |         body           |            邮箱            |        No       |String        |
+| phone          |         body           |            手机号            |        No       |String        |
 
 ![img_46.png](../Images/findMemberCount.png)
 
@@ -200,8 +220,8 @@ POST http://192.168.3.200:9600/api/server/member/findMemberCount
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数量         |                        |        
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回数量         |       int                 |        
 
 ![img_47.png](../Images/findMemberCount_r.png)
 
@@ -220,6 +240,7 @@ GET http://192.168.3.200:9600/api/server/member/update/receiveAlert/{{memberId}}
 6.2 请求参数：
 
 
+
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
@@ -235,8 +256,8 @@ GET http://192.168.3.200:9600/api/server/member/update/receiveAlert/{{memberId}}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回消息|                        |        
+| code        |   状态符:1000成功,其余异常 |       int                |    
+| msg       |         返回消息|           String             |        
 
 ![img_49.png](../Images/receiveAlert_r.png)
 
@@ -252,7 +273,7 @@ GET http://192.168.3.200:9600/api/server/member/update/timezone/{{memberId}}
 
 ---
 
-7.2 请求params：
+7.2 请求参数：
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -269,8 +290,8 @@ GET http://192.168.3.200:9600/api/server/member/update/timezone/{{memberId}}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回消息|                        |        
+| code        |   状态符:1000成功,其余异常 |       int                |    
+| msg       |         返回消息|          String              |        
 
 ![img_51.png](../Images/timezone_r.png)
 
@@ -292,6 +313,7 @@ GET http://192.168.3.200:9600/api/server/member/update/role/{{memberId}}/{{value
 8.2 请求参数：
 
 
+
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
@@ -306,8 +328,8 @@ GET http://192.168.3.200:9600/api/server/member/update/role/{{memberId}}/{{value
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回消息|                        |    
+| code        |   状态符:1000成功,其余异常 |            int           |    
+| msg       |         返回消息|           string             |    
 
 ![img_53.png](../Images/role_r.png)
 
@@ -339,8 +361,8 @@ GET http://192.168.3.200:9600/api/server/member/update/createMongoDBAble/{{membe
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回消息|                        |    
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| msg       |         返回消息|            string            |    
 
 ![img_55.png](../Images/update_createMongoDBAble_r.png)
 
@@ -373,8 +395,8 @@ GET http://192.168.3.200:9600/api/server/member/update/generateAgentIdAble/{{mem
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回消息|                        |    
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| msg       |         返回消息|         string               |    
 
 
 ![img_57.png](../Images/update_generateAgentIdAble_r.png)
@@ -394,6 +416,7 @@ GET http://192.168.3.200:9600/api/server/member/update/userResourceInfo/{{member
 
 11.2 请求参数：
 
+
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
@@ -410,8 +433,8 @@ GET http://192.168.3.200:9600/api/server/member/update/userResourceInfo/{{member
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| msg       |         返回消息|                        |
+| code        |   状态符:1000成功,其余异常 |         int              |
+| msg       |         返回消息|           string             |
 
 ![img_59.png](../Images/update_userResourceInfo_r.png)
 
@@ -445,8 +468,8 @@ GET http://170.187.230.78:9602/api/server/member/delete/user/{{memberId}}
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| msg       |         返回消息|                        |
+| code        |   状态符:1000成功,其余异常 |         int              |
+| msg       |         返回消息|             string           |
 
 ![img_61.png](../Images/delete_user_r.png)
 
@@ -478,7 +501,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserResource/{{memberId}}
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
+| code        |   状态符:1000成功,其余异常 |        int               |
 | data       |         返回数据|                   MemberMongoEntity     |
 
 ![img_63.png](../Images/getUserResource_r.png)
@@ -514,7 +537,7 @@ GET https://170.187.230.78:9600/api/server/member/getUserServerResourceData/{{me
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
+| code        |   状态符:1000成功,其余异常 |          int             |
 | data.hostName       |         主机名称|            String            |
 | data.osVersion       |         系统版本|         String               |
 
@@ -551,8 +574,8 @@ GET http://170.187.230.78:9600/api/server/member/getUserServerResourceCount/{{me
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| data       |         返回数量|                        |
+| code        |   状态符:1000成功,其余异常 |         int              |
+| data       |         返回数量|           int             |
 
 ![img_67.png](../Images/getUserServerResourceCount_r.png)
 
@@ -569,6 +592,7 @@ GET http://170.187.230.78:9600/api/server/member/getUserMongoDBClusterResourceDa
 ---
 
 16.2 请求参数：
+
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -588,9 +612,9 @@ GET http://170.187.230.78:9600/api/server/member/getUserMongoDBClusterResourceDa
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| data.clusterName       |         集群名称|                        |
-| data.type       |         类型:单节点,复制集,分片，纳管|                        |
+| code        |   状态符:1000成功,其余异常 |          int             |
+| data.clusterName       |         集群名称|           string             |
+| data.type       |         类型:单节点,复制集,分片，纳管|       string                 |
 
 
 ![img_69.png](../Images/getUserMongoDBClusterResourceData_r.png)
@@ -609,7 +633,6 @@ GET http://170.187.230.78:9600/api/server/member/getUserMongoDBClusterResourceCo
 17.2 请求参数：
 
 
-
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
@@ -624,8 +647,8 @@ GET http://170.187.230.78:9600/api/server/member/getUserMongoDBClusterResourceCo
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| data       |         返回数量|                        |
+| code        |   状态符:1000成功,其余异常 |          int             |
+| data       |         返回数量|            int            |
 
 ![img_71.png](../Images/getUserMongoDBClusterResourceCount_r.png)
 
@@ -671,7 +694,7 @@ GET http://170.187.230.78:9600/api/server/member/getMessageData/{{memberId}}/{{p
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
+| code        |   状态符:1000成功,其余异常 |       int                |
 | data       |         返回数据|            MessageEntity            |
 
 ![img_73.png](../Images/getMessageData_r.png)
@@ -691,6 +714,7 @@ GET http://170.187.230.78:9600/api/server/member/getMessageCount/{{memberId}}
 
 
 19.2 请求参数：
+
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -714,8 +738,8 @@ GET http://170.187.230.78:9600/api/server/member/getMessageCount/{{memberId}}
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| data     |         返回数量|                        |
+| code        |   状态符:1000成功,其余异常 |         int              |
+| data     |         返回数量|             int           |
 
 ![img_75.png](../Images/getMessageCount_r.png)
 
@@ -748,8 +772,8 @@ GET http://170.187.230.78:9600/api/server/member/update/messageStatus/{{memberId
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| msg       |         返回消息|                        |
+| code        |   状态符:1000成功,其余异常 |         int              |
+| msg       |         返回消息|           string             |
 
 
 ![img_77.png](../Images/messageStatus_r.png)
@@ -771,7 +795,6 @@ GET http://170.187.230.78:9600/api/server/member/update/allMessageStatus/{{membe
 21.2 请求参数：
 
 
-
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
@@ -785,8 +808,8 @@ GET http://170.187.230.78:9600/api/server/member/update/allMessageStatus/{{membe
 
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |
-| msg       |         返回消息|                        |
+| code        |   状态符:1000成功,其余异常 |        int               |
+| msg       |         返回消息|         string               |
 
 ![img_79.png](../Images/allMessageStatus_r.png)
 

@@ -1,7 +1,23 @@
 # MongoDBData接口
-此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息。
+
+接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+其参数为时间的都以时间戳形式传递。
+
+
+有些接口调用时需用到nodeId、mongoMemberId、clusterId、eventId
+~~~
+nodeId即mongoMemberId 在“查找mongoDB集群信息数据”接口返回结果集中data集合的中mongo集合的“id”
+
+eventId在"获取集群日志信息"接口处找到所需事件的id
+
+clusterId在“查找mongoDB集群信息数据”接口返回结果集中。
+~~~
+
 
 ### 请求头默认格式，特殊情况特殊声明
+
+    OPS-Token在调用登录接口时返回，在之后调用接口时将token放置请求头中。
+[登录接口调用获取OPS-Token](Member.md)
 
 | KEY                |     VALUE      |
 | -------------------|----------------------|
@@ -16,14 +32,15 @@
 
 
 ####  1 获取mongodb集群信息
-##Deprecated
+
+## Deprecated 已弃用
 
 1.1 请求路径：
 
 
 
 
-GET http://192.168.3.200:9600/api/server/mongo/monitor/project/data/{{clusterName}}/{{projectType}}
+GET http://{Server-Host}:{端口}/api/server/mongo/monitor/project/data/{{clusterName}}/{{projectType}}
 
 ---
 
@@ -42,17 +59,7 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/project/data/{{clusterNam
 
 ----
 
-1.3 返回结果
 
-
-|               |     Description    |           Schema              |  
-| --------------|----------------------|---------------------------|
-|               |                      |                             |
-
-
-
----
----
 
 
 ####  2 获取群集大小前五名
@@ -60,7 +67,7 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/project/data/{{clusterNam
 
 2.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/monitor/cluster/size/top/five
+GET http://{Server-Host}:{端口}/api/server/mongo/monitor/cluster/size/top/five
 
 ---
 
@@ -81,8 +88,8 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/cluster/size/top/five
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                         |        
+| code        |   状态符:1000成功,其余异常 |             int          |    
+| data       |         返回数据         |         list                |        
 
 ~~~
 {
@@ -114,7 +121,7 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/cluster/size/top/five
 
 3.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/monitor/collection/size/top/five
+GET http://{Server-Host}:{端口}/api/server/mongo/monitor/collection/size/top/five
 
 ---
 
@@ -136,8 +143,8 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/collection/size/top/five
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回数据         |        list                |        
 
 
 ~~~
@@ -191,7 +198,7 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/collection/size/top/five
 
 4.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/monitor/QPS/size/top/five
+GET http://{Server-Host}:{端口}/api/server/mongo/monitor/QPS/size/top/five
 
 ---
 
@@ -213,8 +220,8 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/QPS/size/top/five
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |            int           |    
+| data       |         返回数据         |          list              |        
 
 
 ~~~
@@ -244,7 +251,7 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/QPS/size/top/five
 
 5.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/monitor/connection/instance/top/five
+GET http://{Server-Host}:{端口}/api/server/mongo/monitor/connection/instance/top/five
 
 ---
 
@@ -266,8 +273,8 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/connection/instance/top/f
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |      int                 |    
+| data       |         返回数据         |        list                |        
 
 
 ~~~
@@ -297,7 +304,7 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/connection/instance/top/f
 
 6.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/monitor/slowest/instance/top/five
+GET http://{Server-Host}:{端口}/api/server/mongo/monitor/slowest/instance/top/five
 
 ---
 
@@ -319,8 +326,8 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/slowest/instance/top/five
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数据         |           list             |        
 
 
 ~~~
@@ -345,7 +352,7 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/slowest/instance/top/five
             
 7.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/monitor/data/{{nodeId}}/{{type}}
+GET http://{Server-Host}:{端口}/api/server/mongo/monitor/data/{{nodeId}}/{{type}}
 
 ---
 
@@ -369,8 +376,8 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/data/{{nodeId}}/{{type}}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |            int           |    
+| data       |         返回数据         |            list            |        
 
 
 ~~~
@@ -413,12 +420,13 @@ GET http://192.168.3.200:9600/api/server/mongo/monitor/data/{{nodeId}}/{{type}}
 
 8.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/getMongoCluster/{{clusterId}}
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoCluster/{{clusterId}}
 
 ---
 
 8.2 请求参数：
 
+    "获取集合大小前五名"处返回的id为集群id
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -435,8 +443,8 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoCluster/{{clusterId}}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |           int            |    
+| data       |         返回数据         |          list              |        
 
 
 ~~~
@@ -496,7 +504,7 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoCluster/{{clusterId}}
 
 9.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/getMongoClusterLogData/{{clusterId}}/{{pageIndex}}/{{pageSize}}
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoClusterLogData/{{clusterId}}/{{pageIndex}}/{{pageSize}}
 
 ---
 
@@ -523,8 +531,8 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoClusterLogData/{{clusterI
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |           int            |    
+| data       |         返回数据         |             list           |        
 
 
 ~~~
@@ -559,7 +567,7 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoClusterLogData/{{clusterI
 
 10.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/getMongoClusterLogCount/{{clusterId}}
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoClusterLogCount/{{clusterId}}
 
 ---
 
@@ -584,8 +592,8 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoClusterLogCount/{{cluster
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数量         |                        |        
+| code        |   状态符:1000成功,其余异常 |            int|    
+| data       |         返回数量         |           int             |        
 
 ![img_4.png](../Images/getMongoClusterLogCount_r.png)
 
@@ -596,12 +604,13 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoClusterLogCount/{{cluster
 
 11.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/getMongoDLogData/{{mongoMemberId}}/{{pageIndex}}/{{pageSize}}
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDLogData/{{mongoMemberId}}/{{pageIndex}}/{{pageSize}}
 
 ---
 
 11.2 请求参数：
 
+    type类型：为空时查询全部，STORAGE，RECOVERY，CONTROL
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -623,7 +632,7 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoDLogData/{{mongoMemberId}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |         int              |    
 | data       |         返回数据         |          MongoMember              |        
 
 
@@ -656,12 +665,13 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoDLogData/{{mongoMemberId}
 
 12.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/getMongoDLogCount/{{mongoMemberId}}
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDLogCount/{{mongoMemberId}}
 
 ---
 
 12.2 请求参数：
 
+    type类型：为空时查询全部，STORAGE，RECOVERY，CONTROL
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -669,7 +679,7 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoDLogCount/{{mongoMemberId
 | type          |         params           |            类型            |        Yes       |String
 | startTime          |         params           |            开始时间            |        Yes       |String
 | endTime          |         params           |            结束时间            |        Yes       |String
-| content          |         params           |            内容            |        Yes       |String
+| content          |         params           |            搜索内容            |        Yes       |String
 
 ![img_6.png](../Images/getMongoDLogCount.png)
 
@@ -682,8 +692,7 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoDLogCount/{{mongoMemberId
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         消息         |                        |        
+| code        |   状态符:1000成功,其余异常 |        int               |    
 | data       |         返回数据         |          MongoMember              |        
 
 
@@ -698,11 +707,12 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoDLogCount/{{mongoMemberId
 
 13.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/getMongoTopAndOp/{{mongoMemberId}}/{{type}}
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoTopAndOp/{{mongoMemberId}}/{{type}}
 
 ---
 
 13.2 请求参数：
+
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -720,8 +730,8 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoTopAndOp/{{mongoMemberId}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |        int|    
+| data       |         返回数据         |           list             |        
 
 
 ![img_9.png](../Images/getMongoTopAndOp_r.png)
@@ -738,7 +748,7 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoTopAndOp/{{mongoMemberId}
 
 14.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/updateClusterName/{{clusterId}}/{{newClusterName}}
+GET http://{Server-Host}:{端口}/api/server/mongo/updateClusterName/{{clusterId}}/{{newClusterName}}
 
 ---
 
@@ -760,8 +770,8 @@ GET http://192.168.3.200:9600/api/server/mongo/updateClusterName/{{clusterId}}/{
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| msg       |         返回消息         |            string            |        
 
 ![img_11.png](../Images/updateClusterName_r.png)
 
@@ -773,16 +783,12 @@ GET http://192.168.3.200:9600/api/server/mongo/updateClusterName/{{clusterId}}/{
 
 15.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/getMongoStatistics
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoStatistics
 
 ---
 
-15.2 请求参数：
+15.2 请求：
 
-
-| Name                |     Located in     |           Description         |     Required    |        Schema   |
-| -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|            |                     |                         |                | 
 
 ![img_12.png](../Images/getMongoStatistics.png)
 
@@ -794,8 +800,8 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoStatistics
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |      
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回数据         |          list              |      
 
 ![img_13.png](../Images/getMongoStatistics_r.png)
 
@@ -807,7 +813,7 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoStatistics
 
 16.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/findMongoEventLogByEventId/{{eventId}}
+GET http://{Server-Host}:{端口}/api/server/mongo/findMongoEventLogByEventId/{{eventId}}
 
 ---
 
@@ -828,8 +834,8 @@ GET http://192.168.3.200:9600/api/server/mongo/findMongoEventLogByEventId/{{even
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |       
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回数据         |          list              |       
 
 ![img_15.png](../Images/findMongoEventLogByEventId_r.png)
 
@@ -842,7 +848,7 @@ GET http://192.168.3.200:9600/api/server/mongo/findMongoEventLogByEventId/{{even
 
 17.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/getMongoEventLogData/{{clusterId}}/{{pageIndex}}/{{pageSize}}
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoEventLogData/{{clusterId}}/{{pageIndex}}/{{pageSize}}
 
 ---
 
@@ -868,8 +874,8 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoEventLogData/{{clusterId}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |      
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| data       |         返回数据         |      list                  |      
 
 
 ~~~
@@ -900,12 +906,13 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoEventLogData/{{clusterId}
 
 18.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/getMongoEventLogCount/{{clusterId}}
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoEventLogCount/{{clusterId}}
 
 ---
 
 18.2 请求参数：
 
+    "获取集合大小前五名"处返回的id为集群id
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -923,8 +930,8 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoEventLogCount/{{clusterId
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数量         |                        |        
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回数量         |           int             |        
 
 ![img_18.png](../Images/getMongoEventLogCount_r.png)
 
@@ -935,7 +942,7 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoEventLogCount/{{clusterId
 
 19.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/findMongoDBClusterInfoData/{{pageIndex}}/{{pageSize}}
+GET http://{Server-Host}:{端口}/api/server/mongo/findMongoDBClusterInfoData/{{pageIndex}}/{{pageSize}}
 
 ---
 
@@ -960,8 +967,8 @@ GET http://192.168.3.200:9600/api/server/mongo/findMongoDBClusterInfoData/{{page
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |           int            |    
+| data       |         返回数据         |            list            |        
 
 ~~~
 {
@@ -1015,7 +1022,7 @@ GET http://192.168.3.200:9600/api/server/mongo/findMongoDBClusterInfoData/{{page
 
 20.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/findMongoDBClusterInfoCount
+GET http://{Server-Host}:{端口}/api/server/mongo/findMongoDBClusterInfoCount
 
 ---
 
@@ -1038,8 +1045,8 @@ GET http://192.168.3.200:9600/api/server/mongo/findMongoDBClusterInfoCount
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数量         |                        |        
+| code        |   状态符:1000成功,其余异常 |           int            |    
+| data       |         返回数量         |          int              |        
 ![img_21.png](../Images/findMongoDBClusterInfoCount_r.png)
 
 ---
@@ -1049,7 +1056,7 @@ GET http://192.168.3.200:9600/api/server/mongo/findMongoDBClusterInfoCount
 
 21.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/getMongoDBCollections/{{clusterId}}
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBCollections/{{clusterId}}
 
 ---
 
@@ -1069,8 +1076,8 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoDBCollections/{{clusterId
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |           int            |    
+| data       |         返回数据         |             list           |        
 
 ~~~
 {
@@ -1111,7 +1118,7 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoDBCollections/{{clusterId
 
 22.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/getMongoDBClusterUser/{{clusterId}}
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBClusterUser/{{clusterId}}
 
 ---
 
@@ -1131,8 +1138,8 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoDBClusterUser/{{clusterId
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回数据         |            list            |        
 
 
 ~~~
@@ -1183,7 +1190,7 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoDBClusterUser/{{clusterId
 
 23.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/getMongoDBClusterRole/{{clusterId}}
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBClusterRole/{{clusterId}}
 
 ---
 
@@ -1203,8 +1210,8 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoDBClusterRole/{{clusterId
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data       |         返回数据         |          list              |        
 
 
 ~~~
@@ -1238,7 +1245,7 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoDBClusterRole/{{clusterId
 
 24.1 请求路径：
 
-POST http://192.168.3.200:9600/api/server/mongo/exeExplainPlan/{{clusterId}}/{{mongoMemberId}}
+POST http://{Server-Host}:{端口}/api/server/mongo/exeExplainPlan/{{clusterId}}/{{mongoMemberId}}
 
 ---
 
@@ -1259,8 +1266,8 @@ POST http://192.168.3.200:9600/api/server/mongo/exeExplainPlan/{{clusterId}}/{{m
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数据         |            int            |        
 
 ![img_26.png](../Images/exeExplainPlan_r.png)
 
@@ -1272,15 +1279,11 @@ POST http://192.168.3.200:9600/api/server/mongo/exeExplainPlan/{{clusterId}}/{{m
 
 25.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/mongo/getMongoDBProcessArgument
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBProcessArgument
 
 ---
 
-25.2 请求参数：
-
-
-| Name                |     Located in     |           Description         |     Required    |        Schema   |
-| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+25.2 请求：
 
 
 
@@ -1291,8 +1294,8 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoDBProcessArgument
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data       |         返回数据         |                        |        
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数据         |         list               |        
 
 
 ~~~
@@ -1342,3 +1345,52 @@ GET http://192.168.3.200:9600/api/server/mongo/getMongoDBProcessArgument
 }
 ~~~
 
+## MongoMember
+
+
+|       Name         |     Type             |    Description      |   
+| ------------       |----------            |---------------------|
+| memberName                 |   string             |         主机名:端口          |   
+| hostName             |   string             |         主机名     |   
+| hostId              |   Long |         主机id     |   
+| port               |   string             |         端口     |   
+| version         |   string             |         版本     |   
+| upgradeVersion           |   string             |         升降级版本     |   
+| password           |   string             |         节点密码     |   
+| authDbName           |   string             |         认证库     |   
+| currentTimeMillis           |   long             |         当前时间戳     |   
+| dataDirectory           |   string             |         数据目录     |   
+| userName             |   string             |         节点用户名     |   
+| logFile             |   string             |         日志文件     |   
+| confPath             |   string             |         配置文件路径     |   
+| deleteDataAndLogAble             |   string             |         是否强制删除     |   
+| authAble             |   string             |         是否开启认证     |   
+| runShCmd             |   string             |         执行启动命令     |   
+| type             |   enum             |         节点类型     |   
+
+注 type:11 单例
+*
+* <p> 普通复制集
+* 31 普通成员节点
+
+* 32 隐藏节点
+* 33 仲裁节点
+* 34 隐藏延迟节点
+* 35 主节点
+* <p> config复制集
+* 41 config普通成员节点
+* 42 config隐藏节点
+* 43 config仲裁节点
+* 44 config隐藏延迟节点
+* 45 config主节点
+* <p> shard复制集
+* 51 shard普通成员节点
+* 52 shard隐藏节点
+* 53 shard仲裁节点
+* 54 shard隐藏延迟节点
+* 55 shard主节点
+* <p> mongoS
+* 61 mongoS
+
+---
+---

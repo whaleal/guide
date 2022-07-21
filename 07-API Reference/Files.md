@@ -1,7 +1,11 @@
 # File接口
-此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息。
+此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
 
 ### 请求头默认格式，特殊情况特殊声明
+
+    OPS-Token在调用登录接口时返回，在之后调用接口时将token放置请求头中。
+[登录接口调用获取OPS-Token](Member.md)
+
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
@@ -40,8 +44,8 @@ POST http://192.168.3.200:9600/api/server/file/web/upload/file
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         消息         |                        |        
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| msg       |         消息         |             string           |        
 
 ![img_33.png](../Images/upload_r.png)
 
@@ -76,8 +80,8 @@ GET http://192.168.3.200:9600/api/server/file/deleteFile/{{filename}}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| msg       |         返回消息         |                        |        
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| msg       |         返回消息         |            string            |        
 
 
 ![img_35.png](../Images/deleteFile_r.png)
@@ -96,11 +100,8 @@ GET http://192.168.3.200:9600/api/server/file/getAllMongoFile
 
 ---
 
-3.2 请求参数：
+3.2 请求：
 
-| Name                |     Located in     |           Description         |     Required    |        Schema   |
-| -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|            |                     |                         |                |         |
 
 
 ![img_36.png](../Images/getAllMongoFile.png)
@@ -112,7 +113,7 @@ GET http://192.168.3.200:9600/api/server/file/getAllMongoFile
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
+| code        |   状态符:1000成功,其余异常 |        int               |    
 | data       |         返回数据         |        MongoFile                |        
 
 ![img_37.png](../Images/getAllMongoFile_r.png)
