@@ -18,7 +18,7 @@
 
 
 
-####  1 发送钉钉消息
+###  1 发送钉钉消息
 
 
 1.1 请求路径：
@@ -33,9 +33,12 @@ GET http://{Server-Host}:{端口}/api/third/ding/sendMsg
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|    accessToken   |      params  |       钉钉机器人token      |      yes            |    string
-|    secret   |      params  |       钉钉机器人secret      |      yes            |    string
-|    content   |      params  |       消息类型     |      yes            |    string
+|    accessToken   |      Params  |       钉钉机器人token      |      Yes            |    String
+|    secret   |      Params  |       钉钉机器人secret      |      Yes            |    String
+|    content   |      Params  |       消息类型     |      Yes            |    String
+
+<br>
+
 
 ![img_24.png](../Images/ding_sendMsg.png)
 
@@ -48,13 +51,21 @@ GET http://{Server-Host}:{端口}/api/third/ding/sendMsg
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回信息        |           string              | 
+| data       |         返回信息        |           String              | 
+
+
+<br>
+
+
 ![img_25.png](../Images/ding_sendMsg_r.png)
 
 ---
----
 
-####  2 发送邮件消息
+<br>
+
+
+
+###  2 发送邮件消息
 
 
 2.1 请求路径：
@@ -69,8 +80,12 @@ GET http://{Server-Host}:{端口}/api/third/email/sendMsg
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|    email   |      params      |       邮箱账号      |      yes            |    string
-|    content   |      params      |       消息类型      |      yes            |    string
+|    email   |      Params      |       邮箱账号      |      Yes            |    String
+|    content   |      Params      |       消息类型      |      Yes            |    String
+
+<br>
+
+
 
 ![img_26.png](../Images/email_sendMsg.png)
 
@@ -82,13 +97,21 @@ GET http://{Server-Host}:{端口}/api/third/email/sendMsg
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |           int            |    
-| data       |         返回信息        |             string            | 
+| data       |         返回信息        |             String            | 
+
+
+<br>
+
+
 ![img_27.png](../Images/email_sendMsg_r.png)
 
 ---
----
 
-####  3 发送短信验证码 
+<br>
+
+
+
+###  3 发送短信验证码 
 
 
 3.1 请求路径：
@@ -103,8 +126,11 @@ GET http://{Server-Host}:{端口}/api/third/sms/sendMsg
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|    mobile   |      params      |       手机号      |      yes            |    string
-|    content   |      params      |       消息类型      |      yes            |    string
+|    mobile   |      Params      |       手机号      |      Yes            |    String
+|    content   |      Params      |       消息类型      |      Yes            |    String
+
+<br>
+
 
 ![img_28.png](../Images/sms_sendMsg.png)
 
@@ -116,7 +142,7 @@ GET http://{Server-Host}:{端口}/api/third/sms/sendMsg
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回信息        |           string              | 
+| data       |         返回信息        |           String              | 
 
 
 ---
