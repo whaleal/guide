@@ -1,7 +1,7 @@
 ## Info Standalone
 
 ```
-Manager Standalone 可以执行以下操作：
+Manage Standalone 可以执行以下操作：
  - Monitoring Data
  - MongoDB Logs
  - Real-time Diagnosis
@@ -10,7 +10,7 @@ Manager Standalone 可以执行以下操作：
  - Operation
 ```
 
-查看 Standalon 节点数据
+查看 Standalone 节点数据
 
 a. 进入页面左侧导航栏
 
@@ -109,5 +109,21 @@ b. 在节点信息下，点击 Details
 ### Operation
 
 对于此节点进行其他操作，包含：更新节点信息、启动节点、关闭节点、重启节点、脱离纳管、打开/关闭QPS监控、打开/关闭TopAndOp监控、打开/关闭MongoDBLog收集。
+
+* 更新节点信息：默认间隔10秒触发更新节点信息，点击按钮立刻出发，展示节点最新状态信息
+
+* 启动节点：点击后可将关闭的节点启动
+
+* 关闭节点：点击后可将启动节点 ShutDown 
+
+* 重启节点：可将运行中的节点重新启动
+
+* 脱离纳管：Whaleal Platform 不再监控、管理此节点
+
+* 打开/关闭QPS监控：是否收集QPS监控数据
+
+* 打开/关闭TopAndOp监控：是否收集实时诊断数据
+
+* 打开/关闭MongoDBLog收集：是否收集MongoDB日志数据
 
 ![image-20220721182045976](../../../../Images/MongoDB_Standalone_Operation.png)

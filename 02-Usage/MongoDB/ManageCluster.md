@@ -1,7 +1,7 @@
-## Manager Deployment
+## Manage Cluster
 
 ```
-Manager Deployment 可以执行以下操作：
+Manage Cluster 可以执行以下操作：
  - Cluster Operation
 ```
 
