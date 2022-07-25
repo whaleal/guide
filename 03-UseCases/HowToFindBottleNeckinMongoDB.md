@@ -1,7 +1,7 @@
-## Find BottleNeck in MongoDB
+## Find BottleNeck In MongoDB
 
 ```
-Find BottleNeck in MongoDB 分为以下两部分：
+Find BottleNeck In MongoDB 分为以下两部分：
  - Find BottleNeck
  - Adjust and Optimize
 ```
