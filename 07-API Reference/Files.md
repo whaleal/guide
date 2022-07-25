@@ -15,15 +15,14 @@
 | OPS-Token          |         "token"           |     
 ---
 
----
+<br>
 
-
-####  1 上传文件到Server端
+###  1 上传文件到Server端
 
 
 1.1 请求路径：
 
-POST http://192.168.3.200:9600/api/server/file/web/upload/file
+POST http://{Server-Host}:{端口}/api/server/file/web/upload/file
 
 ---
 
@@ -32,7 +31,9 @@ POST http://192.168.3.200:9600/api/server/file/web/upload/file
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| File          |         body           |            上传的文件            |        Yes       |MultipartFile
+| File          |         Body           |            上传的文件            |        Yes       |MultipartFile
+
+<br>
 
 
 ![img_32.png](../Images/upload.png)
@@ -45,21 +46,28 @@ POST http://192.168.3.200:9600/api/server/file/web/upload/file
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| msg       |         消息         |             string           |        
+| msg       |         返回消息         |             String           |        
+
+<br>
+
 
 ![img_33.png](../Images/upload_r.png)
 
----
----
 
 
-####  2 删除server端文件
+---
+
+<br>
+
+
+
+###  2 删除server端文件
 
 
 
 2.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/file/deleteFile/{{filename}}
+GET http://{Server-Host}:{端口}/api/server/file/deleteFile/{{filename}}
 
 ---
 
@@ -71,7 +79,11 @@ GET http://192.168.3.200:9600/api/server/file/deleteFile/{{filename}}
 | filename          |         Path           |            文件名称            |        Yes       |String        |
 
 
+<br>
+
+
 ![img_34.png](../Images/deleteFile.png)
+
 
 ----
 
@@ -81,7 +93,9 @@ GET http://192.168.3.200:9600/api/server/file/deleteFile/{{filename}}
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| msg       |         返回消息         |            string            |        
+| msg       |         返回消息         |            String            |        
+
+<br>
 
 
 ![img_35.png](../Images/deleteFile_r.png)
@@ -89,19 +103,21 @@ GET http://192.168.3.200:9600/api/server/file/deleteFile/{{filename}}
 ---
 
 
+<br>
 
-#### 3 获取server端的文件信息.
+
+
+### 3 获取server端的文件信息.
 
 
 
 3.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/file/getAllMongoFile
+GET http://{Server-Host}:{端口}/api/server/file/getAllMongoFile
 
 ---
 
 3.2 请求：
-
 
 
 ![img_36.png](../Images/getAllMongoFile.png)
@@ -114,33 +130,65 @@ GET http://192.168.3.200:9600/api/server/file/getAllMongoFile
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回数据         |        MongoFile                |        
+| data       |         返回数据         |        JSON                |      
+
+
+<br>
+
+
 
 ![img_37.png](../Images/getAllMongoFile_r.png)
 
----
-
-
-
----
----
-
-
-## MongoFile
-
-
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| shortName                 |   string             |         姓          |   
-| Name             |   string             |         名     |   
-| Size              |   Long |         大小     |   
-| Md5               |   string             |         文件校验     |   
-| version         |   string             |         版本     |   
-| path           |   string             |         路径     |   
-| hostId             |   string             |         主机id     |   
-
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "createTime": 1658484806756,
+            "updateTime": 1658484806756,
+            "name": "mongodb-linux-x86_64-rhel70-4.2.17.tgz",
+            "shortName": "mongodb-linux-x86_64-rhel70-4.2.17",
+            "size": 133396543,
+            "md5": "1",
+            "version": null,
+            "path": "/home/whaleal/server/mongodb-linux-x86_64-rhel70-4.2.17.tgz",
+            "hostId": "",
+            "server": true
+        }
+    ]
+}
+~~~
 
 ---
----
+
+
+
+
+
+[comment]: <> (## MongoFile)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| shortName                 |   String             |         姓          |   )
+
+[comment]: <> (| Name             |   String             |         名     |   )
+
+[comment]: <> (| Size              |   Long |         大小     |   )
+
+[comment]: <> (| Md5               |   String             |         文件校验     |   )
+
+[comment]: <> (| version         |   String             |         版本     |   )
+
+[comment]: <> (| Path           |   String             |         路径     |   )
+
+[comment]: <> (| hostId             |   String             |         主机id     |   )
+
+
+[comment]: <> (---)
+
+[comment]: <> (---)
 
 

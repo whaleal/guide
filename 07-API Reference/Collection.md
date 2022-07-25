@@ -1,5 +1,5 @@
 # Collection接口
-接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+接口调用时须在请求头中设置agentId,返回内容为 JSON 格式的信息.
 其参数为时间类型都以时间戳形式传递。
 
 
@@ -27,8 +27,11 @@ agentId在"生成agentId"接口处获取。
 | agentId          |         "agentId"           |     
 ---
 
+<br>
 
-####  1 保存agent端的日志记录.
+
+
+###  1 保存agent端的日志记录.
 
 
 1.1 请求路径：
@@ -43,7 +46,10 @@ POST http://{Server-Host}:{端口}/api/collection/agent/save/log
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|      agentLogEntity      |    body       |  日志信息实体对象       |       yes         |AgentLogEntity
+|      agentLogEntity      |    Body       |  日志信息实体对象       |       Yes         |AgentLogEntity
+
+<br>
+
 
 ![img.png](../Images/save_log.png)
 
@@ -57,16 +63,22 @@ POST http://{Server-Host}:{端口}/api/collection/agent/save/log
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| msg       |         返回消息         |         string                | 
+| msg       |         返回消息         |         String                | 
+
+<br>
+
 
 
 ![img_1.png](../Images/save_log_r.png)
 
 ---
----
 
 
-####  2 更新agent的mongo文件信息.
+<br>
+
+
+
+###  2 更新agent的mongo文件信息.
 
 
 2.1 请求路径：
@@ -81,12 +93,33 @@ POST http://{Server-Host}:{端口}/api/collection/agent/updateAgentMongoFile/{{a
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       agentId     |      path               |           agentId              |   string             |
-|       mongoFileList     |      body               |           命令实体类              |   List<MongoFile>             |
+|       agentId     |      Path    |           agentId     |        Yes        |String
+|       mongoFileList     |      Body   |           命令实体对象      |       Yes         |List
+
+
+<br>
 
 
 ![img_29.png](../Images/updateAgentMongoFile.png)
 
+~~~
+EX. 更新agent的mongo文件信息;其中MongoFileList 如下所示：
+ [
+        {
+            "_id": "62d62a9bbfa6b71dad85b68a",M
+            "createTime": "1658202779363",
+            "hostId": "62b153a344ba1b7771c42df7",
+            "md5": "1",
+            "name": "mongodb-linux-x86_64-enterprise-rhel70-4.4.14.tgz",
+            "path": "/var/ops/agent/mongodb-linux-x86_64-enterprise-rhel70-4.4.14.tgz",
+            "server": false,
+            "shortName": "mongodb-linux-x86_64-enterprise-rhel70-4.4.14",
+            "size": 133646249,
+            "updateTime": "1658202779363"
+        }
+    ]
+
+~~~
 
 
 ----
@@ -97,16 +130,21 @@ POST http://{Server-Host}:{端口}/api/collection/agent/updateAgentMongoFile/{{a
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |       int                |    
-| msg       |         返回消息         |          string               | 
+| msg       |         返回消息         |          String               | 
+
+<br>
 
 
 ![img_30.png](../Images/updateAgentMongoFile_r.png)
 
 ---
----
 
 
-####  3 根据agentId查询该agent待执行的命令.
+<br>
+
+
+
+###  3 根据agentId查询该agent待执行的命令.
 
 
 3.1 请求路径：
@@ -121,7 +159,10 @@ GET http://{Server-Host}:{端口}/api/collection/command/agent/get/{{hostId}}
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|      hostId      |       path              |              主机id           |      yes          |  string
+|      hostId      |       Path              |              主机id           |      Yes          |  String
+
+<br>
+
 
 ![img_2.png](../Images/get_by_hostId.png)
 
@@ -134,16 +175,23 @@ GET http://{Server-Host}:{端口}/api/collection/command/agent/get/{{hostId}}
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |       int                |    
-| data       |         返回数据         |         list                | 
+| data       |         返回数据         |         List                | 
+
+<br>
+
 
 
 ![img_3.png](../Images/get_by_hostId_r.png)
 
 ---
----
 
 
-#### 4 更新命令实体对象的状态.
+
+<br>
+
+
+
+### 4 更新命令实体对象的状态.
 
 
 4.1 请求路径：
@@ -158,9 +206,27 @@ PUT http://{Server-Host}:{端口}/api/collection/command/agent/update
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|     commandEntity       |        body             |         命令实体类  |    yes            |   commandEntity
+|     commandEntity       |        Body             |         命令实体对象  |    Yes            |   CommandEntity
+
+<br>
 
 ![img_4.png](../Images/agent_update.png)
+
+~~~
+EX. 更新命令实体对象的状态;其中 CommandEntity 如下所示：
+
+{
+	"id" : "62c54a395dc04d3d4c13be75",
+	"commandNote" : "server100:20190获取集群角色",
+	"commandType" : 221,
+	"content" : "{}",
+	"createTime" : "1657096761802",
+	"execResult" : "已完成",
+	"hostId" : "62b153a344ba1b7771c42df7",
+	"status" : 3,
+	"updateTime" :"1657096769089"
+}
+~~~
 
 
 
@@ -172,16 +238,20 @@ PUT http://{Server-Host}:{端口}/api/collection/command/agent/update
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回消息         |            string             | 
+| data       |         返回消息         |            String             | 
+
+<br>
 
 
 ![img_5.png](../Images/agent_update_r.png)
 
 ---
----
 
 
-####  5 更新时间戳
+<br>
+
+
+###  5 更新时间戳
 
 
 5.1 请求路径：
@@ -196,8 +266,11 @@ GET http://{Server-Host}:{端口}/api/collection/hostInfo/updateRunTime/{{hostId
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|      hostId      |         path            |        主机id                 |       yes          | string
-|      timeStamp      |         path            |        时间戳                 |       yes          | string
+|      hostId      |         Path            |        主机id                 |       Yes          | String
+|      timeStamp      |         Path            |        时间戳                 |       Yes          | String
+
+<br>
+
 
 ![img_6.png](../Images/updateRunTime.png)
 
@@ -209,16 +282,20 @@ GET http://{Server-Host}:{端口}/api/collection/hostInfo/updateRunTime/{{hostId
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回消息        |           string              | 
+| data       |         返回消息        |           String              | 
+
+<br>
+
 
 
 ![img_7.png](../Images/updateRunTime_r.png)
 
-
----
 ---
 
-####  6 保存主机信息
+<br>
+
+
+###  6 保存主机信息
 
 
 6.1 请求路径：
@@ -232,9 +309,58 @@ POST http://{Server-Host}:{端口}/api/collection/hostInfo
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|      hostInfoMongoEntity      |         body            |        主机信息实体类                 |       yes          | hostInfoMongoEntity
+|      hostInfoMongoEntity      |         Body            |        主机信息实体对象                 |       Yes          | HostInfoMongoEntity
+
+<br>
 
 ![img_8.png](../Images/save_hostInfo.png)
+
+~~~
+EX. 保存主机信息;其中 HostInfoMongoEntity 如下所示：
+{
+	"_id" : "62cbbd7607bebb71b8429e5e",
+	"cpuInfo" : " Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz",
+	"cpuNum" : 40,
+	"hostId" : "62cbbd7607bebb71b8429e5e",
+	"hostName" : "server200",
+	"hostNameLong" : "server200",
+	"ipInfo" : [
+		{
+			"ip" : "172.17.0.1",
+			"type" : "ipv4"
+		}
+	],
+	"kernelInfo" : "3.10.0-1062.el7.x86_64",
+	"osVersion" : "CentOS Linux release 7.7.1908 (Core)",
+	"run" : true,
+	"systemPropertyInfo" : {
+		"fileSeparator" : "/",
+		"javaClassPath" : "agent-collection-1.0.0.jar",
+		"javaClassVersion" : "55.0",
+		"javaHome" : "/root/jdk-11.0.9",
+		"javaIoTmpdir" : "/tmp",
+		"javaLibraryPath" : "/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib",
+		"javaSpecificationName" : "Java Platform API Specification",
+		"javaSpecificationVendor" : "Oracle Corporation",
+		"javaVendor" : "Oracle Corporation",
+		"javaVersion" : "11.0.9",
+		"javaVmName" : "Java HotSpot(TM) 64-Bit Server VM",
+		"javaVmSpecificationName" : "Java Virtual Machine Specification",
+		"javaVmSpecificationVersion" : "11",
+		"javaVmVendor" : "Oracle Corporation",
+		"javaVmVersion" : "11.0.9+7-LTS",
+		"lineSeparator" : "\n",
+		"oSArch" : "amd64",
+		"oSName" : "Linux",
+		"oSVersion" : "3.10.0-1062.el7.x86_64",
+		"pathSeparator" : ":",
+		"userDir" : "/home/jmops",
+		"userHome" : "/root",
+		"userName" : "root"
+	}
+}
+~~~
+
 
 ----
 
@@ -244,17 +370,22 @@ POST http://{Server-Host}:{端口}/api/collection/hostInfo
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回消息        |           string              | 
+| data       |         返回消息        |           String              | 
+
+
+<br>
 
 
 ![img_9.png](../Images/save_hostInfo_r.png)
 
 
 ---
----
+
+<br>
 
 
-####  7 保存主机实时信息
+
+###  7 保存主机实时信息
 
 
 7.1 请求路径：
@@ -269,9 +400,59 @@ POST http://{Server-Host}:{端口}/api/collection/hostRealTime/addHostRealTimeDa
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|      HostRealTimeDataMongoEntity      |         body            |        主机实时信息实体类                 |       yes          | HostRealTimeDataMongoEntity
+|      hostRealTimeDataMongoEntity      |         Body            |        主机实时信息实体对象                 |       Yes          | HostRealTimeDataMongoEntity
+
+<br>
 
 ![img_10.png](../Images/addHostRealTimeData.png)
+
+~~~
+EX. 保存主机信息;其中 HostInfoMongoEntity 如下所示：
+
+{
+	"_id" : "62cbbd7607bebb71b8429e5e",
+	"cpuInfo" : " Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz",
+	"cpuNum" : 40,
+	"hostId" : "62cbbd7607bebb71b8429e5e",
+	"hostName" : "server200",
+	"hostNameLong" : "server200",
+	"ipInfo" : [
+		{
+			"ip" : "172.17.0.1",
+			"type" : "ipv4"
+		}
+	],
+	"kernelInfo" : "3.10.0-1062.el7.x86_64",
+	"osVersion" : "CentOS Linux release 7.7.1908 (Core)",
+	"run" : true,
+	"systemPropertyInfo" : {
+		"fileSeparator" : "/",
+		"javaClassPath" : "agent-collection-1.0.0.jar",
+		"javaClassVersion" : "55.0",
+		"javaHome" : "/root/jdk-11.0.9",
+		"javaIoTmpdir" : "/tmp",
+		"javaLibraryPath" : "/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib",
+		"javaSpecificationName" : "Java Platform API Specification",
+		"javaSpecificationVendor" : "Oracle Corporation",
+		"javaVendor" : "Oracle Corporation",
+		"javaVersion" : "11.0.9",
+		"javaVmName" : "Java HotSpot(TM) 64-Bit Server VM",
+		"javaVmSpecificationName" : "Java Virtual Machine Specification",
+		"javaVmSpecificationVersion" : "11",
+		"javaVmVendor" : "Oracle Corporation",
+		"javaVmVersion" : "11.0.9+7-LTS",
+		"lineSeparator" : "\n",
+		"oSArch" : "amd64",
+		"oSName" : "Linux",
+		"oSVersion" : "3.10.0-1062.el7.x86_64",
+		"pathSeparator" : ":",
+		"userDir" : "/home/jmops",
+		"userHome" : "/root",
+		"userName" : "root"
+	}
+}
+~~~
+
 
 ----
 
@@ -281,18 +462,22 @@ POST http://{Server-Host}:{端口}/api/collection/hostRealTime/addHostRealTimeDa
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |          int             |    
-| data       |         返回消息        |            string             | 
+| data       |         返回消息        |            String             | 
+
+<br>
+
 
 
 ![img_11.png](../Images/addHostRealTimeData_r.png)
 
-
----
 ---
 
+<br>
 
 
-####  8 agent调用此接口来获取server端的时间
+
+
+###  8 agent调用此接口来获取server端的时间
 
 
 8.1 请求路径：
@@ -307,6 +492,7 @@ GET http://{Server-Host}:{端口}/api/collection/util/get/server/date
 
 
 
+
 ![img_12.png](../Images/get_serverdate.png)
 
 ----
@@ -317,17 +503,22 @@ GET http://{Server-Host}:{端口}/api/collection/util/get/server/date
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |          int             |    
-| data       |         时间戳        |             string           | 
+| data       |         时间戳        |             String           | 
+
+<br>
+
 
 
 ![img_13.png](../Images/get_serverdate_r.png)
 
 
 ---
----
+
+<br>
 
 
-####  9 agent通过调用此接口来获取请求agent的ip
+
+###  9 agent通过调用此接口来获取请求agent的ip
 
 
 9.1 请求路径：
@@ -350,15 +541,21 @@ GET http://{Server-Host}:{端口}/api/collection/util/get/agent/ip
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |       int                |    
-| data       |         返回ip        |           string              | 
+| data       |         返回ip        |           String              | 
+
+<br>
+
 
 
 ![img_15.png](../Images/get_agentip_r.png)
 
 
 ---
----
-####  10 mongo进行日志记录
+
+<br>
+
+
+###  10 mongo进行日志记录
 
 
 10.1 请求路径：
@@ -373,9 +570,12 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/insertMongoClusterLog/{{
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|     clusterId        |      path                |           集群id               |      yes            | string
-|     eventId        |         path             |           事件id               |           yes       |string
-|     logList        |         body             |         日志列表                 |             yes     |List\<LogInfo>
+|     clusterId        |      Path                |           集群id               |      Yes            | String
+|     eventId        |         Path             |           事件id               |           Yes       |String
+|     logList        |         Body             |         日志列表                 |             Yes     |List
+
+<br>
+
 
 ![img.png](../Images/insertMongoClusterLog.png)
 
@@ -387,17 +587,22 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/insertMongoClusterLog/{{
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回消息        |          string              | 
+| data       |         返回消息        |          String              | 
+
+
+<br>
 
 
 ![img_1.png](../Images/insertMongoClusterLog_r.png)
 
 
 ---
----
+
+<br>
 
 
-####  11 插入mongo成员日志
+
+###  11 插入mongo成员日志
 
 11.1 请求路径：
 
@@ -411,10 +616,13 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/insertMongoMemberLog/{{c
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       clusterId      |       path               |        集群id                  |       yes           |string
-|       memberInfo      |         path             |       成员信息                   |      yes            |string
-|       eventId      |       path               |          事件id                |       yes           |string
-|       logList      |       path               |          日志列表                |      yes            |List\<LogInfo>
+|       clusterId      |       Path               |        集群id                  |       Yes           |String
+|       memberInfo      |         Path             |       成员信息                   |      Yes            |String
+|       eventId      |       Path               |          事件id                |       Yes           |String
+|       logList      |       Body               |          日志列表                |      Yes            |List
+
+<br>
+
 
 ![img_2.png](../Images/insertMongoMemberLog.png)
 
@@ -426,16 +634,21 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/insertMongoMemberLog/{{c
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |       int                |    
-| data       |         返回消息        |         string                | 
+| data       |         返回消息        |         String                | 
+
+<br>
+
 
 ![img_3.png](../Images/insertMongoMemberLog_r.png)
 
 
 
 ---
----
 
-####  12 更新mongo节点信息
+<br>
+
+
+###  12 更新mongo节点信息
 
 
 12.1 请求路径：
@@ -450,9 +663,31 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/updateMongo
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       MongoMember      |       body               |        mongo集群成员     |       yes           |MongoMember
+|       mongoMember      |       Body               |        mongo集群成员     |       Yes           |MongoMember
+
+<br>
+
 
 ![img_4.png](../Images/updateMongo.png)
+
+~~~
+
+EX. 更新mongo节点信息;其中 MongoMember 如下所示：
+{
+    "account": "231asd",
+    "areaCode": "86",
+    "createTime": "1657849074235",
+    "dingDingList": [],
+    "email": "1@q.com",
+    "password": "$2a$10$HDQuhJON2eOpXbPhrC53qeklYNhG9jGhYMK9g8UsNT94bi.lry2Li",
+    "phone": "2132423",
+    "receiveAlert": true,
+    "role": "admin",
+    "timezone": "Asia/Shanghai",
+    "updateTime": "1657849074235"
+}
+~~~
+
 
 ----
 
@@ -462,17 +697,21 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/updateMongo
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回消息        |          string               | 
+| data       |         返回消息        |          String               | 
+
+<br>
 
 ![img_5.png](../Images/updateMongo_r.png)
 
 
 
 ---
----
+
+<br>
 
 
-####  13 更新复制集信息
+
+###  13 更新复制集信息
 
 
 13.1 请求路径：
@@ -486,8 +725,11 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/updateMongoRepl/{{isUpda
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       isUpdateMemberList      |       path               |        是否更新成员列表  |       yes           |Boolean
-|       MongoReplica      |         body             |       mongo复制集|      yes            |MongoReplica
+|       isUpdateMemberList      |       Path               |        是否更新成员列表  |       Yes           |boolean
+|       mongoReplica      |         Body             |       mongo复制集|      Yes            |MongoReplica
+
+<br>
+
 
 ![img_6.png](../Images/updateMongoRepl.png)
 
@@ -499,16 +741,20 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/updateMongoRepl/{{isUpda
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回消息        |           string              | 
+| data       |         返回消息        |           String              | 
+
+<br>
+
 
 ![img_7.png](../Images/updateMongoRepl_r.png)
 
 
-
----
 ---
 
-####  14 更新集群信息
+<br>
+
+
+###  14 更新集群信息
 
 
 14.1 请求路径：
@@ -522,7 +768,10 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/updateCluster
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       MongoClusterInformation      |       body  |        集群实体对象      |       yes           |MongoClusterInformation
+|       mongoClusterInformation      |       Body  |        mongo集群信息实体对象      |       Yes           |MongoClusterInformation
+
+<br>
+
 
 ![img_8.png](../Images/updateCluster.png)
 
@@ -534,16 +783,20 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/updateCluster
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |          int             |    
-| data       |         返回消息        |            string             | 
+| data       |         返回消息        |            String             | 
+
+<br>
+
 
 ![img_9.png](../Images/updateCluster_r.png)
 
 
-
----
 ---
 
-####  15 保存mongo成员的实时信息
+<br>
+
+
+###  15 保存mongo成员的实时信息
 
 
 15.1 请求路径：
@@ -558,8 +811,11 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/one/{{ta
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       tableName      |       path               |        表名                  |       yes           |string
-|       MongodbNodeMetrics      |         body             |       mongo实时数据对象     |      yes            |MongodbNodeMetrics
+|       tableName      |       Path               |        表名                  |       Yes           |String
+|       mongodbNodeMetrics      |         Body             |       mongo实时数据对象     |      Yes            |MongodbNodeMetrics
+
+<br>
+
 
 ![img_10.png](../Images/realtime_save_one.png)
 
@@ -571,17 +827,22 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/one/{{ta
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |       int                |    
-| data       |         返回消息        |         string                | 
+| data       |         返回消息        |         String                | 
+
+<br>
+
 
 ![img_11.png](../Images/realtime_save_one_r.png)
 
 
 
 ---
----
+
+<br>
 
 
-####  16 保存一批监控数据到数据库中
+
+###  16 保存一批监控数据到数据库中
 
 
 16.1 请求路径：
@@ -595,7 +856,10 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/many
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       mongoDBRealtimeDataEntityList      |       body               |        保存mongo成员的实时信息集合 |       yes           |List<MongodbNodeMetrics>
+|       mongoDBRealtimeDataEntityList      |       Body               |        保存mongo成员的实时信息集合 |       Yes           |List
+
+<br>
+
 
 ![img_12.png](../Images/realtime_save_many.png)
 
@@ -607,16 +871,20 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/many
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回消息        |           string              | 
+| data       |         返回消息        |           String              | 
+
+<br>
+
 
 ![img_13.png](../Images/realtime_save_many_r.png)
 
 
 
 ---
----
 
-####  17 获取agent实例上的mongo节点信息
+<br>
+
+### 17 获取agent实例上的mongo节点信息
 
 
 17.1 请求路径：
@@ -631,7 +899,10 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/agent/mongoMember/{{ag
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       agentId      |       path               |        agentId                  |       yes           |string
+|       agentId      |       Path               |        agentId                  |       Yes           |String
+
+<br>
+
 
 ![img_14.png](../Images/agent_mongoMember.png)
 
@@ -643,8 +914,11 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/agent/mongoMember/{{ag
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回数据        |            list             | 
+| data       |         返回数据        |            List             | 
 
+<br>
+
+![img_12.png](../Images/agent_mongoMember_r.png)
 ~~~
 {
     "code": 1000,
@@ -668,7 +942,7 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/agent/mongoMember/{{ag
             "confPath": "/home/chen/data56902/data/chen_56902.conf",
             "deleteDataAndLogAble": false,
             "authAble": true,
-            "runShCmd": "/var/ops/agent//mongodb-linux-x86_64-rhel70-4.2.21/bin/mongod -f /home/chen/data56902/data/chen_56902.conf",
+            "runShCmd": "",
             "type": 45,
             "status": "正在运行",
             "monitorServerStatus": true,
@@ -687,18 +961,18 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/agent/mongoMember/{{ag
             "tags": {},
             "configurationOptions": {
                 "sharding_clusterRole": "configsvr",
-                "security_keyFile": "/home/chen/data56902/data/test_lhp_shard_configSecurityKeyFile.key",
+                "security_keyFile": "",
                 "security_authorization": "enabled",
                 "systemLog_destination": "file",
                 "storage_wiredTiger_engineConfig_cacheSizeGB": "0.3",
-                "systemLog_path": "/home/chen/data56902/data/log.log",
+                "systemLog_Path": "/home/chen/data56902/data/log.log",
                 "processManagement_fork": "true",
                 "storage_dbPath": "/home/chen/data56902/data/",
                 "systemLog_logAppend": "true",
                 "net_bindIp": "0.0.0.0",
                 "net_port": "56902",
                 "replication_replSetName": "test_lhp_shard_config",
-                "securityKeyFileValue": "rY3mNY3x3EBUuOJ1BkwNYRnOUmaCxpOAo91VIKx2HepwIvwXFmJt3jzmC+TrJPwz\r\ns+zdhFLGd4IkGlwGwm/3W1dUzRyu+EwsrZeS+b0rqp/5im6h6tL7mdwflx8F+9K5\r\nSYilORoQbSNLavo6eRrHNpLVF9BMkTLFqcPI6REVfX+vuSI+WLpz4GGLKUEe63h3\r\nCYtp2MDkRJoglEbR1qpLIfKYeh9IIL+hTCFQM/OMFa/K4DYhbH6flzrn7PSH2Nj+\r\n5905VxR8jw7D/W0uL+eP9zSBUOEnpL/R7e12c22HcAtHfYHQ6HKmntCWap5EVu7R\r\nkTSy36L5S9BLdOr/p43uVK7yMH/jmlEP9G9tww8iM/BEUQMwScHjnPcCRdkAK5Dc\r\nt6VHsMAXD6c2xG+esO2j5hd0rZxh64fG1Z2spm5YlWPqXGXemLLQ8zZr7fO9jS2S\r\nJQyr+SLZ9eeCxj395uMaA8XdO2THlYdCZmLmLoi06f1LFEiOq2cDKyKAD1eQWxGI\r\njm9SjLr38SXUy0IMNCMD2aPl2wpIO8abb+iEytMnNIH6rxKWULyZEFSGoMsmzYrF\r\n6LzT6T56y+dodo49U/A5L/3z+eaVxBc21Tu/KEJbngFDDvUjYojefoe3MJuU4XyX\r\n0fH17zhIdt7YEXkSQVaHcqbwn8VwiDvqtJFw+Orfsw2MO/zQPk+ig0e3sbQTuFIX\r\nQhku30QK50QRW6Az8OVgw6op3ZikDH+roCZejfi9iwVz6Wt4iMVRVfzdJ+9cxHM1\r\n08G1QnFmz0qJinjFFLJOC4W6Yknf4HxGJE1jHPBmCmKoS7yWH2y6/aEvmoqcwAie\r\nBK5z0lUzkqrOvJMCXv7+NfIErdUw8qrfoeLQSo/rZhp+b8BZWEc8JycUjDbGK0Rh\r\nT+oKRBlNFwvsd4zPCeEXw/kt3lpaT8ZFLr3Gp23qYXzy0/dT1RHaIn59tDapwsKd\r\nRPCpRnBwnE4N4DLu1J6xWGvCpWQxBZKJuZTcc5fSHukFKKWY"
+                "securityKeyFileValue":""
             },
             "operateVersion": 8168
         }
@@ -709,9 +983,11 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/agent/mongoMember/{{ag
 
 
 ---
----
 
-####  18 保存mongo.log日志
+<br>
+
+
+###  18 保存mongo.log日志
 
 
 18.1 请求路径：
@@ -726,9 +1002,11 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoLog/{{mongoM
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       mongoMemberId      |       path               |        mongo成员id                  |       yes           |string
-|       fileOffset      |         path             |       文件偏移     |      yes            |long
-|       logList      |         body             |       日志列表     |      yes            |List\<String>
+|       mongoMemberId      |       Path               |        mongo成员id                  |       Yes           |String
+|       fileOffset      |         Path             |       文件偏移     |      Yes            |long
+|       logList      |         Body             |       日志列表     |      Yes            |List
+
+<br>
 
 
 ![img_15.png](../Images/save_mongoLog.png)
@@ -741,17 +1019,22 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoLog/{{mongoM
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         文件偏移        |         string                | 
+| data       |         文件偏移        |         String                | 
+
+<br>
+
 
 ![img_16.png](../Images/save_mongoLog_r.png)
 
 
 
 ---
----
+
+<br>
 
 
-####  19 保存 mongo top and op
+
+###  19 保存 mongo top and op
 
 
 19.1 请求路径：
@@ -766,7 +1049,10 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoTopAndOp
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       documentList      |       body               |     Document列表 |       yes           |List<Document>
+|       documentList      |       Body               |     Document列表 |       Yes           |List
+
+<br>
+
 
 ![img_17.png](../Images/save_mongoTopAndOp.png)
 
@@ -778,16 +1064,21 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoTopAndOp
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回消息        |          string               | 
+| data       |         返回消息        |          String               | 
+
+<br>
+
 
 ![img_18.png](../Images/save_mongoTopAndOp_r.png)
 
 
-
----
 ---
 
-####  20 更新fcv
+<br>
+
+
+
+###  20 更新fcv
 
 
 20.1 请求路径：
@@ -802,8 +1093,11 @@ GET http://{Server-Host}:{端口}/api/collection/mongodb/updateFCV/{{clusterId}}
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       clusterId      |       path               |        集群id                  |       yes           |string
-|       fcv      |         path             |       fcv     |      yes            |string
+|       clusterId      |       Path               |        集群id                  |       Yes           |String
+|       fcv      |         Path             |       fcv     |      Yes            |String
+
+<br>
+
 
 ![img_19.png](../Images/updateFCV.png)
 
@@ -815,19 +1109,23 @@ GET http://{Server-Host}:{端口}/api/collection/mongodb/updateFCV/{{clusterId}}
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回消息        |           string              | 
+| data       |         返回消息        |           String              | 
+
+
+<br>
 
 
 
 ![img_20.png](../Images/updateFCV_r.png)
 
 
-
----
 ---
 
+<br>
 
-####  21 保存mongodb集合
+
+
+###  21 保存mongodb集合
 
 
 21.1 请求路径：
@@ -842,7 +1140,10 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBCollections
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       mongoDBCollections      |         body             |       mongo实集合     |      yes            |mongoDBCollections
+|       mongoDBCollections      |         Body             |       mongo实集合     |      Yes            |MongoDBCollections
+
+<br>
+
 
 ![img_21.png](../Images/saveMongoDBCollections.png)
 
@@ -854,17 +1155,21 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBCollections
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |       int                |    
-| data       |         返回消息        |          string               | 
+| data       |         返回消息        |          String               | 
+
+<br>
+
 
 ![img_22.png](../Images/saveMongoDBCollections_r.png)
 
 
-
----
 ---
 
+<br>
 
-####  22 保存mongo成员用户
+
+
+###  22 保存mongo成员用户
 
 
 22.1 请求路径：
@@ -879,8 +1184,11 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterUser
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       clusterId      |       path               |        集群id                  |       yes           |string
-|       list      |         body             |       document列表     |      yes            |List\<Document>
+|       clusterId      |       Path               |        集群id                  |       Yes           |String
+|       list      |         Body             |       document列表     |      Yes            |List
+
+<br>
+
 
 ![img_23.png](../Images/saveMongoDBClusterUser.png)
 
@@ -892,17 +1200,21 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterUser
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回消息        |             string            | 
+| data       |         返回消息        |             String            | 
+
+<br>
+
 
 ![img_24.png](../Images/saveMongoDBClusterUser_r.png)
 
 
-
----
 ---
 
+<br>
 
-####  23 保存mongo成员角色
+
+
+###  23 保存mongo成员角色
 
 
 23.1 请求路径：
@@ -917,8 +1229,11 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterRole
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       clusterId      |       path               |        集群id                  |       yes           |string
-|       list      |         body             |       document列表     |      yes            |List\<Document>
+|       clusterId      |       Path               |        集群id                  |       Yes           |String
+|      list      |         Body             |       document列表     |      Yes            |List
+
+
+<br>
 
 
 ![img_25.png](../Images/saveMongoDBClusterRole.png)
@@ -931,351 +1246,542 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterRole
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回消息        |              string           | 
+| data       |         返回消息        |              String           | 
+
+<br>
+
 
 ![img_26.png](../Images/saveMongoDBClusterRole_r.png)
 
 
-
 ---
 ---
 
 
 
-## AgentLogEntity
+[comment]: <> (## AgentLogEntity)
 
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| hostId                 |   string             |         主机id          |   
-| type             |   string             |         日志类型     |   
-| content              |   string |         内容     |   
+[comment]: <> (|       Name         |     Type             |    Description      |   )
 
+[comment]: <> (| ------------       |----------            |---------------------|)
 
----
----
+[comment]: <> (| hostId                 |   String             |         主机id          |   )
 
-## MongoFile
+[comment]: <> (| type             |   String             |         日志类型     |   )
 
+[comment]: <> (| content              |   String |         内容     |   )
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| shortName                 |   string             |         姓          |   
-| Name             |   string             |         名     |   
-| Size              |   Long |         大小     |   
-| Md5               |   string             |         文件校验     |   
-| version         |   string             |         版本     |   
-| path           |   string             |         路径     |   
-| hostId             |   string             |         主机id     |   
 
+[comment]: <> (---)
 
----
----
+[comment]: <> (---)
 
-## commandEntity
+[comment]: <> (## MongoFile)
 
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| hostId                 |   string             |         主机id          |   
-| commandType             |   string             |         命令类型     |   
-| status              |   Integer |    当前状态:1 下发,2 正在执行,3 正常已完成,4 异常完成,5 异常完成但是不影响后续执行     |   
-| eventId               |   string             |         所属事件组     |   
-| commandNote         |   string             |         具体命令操作注释     |   
-| content           |   string             |         命令内容     |   
-| execResult             |   string             |         执行结果     |   
+[comment]: <> (|       Name         |     Type             |    Description      |   )
 
+[comment]: <> (| ------------       |----------            |---------------------|)
 
----
----
+[comment]: <> (| shortName                 |   String             |         姓          |   )
 
-___
+[comment]: <> (| Name             |   String             |         名     |   )
 
-## ipInfo
+[comment]: <> (| Size              |   Long |         大小     |   )
 
-|       Name        |     Type    |           Description       |   
-| --------------|----------------------|--------------------|
-| id        |   string |         Id              |   
-| Type        |   string |         主机名称              |   
+[comment]: <> (| Md5               |   String             |         文件校验     |   )
 
+[comment]: <> (| version         |   String             |         版本     |   )
 
----  
+[comment]: <> (| Path           |   String             |         路径     |   )
 
-## HostInfoMongoEntity
+[comment]: <> (| hostId             |   String             |         主机id     |   )
 
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| id                 |   string             |         Id          |   
-| ipInfo             |   List<ipInfo>             |         Ip信息     |   
-| systemPropertyInfo |   systemPropertyInfo |         系统参数信息     |   
-| createTime         |   时间戳             |         创建时间     |   
-| updateTime         |   时间戳             |         更新时间     |   
-| hostName           |   string             |         主机名称     |   
-| hostId             |   string             |         主机id     |   
-| hostNameLong       |   string             |         主机长名称     |   
-| Memory             |   int             |         内存     |   
-| osVersion          |   string             |         系统版本     |   
-| cpuNum             |   int             |         Cpu数     |   
-| swap               |   int             |         交换内存     |   
-| kernelInfo         |   string             |         内核信息     |   
-| totalDiskSize      |   Int             |         总磁盘大小     |   
-| run                |   Boolean             |         是否正在运行     |   
+[comment]: <> (---)
 
+[comment]: <> (---)
 
+[comment]: <> (## commandEntity)
 
 
----
----
+[comment]: <> (|       Name         |     Type             |    Description      |   )
 
-## HostRealTimeDataMongoEntity
+[comment]: <> (| ------------       |----------            |---------------------|)
 
+[comment]: <> (| hostId                 |   String             |         主机id          |   )
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| hostId                 |   string             |         主机id          |   
-| hostName             |   string             |         主机名称     |   
-| timeGranularity              |   int |         颗粒度值     |   
-| cpuInfo               |   CpuInfo             |         cpu使用信息     |   
-| memoryInfo         |   MemoryInfo             |         内存使用信息     |   
-| diskInfoList           |   List<DiskInfo>             |         磁盘使用信息     |   
-| diskInAndOutInfoList             |   List<DiskInAndOutInfo>             |         磁盘io信息     |   
-| netInAndOutInfoList             |   List<NetInAndOutInfo>             |         网络带宽io信息     |   
+[comment]: <> (| commandType             |   String             |         命令类型     |   )
 
+[comment]: <> (| status              |   Integer |    当前状态:1 下发,2 正在执行,3 正常已完成,4 异常完成,5 异常完成但是不影响后续执行     |   )
 
----
----
+[comment]: <> (| eventId               |   String             |         所属事件组     |   )
 
+[comment]: <> (| commandNote         |   String             |         具体命令操作注释     |   )
 
-## CpuInfo
+[comment]: <> (| content           |   String             |         命令内容     |   )
 
+[comment]: <> (| execResult             |   String             |         执行结果     |   )
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| us                 |   double             |         用户空间占用CPU百分比          |   
-| sy             |   double             |         内核空间占用CPU百分比     |   
-| ni              |   double |         用户进程空间内改变过优先级的进程占用CPU百分比     |   
-| id               |   double             |         空闲CPU百分比     |   
-| wa         |   double             |         等待输入输出的CPU时间百分比     |   
-| hi           |   double            |         硬中断占用CPU的百分比     |   
-| si             |   double             |         软中断占用CPU的百分比     |   
-| st             |   double            |         虚拟CPU等待实际CPU的时间的百分比     |   
 
+[comment]: <> (---)
 
----
----
+[comment]: <> (---)
 
+[comment]: <> (___)
 
-## DiskInAndOutInfo
+[comment]: <> (## ipInfo)
 
+[comment]: <> (|       Name        |     Type    |           Description       |   )
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| memTotal                 |   long             |         物理内存总量          |   
-| memFree             |   long             |         空闲内存总量     |   
-| memUsed              |   long |         使用的物理内存总量     |   
-| memBuffCache               |   long             |         用作内核缓存的内存量     |   
-| memAvail         |   long             |         代表可用于进程下一次分配的物理内存数量     |   
-| swapTotal           |   long           |         交换区总量     |   
-| swapFree             |  long            |         空闲交换区总量     |   
-| swapUsed             |   long       |         使用的交换区总量     |   
+[comment]: <> (| --------------|----------------------|--------------------|)
 
+[comment]: <> (| id        |   String |         Id              |   )
 
----
----
+[comment]: <> (| Type        |   String |         主机名称              |   )
 
 
-## NetInAndOutInfo
+[comment]: <> (---  )
 
+[comment]: <> (## HostInfoMongoEntity)
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| networkCardName                 |   string             |         网卡名          |   
-| io             |   double             |         流入流量     |   
-| out              |   double |         流出流量     |   
 
----
----
+[comment]: <> (|       Name         |     Type             |    Description      |   )
 
+[comment]: <> (| ------------       |----------            |---------------------|)
 
-## HostRealTimeDataMongoEntity
+[comment]: <> (| id                 |   String             |         Id          |   )
 
+[comment]: <> (| ipInfo             |   List<ipInfo>             |         Ip信息     |   )
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| hostId                 |   string             |         主机id          |   
-| hostName             |   string             |         主机名称     |   
-| timeGranularity              |   int |         颗粒度值     |   
-| cpuInfo               |   CpuInfo             |         cpu使用信息     |   
-| memoryInfo         |   MemoryInfo             |         内存使用信息     |   
-| diskInfoList           |   List<DiskInfo>             |         磁盘使用信息     |   
-| diskInAndOutInfoList             |   List<DiskInAndOutInfo>             |         磁盘io信息     |   
-| netInAndOutInfoList             |   List<NetInAndOutInfo>             |         网络带宽io信息     |   
+[comment]: <> (| systemPropertyInfo |   systemPropertyInfo |         系统参数信息     |   )
 
+[comment]: <> (| createTime         |   时间戳             |         创建时间     |   )
 
----
----
+[comment]: <> (| updateTime         |   时间戳             |         更新时间     |   )
 
+[comment]: <> (| hostName           |   String             |         主机名称     |   )
 
-## DiskInfo
+[comment]: <> (| hostId             |   String             |         主机id     |   )
 
-
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| fileSystem                 |   string             |         分区名          |   
-| type             |   string             |         分区类型     |   
-| size              |   long |         总大小     |   
-| used               |   long             |         使用大小     |   
-| utilization         |   double             |         使用率     |   
-| mountedOn           |   string            |         挂载位置     |   
+[comment]: <> (| hostNameLong       |   String             |         主机长名称     |   )
 
----
----
+[comment]: <> (| Memory             |   int             |         内存     |   )
 
+[comment]: <> (| osVersion          |   String             |         系统版本     |   )
 
+[comment]: <> (| cpuNum             |   int             |         Cpu数     |   )
 
-## LogInfo
+[comment]: <> (| swap               |   int             |         交换内存     |   )
 
+[comment]: <> (| kernelInfo         |   String             |         内核信息     |   )
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| createTime                 |   string             |         创建时间          |   
-| log             |   string             |         日志     |   
+[comment]: <> (| totalDiskSize      |   Int             |         总磁盘大小     |   )
 
----
----
+[comment]: <> (| run                |   boolean             |         是否正在运行     |   )
 
-## MongoMember
 
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| memberName                 |   string             |         主机名:端口          |   
-| hostName             |   string             |         主机名     |   
-| hostId              |   Long |         主机id     |   
-| port               |   string             |         端口     |   
-| version         |   string             |         版本     |   
-| upgradeVersion           |   string             |         升降级版本     |   
-| password           |   string             |         节点密码     |   
-| authDbName           |   string             |         认证库     |   
-| currentTimeMillis           |   long             |         当前时间戳     |   
-| dataDirectory           |   string             |         数据目录     |   
-| userName             |   string             |         节点用户名     |   
-| logFile             |   string             |         日志文件     |   
-| confPath             |   string             |         配置文件路径     |   
-| deleteDataAndLogAble             |   string             |         是否强制删除     |   
-| authAble             |   string             |         是否开启认证     |   
-| runShCmd             |   string             |         执行启动命令     |   
-| type             |   enum             |         节点类型     |   
 
-注 type:11 单例
-*
-* <p> 普通复制集
-* 31 普通成员节点
+[comment]: <> (---)
 
-* 32 隐藏节点
-* 33 仲裁节点
-* 34 隐藏延迟节点
-* 35 主节点
-* <p> config复制集
-* 41 config普通成员节点
-* 42 config隐藏节点
-* 43 config仲裁节点
-* 44 config隐藏延迟节点
-* 45 config主节点
-* <p> shard复制集
-* 51 shard普通成员节点
-* 52 shard隐藏节点
-* 53 shard仲裁节点
-* 54 shard隐藏延迟节点
-* 55 shard主节点
-* <p> mongoS
-* 61 mongoS
+[comment]: <> (---)
 
----
----
+[comment]: <> (## HostRealTimeDataMongoEntity)
 
-## MongoReplica
 
+[comment]: <> (|       Name         |     Type             |    Description      |   )
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| replicaName                 |   string             |         集群名          |   
-| memberList             |   List<MongoMember>             |         成员列表     |   
-| type              |   enum |         大小     |   
-| clusterId               |   string             |         所属集群id     |   
-| deleteDataAndLogAble         |   boolean             |         是否强制删除已经存在的数据目录和日志文件     |   
-| status           |   string             |         状态     |   
-| operaLog             |   List<String             |         复制集操作日志     |   
-| replicationSettings             |   Map<String, Object>             |         复制集高级配置     |   
-| replicationOtherSettings             |   Map<String, Object>             |         其他附加配置信息     |   
-| authAble             |   boolean             |         是否开启认证     |   
-| userName             |   string             |         节点用户名     |   
-| password             |   string             |         节点密码     |   
-| authDbName             |   string             |         认证库     |   
-| protocolVersion             |   long             |         协议版本     |   
-| writeConcernMajorityJournalDefault             |   boolean             |         是否默认投票     |   
-type:
-* 普通复制集 1
-* config 2
-* shard 3
+[comment]: <> (| ------------       |----------            |---------------------|)
 
+[comment]: <> (| hostId                 |   String             |         主机id          |   )
 
----
----
+[comment]: <> (| hostName             |   String             |         主机名称     |   )
 
+[comment]: <> (| timeGranularity              |   int |         颗粒度值     |   )
 
+[comment]: <> (| cpuInfo               |   CpuInfo             |         cpu使用信息     |   )
 
-## MongoClusterInformation
+[comment]: <> (| memoryInfo         |   MemoryInfo             |         内存使用信息     |   )
 
+[comment]: <> (| diskInfoList           |   List<DiskInfo>             |         磁盘使用信息     |   )
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| clusterName                 |   string             |         集群名          |   
-| type             |   int             |         类型     |   
-| mongoMember              |   MongoMember |         单例     |   
-| mongoReplica               |   MongoReplica             |         复制集     |   
-| mongoShard         |   MongoShard             |         分片     |   
-| isCreate           |   boolean             |         默认新建的集群信息     |   
-| status             |   string             |         集群状态     |   
-| fcv             |   string             |         fcv     |   
-| tag             |   string             |         标签     |   
+[comment]: <> (| diskInAndOutInfoList             |   List<DiskInAndOutInfo>             |         磁盘io信息     |   )
 
-status：
-* 集群状态
-* 正常
-* 异常
-* 关机
-* 脱离纳管
+[comment]: <> (| netInAndOutInfoList             |   List<NetInAndOutInfo>             |         网络带宽io信息     |   )
 
-type:
-* 1 单例
-* 2 复制集
-* 3 分片
 
+[comment]: <> (---)
 
+[comment]: <> (---)
 
-## MongoDBCollections
 
+[comment]: <> (## CpuInfo)
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| isFromServerExe                 |   Boolean             |         是否来自服务端exe          |   
-| dbTables             |   List\<MongoMember>             |         document集合     |   
-| clusterId               |   string             |         所属集群id     |   
 
+[comment]: <> (|       Name         |     Type             |    Description      |   )
 
----
----
+[comment]: <> (| ------------       |----------            |---------------------|)
 
+[comment]: <> (| us                 |   double             |         用户空间占用CPU百分比          |   )
 
-## MongodbNodeMetrics
+[comment]: <> (| sy             |   double             |         内核空间占用CPU百分比     |   )
 
+[comment]: <> (| ni              |   double |         用户进程空间内改变过优先级的进程占用CPU百分比     |   )
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| hostId                 |   string             |         主机id          |   
-| hostName             |   string             |         主机名称     |   
-| port              |   string |         端口号     |   
-| nodeId               |   string             |         节点id     |   
-| timeGranularity         |   int             |         颗粒度     |   
+[comment]: <> (| id               |   double             |         空闲CPU百分比     |   )
+
+[comment]: <> (| wa         |   double             |         等待输入输出的CPU时间百分比     |   )
+
+[comment]: <> (| hi           |   double            |         硬中断占用CPU的百分比     |   )
+
+[comment]: <> (| si             |   double             |         软中断占用CPU的百分比     |   )
+
+[comment]: <> (| st             |   double            |         虚拟CPU等待实际CPU的时间的百分比     |   )
+
+
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+
+[comment]: <> (## DiskInAndOutInfo)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| memTotal                 |   long             |         物理内存总量          |   )
+
+[comment]: <> (| memFree             |   long             |         空闲内存总量     |   )
+
+[comment]: <> (| memUsed              |   long |         使用的物理内存总量     |   )
+
+[comment]: <> (| memBuffCache               |   long             |         用作内核缓存的内存量     |   )
+
+[comment]: <> (| memAvail         |   long             |         代表可用于进程下一次分配的物理内存数量     |   )
+
+[comment]: <> (| swapTotal           |   long           |         交换区总量     |   )
+
+[comment]: <> (| swapFree             |  long            |         空闲交换区总量     |   )
+
+[comment]: <> (| swapUsed             |   long       |         使用的交换区总量     |   )
+
+
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+
+[comment]: <> (## NetInAndOutInfo)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| networkCardName                 |   String             |         网卡名          |   )
+
+[comment]: <> (| io             |   double             |         流入流量     |   )
+
+[comment]: <> (| out              |   double |         流出流量     |   )
+
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+
+[comment]: <> (## HostRealTimeDataMongoEntity)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| hostId                 |   String             |         主机id          |   )
+
+[comment]: <> (| hostName             |   String             |         主机名称     |   )
+
+[comment]: <> (| timeGranularity              |   int |         颗粒度值     |   )
+
+[comment]: <> (| cpuInfo               |   CpuInfo             |         cpu使用信息     |   )
+
+[comment]: <> (| memoryInfo         |   MemoryInfo             |         内存使用信息     |   )
+
+[comment]: <> (| diskInfoList           |   List<DiskInfo>             |         磁盘使用信息     |   )
+
+[comment]: <> (| diskInAndOutInfoList             |   List<DiskInAndOutInfo>             |         磁盘io信息     |   )
+
+[comment]: <> (| netInAndOutInfoList             |   List<NetInAndOutInfo>             |         网络带宽io信息     |   )
+
+
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+
+[comment]: <> (## DiskInfo)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| fileSystem                 |   String             |         分区名          |   )
+
+[comment]: <> (| type             |   String             |         分区类型     |   )
+
+[comment]: <> (| size              |   long |         总大小     |   )
+
+[comment]: <> (| used               |   long             |         使用大小     |   )
+
+[comment]: <> (| utilization         |   double             |         使用率     |   )
+
+[comment]: <> (| mountedOn           |   String            |         挂载位置     |   )
+
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+
+
+[comment]: <> (## LogInfo)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| createTime                 |   String             |         创建时间          |   )
+
+[comment]: <> (| log             |   String             |         日志     |   )
+
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+[comment]: <> (## MongoMember)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| memberName                 |   String             |         主机名:端口          |   )
+
+[comment]: <> (| hostName             |   String             |         主机名     |   )
+
+[comment]: <> (| hostId              |   Long |         主机id     |   )
+
+[comment]: <> (| port               |   String             |         端口     |   )
+
+[comment]: <> (| version         |   String             |         版本     |   )
+
+[comment]: <> (| upgradeVersion           |   String             |         升降级版本     |   )
+
+[comment]: <> (| password           |   String             |         节点密码     |   )
+
+[comment]: <> (| authDbName           |   String             |         认证库     |   )
+
+[comment]: <> (| currentTimeMillis           |   long             |         当前时间戳     |   )
+
+[comment]: <> (| dataDirectory           |   String             |         数据目录     |   )
+
+[comment]: <> (| userName             |   String             |         节点用户名     |   )
+
+[comment]: <> (| logFile             |   String             |         日志文件     |   )
+
+[comment]: <> (| confPath             |   String             |         配置文件路径     |   )
+
+[comment]: <> (| deleteDataAndLogAble             |   String             |         是否强制删除     |   )
+
+[comment]: <> (| authAble             |   String             |         是否开启认证     |   )
+
+[comment]: <> (| runShCmd             |   String             |         执行启动命令     |   )
+
+[comment]: <> (| type             |   enum             |         节点类型     |   )
+
+[comment]: <> (注 type:11 单例)
+
+[comment]: <> (*)
+
+[comment]: <> (* <p> 普通复制集)
+
+[comment]: <> (* 31 普通成员节点)
+
+[comment]: <> (* 32 隐藏节点)
+
+[comment]: <> (* 33 仲裁节点)
+
+[comment]: <> (* 34 隐藏延迟节点)
+
+[comment]: <> (* 35 主节点)
+
+[comment]: <> (* <p> config复制集)
+
+[comment]: <> (* 41 config普通成员节点)
+
+[comment]: <> (* 42 config隐藏节点)
+
+[comment]: <> (* 43 config仲裁节点)
+
+[comment]: <> (* 44 config隐藏延迟节点)
+
+[comment]: <> (* 45 config主节点)
+
+[comment]: <> (* <p> shard复制集)
+
+[comment]: <> (* 51 shard普通成员节点)
+
+[comment]: <> (* 52 shard隐藏节点)
+
+[comment]: <> (* 53 shard仲裁节点)
+
+[comment]: <> (* 54 shard隐藏延迟节点)
+
+[comment]: <> (* 55 shard主节点)
+
+[comment]: <> (* <p> mongoS)
+
+[comment]: <> (* 61 mongoS)
+
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+[comment]: <> (## MongoReplica)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| replicaName                 |   String             |         集群名          |   )
+
+[comment]: <> (| memberList             |   List<MongoMember>             |         成员列表     |   )
+
+[comment]: <> (| type              |   enum |         大小     |   )
+
+[comment]: <> (| clusterId               |   String             |         所属集群id     |   )
+
+[comment]: <> (| deleteDataAndLogAble         |   boolean             |         是否强制删除已经存在的数据目录和日志文件     |   )
+
+[comment]: <> (| status           |   String             |         状态     |   )
+
+[comment]: <> (| operaLog             |   List<String             |         复制集操作日志     |   )
+
+[comment]: <> (| replicationSettings             |   Map<String, Object>             |         复制集高级配置     |   )
+
+[comment]: <> (| replicatioNotherSettings             |   Map<String, Object>             |         其他附加配置信息     |   )
+
+[comment]: <> (| authAble             |   boolean             |         是否开启认证     |   )
+
+[comment]: <> (| userName             |   String             |         节点用户名     |   )
+
+[comment]: <> (| password             |   String             |         节点密码     |   )
+
+[comment]: <> (| authDbName             |   String             |         认证库     |   )
+
+[comment]: <> (| protocolVersion             |   long             |         协议版本     |   )
+
+[comment]: <> (| writeConcernMajorityJournalDefault             |   boolean             |         是否默认投票     |   )
+
+[comment]: <> (type:)
+
+[comment]: <> (* 普通复制集 1)
+
+[comment]: <> (* config 2)
+
+[comment]: <> (* shard 3)
+
+
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+
+
+[comment]: <> (## MongoClusterInformation)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| clusterName                 |   String             |         集群名          |   )
+
+[comment]: <> (| type             |   int             |         类型     |   )
+
+[comment]: <> (| mongoMember              |   MongoMember |         单例     |   )
+
+[comment]: <> (| mongoReplica               |   MongoReplica             |         复制集     |   )
+
+[comment]: <> (| mongoShard         |   MongoShard             |         分片     |   )
+
+[comment]: <> (| isCreate           |   boolean             |         默认新建的集群信息     |   )
+
+[comment]: <> (| status             |   String             |         集群状态     |   )
+
+[comment]: <> (| fcv             |   String             |         fcv     |   )
+
+[comment]: <> (| tag             |   String             |         标签     |   )
+
+[comment]: <> (status：)
+
+[comment]: <> (* 集群状态)
+
+[comment]: <> (* 正常)
+
+[comment]: <> (* 异常)
+
+[comment]: <> (* 关机)
+
+[comment]: <> (* 脱离纳管)
+
+[comment]: <> (type:)
+
+[comment]: <> (* 1 单例)
+
+[comment]: <> (* 2 复制集)
+
+[comment]: <> (* 3 分片)
+
+
+
+[comment]: <> (## MongoDBCollections)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| isFromServerExe                 |   boolean             |         是否来自服务端exe          |   )
+
+[comment]: <> (| dbTables             |   List\<MongoMember>             |         document集合     |   )
+
+[comment]: <> (| clusterId               |   String             |         所属集群id     |   )
+
+
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+
+[comment]: <> (## MongodbNodeMetrics)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| hostId                 |   String             |         主机id          |   )
+
+[comment]: <> (| hostName             |   String             |         主机名称     |   )
+
+[comment]: <> (| port              |   String |         端口号     |   )
+
+[comment]: <> (| nodeId               |   String             |         节点id     |   )
+
+[comment]: <> (| timeGranularity         |   int             |         颗粒度     |   )

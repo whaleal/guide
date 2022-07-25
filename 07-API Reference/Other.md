@@ -40,15 +40,19 @@ GET http://{Server-Host}:{端口}/api/server/other/getAllMongoVersion
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |           int            |    
-| data       |         返回数据         |           list              | 
+| data       |         返回数据         |           List              | 
 
+
+<br>
 
 ![img_1.png](../Images/getAllMongoVersion_r.png)
 
 
 ---
 
-####  2 获取所有whaleal版本信息.
+<br>
+
+###  2 获取所有whaleal版本信息.
 
 
 2.1 请求路径：
@@ -73,6 +77,8 @@ GET http://{Server-Host}:{端口}/api/server/other/getWhalealVersion
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回消息        |           string              | 
+| data       |         返回消息        |           String              | 
+
+<br>
 
 ![img_3.png](../Images/getWhalealVersion_r.png)

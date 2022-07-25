@@ -1,10 +1,10 @@
 
 # Agent接口
 
-接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+接口调用时须在请求头中设置OPS-Token,返回内容为 JSON 格式的信息.
 其参数为时间类型都以时间戳形式传递。
 
-有些接口调用时需用到hostId、agentId、eventId.
+接口调用时需若用到hostId、agentId、eventId，通过以下方式获取。
 ~~~
 hostId在“根据主机名模糊查询主机基本信息”接口处获取。
 
@@ -15,7 +15,7 @@ eventId在"获取集群日志信息"接口处找到所需事件的id
 
 ### 请求头默认格式，特殊情况特殊声明
 
-    OPS-Token在调用登录接口时返回，在之后调用接口时将token放置请求头中。
+    OPS-Token在调用"登录"接口时返回，在之后调用接口时将token放置请求头中。
 [登录接口调用获取OPS-Token](Member.md)
 
 | KEY                |     VALUE      |     
@@ -30,11 +30,10 @@ eventId在"获取集群日志信息"接口处找到所需事件的id
 
 
 
+<br>
 
----
 
-
-#### 1 根据主机名模糊查询主机基本信息（主机名和主机ID）
+### 1 根据主机名模糊查询主机基本信息（主机名和主机ID）
 
 
 
@@ -49,10 +48,13 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostI
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostName          |         params           |            主机名称            |        No       |string        |
+| hostName          |         Params           |            主机名称            |        No       |String        |
+
+<br>
 
 
 ![img.png](../Images/getAllAgentHostNameAndHostId.png)
+
 
 ----
 
@@ -62,30 +64,60 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostI
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data.id       |         主机id         |          string|        
-| data.name      |         主机名称         |          string|        
+| data.id       |         主机id         |          String|        
+| data.name      |         主机名称         |          String|    
+
+<br>
+
 
 ![img_1.png](../Images/getAllAgentHostNameAndHostId_r.png)
+
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "id": "62b153a344ba1b7771c42df7",
+            "name": "server100"
+        },
+        {
+            "id": "62bbfbe9a46517610435d615",
+            "name": "chen"
+        },
+        {
+            "id": "62cbbd7607bebb71b8429e5e",
+            "name": "server200"
+        },
+        {
+            "id": "62d626969026c712d786e707",
+            "name": "usdp"
+        }
+    ]
+}
+
+~~~
 
 ---
 
 
 
-#### 2.获取Agent的统计信息
+<br>
+
+### 2.获取Agent的统计信息
 
 
 2.1 请求路径：
 
 Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 
-
+---
 2.2 请求：
-
 
 
 
 ![img_2.png](../Images/getAgentStatistics.png)
 
+---
 
 2.3 返回结果:
 
@@ -102,10 +134,33 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 | data.deadAgentNum     |         Agent 死亡数         |            long            |    
 | data.deadAgentDiskNum    |         Agent 磁盘死亡数         |            long            |    
 
+<br>
+
+
 
 ![img_3.png](../Images/getAgentStatistics_r.png)
 
-#### 3.获取所有主机信息
+~~~
+{
+    "code": 1000,
+    "data": {
+        "activeAgentNum": 4,
+        "activeAgentCpuNum": 88,
+        "activeAgentDiskNum": 23647738,
+        "deadAgentMemoryNum": 0,
+        "deadAgentCpuNum": 0,
+        "activeAgentMemoryNum": 273086,
+        "deadAgentNum": 0,
+        "deadAgentDiskNum": 0
+    }
+}
+
+~~~
+
+---
+<br>
+
+### 3.获取所有主机信息
 
     
 
@@ -114,16 +169,19 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}}/{{pageSize}}
 
 ---
+
 3.2 请求参数：
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| pageIndex          |         path           |            第几页           |        yes       |int        |
-| pageSize          |         path         |            每页大小            |        yes      |int        |
-| hostName          |         params           |            主机名称            |        No       |string        |
-| Ip          |         params           |            主机ip            |        No       |string        |
-| Status          |         params           |            主机状态            |        No       |Boolean        |
+| pageIndex          |         Path           |            第几页           |        Yes       |int       |
+| pageSize          |         Path         |            每页大小            |        Yes      |int        |
+| hostName          |         Params           |            主机名称            |        No       |String        |
+| ip          |         Params           |            主机ip            |        No       |String        |
+| status          |         Params           |            主机状态:true 正常，false 宕机            |        No       |boolean        |
+
+<br>
 
 
 ![img_4.png](../Images/getAllAgentData.png)
@@ -136,27 +194,34 @@ GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int|    
-| data       |         返回数据         |            List\<HostInfoMongoEntity>            |        
+| data       |         返回数据         |            List           |        
+
+<br>
+
+
+
+![img_5.png](../Images/getAllAgentData_r.png)
+ 
+
 
 ~~~
 {
     "code": 1000,
     "data": [
         {
-            "id": "62b153a344ba1b7771c42df7",
-            "createTime": 1657077138160,
-            "updateTime": 1657096989910,
+        
+       
+            "id": "62b153a344ba1b7771c42df7",                               
+            "createTime": 1658212423773,
+            "updateTime": 1658459349919,
             "hostId": "62b153a344ba1b7771c42df7",
             "hostName": "server100",
             "hostNameLong": "server100",
+            //主机基本信息
             "ipInfo": [
                 {
                     "ip": "192.168.3.100",
                     "type": "ipv4"
-                },
-                {
-                    "ip": "192.168.3.100",
-                    "type": "外部ip"
                 }
             ],
             "memory": 128722,
@@ -164,11 +229,41 @@ GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}
             "cpuInfo": " Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz",
             "cpuNum": 40,
             "swap": 4095,
+            //内核信息
             "kernelInfo": "3.10.0-1160.24.1.el7.x86_64",
             "totalDiskSize": 7893956,
             "run": true,
+            
+            //系统属性信息
             "systemPropertyInfo": {
-                ...
+                "javaVersion": "11.0.9",
+                "javaVendor": "Oracle Corporation",
+                "javaVendorUrl": null,
+                "javaHome": "/root/jdk-11.0.9",
+                "javaVmSpecificationVersion": "11",
+                "javaVmSpecificationVendor": null,
+                "javaVmSpecificationName": "Java Virtual Machine Specification",
+                "javaVmVersion": "11.0.9+7-LTS",
+                "javaVmVendor": "Oracle Corporation",
+                "javaVmName": "Java HotSpot(TM) 64-Bit Server VM",
+                "javaSpecificationVersion": null,
+                "javaSpecificationVendor": "Oracle Corporation",
+                "javaSpecificationName": "Java Platform API Specification",
+                "javaClassVersion": "55.0",
+                "javaClassPath": "agent-collection-1.0.0.jar",
+                "javaLibraryPath": "/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib",
+                "javaIoTmpdir": "/tmp",
+                "javaCompiler": null,
+                "javaExtDirs": null,
+                "fileSeparator": "/",
+                "pathSeparator": ":",
+                "lineSeparator": "\n",
+                "userName": "root",
+                "userHome": "/root",
+                "userDir": "/home/jmops",
+                "osname": "Linux",
+                "osarch": "amd64",
+                "osversion": "3.10.0-1160.24.1.el7.x86_64"
             }
         }
     ]
@@ -176,7 +271,9 @@ GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}
 ~~~
 ---
 
-#### 4.获取所有主机count
+<br>
+
+### 4.获取所有主机count
 
 
 4.1 请求路径：
@@ -192,12 +289,14 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostName          |         params           |            主机名称            |        No       |string        |
-| ip          |         params           |            主机ip            |        No       |string        |
-| status          |         params           |            主机状态            |        No       |Boolean        |
+| hostName          |         Params           |            主机名称            |        No       |String        |
+| ip          |         Params           |            主机ip            |        No       |String        |
+| status          |         Params           |  主机状态:true 正常，false 宕机           |        No       |boolean        |
+
+<br>
 
 
-![img_5.png](../Images/getAllAgentCount.png)
+![img_6.png](../Images/getAllAgentCount.png)
 
 ----
 
@@ -209,11 +308,24 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 | code        |   状态符:1000成功,其余异常 |        int|    
 | data       |         返回数量         |         int              |        
 
+<br>
+
+
 ![img_6.png](../Images/getAllAgentCount_r.png)
 
+~~~
+{
+    "code": 1000,
+    "data": 1
+}
+~~~
 ---
 
-#### 5.获取某主机静态信息
+
+
+<br>
+
+### 5.获取某主机静态信息
 
 
 5.1 请求路径：
@@ -226,10 +338,12 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostId         |         path           |            主机id           |        yes       |string        |
+| hostId         |         Path           |            主机id           |        Yes       |String        |
+
+<br>
 
 
-![img_7.png](../Images/getAgentInfo.png)
+![img_8.png](../Images/getAgentInfo.png)
 
 ----
 
@@ -238,16 +352,22 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                         |    
-| data       |         返回数据         |            HostInfoMongoEntity            |        
+| code        |   状态符:1000成功,其余异常 |          int               |    
+| data       |         返回数据         |            JSON            | 
 
+
+
+<br>
+
+
+![img_9.png](../Images/getAgentInfo_r.png)
 ~~~
 {
     "code": 1000,
     "data": {
         "id": "62bbfbe9a46517610435d615",
-        "createTime": 1657077194390,
-        "updateTime": 1657097252146,
+        "createTime": 1658286068557,
+        "updateTime": 1658459546253,
         "hostId": "62bbfbe9a46517610435d615",
         "hostName": "chen",
         "hostNameLong": "chen",
@@ -255,10 +375,6 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
             {
                 "ip": "192.168.3.80",
                 "type": "ipv4"
-            },
-            {
-                "ip": "192.168.3.80",
-                "type": "外部ip"
             }
         ],
         "memory": 7821,
@@ -270,7 +386,34 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
         "totalDiskSize": 213035,
         "run": true,
         "systemPropertyInfo": {
-           ...
+            "javaVersion": "1.8.0_172",
+            "javaVendor": "Oracle Corporation",
+            "javaVendorUrl": null,
+            "javaHome": "/home/docker20220629BAK/java/jre",
+            "javaVmSpecificationVersion": "1.8",
+            "javaVmSpecificationVendor": null,
+            "javaVmSpecificationName": "Java Virtual Machine Specification",
+            "javaVmVersion": "25.172-b11",
+            "javaVmVendor": "Oracle Corporation",
+            "javaVmName": "Java HotSpot(TM) 64-Bit Server VM",
+            "javaSpecificationVersion": null,
+            "javaSpecificationVendor": "Oracle Corporation",
+            "javaSpecificationName": "Java Platform API Specification",
+            "javaClassVersion": "52.0",
+            "javaClassPath": "agent-collection-1.0.0.jar",
+            "javaLibraryPath": "/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib",
+            "javaIoTmpdir": "/tmp",
+            "javaCompiler": null,
+            "javaExtDirs": "/home/docker20220629BAK/java/jre/lib/ext:/usr/java/packages/lib/ext",
+            "fileSeparator": "/",
+            "pathSeparator": ":",
+            "lineSeparator": "\n",
+            "userName": "root",
+            "userHome": "/root",
+            "userDir": "/root",
+            "osname": "Linux",
+            "osarch": "amd64",
+            "osversion": "3.10.0-1062.el7.x86_64"
         }
     }
 }
@@ -279,7 +422,10 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 
 ---
 
-#### 6.获取agent的监控信息
+<br>
+
+
+### 6.获取agent的监控信息
 
 
 
@@ -295,14 +441,15 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostId         |         path           |            主机id            |        yes       |string        |
-| type         |         path           |            监控类型            |        yes       |string        |
-| startTimeForTimeInterval         |         params           |      某时间段的开始时间            |        yes       |long        |
-| endTimeForTimeInterval         |         params           |            某时间段的结束时间    |        yes       |long        |
-| timeGranularity         |         params           |            时间粒度            |        yes       |long        |
+| hostId         |         Path           |            主机id            |        Yes       |String        |
+| type         |         Path           |            监控类型            |        Yes       |String        |
+| startTimeForTimeInterval         |         Params           |      某时间段的开始时间            |        Yes       |long        |
+| endTimeForTimeInterval         |         Params           |            某时间段的结束时间    |        Yes       |long        |
+| timeGranularity         |         Params           |            时间粒度            |        Yes       |long        |
 
+<br>
 
-![img_8.png](../Images/getAgentMonitor.png)
+![img_10.png](../Images/getAgentMonitor.png)
 
 ----
 
@@ -312,7 +459,11 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |           int           |    
-| data       |         返回数据         |        Map<String,Object>                |        
+| data       |         返回数据         |        JSON           | 
+
+<br>
+
+![img_11.png](../Images/getAgentMonitor_r.png)
 
 ~~~
 {
@@ -320,15 +471,43 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}
     "data": {
         "内存/GB": {
             "cache": [
-                24.85,
-                36.33,
-                37.58,
-                43.05,
-                49.25,
-                48.12,
-                47.66,
-                46.84
+                93.48
             ]
+            "message": {
+                "free": "空闲内存 单位GB",
+                "used": "已使用内存 单位GB",
+                "cache": "缓存内存 单位GB",
+                "ava": "可用内存 单位GB"
+            },
+            "ava": [
+                109.24
+            ]
+        },
+        "cpu/%": {
+            "sy": [
+                0.43
+            ],
+            "message": {
+                "id": "cpu空闲率 单位百分比%",
+                "us": "cpu用户使用率 单位百分比%",
+                "sy": "cpu系统使用率 单位百分比%"
+            },
+            "us": [
+                0.49
+            ]
+        },
+        "net/KB": {
+            "data": {
+                "lo": {
+                    "in": [
+                        3479.26
+                    ],
+                    "name": "lo",
+                    "out": [
+                        3479.26
+                    ]
+                }
+            },
             "name": "net",
             "message": {
                 "in": "流入流量 单位KB/S",
@@ -336,17 +515,16 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}
             }
         },
         "diskIO/KB": {
-            "data": {
-                "dm-2": {
+                "dm-0": {
                     "util": [
-                        0.6,
-                        0.59,
-                        0.59,
-                        0.59,
-                        0.59,
-                        0.59,
-                        0.58,
-                        0.58
+                        0.25
+                    ],
+                    "name": "dm-0",
+                    "rkB": [
+                        5.29
+                    ],
+                    "wkB": [
+                        114523.97
                     ]
                 }
             },
@@ -358,24 +536,19 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}
             }
         }
     },
-    "size": 8,
+    "size": 1,
     "createTime": [
-        1656504001000,
-        1656584997000,
-        1656590401000,
-        1656633601000,
-        1656676801000,
-        1656720001000,
-        1656763201000,
-        1656806401000
+        1658275200000
     ]
 }
+
 ~~~
 
 ---
 
+<br>
 
-#### 7.获取agent的日志信息，结果分页展示
+### 7.获取agent的日志信息，结果分页展示
 
 
 
@@ -392,16 +565,18 @@ GET http://{Server-Host}:{端口}/api/server/agent/logData/{{hostId}}/{{pageInde
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostId         |         path           |            主机id           |        yes       |string        |
-| pageIndex          |         path           |            第几页            |        yes       |Integer        |
-| pageSize          |         path           |            每页数量            |        yes       |Integer        |
-| type          |         params           |            日志类别            |        No       |string        |
-| startTime          |         params           |            开始时间            |        yes       |long        |
-| endTime          |         params           |            结束时间            |        yes       |long        |
-| content          |         params           |            关键字            |        No       |string        |
+| hostId         |         Path           |            主机id           |        Yes       |String        |
+| pageIndex          |         Path           |            第几页            |        Yes       |int        |
+| pageSize          |         Path           |            每页数量            |        Yes       |int        |
+| type          |         Params           |            日志类别            |        No       |String        |
+| startTime          |         Params           |            开始时间            |        Yes       |long        |
+| endTime          |         Params           |            结束时间            |        Yes       |long        |
+| content          |         Params           |            关键字            |        No       |String        |
+
+<br>
 
 
-![img_9.png](../Images/logData.png)
+![img_12.png](../Images/logData.png)
 
 ----
 
@@ -411,16 +586,36 @@ GET http://{Server-Host}:{端口}/api/server/agent/logData/{{hostId}}/{{pageInde
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |       int       |    
-| data       |         返回数据         |     AgentLogEntity         |       
+| data       |         返回数据         |     List         |       
+
+<br>
+
 
 
 ![img_10.png](../Images/logData_r.png)
 
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "id": "62c418a8e945184b27fae4c6",
+            "createTime": 1657018536725,
+            "updateTime": 0,
+            "hostId": "62b153a344ba1b7771c42df7",
+            "type": "info",
+            "content": " [MongodbRealTimeData.run-94] server100:20190开启监控"
+        }
+    ]
+}
+~~~
+
 
 ---
 
+<br>
 
-#### 8.获取agent的日志信息数量
+### 8.获取agent的日志信息数量
 
 
 
@@ -437,14 +632,16 @@ GET http://{Server-Host}:{端口}/api/server/agent/logCount/{{hostId}}
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostId          |         path           |            主机id           |        yes       |string        |
-| type          |         params           |            日志类别            |        No       |string        |
-| startTime          |         params           |            开始时间            |        yes       |long        |
-| endTime          |         params           |            结束时间            |        yes       |long        |
-| content          |         params           |            关键字            |        No       |string        |
+| hostId          |         Path           |            主机id           |        Yes       |String        |
+| type          |         Params           |            日志类别            |        No       |String        |
+| startTime          |         Params           |            开始时间            |        Yes       |long        |
+| endTime          |         Params           |            结束时间            |        Yes       |long        |
+| content          |         Params           |            关键字            |        No       |String        |
+
+<br>
 
 
-![img_11.png](../Images/logCount.png)
+![img_14.png](../Images/logCount.png)
 
 ----
 
@@ -456,14 +653,25 @@ GET http://{Server-Host}:{端口}/api/server/agent/logCount/{{hostId}}
 | code        |   状态符:1000成功,其余异常 |        int               |    
 | data       |         返回数量        |          int              |       
 
+<br>
 
 
-![img_12.png](../Images/logCount_r.png)
 
+![img_15.png](../Images/logCount_r.png)
+
+~~~
+{
+    "code": 1000,
+    "data": 2542
+}
+
+~~~
 
 ---
 
-#### 9.操作agent的命令
+<br>
+
+### 9.操作agent的命令
 
 
 
@@ -479,11 +687,13 @@ GET http://{Server-Host}:{端口}/api/server/agent/operate/{{hostId}}/{{operateT
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostId          |         path           |            主机id            |        yes       |string        |
-| operateType          |         path           |   操作类别:mongo,host      |        yes       |string        |
+| hostId          |         Path           |            主机id            |        Yes       |String        |
+| operateType          |         Path           |   操作类别:mongo,host      |        Yes       |String        |
+
+<br>
 
 
-![img_13.png](../Images/operate.png)
+![img_16.png](../Images/operate.png)
 
 ----
 
@@ -493,12 +703,19 @@ GET http://{Server-Host}:{端口}/api/server/agent/operate/{{hostId}}/{{operateT
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |           int            |    
-| msg       |         返回消息         |            string            |       
+| msg       |         返回消息         |            String            |       
+
+<br>
+
 
 ![img_14.png](../Images/operate_r.png)
 
+---
 
-#### 10.生成agentId
+<br>
+
+
+### 10.生成agentId
 
 
 10.1 请求路径：
@@ -512,8 +729,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/generateAgentId
 10.2 请求：
 
 
-
-![img_15.png](../Images/generateAgentId.png)
+![img_18.png](../Images/generateAgentId.png)
 
 ----
 
@@ -523,16 +739,27 @@ GET http://{Server-Host}:{端口}/api/server/agent/generateAgentId
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         agentId         |       string                 |        
+| data       |         agentId         |       String                 |        
+
+<br>
+
 
 ![img_16.png](../Images/generateAgentId_r.png)
 
+~~~
+{
+    "code": 1000,
+    "data": "62da1860239d00094230b40c"
+}
+~~~
+
+
 ---
 
+<br>
 
 
-
-#### 11.下载agentFile
+### 11.下载agentFile
 
 
 
@@ -548,10 +775,12 @@ GET http://{Server-Host}:{端口}/api/server/agent/downAgentFile/{{agentId}}/age
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| agentId          |         Path           |            agentId            |        Yes       |string        |
+| agentId          |         Path           |            agentId            |        Yes       |String        |
+
+<br>
 
 
-![img_17.png](../Images/downAgentFile.png)
+![img_20.png](../Images/downAgentFile.png)
 
 ----
 
@@ -566,8 +795,9 @@ GET http://{Server-Host}:{端口}/api/server/agent/downAgentFile/{{agentId}}/age
 
 ---
 
+<br>
 
-#### 12.获取agent执行命令记录
+### 12.获取agent执行命令记录
 
 12.1 请求路径：
 
@@ -581,18 +811,20 @@ GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataList/{{host
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostId          |         Path           |            主机名称            |        Yes       |string        |
-| pageIndex          |         Path           |            分页页数            |        Yes       |Integer        |
-| pageSize          |         Path           |            分页大小            |        Yes       |Integer        |
-| Status          |         params           |            状态            |        No       |Int        |
-| startTime          |         params           |            开始时间            |        Yes       |Long        |
-| endTime          |         params           |            结束时间            |        Yes       |Long        |
-| content          |         params           |            内容            |        No       |string        |
-| result          |         params           |            结果            |        No       |string        |
-| eventId          |         params           |            事件id            |        No       |string        |
+| hostId          |         Path           |            主机名称            |        Yes       |String        |
+| pageIndex          |         Path           |            分页页数            |        Yes       |int        |
+| pageSize          |         Path           |            分页大小            |        Yes       |int        |
+| status          |         Params           |            状态            |        No       |Int        |
+| startTime          |         Params           |            开始时间            |        Yes       |long        |
+| endTime          |         Params           |            结束时间            |        Yes       |long        |
+| content          |         Params           |            内容            |        No       |String        |
+| result          |         Params           |            结果            |        No       |String        |
+| eventId          |         Params           |            事件id            |        No       |String        |
+
+<br>
 
 
-![img_18.png](../Images/getExecCommandDataList.png)
+![img_21.png](../Images/getExecCommandDataList.png)
 
 ----
 
@@ -602,14 +834,39 @@ GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataList/{{host
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回数据         |             List\<CommandEntity>            |        
+| data       |         返回数据         |             JSON            |        
+
+<br>
+
 
 ![img_19.png](../Images/getExecCommandDataList_r.png)
 
+
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "id": "62c51e6ad6ea982573f41e4d",
+            "createTime": 1657085546634,
+            "updateTime": 1657085549086,
+            "hostId": "62b153a344ba1b7771c42df7",
+            "commandType": 221,
+            "status": 3,
+            "eventId": "62c51e6ad6ea982573f41e4c",
+            "commandNote": "server100:20190获取集群角色",
+            "content": "{}",
+            "execResult": "已完成"
+        }
+    ]
+}
+~~~
+
 ---
 
+<br>
 
-#### 13.获取agent执行命令记录数
+### 13.获取agent执行命令记录数
 
 13.1 请求路径：
 
@@ -624,17 +881,19 @@ GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataCount/{{hos
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| hostId          |         Path           |            主机名称            |        Yes       |string        |
-| Status          |         params           |            状态            |        No       |int|
-| startTime          |         params           |            开始时间            |        Yes       |Long        |
-| endTime          |         params           |            结束时间            |        Yes       |Long        |
-| content          |         params           |            命令类型            |        No       |string        |
-| result          |         params           |            结果            |        No       |string        |
-| eventId          |         params           |            事件id            |        No       |string        |
+| hostId          |         Path           |            主机名称            |        Yes       |String        |
+| Status          |         Params           |            状态            |        No       |int|
+| startTime          |         Params           |            开始时间            |        Yes       |long        |
+| endTime          |         Params           |            结束时间            |        Yes       |long        |
+| content          |         Params           |            命令类型            |        No       |String        |
+| result          |         Params           |            结果            |        No       |String        |
+| eventId          |         Params           |            事件id            |        No       |String        |
+
+
+<br>
 
 
 ![img_20.png](../Images/getExecCommandDataCount.png)
-
 ----
 
 13.3 返回结果
@@ -645,15 +904,25 @@ GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataCount/{{hos
 | code        |   状态符:1000成功,其余异常 |            int           |    
 | data       |         返回数数量         |            long            |        
 
+<br>
 
-![img_21.png](../Images/getExecCommandDataCount_r.png)
 
+![img_24.png](../Images/getExecCommandDataCount_r.png)
+
+~~~
+{
+    "code": 1000,
+    "data": 5
+}
+
+~~~
 
 ---
 
+<br>
 
 
-####  14.获取主机cpu使用率前五
+###  14.获取主机cpu使用率前五
 
 
 14.1 请求路径：
@@ -666,11 +935,13 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         params           |            开始时间            |        Yes       |Long        |
-| endTime          |         params           |            结束时间            |        Yes       |Long        |
+| beginTime          |         Params           |            开始时间            |        Yes       |long        |
+| endTime          |         Params           |            结束时间            |        Yes       |long        |
+
+<br>
 
 
-![img_22.png](../Images/CpuUsage.png)
+![img_25.png](../Images/CpuUsage.png)
 
 ----
 
@@ -680,18 +951,53 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |           int            |    
-| data.\[index].host       |         主机id         |         String               |        
-| data.\[index].hostName       |         主机名称         |         String               |        
-| data.\[index].usage       |         使用率         |         Double               |        
+| data       |         返回数据         |         JSON               |        
 
 
-![img_23.png](../Images/CpuUsage_r.png)
+<br>
+
+
+![img_26.png](../Images/CpuUsage_r.png)
+
+~~~
+
+{
+    "code": 1000,
+    "data": [
+        {
+            "_id": "62bbfbe9a46517610435d615",
+            "hostId": "62bbfbe9a46517610435d615",
+            "hostName": "chen",
+            "usage": 100.0
+        },
+        {
+            "_id": "62d626969026c712d786e707",
+            "hostId": "62d626969026c712d786e707",
+            "hostName": "usdp",
+            "usage": 77.3
+        },
+        {
+            "_id": "62cbbd7607bebb71b8429e5e",
+            "hostId": "62cbbd7607bebb71b8429e5e",
+            "hostName": "server200",
+            "usage": 29.7
+        },
+        {
+            "_id": "62b153a344ba1b7771c42df7",
+            "hostId": "62b153a344ba1b7771c42df7",
+            "hostName": "server100",
+            "usage": 7.1
+        }
+    ]
+}
+~~~
+
 
 ---
 
+<br>
 
-
-####  15.获取主机内存使用率前五
+###  15.获取主机内存使用率前五
 
 15.1 请求路径：
 
@@ -704,11 +1010,13 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         params           |            开始时间            |        Yes       |Long        |
-| endTime          |         params           |            结束时间            |        Yes       |Long        |
+| beginTime          |         Params           |            开始时间            |        Yes       |long        |
+| endTime          |         Params           |            结束时间            |        Yes       |long        |
+
+<br>
 
 
-![img_24.png](../Images/MemUsage.png)
+![img_27.png](../Images/MemUsage.png)
 
 ----
 
@@ -718,17 +1026,53 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |       int                |    
-| data.\[index].host       |         主机id         |         String               |        
-| data.\[index].hostName       |         主机名称         |         String               |        
-| data.\[index].usage       |         使用率         |         Double               |      
+| data      |         返回数据         |         JSON               |        
+
+
+<br>
+
 
 ![img_25.png](../Images/MemUsage_r.png)
 
+~~~
+
+{
+    "code": 1000,
+    "data": [
+        {
+            "_id": "62cbbd7607bebb71b8429e5e",
+            "hostId": "62cbbd7607bebb71b8429e5e",
+            "usage": "32.32GB",
+            "hostName": "server200"
+        },
+        {
+            "_id": "62b153a344ba1b7771c42df7",
+            "hostId": "62b153a344ba1b7771c42df7",
+            "usage": "15.81GB",
+            "hostName": "server100"
+        },
+        {
+            "_id": "62bbfbe9a46517610435d615",
+            "hostId": "62bbfbe9a46517610435d615",
+            "usage": "7.31GB",
+            "hostName": "chen"
+        },
+        {
+            "_id": "62d626969026c712d786e707",
+            "hostId": "62d626969026c712d786e707",
+            "usage": "2.33GB",
+            "hostName": "usdp"
+        }
+    ]
+}
+~~~
+
+
 ---
 
+<br>
 
-
-#### 16.获取主机磁盘使用率前五
+### 16.获取主机磁盘使用率前五
 
 
 16.1 请求路径：
@@ -741,11 +1085,13 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         params           |            开始时间            |        Yes       |Long        |
-| endTime          |         params           |            结束时间            |        Yes       |Long        |
+| beginTime          |         Params           |            开始时间            |        Yes       |long        |
+| endTime          |         Params           |            结束时间            |        Yes       |long        |
+
+<br>
 
 
-![img_26.png](../Images/DiskUsage.png)
+![img_29.png](../Images/DiskUsage.png)
 
 ----
 
@@ -754,18 +1100,53 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |                       |    
-| data.\[index].host       |         主机id         |         String               |        
-| data.\[index].hostName       |         主机名称         |         String               |        
-| data.\[index].usage       |         使用率         |         Double               |  
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| data      |         返回数据         |         JSON               |        
+
+<br>
+
+
 
 ![img_27.png](../Images/DiskUsage_r.png)
 
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "_id": "62d626969026c712d786e707",
+            "hostId": "62d626969026c712d786e707",
+            "hostName": "usdp",
+            "usage": 65.64
+        },
+        {
+            "_id": "62bbfbe9a46517610435d615",
+            "hostId": "62bbfbe9a46517610435d615",
+            "hostName": "chen",
+            "usage": 57.41
+        },
+        {
+            "_id": "62b153a344ba1b7771c42df7",
+            "hostId": "62b153a344ba1b7771c42df7",
+            "hostName": "server100",
+            "usage": 40.8
+        },
+        {
+            "_id": "62cbbd7607bebb71b8429e5e",
+            "hostId": "62cbbd7607bebb71b8429e5e",
+            "hostName": "server200",
+            "usage": 14.81
+        }
+    ]
+}
+~~~
+
+
 ---
 
+<br>
 
-
-####  17.获取网卡输入使用率前五
+###  17.获取网卡输入使用率前五
 
 
 17.1 请求路径：
@@ -779,11 +1160,13 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         params           |            开始时间            |        Yes       |Long        |
-| endTime          |         params           |            结束时间            |        Yes       |Long        |
+| beginTime          |         Params           |            开始时间            |        Yes       |long        |
+| endTime          |         Params           |            结束时间            |        Yes       |long        |
+
+<br>
 
 
-![img_28.png](../Images/NetIn.png)
+![img_31.png](../Images/NetIn.png)
 
 ----
 
@@ -792,18 +1175,53 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data.\[index].host       |         主机id         |         String               |        
-| data.\[index].hostName       |         主机名称         |         String               |        
-| data.\[index].usage       |         使用率         |         Double               |  
+| data     |         返回数据         |         String               |        
+
+[comment]: <> (| data.\[index].hostName       |         主机名称         |         String               |        )
+
+[comment]: <> (| data.\[index].usage       |         使用率         |         double               |  )
+
+<br>
 
 
 ![img_29.png](../Images/NetIn_r.png)
+~~~
+
+{
+    "code": 1000,
+    "data": [
+        {
+            "_id": "62cbbd7607bebb71b8429e5e",
+            "usage": "33.26MB/s",
+            "hostName": "server200"
+        },
+        {
+            "_id": "62b153a344ba1b7771c42df7",
+            "usage": "29.84MB/s",
+            "hostName": "server100"
+        },
+        {
+            "_id": "62bbfbe9a46517610435d615",
+            "usage": "2.76MB/s",
+            "hostName": "chen"
+        },
+        {
+            "_id": "62d626969026c712d786e707",
+            "usage": "131.00KB/s",
+            "hostName": "usdp"
+        }
+    ]
+}
+~~~
+
+
 
 ---
 
+<br>
 
 
-####  18.获取网卡输出使用率前五
+###  18.获取网卡输出使用率前五
 
 18.1 请求路径：
 
@@ -815,11 +1233,13 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetOut/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| beginTime          |         params           |            开始时间            |        Yes       |Long        |
-| endTime          |         params           |            结束时间            |        Yes       |Long        |
+| beginTime          |         Params           |            开始时间            |        Yes       |long        |
+| endTime          |        Params           |            结束时间            |        Yes       |long        |
+
+<br>
 
 
-![img_30.png](../Images/NetOut.png)
+![img_33.png](../Images/NetOut.png)
 
 ----
 
@@ -829,56 +1249,112 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetOut/top/five
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data.\[index].host       |         主机id         |         String               |        
-| data.\[index].hostName       |         主机名称         |         String               |        
-| data.\[index].usage       |         使用率         |         Double               |  
+| data     |         返回数据         |         JSON               |        
+
+
+<br>
+
 
 ![img_31.png](../Images/NetOut_r.png)
 
----
----
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "_id": "62cbbd7607bebb71b8429e5e",
+            "usage": "16.44MB/s",
+            "hostName": "server200"
+        },
+        {
+            "_id": "62b153a344ba1b7771c42df7",
+            "usage": "5.98MB/s",
+            "hostName": "server100"
+        },
+        {
+            "_id": "62bbfbe9a46517610435d615",
+            "usage": "2.76MB/s",
+            "hostName": "chen"
+        },
+        {
+            "_id": "62d626969026c712d786e707",
+            "usage": "131.00KB/s",
+            "hostName": "usdp"
+        }
+    ]
+}
+~~~
 
-## Info
+<br>
 
 
-|       Name        |     Type    |           Description       |   
-| --------------|----------------------|--------------------|
-| id        |   string |         Id              |   
-| name        |   string |         主机名称              |   
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+[comment]: <> (## Info)
 
 
-___
+[comment]: <> (|       Name        |     Type    |           Description       |   )
 
-## ipInfo
+[comment]: <> (| --------------|----------------------|--------------------|)
 
-|       Name        |     Type    |           Description       |   
-| --------------|----------------------|--------------------|
-| id        |   string |         Id              |   
-| Type        |   string |         主机名称              |   
+[comment]: <> (| id        |   String |         Id              |   )
 
-
----  
-
-## HostInfoMongoEntity
+[comment]: <> (| name        |   String |         主机名称              |   )
 
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| id                 |   string             |         Id          |   
-| ipInfo             |   List<ipInfo>             |         Ip信息     |   
-| systemPropertyInfo |   systemPropertyInfo |         系统参数信息     |   
-| createTime         |   时间戳             |         创建时间     |   
-| updateTime         |   时间戳             |         更新时间     |   
-| hostName           |   string             |         主机名称     |   
-| hostId             |   string             |         主机id     |   
-| hostNameLong       |   string             |         主机长名称     |   
-| Memory             |   int             |         内存     |   
-| osVersion          |   string             |         系统版本     |   
-| cpuNum             |   int             |         Cpu数     |   
-| swap               |   int             |         交换内存     |   
-| kernelInfo         |   string             |         内核信息     |   
-| totalDiskSize      |   Int             |         总磁盘大小     |   
-| run                |   Boolean             |         是否正在运行     |   
+[comment]: <> (___)
+
+[comment]: <> (## ipInfo)
+
+[comment]: <> (|       Name        |     Type    |           Description       |   )
+
+[comment]: <> (| --------------|----------------------|--------------------|)
+
+[comment]: <> (| id        |   String |         Id              |   )
+
+[comment]: <> (| Type        |   String |         主机名称              |   )
+
+
+[comment]: <> (---  )
+
+[comment]: <> (## HostInfoMongoEntity)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| id                 |   String             |         Id          |   )
+
+[comment]: <> (| ipInfo             |   List<ipInfo>             |         Ip信息     |   )
+
+[comment]: <> (| systemPropertyInfo |   systemPropertyInfo |         系统参数信息     |   )
+
+[comment]: <> (| createTime         |   时间戳             |         创建时间     |   )
+
+[comment]: <> (| updateTime         |   时间戳             |         更新时间     |   )
+
+[comment]: <> (| hostName           |   String             |         主机名称     |   )
+
+[comment]: <> (| hostId             |   String             |         主机id     |   )
+
+[comment]: <> (| hostNameLong       |   String             |         主机长名称     |   )
+
+[comment]: <> (| Memory             |   int             |         内存     |   )
+
+[comment]: <> (| osVersion          |   String             |         系统版本     |   )
+
+[comment]: <> (| cpuNum             |   int             |         Cpu数     |   )
+
+[comment]: <> (| swap               |   int             |         交换内存     |   )
+
+[comment]: <> (| kernelInfo         |   String             |         内核信息     |   )
+
+[comment]: <> (| totalDiskSize      |   Int             |         总磁盘大小     |   )
+
+[comment]: <> (| run                |   boolean             |         是否正在运行     |   )
 
 
 

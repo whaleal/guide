@@ -1,10 +1,10 @@
 
 
 # Alert接口
-接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+接口调用时须在请求头中设置OPS-Token,返回内容为 JSON 格式的信息.
 其参数为时间类型都以时间戳形式传递。
 
-有些接口调用时需用到hostId、objectId
+接口调用时需用到hostId、objectId
 ~~~
 hostId在“根据主机名模糊查询主机基本信息”接口处获取。
 
@@ -22,10 +22,10 @@ objectId 为主机id或mongo节点id，mongo节点id在“查找mongoDB集群信
 | Content-Type          |         application/json |    
 ---
 
+<br>
 
 
-
-####  1 判断来自警告信息是否正确
+###  1 判断来自警告信息是否正确
 
 
 1.1 请求路径：
@@ -40,9 +40,27 @@ POST http://{Server-Host}:{端口}/api/alert/judgeAlertMsg
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|    AlertMsgEntity   |      body      |       告警信息实体类      |      yes            |    AlertMsgEntity
+|    alertMsgEntity   |      Body      |       告警信息实体对象     |      Yes            |    AlertMsgEntity
+
+
+<br>
+
 
 ![img_16.png](../Images/judgeAlertMsg.png)
+
+~~~
+EX. 判断来自警告信息是否正确;其中AlertMsgEntity 如下所示：
+{
+	"_id" : "62b922795ba3cf1e7abf0dce",                 
+	"continuousGranularityStrategyList" : [ ],
+	"createTime" : "1656300153918",
+	"objectId" : "62b922795ba3cf1e7abf0dcd",
+	"timeFrequencyStrategyList" : [ ],
+	"type" : 1,                                             
+	"updateTime" : "1656300153918"
+}
+~~~
+
 
 ----
 
@@ -52,7 +70,10 @@ POST http://{Server-Host}:{端口}/api/alert/judgeAlertMsg
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |           int            |    
-| data       |         返回信息        |                string         | 
+| data       |         返回信息        |                String         | 
+
+<br>
+
 
 
 ![img_17.png](../Images/judgeAlertMsg_r.png)
@@ -60,12 +81,11 @@ POST http://{Server-Host}:{端口}/api/alert/judgeAlertMsg
 
 
 
-
----
 ---
 
+<br>
 
-####  2 获取告警策略
+###  2 获取告警策略
 
 
 2.1 请求路径：
@@ -80,8 +100,11 @@ GET http://{Server-Host}:{端口}/api/alert/getAlertStrategy
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|     objectId        |        params              |           对象id               |    yes              |string
-|     type        |         params             |            类型:1 agent,2 mongo             |           yes       |string
+|     objectId        |        Params              |           对象id               |    Yes              |String
+|     type        |         Params       |    类型:1 agent,2 mongo    |           Yes       |String
+
+<br>
+
 
 ![img_18.png](../Images/getAlertStrategy.png)
 
@@ -93,17 +116,21 @@ GET http://{Server-Host}:{端口}/api/alert/getAlertStrategy
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回数据        |             list            | 
+| data       |         返回数据        |             List            | 
+
+<br>
+
 
 
 ![img_19.png](../Images/getAlertStrategy_r.png)
 
 
----
+
 ---
 
+<br>
 
-####  3 获取所有成员警告策略
+###  3 获取所有成员警告策略
 
 
 3.1 请求路径：
@@ -118,7 +145,10 @@ GET http://{Server-Host}:{端口}/api/alert/getAllMongoMemberAlertStrategy
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|     hostId        |        params              |           主机id               |    yes              |string
+|     hostId        |        Params              |           主机id               |    Yes              |String
+
+<br>
+
 
 ![img_20.png](../Images/getAllMongoMemberAlertStrategy.png)
 
@@ -130,17 +160,21 @@ GET http://{Server-Host}:{端口}/api/alert/getAllMongoMemberAlertStrategy
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回数据        |           list              | 
+| data       |         返回数据        |           List              | 
+
+
+<br>
 
 
 ![img_21.png](../Images/getAllMongoMemberAlertStrategy_r.png)
 
 
----
+
 ---
 
+<br>
 
-####  4 更新警告信息
+###  4 更新警告信息
 
 
 4.1 请求路径：
@@ -155,7 +189,10 @@ POST http://{Server-Host}:{端口}/api/alert/update
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|     alertStrategyEntity        |        body              |           告警策略实体类               |    yes              |alertStrategyEntity
+|     alertStrategyEntity        |        Body              |           告警策略实体对象              |    Yes              |alertStrategyEntity
+
+<br>
+
 
 ![img_22.png](../Images/alert_update.png)
 
@@ -167,51 +204,68 @@ POST http://{Server-Host}:{端口}/api/alert/update
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回数据        |              string           | 
+| data       |         返回数据        |              String           | 
+
+<br>
+
 
 
 ![img_23.png](../Images/alert_update_r.png)
 
 
 ---
----
 
----  
-
-## AlertStrategyEntity
+<br>
 
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| name                 |   string             |         主机或mongoMember警告策略名称          |   
-| objectId             |   string             |         主机id or mongoMemberId     |   
-| type                 |   string |         1 agent 2 mongo     |   
-| timeFrequencyStrategyList         |   List\<TimeFrequencyStrategy>             |         时间区间警告策略     |   
-| continuousGranularityStrategyList         |      List\<ContinuousGranularityStrategy>          |         连续时间警告策略     |   
+[comment]: <> (## AlertStrategyEntity)
 
 
----
----
+[comment]: <> (|       Name         |     Type             |    Description      |   )
 
-## TimeFrequencyStrategy
+[comment]: <> (| ------------       |----------            |---------------------|)
 
+[comment]: <> (| name                 |   String             |         主机或mongoMember警告策略名称          |   )
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| startHour                 |   int             |         小时时间范围的起点          |   
-| endHour             |   int            |         小时时间范围的结点     |   
+[comment]: <> (| objectId             |   String             |         主机id or mongoMemberId     |   )
 
+[comment]: <> (| type                 |   String |         1 agent 2 mongo     |   )
 
----
----
+[comment]: <> (| timeFrequencyStrategyList         |   List\<TimeFrequencyStrategy>             |         时间区间警告策略     |   )
 
-## HostInfoMongoEntity
+[comment]: <> (| continuousGranularityStrategyList         |      List\<ContinuousGranularityStrategy>          |         连续时间警告策略     |   )
 
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| duration                 |   int             |         统计颗粒度          |   
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+[comment]: <> (## TimeFrequencyStrategy)
 
 
----
----
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| startHour                 |   int             |         小时时间范围的起点          |   )
+
+[comment]: <> (| endHour             |   int            |         小时时间范围的结点     |   )
+
+
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+[comment]: <> (## HostInfoMongoEntity)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| duration                 |   int             |         统计颗粒度          |   )
+
+
+[comment]: <> (---)
+
+[comment]: <> (---)
