@@ -14,11 +14,15 @@ replicateId在“查找mongoDB集群信息数据”接口返回结果集中repli
 clusterId在“查找mongoDB集群信息数据”接口返回结果集中。
 ~~~
 
+<br>
+
+
 
 ### 请求头默认格式，特殊情况特殊声明
 
     OPS-Token在调用登录接口时返回，在之后调用接口时将token放置请求头中。
 [登录接口调用获取OPS-Token](Member.md)
+
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
@@ -29,12 +33,16 @@ clusterId在“查找mongoDB集群信息数据”接口返回结果集中。
 ---
 
 
-####  1 创建mongodb单例
+<br>
+
+
+
+###  1 创建mongodb单例
 
 
 1.1 请求路径：
 
-POST https://192.167.3.200:9600/api/server/mongo/createMongoStandalone/{{isNewCluster}}/{{clusterId}}/{{replicateId}}
+POST https://{Server-Host}:{端口}/api/server/mongo/createMongoStandalone/{{isNewCluster}}/{{clusterId}}/{{replicateId}}
 
 
 ---
@@ -44,13 +52,20 @@ POST https://192.167.3.200:9600/api/server/mongo/createMongoStandalone/{{isNewCl
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| isNewCluster          |         path           |            是否时新集群            |        Yes       |Boolean
-| clusterId          |         path           |            集群id            |        Yes       |String
-| replicateId          |         path           |            复制集id            |        Yes       |String
-| MongoMember          |         body           |            实例对象            |        yes       | 实体类
+| isNewCluster          |         Path           |            是否时新集群            |        Yes       |boolean
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| replicateId          |         Path           |            复制集id            |        Yes       |String
+| mongoMember          |         Body           |            实体对象            |        Yes       | MongoMember
 | tag          |         Params           |            标签            |        No       | String
-~~~
 
+<br>
+
+![img.png](../Images/createMongoStandalone.png)
+
+<br>
+
+~~~
+Ex. 创建mongodb单例;其中 MongoMember 如下所示:
 {
 "hostName": "chen",
 "hostId": "62bbfbe9a46517610435d615",
@@ -76,11 +91,13 @@ POST https://192.167.3.200:9600/api/server/mongo/createMongoStandalone/{{isNewCl
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |       int                |    
-| msg       |         消息         |             string           |        
-| eventId       |         事件id         |         string               |        
-| data       |         返回数据         |          MongoMember              |        
+| msg       |         消息         |             String           |        
+| eventId       |         事件id         |         String               |        
+| data       |         返回数据         |          JSON              |        
 
+<br>
 
+![img_1.png](../Images/createMongoStandalone_r.png)
 ~~~
 {
     "msg": "正在执行",
@@ -128,14 +145,17 @@ POST https://192.167.3.200:9600/api/server/mongo/createMongoStandalone/{{isNewCl
 }
 ~~~
 ---
----
-####  2 单节点转为复制集.
+
+<br>
+
+
+###  2 单节点转为复制集.
 
 
 
 2.1 请求路径：
 
-GET http://192.167.3.200:9600/api/server/mongo/standaloneToReplicate/{{clusterId}}
+GET http://{Server-Host}:{端口}/api/server/mongo/standaloneToReplicate/{{clusterId}}
 
 ---
 
@@ -147,6 +167,9 @@ GET http://192.167.3.200:9600/api/server/mongo/standaloneToReplicate/{{clusterId
 | clusterId          |         Path           |            集群id            |        Yes       |String        |
 
 
+<br>
+
+
 ![postman_mongo_standaloneToReplicate](../Images/standaloneToReplicate.png)
 ----
 
@@ -156,13 +179,21 @@ GET http://192.167.3.200:9600/api/server/mongo/standaloneToReplicate/{{clusterId
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |            int           |    
-| msg       |         返回消息         |           string             |        
+| msg       |         返回消息         |           String             |        
+
+<br>
+
 
 ![postman_mongo_standaloneToReplicate_result](../Images/standaloneToReplicate_r.png)
+
+
 ---
 
 
-####  3 创建mongodb复制集
+<br>
+
+
+###  3 创建mongodb复制集
 
 
 
@@ -178,10 +209,15 @@ POST http://{Server-Host}:{端口}/api/server/mongo/createMongoReplica/{{isNewCl
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | isNewCluster          |         Path           |            集群id            |        Yes       |String        |
-| mongoReplica          |         body           |           mongoReplica           |        yes       |实体类        |
-| tag          |         params           |            标签            |        No       |String        |
+| mongoReplica          |         Body           |           mongo复制集实体对象           |        Yes       |  MongoReplica      |
+| tag          |         Params           |            标签            |        No       |String        |
 
+<br>
+
+
+![img_3.png](../Images/createMongoReplica.png)
 ~~~
+Ex. 创建mongodb复制集;MongoReplica 如下所示：
 {
     "userName": "",
     "password": "",
@@ -217,14 +253,18 @@ POST http://{Server-Host}:{端口}/api/server/mongo/createMongoReplica/{{isNewCl
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |           int            |    
-| data       |         返回数据         |         MongoReplica               |        
-| msg       |         返回消息         |         string               |        
-| eventId       |         事件ID         |          string              |        
+| data       |         返回数据         |         JSON               |        
+| msg       |         返回消息         |         String               |        
+| eventId       |         事件ID         |          String              |        
+
+<br>
+
+![img_4.png](../Images/createMongoReplica_r.png)
 
 ~~~
 {
     "msg": "正在执行",
-    "eventId": "62cf7903ed494511782ff4fa",
+    "eventId": "62da7357239d00094230b51a",
     "code": 1000,
     "data": {
         "id": null,
@@ -250,7 +290,10 @@ POST http://{Server-Host}:{端口}/api/server/mongo/createMongoReplica/{{isNewCl
 ~~~
 ---
 
-####  4 创建mongodb分片
+<br>
+
+
+###  4 创建mongodb分片
 
 
 
@@ -266,12 +309,15 @@ POST http://{Server-Host}:{端口}/api/server/mongo/createMongoSharded/{{isNewCl
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | isNewCluster          |         Path           |            文件名称            |        Yes       |String        |
-| mongoShard          |         body           |            mongoShard            |        yes       |mongoShard        |
-| tag          |         params           |            文件名称            |        No       |String        |
+| mongoShard          |         Body           |            实体对象            |        Yes       |MongoShard        |
+| tag          |         Params           |            文件名称            |        No       |String        |
 
+<br>
+
+![img_5.png](../Images/createMongoSharded.png)
 
 ~~~
-
+Ex. 创建mongodb分片;其中 MongoShard 如下所示:
 
 {
     "clusterName": "fenpian",
@@ -310,14 +356,20 @@ POST http://{Server-Host}:{端口}/api/server/mongo/createMongoSharded/{{isNewCl
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |      int                 |    
-| msg       |         返回消息         |         string               |        
-| eventId       |         事件id         |      string                  |        
-| data       |         返回数据         |      MongoShard                  |        
+| msg       |         返回消息         |         String               |        
+| eventId       |         事件id         |      String                  |        
+| data       |         返回数据         |      JSON                  |        
+
+
+<br>
+
+![img_6.png](../Images/createMongoSharded_r.png)
+
 
 ~~~
 {
     "msg": "正在执行",
-    "eventId": "62cf8e51ed494511782ff6c9",
+    "eventId": "62da73c4239d00094230b51c",
     "code": 1000,
     "data": {
         "id": null,
@@ -340,7 +392,10 @@ POST http://{Server-Host}:{端口}/api/server/mongo/createMongoSharded/{{isNewCl
 ~~~
 ---
 
-####  5 操作开启认证的集群
+<br>
+
+
+###  5 操作开启认证的集群
 
 
 
@@ -356,10 +411,26 @@ POST http://{Server-Host}:{端口}/api/server/mongo/operateClusterAbleAuth/{{clu
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | clusterId          |         Path           |            文件名称            |        Yes       |String        |
-| map          |         body           |           传参            |        Yes       |map        |
+| map          |         Body           |           传参            |        Yes       |Map        |
 
+
+<br>
 
 ![postman_mongo_operateClusterAbleAuth](../Images/operateClusterAbleAuth.png)
+
+~~~
+Ex. 操作开启认证的集群;其中map 如下所示:
+{
+    "authAble": "true",
+    "authenticWay": "Username/Password",
+    "userName": "123",
+    "authDbName": "admin",
+    "password": "123"
+}
+~~~
+
+
+
 ----
 
 5.3 返回结果
@@ -368,13 +439,24 @@ POST http://{Server-Host}:{端口}/api/server/mongo/operateClusterAbleAuth/{{clu
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |          int             |    
-| msg       |         返回消息         |            string            |        
-| eventId       |         事件id         |        string                |        
+| msg       |         返回消息         |            String            |        
+| eventId       |         事件id         |        String                |        
+
+
+<br>
+
 
 ![postman_mongo_operateClusterAbleAuth_result](../Images/operateClusterAbleAuth_r.png)
+
+
+
 ---
 
-####  6 添加shard
+<br>
+
+
+
+###  6 添加shard
 
 
 
@@ -389,11 +471,14 @@ POST http://{Server-Host}:{端口}/api/server/mongo/addShard/{{clusterId}}
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| clusterId          |         path           |            集群id            |        Yes       |String        |
-| mongoReplica          |         body           |            实体类            |        Yes       |mongoReplica        |
+| clusterId          |         Path           |            集群id            |        Yes       |String        |
+| mongoReplica          |         Body           |            mongo复制集实体对象           |        Yes       |MongoReplica        |
 
+<br>
 
 ~~~
+
+Ex. 添加shard;其中 MongoReplica 如下所示:
 
 {
     "type": 3,
@@ -434,14 +519,20 @@ POST http://{Server-Host}:{端口}/api/server/mongo/addShard/{{clusterId}}
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| msg       |         返回消息         |          string              |        
+| msg       |         返回消息         |          String              |   
+
+<br>
 
 ![postman_mongo_addShard_result](../Images/addShard_r.png)
+
 ---
 
 
+<br>
 
-####  7 纳管集群信息
+
+
+###  7 纳管集群信息
 
 
 
@@ -456,11 +547,26 @@ POST http://{Server-Host}:{端口}/api/server/mongo/mongoManaged
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|        mongoMember    |        body             |           实体类              |     yes           |   mongoMember      |
+|        mongoMember    |        Body             |     mongo成员实体对象              |     Yes           |   MongoMember      |
+
+<br>
 
 ![postman_mongo_mongoManaged](../Images/mongoManaged.png)
 
-
+~~~
+Ex. 纳管集群信息;其中 MongoMember 如下所示:
+{
+    "hostName": "chen",
+    "hostId": "62bbfbe9a46517610435d615",
+    "port": "27017",
+    "authAble": "false",
+    "authenticWay": "",
+    "userName": "",
+    "password": "",
+    "authDBName": "",
+    "clusterName": "fp"
+}
+~~~
 
 ----
 
@@ -470,8 +576,12 @@ POST http://{Server-Host}:{端口}/api/server/mongo/mongoManaged
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |          int             |    
-| msg       |         返回消息         |       string                 |        
-| data       |         返回数据         |         MongoClusterInformation               |        
+| msg       |         返回消息         |       String                 |        
+| data       |         返回数据         |         JSON               |        
+
+
+<br>
+
 
 ~~~
 {
@@ -497,7 +607,10 @@ POST http://{Server-Host}:{端口}/api/server/mongo/mongoManaged
 
 ~~~
 
-####  8 升降级
+<br>
+
+
+###  8 升降级
 
 
 
@@ -512,10 +625,11 @@ GET http://{Server-Host}:{端口}/api/server/mongo/upgrade/{{clusterId}}/{{versi
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| clusterId          |         path           |            集群id            |        Yes       |String        |
-| version          |         path           |            版本            |        Yes       |String        |
-| type          |         path           |            集群类型            |        Yes       |String        |
+| clusterId          |         Path           |            集群id            |        Yes       |String        |
+| version          |         Path           |            版本            |        Yes       |String        |
+| type          |         Path           |            集群类型            |        Yes       |String        |
 
+<br>
 
 ![postman_mongo_upgrade](../Images/upgrade.png)
 
@@ -528,14 +642,22 @@ GET http://{Server-Host}:{端口}/api/server/mongo/upgrade/{{clusterId}}/{{versi
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| msg       |         返回消息         |         string               |        
+| msg       |         返回消息         |         String               |        
+
+<br>
+
 
 ![postman_mongo_upgrade_result](../Images/upgrade_r.png)
 
 
-
 ---
-####  9 针对节点进行操作.
+
+<br>
+
+
+
+
+###  9 针对节点进行操作.
 
 
 
@@ -550,10 +672,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/operate/{{clusterId}}/{{mongo
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| clusterId          |         path           |            集群id            |        Yes       |String        |
-| mongoMemberId          |         path           |            mongo集群id            |        Yes       |String        |
-| operateType          |         path           |            操作类型            |        Yes       |String        |
-| mongoMemberName          |         path           |            mongo集群名称            |        Yes       |String        |
+| clusterId          |         Path           |            集群id            |        Yes       |String        |
+| mongoMemberId          |         Path           |            mongo集群id            |        Yes       |String        |
+| operateType          |         Path           |            操作类型            |        Yes       |String        |
+| mongoMemberName          |         Path           |            mongo集群名称            |        Yes       |String        |
+
+<br>
+
 
 ![postman_mongo_operate](../Images/operate_Single.png)
 
@@ -565,13 +690,20 @@ GET http://{Server-Host}:{端口}/api/server/mongo/operate/{{clusterId}}/{{mongo
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| msg       |         返回消息         |         string               |        
+| msg       |         返回消息         |         String               |        
+
+<br>
+
 
 ![postman_mongo_operate_result](../Images/operate_Single_r.png)
 
-
 ---
-####  10 针对集群进行操作
+
+
+<br>
+
+
+###  10 针对集群进行操作
 
 
 
@@ -588,8 +720,10 @@ GET http://{Server-Host}:{端口}/api/server/mongo/operate/{{clusterId}}/{{opera
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| clusterId          |         path           |            集群id            |        Yes       |String        |
-| operateType          |         path           |            操作类型            |        Yes       |String        |
+| clusterId          |         Path           |            集群id            |        Yes       |String        |
+| operateType          |         Path           |            操作类型            |        Yes       |String        |
+
+<br>
 
 ![postman_mongo_operate](../Images/operate_cluster.png)
 
@@ -602,13 +736,21 @@ GET http://{Server-Host}:{端口}/api/server/mongo/operate/{{clusterId}}/{{opera
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| msg       |         返回消息         |            string            |     
+| msg       |         返回消息         |            String            |     
+
+<br>
+
 
 ![postman_mongo_operate_result](../Images/operate_cluster_r.png)
 
 
+---
 
-####  11 更新集群信息
+<br>
+
+
+
+###  11 更新集群信息
 
 
 
@@ -623,11 +765,14 @@ POST http://{Server-Host}:{端口}/api/server/mongo/updateClusterInfo
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| MongoClusterInformation          |         body           |            实体类            |        Yes    | MongoClusterInformation          |         body           |            实体类            |        Yes       |mongoReplica        |
-|
+| mongoClusterInformation   |         Body           |            Mongo集群信息实体对象            |        Yes    | JSON          |  
 
+<br>
+
+![img_11.png](../Images/updateClusterInfo.png)
 
 ~~~
+Ex. 更新集群信息;其中MongoClusterInformation 如下所示:
 {
     "id": "62cfa574ed494511782ff7c1",
     "createTime": 1657775520238,
@@ -653,7 +798,7 @@ POST http://{Server-Host}:{端口}/api/server/mongo/updateClusterInfo
         "confPath": "/home/chen/data63343/chen_63343.conf",
         "deleteDataAndLogAble": false,
         "authAble": false,
-        "runShCmd": "/var/ops/agent//mongodb-linux-x86_64-rhel70-4.2.21/bin/mongod -f /home/chen/data63343/chen_63343.conf",
+        "runShCmd": "",
         "type": 11,
         "status": "正在运行",
         "monitorServerStatus": false,
@@ -671,14 +816,6 @@ POST http://{Server-Host}:{端口}/api/server/mongo/updateClusterInfo
         "clusterName": null,
         "tags": {},
         "configurationOptions": {
-            "systemLog_destination": "file",
-            "storage_wiredTiger_engineConfig_cacheSizeGB": "0.3",
-            "systemLog_path": "/home/chen/log63343.log",
-            "processManagement_fork": "true",
-            "storage_dbPath": "/home/chen/data63343",
-            "systemLog_logAppend": "true",
-            "net_bindIp": "0.0.0.0",
-            "net_port": "63343"
         },
         "operateVersion": 80
     },
@@ -699,150 +836,244 @@ POST http://{Server-Host}:{端口}/api/server/mongo/updateClusterInfo
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |          int             |    
-| msg       |         返回消息         |             string           |        
+| msg       |         返回消息         |             String           |        
+
+
+<br>
 
 
 ![postman_mongo_updateClusterInfo_result](../Images/updateClusterInfo_r.png)
 
 
 
-
 ---
 ---
 
 
-## MongoMember
+[comment]: <> (## MongoMember)
 
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| memberName                 |   string             |         主机名:端口          |   
-| hostName             |   string             |         主机名     |   
-| hostId              |   Long |         主机id     |   
-| port               |   string             |         端口     |   
-| version         |   string             |         版本     |   
-| upgradeVersion           |   string             |         升降级版本     |   
-| password           |   string             |         节点密码     |   
-| authDbName           |   string             |         认证库     |   
-| currentTimeMillis           |   long             |         当前时间戳     |   
-| dataDirectory           |   string             |         数据目录     |   
-| userName             |   string             |         节点用户名     |   
-| logFile             |   string             |         日志文件     |   
-| confPath             |   string             |         配置文件路径     |   
-| deleteDataAndLogAble             |   string             |         是否强制删除     |   
-| authAble             |   string             |         是否开启认证     |   
-| runShCmd             |   string             |         执行启动命令     |   
-| type             |   enum             |         节点类型     |   
+[comment]: <> (|       Name         |     Type             |    Description      |   )
 
-注 type:11 单例
-* 
-* <p> 普通复制集
-* 31 普通成员节点
+[comment]: <> (| ------------       |----------            |---------------------|)
 
-* 32 隐藏节点
-* 33 仲裁节点
-* 34 隐藏延迟节点
-* 35 主节点
-* <p> config复制集
-* 41 config普通成员节点
-* 42 config隐藏节点
-* 43 config仲裁节点
-* 44 config隐藏延迟节点
-* 45 config主节点
-* <p> shard复制集
-* 51 shard普通成员节点
-* 52 shard隐藏节点
-* 53 shard仲裁节点
-* 54 shard隐藏延迟节点
-* 55 shard主节点
-* <p> mongoS
-* 61 mongoS
+[comment]: <> (| memberName                 |   String             |         主机名:端口          |   )
 
----
----
+[comment]: <> (| hostName             |   String             |         主机名     |   )
 
+[comment]: <> (| hostId              |   Long |         主机id     |   )
 
+[comment]: <> (| port               |   String             |         端口     |   )
 
+[comment]: <> (| version         |   String             |         版本     |   )
 
+[comment]: <> (| upgradeVersion           |   String             |         升降级版本     |   )
 
-## MongoReplica
+[comment]: <> (| password           |   String             |         节点密码     |   )
 
+[comment]: <> (| authDbName           |   String             |         认证库     |   )
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| replicaName                 |   string             |         集群名          |   
-| memberList             |   List<MongoMember>             |         成员列表     |   
-| type              |   enum |         大小     |   
-| clusterId               |   string             |         所属集群id     |   
-| deleteDataAndLogAble         |   boolean             |         是否强制删除已经存在的数据目录和日志文件     |   
-| status           |   string             |         状态     |   
-| operaLog             |   List<String             |         复制集操作日志     |   
-| replicationSettings             |   Map<String, Object>             |         复制集高级配置     |   
-| replicationOtherSettings             |   Map<String, Object>             |         其他附加配置信息     |   
-| authAble             |   boolean             |         是否开启认证     |   
-| userName             |   string             |         节点用户名     |   
-| password             |   string             |         节点密码     |   
-| authDbName             |   string             |         认证库     |   
-| protocolVersion             |   long             |         协议版本     |   
-| writeConcernMajorityJournalDefault             |   boolean             |         是否默认投票     |   
-type:
-* 普通复制集 1
-* config 2
-* shard 3
+[comment]: <> (| currentTimeMillis           |   long             |         当前时间戳     |   )
 
+[comment]: <> (| dataDirectory           |   String             |         数据目录     |   )
 
----
----
+[comment]: <> (| userName             |   String             |         节点用户名     |   )
 
-## MongoShard
+[comment]: <> (| logFile             |   String             |         日志文件     |   )
 
+[comment]: <> (| confPath             |   String             |         配置文件路径     |   )
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| clusterName                 |   string             |         集群名          |   
-| clusterId             |   string             |         所属集群id     |   
-| config              |   MongoReplica |         config复制集     |   
-| mongoS               |   List<MongoMember>             |         mongoS列表     |   
-| shardingMap         |   Map<String, MongoReplica>             |         shard集合     |   
-| operaLog           |   List<String>             |         分片操作日志     |   
-| deleteDataAndLogAble             |   boolean             |         是否强制删除     |   
-| authAble             |   boolean             |         是否开启认证     |   
-| userName             |   string             |         节点用户名     |   
-| password             |   string             |         节点密码     |   
-| authDbName             |   string             |         认证库     |   
-| status             |   string             |         状态     |   
+[comment]: <> (| deleteDataAndLogAble             |   String             |         是否强制删除     |   )
 
+[comment]: <> (| authAble             |   String             |         是否开启认证     |   )
 
----
----
+[comment]: <> (| runShCmd             |   String             |         执行启动命令     |   )
+
+[comment]: <> (| type             |   int             |         节点类型     |   )
+
+[comment]: <> (注 type:11 单例)
+
+[comment]: <> (* )
+
+[comment]: <> (* <p> 普通复制集)
+
+[comment]: <> (* 31 普通成员节点)
+
+[comment]: <> (* 32 隐藏节点)
+
+[comment]: <> (* 33 仲裁节点)
+
+[comment]: <> (* 34 隐藏延迟节点)
+
+[comment]: <> (* 35 主节点)
+
+[comment]: <> (* <p> config复制集)
+
+[comment]: <> (* 41 config普通成员节点)
+
+[comment]: <> (* 42 config隐藏节点)
+
+[comment]: <> (* 43 config仲裁节点)
+
+[comment]: <> (* 44 config隐藏延迟节点)
+
+[comment]: <> (* 45 config主节点)
+
+[comment]: <> (* <p> shard复制集)
+
+[comment]: <> (* 51 shard普通成员节点)
+
+[comment]: <> (* 52 shard隐藏节点)
+
+[comment]: <> (* 53 shard仲裁节点)
+
+[comment]: <> (* 54 shard隐藏延迟节点)
+
+[comment]: <> (* 55 shard主节点)
+
+[comment]: <> (* <p> mongoS)
+
+[comment]: <> (* 61 mongoS)
+
+[comment]: <> (---)
+
+[comment]: <> (---)
 
 
 
-## MongoClusterInformation
 
 
-|       Name         |     Type             |    Description      |   
-| ------------       |----------            |---------------------|
-| clusterName                 |   string             |         集群名          |   
-| type             |   int             |         类型     |   
-| mongoMember              |   MongoMember |         单例     |   
-| mongoReplica               |   MongoReplica             |         复制集     |   
-| mongoShard         |   MongoShard             |         分片     |   
-| isCreate           |   boolean             |         默认新建的集群信息     |   
-| status             |   string             |         集群状态     |   
-| fcv             |   string             |         fcv     |   
-| tag             |   string             |         标签     |   
+[comment]: <> (## MongoReplica)
 
- status：
-* 集群状态
-* 正常
-* 异常
-* 关机
-* 脱离纳管
 
-type:
-* 1 单例
-* 2 复制集
-* 3 分片
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| replicaName                 |   String             |         集群名          |   )
+
+[comment]: <> (| memberList             |   List<MongoMember>             |         成员列表     |   )
+
+[comment]: <> (| type              |   enum |         大小     |   )
+
+[comment]: <> (| clusterId               |   String             |         所属集群id     |   )
+
+[comment]: <> (| deleteDataAndLogAble         |   boolean             |         是否强制删除已经存在的数据目录和日志文件     |   )
+
+[comment]: <> (| status           |   String             |         状态     |   )
+
+[comment]: <> (| operaLog             |   List<String             |         复制集操作日志     |   )
+
+[comment]: <> (| replicationSettings             |   Map<String, Object>             |         复制集高级配置     |   )
+
+[comment]: <> (| replicationOtherSettings             |   Map<String, Object>             |         其他附加配置信息     |   )
+
+[comment]: <> (| authAble             |   boolean             |         是否开启认证     |   )
+
+[comment]: <> (| userName             |   String             |         节点用户名     |   )
+
+[comment]: <> (| password             |   String             |         节点密码     |   )
+
+[comment]: <> (| authDbName             |   String             |         认证库     |   )
+
+[comment]: <> (| protocolVersion             |   long             |         协议版本     |   )
+
+[comment]: <> (| writeConcernMajorityJournalDefault             |   boolean             |         是否默认投票     |   )
+
+[comment]: <> (type:)
+
+[comment]: <> (* 普通复制集 1)
+
+[comment]: <> (* config 2)
+
+[comment]: <> (* shard 3)
+
+
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+[comment]: <> (## MongoShard)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| clusterName                 |   String             |         集群名          |   )
+
+[comment]: <> (| clusterId             |   String             |         所属集群id     |   )
+
+[comment]: <> (| config              |   MongoReplica |         config复制集     |   )
+
+[comment]: <> (| mongoS               |   List<MongoMember>             |         mongoS列表     |   )
+
+[comment]: <> (| shardingMap         |   Map<String, MongoReplica>             |         shard集合     |   )
+
+[comment]: <> (| operaLog           |   List<String>             |         分片操作日志     |   )
+
+[comment]: <> (| deleteDataAndLogAble             |   boolean             |         是否强制删除     |   )
+
+[comment]: <> (| authAble             |   boolean             |         是否开启认证     |   )
+
+[comment]: <> (| userName             |   String             |         节点用户名     |   )
+
+[comment]: <> (| password             |   String             |         节点密码     |   )
+
+[comment]: <> (| authDbName             |   String             |         认证库     |   )
+
+[comment]: <> (| status             |   String             |         状态     |   )
+
+
+[comment]: <> (---)
+
+[comment]: <> (---)
+
+
+
+[comment]: <> (## MongoClusterInformation)
+
+
+[comment]: <> (|       Name         |     Type             |    Description      |   )
+
+[comment]: <> (| ------------       |----------            |---------------------|)
+
+[comment]: <> (| clusterName                 |   String             |         集群名          |   )
+
+[comment]: <> (| type             |   int             |         类型     |   )
+
+[comment]: <> (| mongoMember              |   MongoMember |         单例     |   )
+
+[comment]: <> (| mongoReplica               |   MongoReplica             |         复制集     |   )
+
+[comment]: <> (| mongoShard         |   MongoShard             |         分片     |   )
+
+[comment]: <> (| isCreate           |   boolean             |         默认新建的集群信息     |   )
+
+[comment]: <> (| status             |   String             |         集群状态     |   )
+
+[comment]: <> (| fcv             |   String             |         fcv     |   )
+
+[comment]: <> (| tag             |   String             |         标签     |   )
+
+[comment]: <> ( status：)
+
+[comment]: <> (* 集群状态)
+
+[comment]: <> (* 正常)
+
+[comment]: <> (* 异常)
+
+[comment]: <> (* 关机)
+
+[comment]: <> (* 脱离纳管)
+
+[comment]: <> (type:)
+
+[comment]: <> (* 1 单例)
+
+[comment]: <> (* 2 复制集)
+
+[comment]: <> (* 3 分片)
 
 
