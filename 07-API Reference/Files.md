@@ -137,7 +137,7 @@ GET http://{Server-Host}:{端口}/api/server/file/getAllMongoFile
 
 
 
-![img_37.png](../Images/getAllMongoFile_r.png)
+[comment]: <> (![img_37.png]&#40;../Images/getAllMongoFile_r.png&#41;)
 
 ~~~
 {

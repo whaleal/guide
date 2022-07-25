@@ -95,7 +95,8 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/cluster/size/top/five
 
 <br>
 
-![img.png](../Images/cluster_size_top_five_r.png)
+[comment]: <> (![img.png]&#40;../Images/cluster_size_top_five_r.png&#41;)
+
 ~~~
 {
     "code": 1000,
@@ -159,7 +160,8 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/collection/size/top/f
 <br>
 
 
-![img_1.png](../Images/collection_size_top_five_r.png)
+[comment]: <> (![img_1.png]&#40;../Images/collection_size_top_five_r.png&#41;)
+
 ~~~
 {
     "code": 1000,
@@ -243,7 +245,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/QPS/size/top/five
 
 <br>
 
-![img_2.png](../Images/QPS_size_top_five_r.png)
+[comment]: <> (![img_2.png]&#40;../Images/QPS_size_top_five_r.png&#41;)
 
 ~~~
 {
@@ -304,7 +306,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/connection/instance/t
 
 <br>
 
-![img_3.png](../Images/connection_size_top_five_r.png)
+[comment]: <> (![img_3.png]&#40;../Images/connection_size_top_five_r.png&#41;)
 
 ~~~
 {
@@ -364,7 +366,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/slowest/instance/top/
 
 <br>
 
-![img_4.png](../Images/slowest_size_top_five_r.png)
+[comment]: <> (![img_4.png]&#40;../Images/slowest_size_top_five_r.png&#41;)
 
 ~~~
 {
@@ -422,7 +424,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/data/{{nodeId}}/{{typ
 
 <br>
 
-![img_5.png](../Images/monitor_data_r.png)
+[comment]: <> (![img_5.png]&#40;../Images/monitor_data_r.png&#41;)
 
 ~~~
  {
@@ -497,7 +499,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoCluster/{{clusterId}}
 
 <br>
 
-![img_6.png](../Images/getMongoCluster_r.png)
+[comment]: <> (![img_6.png]&#40;../Images/getMongoCluster_r.png&#41;)
 
 ~~~
 {
@@ -591,7 +593,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoClusterLogData/{{clus
 
 <br>
 
-![img_8.png](../Images/getMongoClusterLogData_r.png)
+[comment]: <> (![img_8.png]&#40;../Images/getMongoClusterLogData_r.png&#41;)
 
 ~~~
 {
@@ -947,7 +949,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/findMongoEventLogByEventId/{{
 <br>
 
 
-![img_15.png](../Images/findMongoEventLogByEventId_r.png)
+[comment]: <> (![img_15.png]&#40;../Images/findMongoEventLogByEventId_r.png&#41;)
 
 
 ~~~
@@ -1011,7 +1013,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoEventLogData/{{cluste
 
 <br>
 
-![img_14.png](../Images/getMongoEventLogData_r.png)
+[comment]: <> (![img_14.png]&#40;../Images/getMongoEventLogData_r.png&#41;)
 
 ~~~
 {
@@ -1122,7 +1124,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/findMongoDBClusterInfoData/{{
 
 <br>
 
-![img_15.png](../Images/findMongoDBClusterInfoData_r.png)
+[comment]: <> (![img_15.png]&#40;../Images/findMongoDBClusterInfoData_r.png&#41;)
 
 ~~~
 {
@@ -1143,8 +1145,6 @@ GET http://{Server-Host}:{端口}/api/server/mongo/findMongoDBClusterInfoData/{{
                 "clusterName": "sharding",
                 "clusterId": "62da3b1b239d00094230b463",
                 "config": {
-                    
-                    "memberList": [
                       ...  
                 },
                 "mongoS": [
