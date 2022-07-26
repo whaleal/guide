@@ -1,11 +1,26 @@
 ## Add Host
 
 
+```
+Add Host 分为以下两部分操作内容：
+ - Prerequisites
+ - Procedure
+```
+
+在whaleal平台添加主机，可以在平台上进行mongo集群的创建于纳管。
 
 
+### Prerequisites
 
-##### 预准备
+在添加主机前确保已安装JAVA环境，若没有请先[安装](../../01-Intstall/01-Installation.md)
 
+若页面拒绝访问请确保已配置域名解析，若没有请配置。
+
+确保主机已安装ioStat插件，若没有请安装。
+
+<br>
+
+##### Prerequisites 参考
 1.安装java环境 
 
 - 进入 Oracle 官方网站 下载合适的 JDK 版本。（以 jdk-8u151-linux-x64.tar.gz 为例，如果您下载的是其他版本，请注意文件后缀为 .tar.gz 即可。）
@@ -39,7 +54,7 @@ tar -zxvf jdk-8u151-linux-x64.tar.gz
     source /etc/profile
 ~~~
 
-[安装配置java](https://www.whaleal.com/thread?topicId=238)
+
 <br>
 
 2.配置域名解析 
@@ -70,18 +85,26 @@ Linux主机
 
 <br>
 
+<br>
 
-#### 添加主机
 
-1.点击Server导航栏进入主机页面,右侧添加主机按钮点击后弹出提示页面。
+### Procedure
+
+
+
+Step-1. 进入导航目录
+
+a. 点击Server导航栏进入主机页面,右侧添加主机按钮点击后弹出提示页面。
+
+    前三步为 Prerequisites 内容，第四步为生成的agentId(作为主机的唯一标识符)，之后的步骤复制命令在主机命令行进行执行。
     
-    前三步为预准备内容，第四步为生成的agentId(作为主机的唯一标识符)，之后的步骤复制命令在主机命令行进行执行。
-    a标签处有详细步骤。
- ![img.png](../../Images/host_tips.png)
+![img.png](../../Images/host_tips.png)
 
+<br>
 
+Step-2. 主机下载Agent
 
-a.预准备完成后在提示页面点击生成agent按钮，之后操作在主机命令行执行。
+b.预准备完成后在提示页面点击生成agent按钮，之后操作在主机命令行执行。
 
 ·复制下载AGENT_JAR命令并执行。
 
@@ -92,6 +115,8 @@ a.预准备完成后在提示页面点击生成agent按钮，之后操作在主�
 
     nohup java -jar agent-collection-1.0.0.jar --foreign.url=http://cloud.whaleal.com:9600/ --agentId=62d8e617239d00094230b3b2 &
 ![img_1.png](../../Images/start_agent.png)
+
+<br>
 
 
 执行完毕后在Server主机列表页面将会显示添加的主机,命令行查询java进程可以找到agent进程。

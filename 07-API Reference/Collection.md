@@ -103,7 +103,7 @@ POST http://{Server-Host}:{端口}/api/collection/agent/updateAgentMongoFile/{{a
 ![img_29.png](../Images/updateAgentMongoFile.png)
 
 ~~~
-EX. 更新agent的mongo文件信息;其中MongoFileList 如下所示：
+Ex. 更新agent的mongo文件信息;其中MongoFileList 如下所示：
  [
         {
             "_id": "62d62a9bbfa6b71dad85b68a",M
@@ -213,7 +213,7 @@ PUT http://{Server-Host}:{端口}/api/collection/command/agent/update
 ![img_4.png](../Images/agent_update.png)
 
 ~~~
-EX. 更新命令实体对象的状态;其中 CommandEntity 如下所示：
+Ex. 更新命令实体对象的状态;其中 CommandEntity 如下所示：
 
 {
 	"id" : "62c54a395dc04d3d4c13be75",
@@ -316,7 +316,7 @@ POST http://{Server-Host}:{端口}/api/collection/hostInfo
 ![img_8.png](../Images/save_hostInfo.png)
 
 ~~~
-EX. 保存主机信息;其中 HostInfoMongoEntity 如下所示：
+Ex. 保存主机信息;其中 HostInfoMongoEntity 如下所示：
 {
 	"_id" : "62cbbd7607bebb71b8429e5e",
 	"cpuInfo" : " Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz",
@@ -407,7 +407,7 @@ POST http://{Server-Host}:{端口}/api/collection/hostRealTime/addHostRealTimeDa
 ![img_10.png](../Images/addHostRealTimeData.png)
 
 ~~~
-EX. 保存主机信息;其中 HostInfoMongoEntity 如下所示：
+Ex. 保存主机信息;其中 HostInfoMongoEntity 如下所示：
 
 {
 	"_id" : "62cbbd7607bebb71b8429e5e",
@@ -672,7 +672,7 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/updateMongo
 
 ~~~
 
-EX. 更新mongo节点信息;其中 MongoMember 如下所示：
+Ex. 更新mongo节点信息;其中 MongoMember 如下所示：
 {
     "account": "231asd",
     "areaCode": "86",
@@ -918,7 +918,8 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/agent/mongoMember/{{ag
 
 <br>
 
-![img_12.png](../Images/agent_mongoMember_r.png)
+[comment]: <> (![img_12.png]&#40;../Images/agent_mongoMember_r.png&#41;)
+
 ~~~
 {
     "code": 1000,
