@@ -34,7 +34,7 @@ Add Host 分为以下两部分操作内容：
 ~~~   
 ~~~
 解压JDK：
-tar -zxvf jdk-8u151-linux-x64.tar.gz
+    tar -zxvf jdk-8u151-linux-x64.tar.gz
 ~~~  
 
 
