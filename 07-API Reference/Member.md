@@ -68,7 +68,7 @@ POST http://192.168.3.200:9600/api/server/member/login
 
 <br>
 
-![img_39.png](../Images/login_r.png)
+[comment]: <> (![img_39.png]&#40;../Images/login_r.png&#41;)
 
 ~~~
 {
@@ -89,7 +89,7 @@ POST http://192.168.3.200:9600/api/server/member/login
     },
     "createMongoDBAble": true,
     "generateAgentIdAble": true,
-    "token": "eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAB2MQQqDMBBF7zJrW0yKk8RVEVxKpT1BMs6gUBOlFQrSuzf2797j8Xd4bQFquPWPU9d2TXuHAvizQK2wspUpnTUFeKK0xXfuaOSo9CVH05ARdWBUZCiwiCtx8NoKihwns5-eOVHrdT1TmrNaxhT5UAaddf_B9weqek8KggAAAA.cxpWZuLwKvWj3o2H7Ya7XuI9lRrRX_mY4-T7u-FJExO6mt7KRdmckY_sUwIz9al9oZwl37XvQ5ChTsUx_6YvxQ"
+    "token": ""
 }
 ~~~
 
@@ -149,7 +149,7 @@ Ex. 保存新用户信息;其中 MemberMongoEntity 如下所示:
 
 
 
-![img_41.png](../Images/register_r.png)
+[comment]: <> (![img_41.png]&#40;../Images/register_r.png&#41;)
 
 ~~~
 {
@@ -229,7 +229,7 @@ Ex. 更新用户信息;其中 MemberMongoEntity 如下所示:
 <br>
 
 
-![img_43.png](../Images/update_r.png)
+[comment]: <> (![img_43.png]&#40;../Images/update_r.png&#41;)
 
 ~~~
 {
@@ -305,7 +305,7 @@ Ex. 搜索用户;其中 Map 如下所示:
 <br>
 
 
-![img_45.png](../Images/findMemberData_r.png)
+[comment]: <> (![img_45.png]&#40;../Images/findMemberData_r.png&#41;)
 
 
 ~~~
@@ -377,7 +377,7 @@ Ex. 搜索用户;其中 Map 如下所示:
 
 <br>
 
-![img_47.png](../Images/findMemberCount_r.png)
+[comment]: <> (![img_47.png]&#40;../Images/findMemberCount_r.png&#41;)
 
 ---
 

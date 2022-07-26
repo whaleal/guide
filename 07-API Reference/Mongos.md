@@ -97,7 +97,9 @@ Ex. 创建mongodb单例;其中 MongoMember 如下所示:
 
 <br>
 
-![img_1.png](../Images/createMongoStandalone_r.png)
+[comment]: <> (![img_1.png]&#40;../Images/createMongoStandalone_r.png&#41;)
+
+
 ~~~
 {
     "msg": "正在执行",
@@ -259,7 +261,7 @@ Ex. 创建mongodb复制集;MongoReplica 如下所示：
 
 <br>
 
-![img_4.png](../Images/createMongoReplica_r.png)
+[comment]: <> (![img_4.png]&#40;../Images/createMongoReplica_r.png&#41;)
 
 ~~~
 {
@@ -363,7 +365,7 @@ Ex. 创建mongodb分片;其中 MongoShard 如下所示:
 
 <br>
 
-![img_6.png](../Images/createMongoSharded_r.png)
+[comment]: <> (![img_6.png]&#40;../Images/createMongoSharded_r.png&#41;)
 
 
 ~~~

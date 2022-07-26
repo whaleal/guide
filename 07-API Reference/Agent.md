@@ -70,7 +70,7 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostI
 <br>
 
 
-![img_1.png](../Images/getAllAgentHostNameAndHostId_r.png)
+[comment]: <> (![img_1.png]&#40;../Images/getAllAgentHostNameAndHostId_r.png&#41;)
 
 ~~~
 {
@@ -138,7 +138,7 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 
 
 
-![img_3.png](../Images/getAgentStatistics_r.png)
+[comment]: <> (![img_3.png]&#40;../Images/getAgentStatistics_r.png&#41;)
 
 ~~~
 {
@@ -200,7 +200,7 @@ GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}
 
 
 
-![img_5.png](../Images/getAllAgentData_r.png)
+[comment]: <> (![img_5.png]&#40;../Images/getAllAgentData_r.png&#41;)
  
 
 
@@ -311,7 +311,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 <br>
 
 
-![img_6.png](../Images/getAllAgentCount_r.png)
+[comment]: <> (![img_6.png]&#40;../Images/getAllAgentCount_r.png&#41;)
 
 ~~~
 {
@@ -360,7 +360,8 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 <br>
 
 
-![img_9.png](../Images/getAgentInfo_r.png)
+[comment]: <> (![img_9.png]&#40;../Images/getAgentInfo_r.png&#41;)
+
 ~~~
 {
     "code": 1000,
@@ -463,7 +464,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}
 
 <br>
 
-![img_11.png](../Images/getAgentMonitor_r.png)
+[comment]: <> (![img_11.png]&#40;../Images/getAgentMonitor_r.png&#41;)
 
 ~~~
 {
@@ -518,13 +519,6 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}
                 "dm-0": {
                     "util": [
                         0.25
-                    ],
-                    "name": "dm-0",
-                    "rkB": [
-                        5.29
-                    ],
-                    "wkB": [
-                        114523.97
                     ]
                 }
             },
@@ -592,7 +586,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/logData/{{hostId}}/{{pageInde
 
 
 
-![img_10.png](../Images/logData_r.png)
+[comment]: <> (![img_10.png]&#40;../Images/logData_r.png&#41;)
 
 ~~~
 {
@@ -659,13 +653,17 @@ GET http://{Server-Host}:{端口}/api/server/agent/logCount/{{hostId}}
 
 ![img_15.png](../Images/logCount_r.png)
 
-~~~
-{
-    "code": 1000,
-    "data": 2542
-}
+[comment]: <> (~~~)
 
-~~~
+[comment]: <> ({)
+
+[comment]: <> (    "code": 1000,)
+
+[comment]: <> (    "data": 2542)
+
+[comment]: <> (})
+
+[comment]: <> (~~~)
 
 ---
 
@@ -746,12 +744,17 @@ GET http://{Server-Host}:{端口}/api/server/agent/generateAgentId
 
 ![img_16.png](../Images/generateAgentId_r.png)
 
-~~~
-{
-    "code": 1000,
-    "data": "62da1860239d00094230b40c"
-}
-~~~
+[comment]: <> (~~~)
+
+[comment]: <> ({)
+
+[comment]: <> (    "code": 1000,)
+
+[comment]: <> (    "data": "62da1860239d00094230b40c")
+
+[comment]: <> (})
+
+[comment]: <> (~~~)
 
 
 ---
@@ -839,7 +842,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataList/{{host
 <br>
 
 
-![img_19.png](../Images/getExecCommandDataList_r.png)
+[comment]: <> (![img_19.png]&#40;../Images/getExecCommandDataList_r.png&#41;)
 
 
 ~~~
@@ -909,13 +912,17 @@ GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataCount/{{hos
 
 ![img_24.png](../Images/getExecCommandDataCount_r.png)
 
-~~~
-{
-    "code": 1000,
-    "data": 5
-}
+[comment]: <> (~~~)
 
-~~~
+[comment]: <> ({)
+
+[comment]: <> (    "code": 1000,)
+
+[comment]: <> (    "data": 5)
+
+[comment]: <> (})
+
+[comment]: <> (~~~)
 
 ---
 
@@ -957,7 +964,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
 <br>
 
 
-![img_26.png](../Images/CpuUsage_r.png)
+[comment]: <> (![img_26.png]&#40;../Images/CpuUsage_r.png&#41;)
 
 ~~~
 
@@ -971,22 +978,10 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
             "usage": 100.0
         },
         {
-            "_id": "62d626969026c712d786e707",
-            "hostId": "62d626969026c712d786e707",
-            "hostName": "usdp",
-            "usage": 77.3
-        },
-        {
             "_id": "62cbbd7607bebb71b8429e5e",
             "hostId": "62cbbd7607bebb71b8429e5e",
             "hostName": "server200",
             "usage": 29.7
-        },
-        {
-            "_id": "62b153a344ba1b7771c42df7",
-            "hostId": "62b153a344ba1b7771c42df7",
-            "hostName": "server100",
-            "usage": 7.1
         }
     ]
 }
@@ -1032,7 +1027,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
 <br>
 
 
-![img_25.png](../Images/MemUsage_r.png)
+[comment]: <> (![img_25.png]&#40;../Images/MemUsage_r.png&#41;)
 
 ~~~
 
@@ -1050,18 +1045,6 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
             "hostId": "62b153a344ba1b7771c42df7",
             "usage": "15.81GB",
             "hostName": "server100"
-        },
-        {
-            "_id": "62bbfbe9a46517610435d615",
-            "hostId": "62bbfbe9a46517610435d615",
-            "usage": "7.31GB",
-            "hostName": "chen"
-        },
-        {
-            "_id": "62d626969026c712d786e707",
-            "hostId": "62d626969026c712d786e707",
-            "usage": "2.33GB",
-            "hostName": "usdp"
         }
     ]
 }
@@ -1107,7 +1090,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
 
 
 
-![img_27.png](../Images/DiskUsage_r.png)
+[comment]: <> (![img_27.png]&#40;../Images/DiskUsage_r.png&#41;)
 
 ~~~
 {
@@ -1124,18 +1107,6 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
             "hostId": "62bbfbe9a46517610435d615",
             "hostName": "chen",
             "usage": 57.41
-        },
-        {
-            "_id": "62b153a344ba1b7771c42df7",
-            "hostId": "62b153a344ba1b7771c42df7",
-            "hostName": "server100",
-            "usage": 40.8
-        },
-        {
-            "_id": "62cbbd7607bebb71b8429e5e",
-            "hostId": "62cbbd7607bebb71b8429e5e",
-            "hostName": "server200",
-            "usage": 14.81
         }
     ]
 }
@@ -1184,7 +1155,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
 <br>
 
 
-![img_29.png](../Images/NetIn_r.png)
+[comment]: <> (![img_29.png]&#40;../Images/NetIn_r.png&#41;)
 ~~~
 
 {
@@ -1255,7 +1226,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetOut/top/five
 <br>
 
 
-![img_31.png](../Images/NetOut_r.png)
+[comment]: <> (![img_31.png]&#40;../Images/NetOut_r.png&#41;)
 
 ~~~
 {
