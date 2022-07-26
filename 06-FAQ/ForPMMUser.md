@@ -4,7 +4,7 @@
 
 Whaleal 管理员用户可以对平台用户进行资源访问限制，限制用户是否可以访问 Server、MongoDB资源。
 
-![image-20220725191359227](/Users/dickens/Library/Application Support/typora-user-images/image-20220725191359227.png)
+![image-20220725191359227](../Images/ForPMMUser.png)
 
 
 
