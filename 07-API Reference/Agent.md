@@ -1,10 +1,12 @@
 
-# Agent接口
+# Agent接口 
+
 
 接口调用时须在请求头中设置OPS-Token,返回内容为 JSON 格式的信息.
 其参数为时间类型都以时间戳形式传递。
 
 接口调用时需若用到hostId、agentId、eventId，通过以下方式获取。
+
 ~~~
 hostId在“根据主机名模糊查询主机基本信息”接口处获取。
 
@@ -13,7 +15,7 @@ agentId在"生成agentId"接口处获取。
 eventId在"获取集群日志信息"接口处找到所需事件的id
 ~~~
 
-### 请求头默认格式，特殊情况特殊声明
+ **请求头默认格式，特殊情况特殊声明**
 
     OPS-Token在调用"登录"接口时返回，在之后调用接口时将token放置请求头中。
 [登录接口调用获取OPS-Token](Member.md)
@@ -33,17 +35,17 @@ eventId在"获取集群日志信息"接口处找到所需事件的id
 <br>
 
 
-### 1 根据主机名模糊查询主机基本信息（主机名和主机ID）
+##  根据主机名模糊查询主机基本信息（主机名和主机ID）
 
 
 
-1.1 请求路径：
+### 请求路径：
 
 
 Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostId
 
 ---
-1.2 请求参数：
+### 请求参数：
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -58,7 +60,7 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostI
 
 ----
 
-1.3 返回结果
+### 返回结果
 
 
 |               |     Description    |           Schema              |  
@@ -103,15 +105,15 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostI
 
 <br>
 
-### 2.获取Agent的统计信息
+## 获取Agent的统计信息
 
 
-2.1 请求路径：
+### 请求路径：
 
 Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 
 ---
-2.2 请求：
+### 请求：
 
 
 
@@ -119,7 +121,7 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 
 ---
 
-2.3 返回结果:
+### 返回结果:
 
 
 |               |     Description    |           Schema              |  
@@ -160,17 +162,17 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 ---
 <br>
 
-### 3.获取所有主机信息
+## 获取所有主机信息
 
-    
 
-3.1 请求路径：
+
+a 请求路径：
 
 GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}}/{{pageSize}}
 
 ---
 
-3.2 请求参数：
+b 请求参数：
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -188,7 +190,7 @@ GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}
 
 ----
 
-3.3 返回结果
+c 返回结果
 
 
 |               |     Description    |           Schema              |  
@@ -273,10 +275,10 @@ GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}
 
 <br>
 
-### 4.获取所有主机count
+##  获取所有主机count
 
 
-4.1 请求路径：
+### 请求路径：
 
 
 GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
@@ -284,7 +286,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 ---
 
 
-4.2 请求参数：
+### 请求参数：
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -300,7 +302,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 
 ----
 
-4.3 返回结果
+### 返回结果
 
 
 |               |     Description    |           Schema              |  
@@ -325,15 +327,15 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 
 <br>
 
-### 5.获取某主机静态信息
+##  获取某主机静态信息
 
 
-5.1 请求路径：
+### 请求路径：
 
 GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 
 ---
-5.2 请求参数：
+### 请求参数：
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -347,7 +349,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 
 ----
 
-5.3 返回结果
+### 返回结果
 
 
 |               |     Description    |           Schema              |  
@@ -426,17 +428,17 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 <br>
 
 
-### 6.获取agent的监控信息
+##  获取agent的监控信息
 
 
 
-6.1 请求路径：
+### 请求路径：
 
 GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}}/{{type}}
 
 ---
 
-6.2 请求参数：
+### 请求参数：
     
     type类型：REAL_TIME，ONE_DAY，ONE_WEEK
 
@@ -542,7 +544,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}
 
 <br>
 
-### 7.获取agent的日志信息，结果分页展示
+## 7.获取agent的日志信息，结果分页展示
 
 
 
@@ -609,7 +611,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/logData/{{hostId}}/{{pageInde
 
 <br>
 
-### 8.获取agent的日志信息数量
+## 8.获取agent的日志信息数量
 
 
 
@@ -669,7 +671,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/logCount/{{hostId}}
 
 <br>
 
-### 9.操作agent的命令
+## 9.操作agent的命令
 
 
 
@@ -713,7 +715,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/operate/{{hostId}}/{{operateT
 <br>
 
 
-### 10.生成agentId
+## 10.生成agentId
 
 
 10.1 请求路径：
@@ -762,7 +764,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/generateAgentId
 <br>
 
 
-### 11.下载agentFile
+## 11.下载agentFile
 
 
 
@@ -800,7 +802,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/downAgentFile/{{agentId}}/age
 
 <br>
 
-### 12.获取agent执行命令记录
+## 12.获取agent执行命令记录
 
 12.1 请求路径：
 
@@ -869,7 +871,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataList/{{host
 
 <br>
 
-### 13.获取agent执行命令记录数
+## 13.获取agent执行命令记录数
 
 13.1 请求路径：
 
@@ -897,6 +899,8 @@ GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataCount/{{hos
 
 
 ![img_20.png](../Images/getExecCommandDataCount.png)
+
+
 ----
 
 13.3 返回结果
@@ -929,7 +933,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataCount/{{hos
 <br>
 
 
-###  14.获取主机cpu使用率前五
+##  14.获取主机cpu使用率前五
 
 
 14.1 请求路径：
@@ -992,7 +996,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
 
 <br>
 
-###  15.获取主机内存使用率前五
+##  15.获取主机内存使用率前五
 
 15.1 请求路径：
 
@@ -1055,7 +1059,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
 
 <br>
 
-### 16.获取主机磁盘使用率前五
+## 16.获取主机磁盘使用率前五
 
 
 16.1 请求路径：
@@ -1117,7 +1121,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
 
 <br>
 
-###  17.获取网卡输入使用率前五
+##  17.获取网卡输入使用率前五
 
 
 17.1 请求路径：
@@ -1192,7 +1196,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
 <br>
 
 
-###  18.获取网卡输出使用率前五
+##  18.获取网卡输出使用率前五
 
 18.1 请求路径：
 
