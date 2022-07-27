@@ -35,17 +35,17 @@ eventId在"获取集群日志信息"接口处找到所需事件的id
 <br>
 
 
-##  根据主机名模糊查询主机基本信息（主机名和主机ID）
+1  根据主机名模糊查询主机基本信息（主机名和主机ID）
 
 
 
-### 请求路径：
+1.1 请求路径：
 
 
 Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostId
 
 ---
-### 请求参数：
+1.2 请求参数：
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -60,7 +60,7 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostI
 
 ----
 
-### 返回结果
+1.3 返回结果
 
 
 |               |     Description    |           Schema              |  
@@ -105,15 +105,15 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostI
 
 <br>
 
-## 获取Agent的统计信息
+2 获取Agent的统计信息
 
 
-### 请求路径：
+2.1 请求路径：
 
 Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 
 ---
-### 请求：
+2.2 请求：
 
 
 
@@ -121,7 +121,7 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 
 ---
 
-### 返回结果:
+2.3 返回结果:
 
 
 |               |     Description    |           Schema              |  
@@ -162,17 +162,17 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 ---
 <br>
 
-## 获取所有主机信息
+3 获取所有主机信息
 
 
 
-a 请求路径：
+3.1 请求路径：
 
 GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}}/{{pageSize}}
 
 ---
 
-b 请求参数：
+3.2 请求参数：
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -190,7 +190,7 @@ b 请求参数：
 
 ----
 
-c 返回结果
+3.3 返回结果
 
 
 |               |     Description    |           Schema              |  
@@ -275,10 +275,10 @@ c 返回结果
 
 <br>
 
-##  获取所有主机count
+4  获取所有主机count
 
 
-### 请求路径：
+4.1 请求路径：
 
 
 GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
@@ -286,7 +286,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 ---
 
 
-### 请求参数：
+4.2 请求参数：
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -302,7 +302,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 
 ----
 
-### 返回结果
+4.3 返回结果
 
 
 |               |     Description    |           Schema              |  
@@ -327,15 +327,15 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 
 <br>
 
-##  获取某主机静态信息
+5  获取某主机静态信息
 
 
-### 请求路径：
+5.1 请求路径：
 
 GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 
 ---
-### 请求参数：
+5.2 请求参数：
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -349,7 +349,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 
 ----
 
-### 返回结果
+5.3 返回结果
 
 
 |               |     Description    |           Schema              |  
@@ -428,17 +428,17 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 <br>
 
 
-##  获取agent的监控信息
+6  获取agent的监控信息
 
 
 
-### 请求路径：
+6.1 请求路径：
 
 GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}}/{{type}}
 
 ---
 
-### 请求参数：
+6.2 请求参数：
     
     type类型：REAL_TIME，ONE_DAY，ONE_WEEK
 
