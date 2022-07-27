@@ -1,7 +1,7 @@
-## Find BottleNeckin Host
+## Find BottleNeck In Host
 
 ```
-Find BottleNeckin Host 可以通过以下操作完成：
+Find BottleNeck In Host 可以通过以下操作完成：
  - Check the monitor
  - CPU
  - RAM
