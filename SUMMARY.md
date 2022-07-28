@@ -1,43 +1,43 @@
 # Summary
 
 * [Introduction](README.md)
-* [Introduction](./00-Overview/01-Introduction.md)
-    * [Introduction](./00-Overview/01-Introduction.md)
+* Guide
+    * Overview
         * [Introduction](./00-Overview/01-Introduction.md)
         * [Comparison](./00-Overview/02-Comparison.md)
-    * [requirement](./01-Intstall/00-requirement.md)
+    * Install
         * [requirement](./01-Intstall/00-requirement.md)
         * [Installation](./01-Intstall/01-Installation.md)
-    * [AccountCenter](./02-Usage/Account/AccountCenter.md)
-        * [AccountCenter](./02-Usage/Account/AccountCenter.md)
+    * Usage
+        * Account
             * [AccountCenter](./02-Usage/Account/AccountCenter.md)
             * [Config](./02-Usage/Account/Config.md)
             * [Users](./02-Usage/Account/Users.md)
-        * [AddHost](./02-Usage/Host/AddHost.md)
+        * Host
             * [AddHost](./02-Usage/Host/AddHost.md)
             * [HostInfos](./02-Usage/Host/HostInfos.md)
             * [RemoveHost](./02-Usage/Host/RemoveHost.md)
-        * [CreateReplicaSet](./02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md)
-            * [CreateReplicaSet](./02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md)
+        * MongoDB
+            * CreateDeployment
                 * [CreateReplicaSet](./02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md)
                 * [CreateShardedCluster](./02-Usage/MongoDB/CreateDeployment/CreateShardedCluster.md)
                 * [CreateStandalone](./02-Usage/MongoDB/CreateDeployment/CreateStandalone.md)
-            * [ManageCluster](./02-Usage/MongoDB/ManageCluster.md)
-                * [ClusterLogs](./02-Usage/MongoDB/ManageCluster/ReplicaSet/ClusterLogs.md)
+            * ManageCluster
+                * ReplicaSet
                     * [ClusterLogs](./02-Usage/MongoDB/ManageCluster/ReplicaSet/ClusterLogs.md)
                     * [Data](./02-Usage/MongoDB/ManageCluster/ReplicaSet/Data.md)
                     * [EventLogs](./02-Usage/MongoDB/ManageCluster/ReplicaSet/EventLogs.md)
                     * [Info](./02-Usage/MongoDB/ManageCluster/ReplicaSet/Info.md)
                     * [Operation](./02-Usage/MongoDB/ManageCluster/ReplicaSet/Operation.md)
                     * [RoleAndUser](./02-Usage/MongoDB/ManageCluster/ReplicaSet/RoleAndUser.md)
-                * [ClusterLogs](./02-Usage/MongoDB/ManageCluster/Sharding/ClusterLogs.md)
+                * Sharding
                     * [ClusterLogs](./02-Usage/MongoDB/ManageCluster/Sharding/ClusterLogs.md)
                     * [Data](./02-Usage/MongoDB/ManageCluster/Sharding/Data.md)
                     * [EventLogs](./02-Usage/MongoDB/ManageCluster/Sharding/EventLogs.md)
                     * [Info](./02-Usage/MongoDB/ManageCluster/Sharding/Info.md)
                     * [Operation](./02-Usage/MongoDB/ManageCluster/Sharding/Operation.md)
                     * [RoleAndUser](./02-Usage/MongoDB/ManageCluster/Sharding/RoleAndUser.md)
-                * [ClusterLogs](./02-Usage/MongoDB/ManageCluster/Standalone/ClusterLogs.md)
+                * Standalone
                     * [ClusterLogs](./02-Usage/MongoDB/ManageCluster/Standalone/ClusterLogs.md)
                     * [Data](./02-Usage/MongoDB/ManageCluster/Standalone/Data.md)
                     * [EventLogs](./02-Usage/MongoDB/ManageCluster/Standalone/EventLogs.md)
@@ -45,25 +45,26 @@
                     * [Operation](./02-Usage/MongoDB/ManageCluster/Standalone/Operation.md)
                     * [RoleAndUser](./02-Usage/MongoDB/ManageCluster/Standalone/RoleAndUser.md)
             * [UploadMongoTar](./02-Usage/MongoDB/UploadMongoTar.md)
+            * [ManageCluster](./02-Usage/MongoDB/ManageCluster.md)
             * [ExistingMongoDBDeployment](./02-Usage/MongoDB/ExistingMongoDBDeployment.md)
-    * [HowToCreateReplicaSet](./03-UseCases/HowToCreateReplicaSet.md)
+    * UseCases
         * [HowToCreateReplicaSet](./03-UseCases/HowToCreateReplicaSet.md)
         * [HowToCreateShardedCluster](./03-UseCases/HowToCreateShardedCluster.md)
         * [HowToCreateStandalone](./03-UseCases/HowToCreateStandalone.md)
         * [HowToFindBottleNeckinHost](./03-UseCases/HowToFindBottleNeckinHost.md)
         * [HowToFindBottleNeckinMongoDB](./03-UseCases/HowToFindBottleNeckinMongoDB.md)
-    * [AddHostFailed.md](./04-Troubleshooting/AddHostFaild.md)
+    * Troubleshooting
         * [AddHostFailed.md](./04-Troubleshooting/AddHostFaild.md)
         * [LoginFailed.md](./04-Troubleshooting/LoginFaild.md)
         * [MongoFailed.md](./04-Troubleshooting/MongoFaild.md)
     * ReleaseNotes
         * [releaseNote-1.0.0.md](./05-ReleaseNotes/releaseNote-1.0.0.md)
-    * [ForOpsManagerUser.md](./06-FAQ/ForOpsManagerUser.md)
+    * FAQ
         * [ForOpsManagerUser.md](./06-FAQ/ForOpsManagerUser.md)
         * [ForPMMUser.md](./06-FAQ/ForPMMUser.md)
         * [ForZabbixUser.md](./06-FAQ/ForZabbixUser.md)
         * [QA.md](./06-FAQ/QA.md)
-    * [Agent.md](./07-APIReference/Agent.md)
+    * APIReference
         * [Agent.md](./07-APIReference/Agent.md)
         * [Alert.md](./07-APIReference/Alert.md)
         * [Collection.md](./07-APIReference/Collection.md)
