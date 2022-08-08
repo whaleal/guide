@@ -1690,7 +1690,10 @@ clusterId&#x5728;&#x201C;&#x67E5;&#x627E;mongoDB&#x96C6;&#x7FA4;&#x4FE1;&#x606F;
 <p>GET <a href="http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/monitor/data//" target="_blank">http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/monitor/data//</a></p>
 <hr>
 <p>7.2 &#x8BF7;&#x6C42;&#x53C2;&#x6570;&#xFF1A;</p>
-<table>
+<pre><code>timeType&#xFF1A;REAL_TIME&#xFF0C;ONE_DAY&#xFF0C;ONE_WEEK
+dataType:qps&#xFF0C;conn&#xFF0C;pageFaults&#xFF0C;memory&#xFF0C;net&#xFF0C;anAssert&#xFF0C;cacheFlow&#xFF0C;cacheUsage&#xFF0C;latency&#xFF0C;tickets&#xFF0C;targetQ&#xFF0C;scanAndOrder&#xFF0C;collectionScan
+    documentOp&#xFF0C;lockCondition&#xFF0C;databaseLock&#xFF0C;collectionLock&#xFF0C;transactionCondition&#xFF0C;deletedDocument
+</code></pre><table>
 <thead>
 <tr>
 <th>Name</th>
@@ -1709,9 +1712,9 @@ clusterId&#x5728;&#x201C;&#x67E5;&#x627E;mongoDB&#x96C6;&#x7FA4;&#x4FE1;&#x606F;
 <td>String</td>
 </tr>
 <tr>
-<td>type</td>
+<td>timeType</td>
 <td>Path</td>
-<td>&#x67E5;&#x8BE2;&#x7C7B;&#x578B;</td>
+<td>&#x67E5;&#x8BE2;&#x65F6;&#x95F4;&#x7C7B;&#x578B;</td>
 <td>Yes</td>
 <td>String</td>
 </tr>
@@ -1733,6 +1736,13 @@ clusterId&#x5728;&#x201C;&#x67E5;&#x627E;mongoDB&#x96C6;&#x7FA4;&#x4FE1;&#x606F;
 <td>endTimeForTimeInterval</td>
 <td>Params</td>
 <td>&#x7ED3;&#x675F;&#x65F6;&#x95F4;&#x95F4;&#x9694;</td>
+<td>Yes</td>
+<td>long</td>
+</tr>
+<tr>
+<td>dataType</td>
+<td>Params</td>
+<td>&#x6570;&#x636E;&#x7C7B;&#x578B;</td>
 <td>Yes</td>
 <td>long</td>
 </tr>
@@ -1767,28 +1777,82 @@ clusterId&#x5728;&#x201C;&#x67E5;&#x627E;mongoDB&#x96C6;&#x7FA4;&#x4FE1;&#x606F;
 <pre><code> {
     &quot;code&quot;: 1000,
     &quot;data&quot;: {
-        &quot;createTimeList&quot;: [],
-        &quot;size&quot;: 0,
-        &quot;metrics&quot;: [
-            {
-                &quot;qps&quot;: {
-                    &quot;query&quot;: [],
-                    &quot;getMore&quot;: [],
-                    &quot;insert&quot;: [],
-                    &quot;update&quot;: [],
-                    &quot;message&quot;: {
-                        &quot;insert&quot;: &quot;The average rate of inserts performed per second over the selected sample period&quot;,
-                        &quot;delete&quot;: &quot;The average rate of deletes performed per second over the selected sample period&quot;,
-                        &quot;update&quot;: &quot;The average rate of updates performed per second over the selected sample period&quot;,
-                        &quot;query&quot;: &quot;The average rate of queries performed per second over the selected sample period&quot;,
-                        &quot;command&quot;: &quot;The average rate of commands performed per second over the selected sample period&quot;,
-                    },
-                    &quot;delete&quot;: [],
-                    &quot;command&quot;: []
-                }
-            }
-            ...
+        &quot;delete&quot;: [
+            0.0,
+            0.0,
+            0.0
+        ],
+        &quot;insert&quot;: [
+            8.0,
+            15.0,
+            2.0
+        ],
+        &quot;query&quot;: [
+            0.0,
+            0.0,
+            0.0
+        ],
+        &quot;cmd&quot;: [
+            6.0,
+            5.0,
+            3.0
+        ],
+        &quot;getMore&quot;: [
+            1.0,
+            2.0,
+            2.0
+        ],
+        &quot;update&quot;: [
+            0.0,
+            0.0,
+            0.0
         ]
+    },
+    &quot;createTime&quot;: [
+        1659511920000,
+        1659511980000,
+        1659512040000
+    ],
+    &quot;name&quot;: &quot;qps&quot;,
+    &quot;message&quot;: {
+        &quot;insert&quot;: &quot;The average rate of inserts performed per second over the selected sample period&quot;,
+        &quot;delete&quot;: &quot;The average rate of deletes performed per second over the selected sample period&quot;,
+        &quot;update&quot;: &quot;The average rate of updates performed per second over the selected sample period&quot;,
+        &quot;query&quot;: &quot;The average rate of queries performed per second over the selected sample period&quot;,
+        &quot;command&quot;: &quot;The average rate of commands performed per second over the selected sample period&quot;,
+        &quot;getMore&quot;: &quot;The average rate of getMores performed per second on any cursor over the selected sample period. On a primary, this number can be high even if the query count is low as the secondaries \&quot;getMore\&quot; from the primary often as part of replication.&quot;
+    },
+    &quot;info&quot;: {
+        &quot;delete&quot;: {
+            &quot;max&quot;: 10,
+            &quot;min&quot;: 0,
+            &quot;avg&quot;: &quot;0.35&quot;
+        },
+        &quot;insert&quot;: {
+            &quot;max&quot;: 32,
+            &quot;min&quot;: 0,
+            &quot;avg&quot;: &quot;8.75&quot;
+        },
+        &quot;query&quot;: {
+            &quot;max&quot;: 0,
+            &quot;min&quot;: 0,
+            &quot;avg&quot;: &quot;0.01&quot;
+        },
+        &quot;cmd&quot;: {
+            &quot;max&quot;: 10,
+            &quot;min&quot;: 1,
+            &quot;avg&quot;: &quot;4.42&quot;
+        },
+        &quot;getMore&quot;: {
+            &quot;max&quot;: 2,
+            &quot;min&quot;: 0,
+            &quot;avg&quot;: &quot;0.93&quot;
+        },
+        &quot;update&quot;: {
+            &quot;max&quot;: 0,
+            &quot;min&quot;: 0,
+            &quot;avg&quot;: &quot;0.05&quot;
+        }
     }
 }
 </code></pre><hr>
@@ -3254,6 +3318,416 @@ clusterId&#x5728;&#x201C;&#x67E5;&#x627E;mongoDB&#x96C6;&#x7FA4;&#x4FE1;&#x606F;
     ]
 }
 </code></pre><p><br></p>
+<h3 id="26-&#x83B7;&#x53D6;mongodb&#x96C6;&#x5408;">26 &#x83B7;&#x53D6;mongodb&#x96C6;&#x5408;</h3>
+<p>26.1 &#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#xFF1A;</p>
+<p>GET <a href="http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/getMongoDBCollections//" target="_blank">http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/getMongoDBCollections//</a></p>
+<hr>
+<p>26.2 &#x8BF7;&#x6C42;&#x53C2;&#x6570;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clusterId</td>
+<td>Path</td>
+<td>&#x96C6;&#x7FA4;id</td>
+<td>Yes</td>
+<td>String</td>
+</tr>
+<tr>
+<td>eventId</td>
+<td>Path</td>
+<td>&#x4E8B;&#x4EF6;id</td>
+<td>Yes</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../Images/getMongoDBCollections.png" alt="img.png"></p>
+<hr>
+<p>26.3 &#x8FD4;&#x56DE;&#x7ED3;&#x679C;</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>&#x72B6;&#x6001;&#x7B26;:1000&#x6210;&#x529F;,&#x5176;&#x4F59;&#x5F02;&#x5E38;</td>
+<td>int</td>
+</tr>
+<tr>
+<td>data</td>
+<td>&#x8FD4;&#x56DE;&#x6570;&#x636E;</td>
+<td>List</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<pre><code>{
+    &quot;code&quot;: 1000,
+    &quot;data&quot;: [
+        {
+            &quot;name&quot;: &quot;test&quot;,
+            &quot;sub&quot;: [
+                {
+                    &quot;name&quot;: &quot;a&quot;,
+                    &quot;type&quot;: &quot;collection&quot;,
+                    &quot;options&quot;: {},
+                    &quot;info&quot;: {
+                        &quot;readOnly&quot;: false,
+                        &quot;uuid&quot;: {
+                            &quot;type&quot;: 4,
+                            &quot;data&quot;: &quot;g6tXU8InRwCFt85bofFJHQ==&quot;
+                        }
+                    },
+                    &quot;idIndex&quot;: {
+                        &quot;v&quot;: 2,
+                        &quot;key&quot;: {
+                            &quot;_id&quot;: 1
+                        },
+                        &quot;name&quot;: &quot;_id_&quot;,
+                        &quot;ns&quot;: &quot;test.a&quot;
+                    },
+                    &quot;storageSize&quot;: 1444,
+                    &quot;size&quot;: 3222,
+                    &quot;ns&quot;: &quot;test.a&quot;
+                }
+            ]
+        }
+    ]
+}
+</code></pre><p><br></p>
+<h3 id="27-&#x67E5;&#x8BE2;&#x96C6;&#x7FA4;&#x5E93;&#x6570;&#x636E;">27 &#x67E5;&#x8BE2;&#x96C6;&#x7FA4;&#x5E93;&#x6570;&#x636E;</h3>
+<p>27.1 &#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#xFF1A;</p>
+<p>POST <a href="http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/queryClusterDbData//" target="_blank">http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/queryClusterDbData//</a></p>
+<hr>
+<p>27.2 &#x8BF7;&#x6C42;&#x53C2;&#x6570;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clusterId</td>
+<td>Path</td>
+<td>&#x96C6;&#x7FA4;id</td>
+<td>Yes</td>
+<td>String</td>
+</tr>
+<tr>
+<td>eventId</td>
+<td>Path</td>
+<td>&#x4E8B;&#x4EF6;id</td>
+<td>Yes</td>
+<td>String</td>
+</tr>
+<tr>
+<td>map</td>
+<td>Body</td>
+<td>&#x67E5;&#x8BE2;&#x6761;&#x4EF6;</td>
+<td>Yes</td>
+<td>Map</td>
+</tr>
+</tbody>
+</table>
+<pre><code>Ex. &#x67E5;&#x8BE2;&#x96C6;&#x7FA4;&#x5E93;&#x6570;&#x636E;;&#x5176;&#x4E2D; Map &#x5982;&#x4E0B;&#x6240;&#x793A;:
+{
+    &quot;ns&quot;: &quot;test.a&quot;,
+    &quot;query&quot;: &quot;{}&quot;,
+    &quot;pageSize&quot;: 10,
+    &quot;pageIndex&quot;: 1
+}
+</code></pre><p><img src="../Images/queryClusterDbData.png" alt="img_1.png"></p>
+<hr>
+<p>27.3 &#x8FD4;&#x56DE;&#x7ED3;&#x679C;</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>&#x72B6;&#x6001;&#x7B26;:1000&#x6210;&#x529F;,&#x5176;&#x4F59;&#x5F02;&#x5E38;</td>
+<td>int</td>
+</tr>
+<tr>
+<td>data</td>
+<td>&#x8FD4;&#x56DE;&#x6570;&#x636E;</td>
+<td>List</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<pre><code>{
+    &quot;code&quot;: 1000,
+    &quot;data&quot;: [
+        {
+            &quot;_id&quot;: {
+                &quot;date&quot;: 1659684764000,
+                &quot;timestamp&quot;: 1659684764
+            },
+            &quot;a&quot;: 1.0
+        },
+        {
+            &quot;_id&quot;: {
+                &quot;date&quot;: 1659684764000,
+                &quot;timestamp&quot;: 1659684764
+            },
+            &quot;a&quot;: 2.0
+        },
+        {
+            &quot;_id&quot;: {
+                &quot;date&quot;: 1659684764000,
+                &quot;timestamp&quot;: 1659684764
+            },
+            &quot;a&quot;: 3.0
+        }
+    ]
+}
+</code></pre><p><br></p>
+<h3 id="28-&#x521B;&#x5EFA;&#x7D22;&#x5F15;">28 &#x521B;&#x5EFA;&#x7D22;&#x5F15;</h3>
+<p>28.1 &#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#xFF1A;</p>
+<p>POST <a href="http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/createIndex//" target="_blank">http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/createIndex//</a></p>
+<hr>
+<p>28.2 &#x8BF7;&#x6C42;&#x53C2;&#x6570;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clusterId</td>
+<td>Path</td>
+<td>&#x96C6;&#x7FA4;id</td>
+<td>Yes</td>
+<td>String</td>
+</tr>
+<tr>
+<td>eventId</td>
+<td>Path</td>
+<td>&#x4E8B;&#x4EF6;id</td>
+<td>Yes</td>
+<td>String</td>
+</tr>
+<tr>
+<td>map</td>
+<td>Body</td>
+<td>&#x7D22;&#x5F15;&#x914D;&#x7F6E;</td>
+<td>Yes</td>
+<td>Map</td>
+</tr>
+</tbody>
+</table>
+<pre><code>Ex. &#x521B;&#x5EFA;&#x7D22;&#x5F15;;&#x5176;&#x4E2D; Map &#x5982;&#x4E0B;&#x6240;&#x793A;:
+{
+    &quot;indexName&quot;: &quot;chen&quot;,
+    &quot;ns&quot;: &quot;&quot;,
+    &quot;index&quot;: &quot;{}a:1&quot;,                     //&#x524D;&#x4E09;&#x9879;&#x914D;&#x7F6E;&#x5373;&#x53EF;&#x6DFB;&#x52A0;&#xFF0C;&#x5176;&#x4F59;&#x4E3A;&#x9009;&#x9879;&#x5185;&#x5BB9;
+    &quot;buildIndexInTheBackground&quot;: false,
+    &quot;createUniqueIndex&quot;: false,
+    &quot;createTTL&quot;: &quot;&quot;,
+    &quot;partialFilterExpression&quot;: &quot;&quot;,
+    &quot;wildcardProjection&quot;: &quot;&quot;,
+    &quot;useCustomCollationLocale&quot;: &quot;&quot;,
+    &quot;useCustomCollationStrength&quot;: &quot;&quot;,
+    &quot;useCustomCollationCaseLevel&quot;: &quot;&quot;,
+    &quot;useCustomCollationCaseFirst&quot;: &quot;&quot;,
+    &quot;useCustomCollationNumericOrdering&quot;: &quot;&quot;,
+    &quot;useCustomCollationAlternate&quot;: &quot;&quot;,
+    &quot;useCustomCollationMaxVariable&quot;: &quot;&quot;,
+    &quot;useCustomCollationBackwards&quot;: &quot;&quot;,
+    &quot;useCustomCollationNormalization&quot;: &quot;&quot;
+}
+</code></pre><p><img src="../Images/createIndex.png" alt="img_5.png"></p>
+<hr>
+<p>28.3 &#x8FD4;&#x56DE;&#x7ED3;&#x679C;</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>&#x72B6;&#x6001;&#x7B26;:1000&#x6210;&#x529F;,&#x5176;&#x4F59;&#x5F02;&#x5E38;</td>
+<td>int</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><img src="../Images/createIndex_r.png" alt="img_6.png"></p>
+<p><br></p>
+<h3 id="29-&#x8BCA;&#x65AD;&#x6570;&#x636E;">29 &#x8BCA;&#x65AD;&#x6570;&#x636E;</h3>
+<p>29.1 &#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#xFF1A;</p>
+<p>GET <a href="http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/mdiagData///" target="_blank">http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/mdiagData///</a></p>
+<hr>
+<p>29.2 &#x8BF7;&#x6C42;&#x53C2;&#x6570;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clusterId</td>
+<td>Path</td>
+<td>&#x96C6;&#x7FA4;id</td>
+<td>Yes</td>
+<td>String</td>
+</tr>
+<tr>
+<td>pageIndex</td>
+<td>Path</td>
+<td>&#x7B2C;&#x51E0;&#x9875;</td>
+<td>Yes</td>
+<td>int</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>Path</td>
+<td>&#x6BCF;&#x9875;&#x5927;&#x5C0F;</td>
+<td>Yes</td>
+<td>int</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><img src="../Images/mdiagData.png" alt="img_7.png"></p>
+<hr>
+<p>29.3 &#x8FD4;&#x56DE;&#x7ED3;&#x679C;</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>&#x72B6;&#x6001;&#x7B26;:1000&#x6210;&#x529F;,&#x5176;&#x4F59;&#x5F02;&#x5E38;</td>
+<td>int</td>
+</tr>
+<tr>
+<td>data</td>
+<td>&#x8FD4;&#x56DE;&#x6570;&#x636E;</td>
+<td>List</td>
+</tr>
+</tbody>
+</table>
+<pre><code>
+{
+    &quot;code&quot;: 1000,
+    &quot;data&quot;: [
+        {
+            &quot;_id&quot;: &quot;62ecf7a2a3a6e138ea1f00b0&quot;,
+            &quot;filename&quot;: &quot;mdiag_server100_1659696513419.gz&quot;,
+            &quot;length&quot;: 1733449,
+            &quot;chunkSize&quot;: 261120,
+            &quot;uploadDate&quot;: &quot;2022-08-05T10:57:38.925+00:00&quot;,
+            &quot;metadata&quot;: {
+                &quot;clusterId&quot;: &quot;62ece46bdce25353bdcf32a4&quot;,
+                &quot;createTime&quot;: 1659697058890
+            },
+            &quot;id&quot;: &quot;62ecf7a2a3a6e138ea1f00b0&quot;
+        }
+    ]
+}
+</code></pre><p><br></p>
+<h3 id="30-&#x83B7;&#x53D6;&#x8BCA;&#x65AD;&#x6570;">30 &#x83B7;&#x53D6;&#x8BCA;&#x65AD;&#x6570;</h3>
+<p>30.1 &#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#xFF1A;</p>
+<p>GET <a href="http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/mdiagCount/" target="_blank">http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/mdiagCount/</a></p>
+<hr>
+<p>30.2 &#x8BF7;&#x6C42;&#x53C2;&#x6570;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clusterId</td>
+<td>Path</td>
+<td>&#x96C6;&#x7FA4;id</td>
+<td>Yes</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../Images/mdiagCount.png" alt="img_8.png"></p>
+<hr>
+<p>30.3 &#x8FD4;&#x56DE;&#x7ED3;&#x679C;</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>&#x72B6;&#x6001;&#x7B26;:1000&#x6210;&#x529F;,&#x5176;&#x4F59;&#x5F02;&#x5E38;</td>
+<td>int</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>&#x8FD4;&#x56DE;&#x6570;&#x636E;</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><img src="../Images/mdiagCount_r.png" alt="img_9.png"></p>
+<p><br></p>
 
                                 
                                 </section>
@@ -3297,7 +3771,7 @@ clusterId&#x5728;&#x201C;&#x67E5;&#x627E;mongoDB&#x96C6;&#x7FA4;&#x4FE1;&#x606F;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"DBData","level":"1.2.8.4","depth":3,"next":{"title":"ErrorCodes","level":"1.2.8.5","depth":3,"path":"07-APIReference/ErrorCodes.md","ref":"./07-APIReference/ErrorCodes.md","articles":[]},"previous":{"title":"Collection","level":"1.2.8.3","depth":3,"path":"07-APIReference/Collection.md","ref":"./07-APIReference/Collection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"07-APIReference/DBData.md","mtime":"2022-07-28T06:20:25.993Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-29T02:03:44.587Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"DBData","level":"1.2.8.4","depth":3,"next":{"title":"ErrorCodes","level":"1.2.8.5","depth":3,"path":"07-APIReference/ErrorCodes.md","ref":"./07-APIReference/ErrorCodes.md","articles":[]},"previous":{"title":"Collection","level":"1.2.8.3","depth":3,"path":"07-APIReference/Collection.md","ref":"./07-APIReference/Collection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"07-APIReference/DBData.md","mtime":"2022-08-08T09:44:09.290Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-08-08T09:47:04.209Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

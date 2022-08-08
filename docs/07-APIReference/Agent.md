@@ -434,13 +434,14 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 
 6.1 请求路径：
 
-GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}}/{{type}}
+GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/{{hostId}}/{{type}}
 
 ---
 
 6.2 请求参数：
     
     type类型：REAL_TIME，ONE_DAY，ONE_WEEK
+    dataType：netInAndOut，memory，diskInAndOut，cpu
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -449,6 +450,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}
 | startTimeForTimeInterval         |         Params           |      某时间段的开始时间            |        Yes       |long        |
 | endTimeForTimeInterval         |         Params           |            某时间段的结束时间    |        Yes       |long        |
 | timeGranularity         |         Params           |            时间粒度            |        Yes       |long        |
+| dataType         |         Params           |            数据类型            |        Yes       |String        |
 
 <br>
 
@@ -472,70 +474,50 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}
 {
     "code": 1000,
     "data": {
-        "内存/GB": {
-            "cache": [
-                93.48
-            ]
-            "message": {
-                "free": "空闲内存 单位GB",
-                "used": "已使用内存 单位GB",
-                "cache": "缓存内存 单位GB",
-                "ava": "可用内存 单位GB"
-            },
-            "ava": [
-                109.24
-            ]
-        },
-        "cpu/%": {
-            "sy": [
-                0.43
-            ],
-            "message": {
-                "id": "cpu空闲率 单位百分比%",
-                "us": "cpu用户使用率 单位百分比%",
-                "sy": "cpu系统使用率 单位百分比%"
-            },
-            "us": [
-                0.49
-            ]
-        },
-        "net/KB": {
-            "data": {
-                "lo": {
-                    "in": [
-                        3479.26
-                    ],
-                    "name": "lo",
-                    "out": [
-                        3479.26
-                    ]
-                }
-            },
-            "name": "net",
-            "message": {
-                "in": "流入流量 单位KB/S",
-                "out": "流出流量 单位KB/S"
-            }
-        },
-        "diskIO/KB": {
-                "dm-0": {
-                    "util": [
-                        0.25
-                    ]
-                }
-            },
-            "name": "diskIO",
-            "message": {
-                "util": "使用率 单位百分比",
-                "rkB": "读 单位KB/S",
-                "wkB": "写 单位KB/S"
-            }
-        }
+        "us": [
+            2.51,
+            2.29,
+            2.72,
+        ],
+        "sy": [
+            0.89,
+            0.84,
+            1.89,
+        ],
+        "id": [
+            96.57,
+            96.83,
+            94.97,
+        ]
     },
-    "size": 1,
     "createTime": [
-        1658275200000
-    ]
+        1659512400000,
+        1659512460000,
+        1659512520000
+    ],
+    "name": "cpu",
+    "message": {
+        "id": "cpu空闲率 单位百分比%",
+        "us": "cpu用户使用率 单位百分比%",
+        "sy": "cpu系统使用率 单位百分比%"
+    },
+    "info": {
+        "id": {
+            "max": "96.83",
+            "min": "86.81",
+            "avg": "94.29"
+        },
+        "us": {
+            "max": "9.58",
+            "min": "1.72",
+            "avg": "3.00"
+        },
+        "sy": {
+            "max": "3.25",
+            "min": "0.84",
+            "avg": "2.08"
+        }
+    }
 }
 
 ~~~
@@ -688,7 +670,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/operate/{{hostId}}/{{operateT
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostId          |         Path           |            主机id            |        Yes       |String        |
-| operateType          |         Path           |   操作类别:mongo,host      |        Yes       |String        |
+| operateType          |         Path           |   操作类别:delete,updateAgentInfo      |        Yes       |String        |
 
 <br>
 

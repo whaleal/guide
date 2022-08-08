@@ -161,6 +161,138 @@ GET http://{Server-Host}:{端口}/api/server/file/getAllMongoFile
 
 ---
 
+<br>
+
+###  4 agent可以下载server端的文件
+
+
+
+4.1 请求路径：
+
+GET http://{Server-Host}:{端口}/api/server/file/agent/download/{{filename}}
+
+---
+
+4.2 请求参数：
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| filename          |         Path           |            文件名称            |        Yes       |String        |
+| agentId          |         Header           |            agentId         |        Yes       |String        |
+
+
+<br>
+
+![img_10.png](../Images/agentDownload.png)
+
+
+
+----
+
+4.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| response.gz        |   返回文件 |         File              |    
+
+<br>
+
+
+![img_11.png](../Images/agentDownload_r.png)
+
+---
+
+
+<br>
+
+
+###  5 更新server端的文件信息
+
+
+
+5.1 请求路径：
+
+GET http://{Server-Host}:{端口}/api/server/file/agent/updateAllMongoFileToAgent
+
+---
+
+5.2 请求：
+
+
+<br>
+
+
+![img_12.png](../Images/updateAllMongoFileToAgent.png)
+
+
+----
+
+5.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| msg       |         返回消息         |            String            |        
+
+<br>
+
+
+![img_13.png](../Images/updateAllMongoFileToAgent_r.png)
+
+---
+
+
+<br>
+
+
+
+###  6 下载巡检日志
+
+
+
+6.1 请求路径：
+
+GET http://{Server-Host}:{端口}/api/server/file/download/mdiag/{{clusterId}}/{{fileID}}/{{filename}}
+
+---
+
+6.2 请求参数：
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String        |
+| fileID          |         Path           |            文件id            |        Yes       |String        |
+| filename          |         Path           |            文件名称            |        Yes       |String        |
+| OPS-Token          |         Params           |            token            |        Yes       |String        |
+
+
+<br>
+
+
+![img_14.png](../Images/mdiagDownload.png)
+
+
+----
+
+6.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| mdiag       |   返回文件下载 |        File            |    
+
+<br>
+
+
+
+
+
+<br>
+
 
 
 

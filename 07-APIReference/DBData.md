@@ -391,20 +391,24 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/slowest/instance/top/
             
 7.1 请求路径：
 
-GET http://{Server-Host}:{端口}/api/server/mongo/monitor/data/{{nodeId}}/{{type}}
+GET http://{Server-Host}:{端口}/api/server/mongo/monitor/data/{{nodeId}}/{{timeType}}
 
 ---
 
 7.2 请求参数：
 
+    timeType：REAL_TIME，ONE_DAY，ONE_WEEK
+    dataType:qps，conn，pageFaults，memory，net，anAssert，cacheFlow，cacheUsage，latency，tickets，targetQ，scanAndOrder，collectionScan
+	    documentOp，lockCondition，databaseLock，collectionLock，transactionCondition，deletedDocument
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | nodeId          |         Path           |            节点id            |        Yes       |String
-| type          |         Path           |            查询类型            |        Yes       |String
+| timeType          |         Path           |            查询时间类型            |        Yes       |String
 | timeGranularity          |         Params           |            时间粒度            |        Yes       |long
 | startTimeForTimeInterval          |         Params           |            开始时间间隔            |        Yes       |long
 | endTimeForTimeInterval          |         Params           |            结束时间间隔            |        Yes       |long
+| dataType          |         Params           |            数据类型            |        Yes       |long
 
 <br>
 
@@ -430,28 +434,82 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/data/{{nodeId}}/{{typ
  {
     "code": 1000,
     "data": {
-        "createTimeList": [],
-        "size": 0,
-        "metrics": [
-            {
-                "qps": {
-                    "query": [],
-                    "getMore": [],
-                    "insert": [],
-                    "update": [],
-                    "message": {
-                        "insert": "The average rate of inserts performed per second over the selected sample period",
-                        "delete": "The average rate of deletes performed per second over the selected sample period",
-                        "update": "The average rate of updates performed per second over the selected sample period",
-                        "query": "The average rate of queries performed per second over the selected sample period",
-                        "command": "The average rate of commands performed per second over the selected sample period",
-                    },
-                    "delete": [],
-                    "command": []
-                }
-            }
-            ...
+        "delete": [
+            0.0,
+            0.0,
+            0.0
+        ],
+        "insert": [
+            8.0,
+            15.0,
+            2.0
+        ],
+        "query": [
+            0.0,
+            0.0,
+            0.0
+        ],
+        "cmd": [
+            6.0,
+            5.0,
+            3.0
+        ],
+        "getMore": [
+            1.0,
+            2.0,
+            2.0
+        ],
+        "update": [
+            0.0,
+            0.0,
+            0.0
         ]
+    },
+    "createTime": [
+        1659511920000,
+        1659511980000,
+        1659512040000
+    ],
+    "name": "qps",
+    "message": {
+        "insert": "The average rate of inserts performed per second over the selected sample period",
+        "delete": "The average rate of deletes performed per second over the selected sample period",
+        "update": "The average rate of updates performed per second over the selected sample period",
+        "query": "The average rate of queries performed per second over the selected sample period",
+        "command": "The average rate of commands performed per second over the selected sample period",
+        "getMore": "The average rate of getMores performed per second on any cursor over the selected sample period. On a primary, this number can be high even if the query count is low as the secondaries \"getMore\" from the primary often as part of replication."
+    },
+    "info": {
+        "delete": {
+            "max": 10,
+            "min": 0,
+            "avg": "0.35"
+        },
+        "insert": {
+            "max": 32,
+            "min": 0,
+            "avg": "8.75"
+        },
+        "query": {
+            "max": 0,
+            "min": 0,
+            "avg": "0.01"
+        },
+        "cmd": {
+            "max": 10,
+            "min": 1,
+            "avg": "4.42"
+        },
+        "getMore": {
+            "max": 2,
+            "min": 0,
+            "avg": "0.93"
+        },
+        "update": {
+            "max": 0,
+            "min": 0,
+            "avg": "0.05"
+        }
     }
 }
 ~~~
@@ -1537,6 +1595,328 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBProcessArgument
     ]
 }
 ~~~
+
+<br>
+
+
+
+###  26 获取mongodb集合
+
+
+26.1 请求路径：
+
+GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBCollections/{{clusterId}}/{{eventId}}
+
+---
+
+26.2 请求参数：
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| eventId          |         Path           |            事件id            |        Yes       |String
+
+![img.png](../Images/getMongoDBCollections.png)
+
+----
+
+26.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数据         |         List               |        
+
+
+<br>
+
+
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "name": "test",
+            "sub": [
+                {
+                    "name": "a",
+                    "type": "collection",
+                    "options": {},
+                    "info": {
+                        "readOnly": false,
+                        "uuid": {
+                            "type": 4,
+                            "data": "g6tXU8InRwCFt85bofFJHQ=="
+                        }
+                    },
+                    "idIndex": {
+                        "v": 2,
+                        "key": {
+                            "_id": 1
+                        },
+                        "name": "_id_",
+                        "ns": "test.a"
+                    },
+                    "storageSize": 1444,
+                    "size": 3222,
+                    "ns": "test.a"
+                }
+            ]
+        }
+    ]
+}
+~~~
+
+<br>
+
+
+
+###  27 查询集群库数据
+
+
+27.1 请求路径：
+
+POST http://{Server-Host}:{端口}/api/server/mongo/queryClusterDbData/{{clusterId}}/{{eventId}}
+
+---
+
+27.2 请求参数：
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| eventId          |         Path           |            事件id            |        Yes       |String
+| map          |         Body           |            查询条件              |        Yes       |Map
+
+~~~
+Ex. 查询集群库数据;其中 Map 如下所示:
+{
+    "ns": "test.a",
+    "query": "{}",
+    "pageSize": 10,
+    "pageIndex": 1
+}
+~~~
+
+
+![img_1.png](../Images/queryClusterDbData.png)
+
+----
+
+27.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数据         |         List               |        
+
+
+<br>
+
+
+
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "_id": {
+                "date": 1659684764000,
+                "timestamp": 1659684764
+            },
+            "a": 1.0
+        },
+        {
+            "_id": {
+                "date": 1659684764000,
+                "timestamp": 1659684764
+            },
+            "a": 2.0
+        },
+        {
+            "_id": {
+                "date": 1659684764000,
+                "timestamp": 1659684764
+            },
+            "a": 3.0
+        }
+    ]
+}
+~~~
+
+<br>
+
+
+
+###  28 创建索引
+
+
+28.1 请求路径：
+
+POST http://{Server-Host}:{端口}/api/server/mongo/createIndex/{{clusterId}}/{{eventId}}
+
+---
+
+28.2 请求参数：
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| eventId          |         Path           |            事件id            |        Yes       |String
+| map          |         Body           |            索引配置            |        Yes       |Map
+
+
+~~~
+Ex. 创建索引;其中 Map 如下所示:
+{
+    "indexName": "chen",
+    "ns": "",
+    "index": "{}a:1",                     //前三项配置即可添加，其余为选项内容
+    "buildIndexInTheBackground": false,
+    "createUniqueIndex": false,
+    "createTTL": "",
+    "partialFilterExpression": "",
+    "wildcardProjection": "",
+    "useCustomCollationLocale": "",
+    "useCustomCollationStrength": "",
+    "useCustomCollationCaseLevel": "",
+    "useCustomCollationCaseFirst": "",
+    "useCustomCollationNumericOrdering": "",
+    "useCustomCollationAlternate": "",
+    "useCustomCollationMaxVariable": "",
+    "useCustomCollationBackwards": "",
+    "useCustomCollationNormalization": ""
+}
+~~~
+
+
+
+![img_5.png](../Images/createIndex.png)
+
+----
+
+28.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| msg       |         返回信息        |         String               |        
+
+
+<br>
+
+
+![img_6.png](../Images/createIndex_r.png)
+
+<br>
+
+
+###  29 诊断数据
+
+
+29.1 请求路径：
+
+GET http://{Server-Host}:{端口}/api/server/mongo/mdiagData/{{clusterId}}/{{pageIndex}}/{{pageSize}}
+
+---
+
+29.2 请求参数：
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| pageIndex          |         Path           |            第几页            |        Yes       |int
+| pageSize          |         Path           |            每页大小            |        Yes       |int
+
+
+<br>
+
+
+![img_7.png](../Images/mdiagData.png)
+
+
+
+----
+
+29.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数据         |         List               |        
+
+
+~~~
+
+{
+    "code": 1000,
+    "data": [
+        {
+            "_id": "62ecf7a2a3a6e138ea1f00b0",
+            "filename": "mdiag_server100_1659696513419.gz",
+            "length": 1733449,
+            "chunkSize": 261120,
+            "uploadDate": "2022-08-05T10:57:38.925+00:00",
+            "metadata": {
+                "clusterId": "62ece46bdce25353bdcf32a4",
+                "createTime": 1659697058890
+            },
+            "id": "62ecf7a2a3a6e138ea1f00b0"
+        }
+    ]
+}
+
+~~~
+
+
+
+<br>
+
+
+
+
+
+###  30 获取诊断数
+
+
+30.1 请求路径：
+
+GET http://{Server-Host}:{端口}/api/server/mongo/mdiagCount/{{clusterId}}
+
+---
+
+30.2 请求参数：
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+
+![img_8.png](../Images/mdiagCount.png)
+
+----
+
+30.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| msg       |         返回数据         |         String               |        
+
+
+<br>
+
+
+![img_9.png](../Images/mdiagCount_r.png)
 
 <br>
 

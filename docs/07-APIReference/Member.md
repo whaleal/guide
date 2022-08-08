@@ -37,7 +37,7 @@ messageId为消息id，在“获取信息数据”接口处返回的实体类中
 1.1 请求路径：
 
 
-POST http://192.168.3.200:9600/api/server/member/login
+POST http://{Server-Host}:{端口}/api/server/member/login
 
 ---
 
@@ -104,7 +104,7 @@ POST http://192.168.3.200:9600/api/server/member/login
 2.1 请求路径：
 
 
-POST http://192.168.3.200:9600/api/server/member/register
+POST http://{Server-Host}:{端口}/api/server/member/register
 
 ---
 
@@ -183,7 +183,7 @@ Ex. 保存新用户信息;其中 MemberMongoEntity 如下所示:
 3.1 请求路径：
 
 
-POST http://192.168.3.200:9600/api/server/member/update
+POST http://{Server-Host}:{端口}/api/server/member/update
 
 ---
 
@@ -262,7 +262,7 @@ Ex. 更新用户信息;其中 MemberMongoEntity 如下所示:
 4.1 请求路径：
 
 
-POST http://192.168.3.200:9600/api/server/member/findMemberData/{{pageSize}}/{{pageIndex}}
+POST http://{Server-Host}:{端口}/api/server/member/findMemberData/{{pageSize}}/{{pageIndex}}
 
 ---
 
@@ -338,7 +338,7 @@ Ex. 搜索用户;其中 Map 如下所示:
 
 5.1 请求路径：
 
-POST http://192.168.3.200:9600/api/server/member/findMemberCount
+POST http://{Server-Host}:{端口}/api/server/member/findMemberCount
 
 ---
 
@@ -389,7 +389,7 @@ Ex. 搜索用户;其中 Map 如下所示:
 6.1 请求路径：
 
 
-GET http://192.168.3.200:9600/api/server/member/update/receiveAlert/{{memberId}}/{{value}}
+GET http://{Server-Host}:{端口}/api/server/member/update/receiveAlert/{{memberId}}/{{value}}
 
 ---
 
@@ -431,7 +431,7 @@ GET http://192.168.3.200:9600/api/server/member/update/receiveAlert/{{memberId}}
 7.1 请求路径：
 
 
-GET http://192.168.3.200:9600/api/server/member/update/timezone/{{memberId}}
+GET http://{Server-Host}:{端口}/api/server/member/update/timezone/{{memberId}}
 
 ---
 
@@ -475,7 +475,7 @@ GET http://192.168.3.200:9600/api/server/member/update/timezone/{{memberId}}
 8.1 请求路径：
 
 
-GET http://192.168.3.200:9600/api/server/member/update/role/{{memberId}}/{{value}}
+GET http://{Server-Host}:{端口}/api/server/member/update/role/{{memberId}}/{{value}}
 
 ---
 
@@ -516,7 +516,7 @@ GET http://192.168.3.200:9600/api/server/member/update/role/{{memberId}}/{{value
 
 9.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/member/update/createMongoDBAble/{{memberId}}/{{value}}
+GET http://{Server-Host}:{端口}/api/server/member/update/createMongoDBAble/{{memberId}}/{{value}}
 
 ---
 
@@ -557,7 +557,7 @@ GET http://192.168.3.200:9600/api/server/member/update/createMongoDBAble/{{membe
 
 10.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/member/update/generateAgentIdAble/{{memberId}}/{{value}}
+GET http://{Server-Host}:{端口}/api/server/member/update/generateAgentIdAble/{{memberId}}/{{value}}
 
 ---
 
@@ -600,7 +600,7 @@ GET http://192.168.3.200:9600/api/server/member/update/generateAgentIdAble/{{mem
 
 11.1 请求路径：
 
-GET http://192.168.3.200:9600/api/server/member/update/userResourceInfo/{{memberId}}/{{objectId}}/{{type}}/{{value}}
+GET http://{Server-Host}:{端口}/api/server/member/update/userResourceInfo/{{memberId}}/{{objectId}}/{{type}}/{{value}}
 
 ---
 
@@ -643,7 +643,7 @@ GET http://192.168.3.200:9600/api/server/member/update/userResourceInfo/{{member
 12.1 请求路径：
 
 
-GET http://170.187.230.78:9602/api/server/member/delete/user/{{memberId}}
+GET http://{Server-Host}:{端口}/api/server/member/delete/user/{{memberId}}
 
 ---
 

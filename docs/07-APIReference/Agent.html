@@ -1737,10 +1737,11 @@ eventId&#x5728;&quot;&#x83B7;&#x53D6;&#x96C6;&#x7FA4;&#x65E5;&#x5FD7;&#x4FE1;&#x
 <p><br></p>
 <p>6  &#x83B7;&#x53D6;agent&#x7684;&#x76D1;&#x63A7;&#x4FE1;&#x606F;</p>
 <p>6.1 &#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#xFF1A;</p>
-<p>GET <a href="http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/agent/getAgentMonitor/map//" target="_blank">http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/agent/getAgentMonitor/map//</a></p>
+<p>GET <a href="http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/agent/getAgentMonitor//" target="_blank">http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/agent/getAgentMonitor//</a></p>
 <hr>
 <p>6.2 &#x8BF7;&#x6C42;&#x53C2;&#x6570;&#xFF1A;</p>
 <pre><code>type&#x7C7B;&#x578B;&#xFF1A;REAL_TIME&#xFF0C;ONE_DAY&#xFF0C;ONE_WEEK
+dataType&#xFF1A;netInAndOut&#xFF0C;memory&#xFF0C;diskInAndOut&#xFF0C;cpu
 </code></pre><table>
 <thead>
 <tr>
@@ -1787,6 +1788,13 @@ eventId&#x5728;&quot;&#x83B7;&#x53D6;&#x96C6;&#x7FA4;&#x65E5;&#x5FD7;&#x4FE1;&#x
 <td>Yes</td>
 <td>long</td>
 </tr>
+<tr>
+<td>dataType</td>
+<td>Params</td>
+<td>&#x6570;&#x636E;&#x7C7B;&#x578B;</td>
+<td>Yes</td>
+<td>String</td>
+</tr>
 </tbody>
 </table>
 <p><br></p>
@@ -1818,70 +1826,50 @@ eventId&#x5728;&quot;&#x83B7;&#x53D6;&#x96C6;&#x7FA4;&#x65E5;&#x5FD7;&#x4FE1;&#x
 <pre><code>{
     &quot;code&quot;: 1000,
     &quot;data&quot;: {
-        &quot;&#x5185;&#x5B58;/GB&quot;: {
-            &quot;cache&quot;: [
-                93.48
-            ]
-            &quot;message&quot;: {
-                &quot;free&quot;: &quot;&#x7A7A;&#x95F2;&#x5185;&#x5B58; &#x5355;&#x4F4D;GB&quot;,
-                &quot;used&quot;: &quot;&#x5DF2;&#x4F7F;&#x7528;&#x5185;&#x5B58; &#x5355;&#x4F4D;GB&quot;,
-                &quot;cache&quot;: &quot;&#x7F13;&#x5B58;&#x5185;&#x5B58; &#x5355;&#x4F4D;GB&quot;,
-                &quot;ava&quot;: &quot;&#x53EF;&#x7528;&#x5185;&#x5B58; &#x5355;&#x4F4D;GB&quot;
-            },
-            &quot;ava&quot;: [
-                109.24
-            ]
-        },
-        &quot;cpu/%&quot;: {
-            &quot;sy&quot;: [
-                0.43
-            ],
-            &quot;message&quot;: {
-                &quot;id&quot;: &quot;cpu&#x7A7A;&#x95F2;&#x7387; &#x5355;&#x4F4D;&#x767E;&#x5206;&#x6BD4;%&quot;,
-                &quot;us&quot;: &quot;cpu&#x7528;&#x6237;&#x4F7F;&#x7528;&#x7387; &#x5355;&#x4F4D;&#x767E;&#x5206;&#x6BD4;%&quot;,
-                &quot;sy&quot;: &quot;cpu&#x7CFB;&#x7EDF;&#x4F7F;&#x7528;&#x7387; &#x5355;&#x4F4D;&#x767E;&#x5206;&#x6BD4;%&quot;
-            },
-            &quot;us&quot;: [
-                0.49
-            ]
-        },
-        &quot;net/KB&quot;: {
-            &quot;data&quot;: {
-                &quot;lo&quot;: {
-                    &quot;in&quot;: [
-                        3479.26
-                    ],
-                    &quot;name&quot;: &quot;lo&quot;,
-                    &quot;out&quot;: [
-                        3479.26
-                    ]
-                }
-            },
-            &quot;name&quot;: &quot;net&quot;,
-            &quot;message&quot;: {
-                &quot;in&quot;: &quot;&#x6D41;&#x5165;&#x6D41;&#x91CF; &#x5355;&#x4F4D;KB/S&quot;,
-                &quot;out&quot;: &quot;&#x6D41;&#x51FA;&#x6D41;&#x91CF; &#x5355;&#x4F4D;KB/S&quot;
-            }
-        },
-        &quot;diskIO/KB&quot;: {
-                &quot;dm-0&quot;: {
-                    &quot;util&quot;: [
-                        0.25
-                    ]
-                }
-            },
-            &quot;name&quot;: &quot;diskIO&quot;,
-            &quot;message&quot;: {
-                &quot;util&quot;: &quot;&#x4F7F;&#x7528;&#x7387; &#x5355;&#x4F4D;&#x767E;&#x5206;&#x6BD4;&quot;,
-                &quot;rkB&quot;: &quot;&#x8BFB; &#x5355;&#x4F4D;KB/S&quot;,
-                &quot;wkB&quot;: &quot;&#x5199; &#x5355;&#x4F4D;KB/S&quot;
-            }
-        }
+        &quot;us&quot;: [
+            2.51,
+            2.29,
+            2.72,
+        ],
+        &quot;sy&quot;: [
+            0.89,
+            0.84,
+            1.89,
+        ],
+        &quot;id&quot;: [
+            96.57,
+            96.83,
+            94.97,
+        ]
     },
-    &quot;size&quot;: 1,
     &quot;createTime&quot;: [
-        1658275200000
-    ]
+        1659512400000,
+        1659512460000,
+        1659512520000
+    ],
+    &quot;name&quot;: &quot;cpu&quot;,
+    &quot;message&quot;: {
+        &quot;id&quot;: &quot;cpu&#x7A7A;&#x95F2;&#x7387; &#x5355;&#x4F4D;&#x767E;&#x5206;&#x6BD4;%&quot;,
+        &quot;us&quot;: &quot;cpu&#x7528;&#x6237;&#x4F7F;&#x7528;&#x7387; &#x5355;&#x4F4D;&#x767E;&#x5206;&#x6BD4;%&quot;,
+        &quot;sy&quot;: &quot;cpu&#x7CFB;&#x7EDF;&#x4F7F;&#x7528;&#x7387; &#x5355;&#x4F4D;&#x767E;&#x5206;&#x6BD4;%&quot;
+    },
+    &quot;info&quot;: {
+        &quot;id&quot;: {
+            &quot;max&quot;: &quot;96.83&quot;,
+            &quot;min&quot;: &quot;86.81&quot;,
+            &quot;avg&quot;: &quot;94.29&quot;
+        },
+        &quot;us&quot;: {
+            &quot;max&quot;: &quot;9.58&quot;,
+            &quot;min&quot;: &quot;1.72&quot;,
+            &quot;avg&quot;: &quot;3.00&quot;
+        },
+        &quot;sy&quot;: {
+            &quot;max&quot;: &quot;3.25&quot;,
+            &quot;min&quot;: &quot;0.84&quot;,
+            &quot;avg&quot;: &quot;2.08&quot;
+        }
+    }
 }
 </code></pre><hr>
 <p><br></p>
@@ -2103,7 +2091,7 @@ eventId&#x5728;&quot;&#x83B7;&#x53D6;&#x96C6;&#x7FA4;&#x65E5;&#x5FD7;&#x4FE1;&#x
 <tr>
 <td>operateType</td>
 <td>Path</td>
-<td>&#x64CD;&#x4F5C;&#x7C7B;&#x522B;:mongo,host</td>
+<td>&#x64CD;&#x4F5C;&#x7C7B;&#x522B;:delete,updateAgentInfo</td>
 <td>Yes</td>
 <td>String</td>
 </tr>
@@ -2890,7 +2878,7 @@ eventId&#x5728;&quot;&#x83B7;&#x53D6;&#x96C6;&#x7FA4;&#x65E5;&#x5FD7;&#x4FE1;&#x
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Agent","level":"1.2.8.1","depth":3,"next":{"title":"Alert","level":"1.2.8.2","depth":3,"path":"07-APIReference/Alert.md","ref":"./07-APIReference/Alert.md","articles":[]},"previous":{"title":"APIReference","level":"1.2.8","depth":2,"ref":"","articles":[{"title":"Agent","level":"1.2.8.1","depth":3,"path":"07-APIReference/Agent.md","ref":"./07-APIReference/Agent.md","articles":[]},{"title":"Alert","level":"1.2.8.2","depth":3,"path":"07-APIReference/Alert.md","ref":"./07-APIReference/Alert.md","articles":[]},{"title":"Collection","level":"1.2.8.3","depth":3,"path":"07-APIReference/Collection.md","ref":"./07-APIReference/Collection.md","articles":[]},{"title":"DBData","level":"1.2.8.4","depth":3,"path":"07-APIReference/DBData.md","ref":"./07-APIReference/DBData.md","articles":[]},{"title":"ErrorCodes","level":"1.2.8.5","depth":3,"path":"07-APIReference/ErrorCodes.md","ref":"./07-APIReference/ErrorCodes.md","articles":[]},{"title":"Files","level":"1.2.8.6","depth":3,"path":"07-APIReference/Files.md","ref":"./07-APIReference/Files.md","articles":[]},{"title":"Member","level":"1.2.8.7","depth":3,"path":"07-APIReference/Member.md","ref":"./07-APIReference/Member.md","articles":[]},{"title":"Mongo","level":"1.2.8.8","depth":3,"path":"07-APIReference/Mongos.md","ref":"./07-APIReference/Mongos.md","articles":[]},{"title":"Other","level":"1.2.8.9","depth":3,"path":"07-APIReference/Other.md","ref":"./07-APIReference/Other.md","articles":[]},{"title":"Third_party","level":"1.2.8.10","depth":3,"path":"07-APIReference/Third_party.md","ref":"./07-APIReference/Third_party.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"07-APIReference/Agent.md","mtime":"2022-07-28T06:20:25.991Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-29T02:03:44.587Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Agent","level":"1.2.8.1","depth":3,"next":{"title":"Alert","level":"1.2.8.2","depth":3,"path":"07-APIReference/Alert.md","ref":"./07-APIReference/Alert.md","articles":[]},"previous":{"title":"APIReference","level":"1.2.8","depth":2,"ref":"","articles":[{"title":"Agent","level":"1.2.8.1","depth":3,"path":"07-APIReference/Agent.md","ref":"./07-APIReference/Agent.md","articles":[]},{"title":"Alert","level":"1.2.8.2","depth":3,"path":"07-APIReference/Alert.md","ref":"./07-APIReference/Alert.md","articles":[]},{"title":"Collection","level":"1.2.8.3","depth":3,"path":"07-APIReference/Collection.md","ref":"./07-APIReference/Collection.md","articles":[]},{"title":"DBData","level":"1.2.8.4","depth":3,"path":"07-APIReference/DBData.md","ref":"./07-APIReference/DBData.md","articles":[]},{"title":"ErrorCodes","level":"1.2.8.5","depth":3,"path":"07-APIReference/ErrorCodes.md","ref":"./07-APIReference/ErrorCodes.md","articles":[]},{"title":"Files","level":"1.2.8.6","depth":3,"path":"07-APIReference/Files.md","ref":"./07-APIReference/Files.md","articles":[]},{"title":"Member","level":"1.2.8.7","depth":3,"path":"07-APIReference/Member.md","ref":"./07-APIReference/Member.md","articles":[]},{"title":"Mongo","level":"1.2.8.8","depth":3,"path":"07-APIReference/Mongos.md","ref":"./07-APIReference/Mongos.md","articles":[]},{"title":"Other","level":"1.2.8.9","depth":3,"path":"07-APIReference/Other.md","ref":"./07-APIReference/Other.md","articles":[]},{"title":"Third_party","level":"1.2.8.10","depth":3,"path":"07-APIReference/Third_party.md","ref":"./07-APIReference/Third_party.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"07-APIReference/Agent.md","mtime":"2022-08-04T03:48:30.446Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-08-08T09:47:04.209Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
