@@ -1,5 +1,5 @@
 # Mongo接口
-接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+接口调用时须在请求头中设置whaleal-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
 其参数为时间的都以时间戳形式传递。
 
 
@@ -20,34 +20,34 @@ clusterId在“查找mongoDB集群信息数据”接口返回结果集中。
 
 ### 请求头默认格式，特殊情况特殊声明
 
-    OPS-Token在调用登录接口时返回，在之后调用接口时将token放置请求头中。
-[登录接口调用获取OPS-Token](Member.md)
+    whaleal-Token在调用登录接口时返回，在之后调用接口时将token放置请求头中。
+[登录接口调用获取whaleal-Token](Member.md)
 
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
-| Accept-Encoding        |         gzip, deflate, br |     
+| Accept-Encoding        |         gzip,deflate,br |     
 | Connection          |         keep-alive           |          
 | Content-Type          |         application/json |    
-| OPS-Token          |         "token"           |     
+| whaleal-Token          |         "token"           |     
 ---
 
 
 <br>
 
 
-
+## Deprecated 已弃用
 ###  1 创建mongodb单例
 
 
-1.1 请求路径：
+1.1 请求路径
 
-POST https://{Server-Host}:{端口}/api/server/mongo/createMongoStandalone/{{isNewCluster}}/{{clusterId}}/{{replicateId}}
+POST: http://{Server-Host}:{端口}/api/server/mongo/createMongoStandalone/{{isNewCluster}}/{{clusterId}}/{{replicateId}}
 
 
 ---
 
-1.2 请求参数：
+1.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -91,7 +91,7 @@ Ex. 创建mongodb单例;其中 MongoMember 如下所示:
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |       int                |    
-| msg       |         消息         |             String           |        
+| msg       |         返回消息         |             String           |        
 | eventId       |         事件id         |         String               |        
 | data       |         返回数据         |          JSON              |        
 
@@ -155,13 +155,13 @@ Ex. 创建mongodb单例;其中 MongoMember 如下所示:
 
 
 
-2.1 请求路径：
+2.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/standaloneToReplicate/{{clusterId}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/standaloneToReplicate/{{clusterId}}
 
 ---
 
-2.2 请求参数：
+2.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -199,18 +199,17 @@ GET http://{Server-Host}:{端口}/api/server/mongo/standaloneToReplicate/{{clust
 
 
 
-3.1 请求路径：
+3.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/server/mongo/createMongoReplica/{{isNewCluster}}
+POST: http://{Server-Host}:{端口}/api/server/mongo/createMongoReplica
 
 ---
 
-3.2 请求参数：
+3.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| isNewCluster          |         Path           |            集群id            |        Yes       |String        |
 | mongoReplica          |         Body           |           mongo复制集实体对象           |        Yes       |  MongoReplica      |
 | tag          |         Params           |            标签            |        No       |String        |
 
@@ -218,6 +217,7 @@ POST http://{Server-Host}:{端口}/api/server/mongo/createMongoReplica/{{isNewCl
 
 
 ![img_3.png](../Images/createMongoReplica.png)
+
 ~~~
 Ex. 创建mongodb复制集;MongoReplica 如下所示：
 {
@@ -232,7 +232,21 @@ Ex. 创建mongodb复制集;MongoReplica 如下所示：
     "operaLog": [],
     "memberList": [
         {
-           ...
+            "type": 31,
+            "hostName": "chen",
+            "hostId": "62bbfbe9a46517610435d615",
+            "port": "25025",
+            "version": "mongodb-linux-x86_64-rhel70-4.2.21",
+            "votes": "1",
+            "priority": "1",
+            "delay": "",
+            "buildIndexes": true,
+            "dataDirectory": "/home/chen/data25025",
+            "logFile": "/home/chen/log25025.log",
+            "configurationOptions": {
+                "storage.wiredTiger.engineConfig.cacheSizeGB": "0.3"
+            }
+        }
     ],
     "replicationSettings": {
         "protocolVersion": null,
@@ -299,18 +313,17 @@ Ex. 创建mongodb复制集;MongoReplica 如下所示：
 
 
 
-4.1 请求路径：
+4.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/server/mongo/createMongoSharded/{{isNewCluster}}
+POST: http://{Server-Host}:{端口}/api/server/mongo/createMongoSharded
 
 ---
 
-4.2 请求参数：
+4.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| isNewCluster          |         Path           |            文件名称            |        Yes       |String        |
 | mongoShard          |         Body           |            实体对象            |        Yes       |MongoShard        |
 | tag          |         Params           |            文件名称            |        No       |String        |
 
@@ -330,23 +343,81 @@ Ex. 创建mongodb分片;其中 MongoShard 如下所示:
     "shardingMap": {
         "shard1": {
             "memberList": [
-                ...
+                {
+                    "type": 1,
+                    "hostName": "chen",
+                    "hostId": "62bbfbe9a46517610435d615",
+                    "port": "44567",
+                    "version": "mongodb-linux-x86_64-rhel70-4.2.21",
+                    "votes": "1",
+                    "priority": "1",
+                    "delay": "",
+                    "buildIndexes": "true",
+                    "dataDirectory": "/home/chen/data44567",
+                    "logFile": "/home/chen/log44567.log",
+                    "configurationOptions": {
+                        "storage.wiredTiger.engineConfig.cacheSizeGB": "0.3"
+                    }
+                }
             ],
             "replicationSettings": {
-               ...
+                "replicaSetId": "shard1",
+                "protocolVersion": null,
+                "chainingAllowed": null,
+                "writeConcernMajorityJournalDefault": null,
+                "heartbeatTimeoutSecs": null,
+                "electionTimeoutMillis": null,
+                "catchUpTimeoutMillis": null,
+                "catchUpTakeoverDelayMillis": null,
+                "getLastErrorDefaults": null,
+                "forceReconfigure": null
             }
         }
     },
     "config": {
         "memberList": [
-           ...
+            {
+                "type": 1,
+                "hostName": "server100",
+                "hostId": "62b153a344ba1b7771c42df7",
+                "port": "44567",
+                "version": "mongodb-linux-x86_64-rhel70-4.2.21",
+                "votes": "1",
+                "priority": "1",
+                "delay": "",
+                "buildIndexes": "true",
+                "dataDirectory": "/home/chen/data44567",
+                "logFile": "/home/chen/log44567.log",
+                "configurationOptions": {
+                    "storage.wiredTiger.engineConfig.cacheSizeGB": "0.3"
+                }
+            }
         ],
         "replicationSettings": {
-            ...
+            "replicaSetId": "config",
+            "protocolVersion": "",
+            "chainingAllowed": "",
+            "writeConcernMajorityJournalDefault": "",
+            "heartbeatTimeoutSecs": "",
+            "electionTimeoutMillis": "",
+            "catchUpTimeoutMillis": "",
+            "catchUpTakeoverDelayMillis": "",
+            "getLastErrorDefaults": "",
+            "forceReconfigure": ""
         }
     },
     "mongoS": [
-        ...
+        {
+            "logFile": "/home/chen/log44567.log",
+            "dataDirectory": "/home/chen/data44567",
+            "hostName": "server200",
+            "version": "mongodb-linux-x86_64-rhel70-4.2.21",
+            "port": "44567",
+            "configurationOptions": {
+                "storage.wiredTiger.engineConfig.cacheSizeGB": "0.3"
+            },
+            "hostId": "62cbbd7607bebb71b8429e5e"
+        }
     ]
 }
 ~~~
@@ -401,13 +472,13 @@ Ex. 创建mongodb分片;其中 MongoShard 如下所示:
 
 
 
-5.1 请求路径：
+5.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/server/mongo/operateClusterAbleAuth/{{clusterId}}
+POST: http://{Server-Host}:{端口}/api/server/mongo/operateClusterAbleAuth/{{clusterId}}
 
 ---
 
-5.2 请求参数：
+5.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -423,10 +494,8 @@ POST http://{Server-Host}:{端口}/api/server/mongo/operateClusterAbleAuth/{{clu
 ~~~
 Ex. 操作开启认证的集群;其中map 如下所示:
 {
-    "authAble": "true",
-    "authenticWay": "Username/Password",
+    "authAble": "true",    //false 时 不需要其余参数
     "userName": "123",
-    "authDbName": "admin",
     "password": "123"
 }
 ~~~
@@ -462,13 +531,13 @@ Ex. 操作开启认证的集群;其中map 如下所示:
 
 
 
-6.1 请求路径：
+6.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/server/mongo/addShard/{{clusterId}}
+POST: http://{Server-Host}:{端口}/api/server/mongo/addShard/{{clusterId}}
 
 ---
 
-6.2 请求参数：
+6.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -538,13 +607,13 @@ Ex. 添加shard;其中 MongoReplica 如下所示:
 
 
 
-7.1 请求路径：
+7.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/server/mongo/mongoManaged
+POST: http://{Server-Host}:{端口}/api/server/mongo/mongoManaged
 
 ---
 
-7.2 请求参数：
+7.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -562,7 +631,6 @@ Ex. 纳管集群信息;其中 MongoMember 如下所示:
     "hostId": "62bbfbe9a46517610435d615",
     "port": "27017",
     "authAble": "false",
-    "authenticWay": "",
     "userName": "",
     "password": "",
     "authDBName": "",
@@ -616,14 +684,15 @@ Ex. 纳管集群信息;其中 MongoMember 如下所示:
 
 
 
-8.1 请求路径：
+8.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/upgrade/{{clusterId}}/{{version}}/{{type}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/upgrade/{{clusterId}}/{{version}}/{{type}}
 
 ---
 
-8.2 请求参数：
+8.2 请求参数
 
+    type: 1 升级,-1 降级
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -663,21 +732,21 @@ GET http://{Server-Host}:{端口}/api/server/mongo/upgrade/{{clusterId}}/{{versi
 
 
 
-9.1 请求路径：
+9.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/operate/{{clusterId}}/{{mongoMemberId}}/{{operateType}}/{{mongoMemberName}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/operate/{{clusterId}}/{{mongoMemberId}}/{{operateType}}
 
 ---
 
-9.2 请求参数：
+9.2 请求参数
 
+    operateType:updateMongoMemberInfo,startUp,shuntDown,restart,delete,canalQPS,openQPS,canalTopAndOP,openTopAndOP,canalCollectMongoLog,openColletMongoLog ,becomePrimary ,removeMember
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | clusterId          |         Path           |            集群id            |        Yes       |String        |
 | mongoMemberId          |         Path           |            mongo集群id            |        Yes       |String        |
 | operateType          |         Path           |            操作类型            |        Yes       |String        |
-| mongoMemberName          |         Path           |            mongo集群名称            |        Yes       |String        |
 
 <br>
 
@@ -709,16 +778,16 @@ GET http://{Server-Host}:{端口}/api/server/mongo/operate/{{clusterId}}/{{mongo
 
 
 
-10.1 请求路径：
+10.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/operate/{{clusterId}}/{{operateType}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/operate/{{clusterId}}/{{operateType}}
 
 ---
 
-10.2 请求参数：
+10.2 请求参数
 
 
-    operateType：updateMongoMemberInfo，startUp，shuntDown，restart，delete
+    operateType:updateMongoMemberInfo,startUp,shuntDown,restart,delete,mdiag
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -756,13 +825,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/operate/{{clusterId}}/{{opera
 
 
 
-11.1 请求路径：
+11.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/server/mongo/updateClusterInfo
+POST: http://{Server-Host}:{端口}/api/server/mongo/updateClusterInfo
 
 ---
 
-11.2 请求参数：
+11.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -851,6 +920,328 @@ Ex. 更新集群信息;其中MongoClusterInformation 如下所示:
 ---
 ---
 
+<br>
+
+
+
+###  12 创建单节点
+
+
+
+12.1 请求路径
+
+POST: http://{Server-Host}:{端口}/api/server/mongo/createMongoStandalone
+
+---
+
+12.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| mongoMember   |         Body           |            Mongo对象            |        Yes    | MongoMember          |  
+| tag   |         Params           |            标签            |        No    | String          |  
+
+<br>
+
+![img_34.png](../Images/createMongoStandalone.png)
+
+~~~
+Ex. 创建单节点;mongoMember 如下所示:
+{
+    "hostName": "chen",
+    "hostId": "62bbfbe9a46517610435d615",
+    "port": "25567",
+    "dataDirectory": "/home/chen/data25567",
+    "logFile": "/home/chen/log25567.log",
+    "version": "mongodb-linux-x86_64-rhel70-4.2.21",
+    "deleteDataAndLogAble": "false",
+    "authAble": "false",
+    "userName": "",
+    "password": "",
+    "configurationOptions": {
+        "storage.wiredTiger.engineConfig.cacheSizeGB": "0.3"
+    }
+}
+~~~
+
+----
+
+12.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| msg       |         返回消息         |             String           |        
+| eventId       |         事件id         |             String           |        
+| data       |         返回数据        |             JSON           |        
+
+![img_35.png](../Images/createMongoStandalone_r.png)
+
+~~~
+{
+    "msg": "正在执行",
+    "eventId": "62fb0d67fe07726988b7621b",
+    "code": 1000,
+    "data": {
+        "id": null,
+        "createTime": 0,
+        "updateTime": 0,
+        "memberName": "null:27017",
+        "hostName": null,
+        "hostId": null,
+        "port": "27017",
+        "version": null,
+        "upgradeVersion": null,
+        "userName": null,
+        "password": null,
+        "authDbName": "admin",
+        "currentTimeMillis": 1660620135962,
+        "dataDirectory": "/var/ops/mongodb1660620135962/data/",
+        "logFile": "/var/ops/mongodb1660620135962/log/log.log",
+        "confPath": "/var/ops/mongodb1660620135962/mongo.conf",
+        "authAble": false,
+        "runShCmd": null,
+        "type": 11,
+        "status": "无状态",
+        "monitorServerStatus": false,
+        "monitorTopAndOp": false,
+        "collectMongoLog": false,
+        "mongoLogFileOffset": 0,
+        "operaLogTemp": [],
+        "votes": 1,
+        "priority": 1.0,
+        "delay": 0,
+        "buildIndexes": true,
+        "procId": "",
+        "clusterId": "62fb0d67fe07726988b7621c",
+        "replId": null,
+        "clusterName": null,
+        "tags": {},
+        "configurationOptions": {},
+        "operateVersion": 0
+    }
+}
+
+~~~
+
+
+<br>
+
+
+
+###  13 复制集添加节点
+
+
+
+13.1 请求路径
+
+POST: http://{Server-Host}:{端口}/api/server/mongo/replAddMember/{{clusterId}}/{{replicateId}}
+
+---
+
+13.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| mongoMember   |         Body           |            Mongo对象            |        Yes    | MongoMember          |  
+| clusterId   |         Path           |            集群id            |        Yes    | String          |  
+| replicateId   |         Path           |            复制集id            |        Yes    | String          |  
+
+<br>
+
+![img_36.png](../Images/replAddMember.png)
+
+~~~
+Ex. 创建单节点;mongoMember 如下所示:
+{
+    "authAble": "true",
+    "userName": "",
+    "password": "",
+    "type": 1,
+    "hostName": "server100",
+    "hostId": "62ecdb15dce5916b2b6f1b3c",
+    "votes": 1,
+    "delay": 10000,
+    "priority": 1,
+    "port": "34535",
+    "dataDirectory": "/home/chen/data34535",
+    "logFile": "/home/chen/data34535/log.log",
+    "version": "mongodb-linux-x86_64-enterprise-rhel70-4.0.25",
+    "deleteDataAndLogAble": "",
+    "configurationOptions": {
+        "storage.wiredTiger.engineConfig.cacheSizeGB": "0.3"
+    }
+}
+~~~
+
+----
+
+13.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| msg       |         返回消息         |             String           |        
+| eventId       |         事件id         |             String           |        
+| data       |         返回数据        |             JSON           |        
+
+![img_37.png](../Images/replAddMember_r.png)
+
+~~~
+
+{
+    "msg": "正在执行",
+    "eventId": "62fb0fc8fe07726988b76242",
+    "code": 1000,
+    "data": {
+        "id": null,
+        "createTime": 0,
+        "updateTime": 0,
+        "memberName": "null:27017",
+        "hostName": null,
+        "hostId": null,
+        "port": "27017",
+        "version": null,
+        "upgradeVersion": null,
+        "userName": null,
+        "password": null,
+        "authDbName": "admin",
+        "currentTimeMillis": 1660620744008,
+        "dataDirectory": "/var/ops/mongodb1660620744008/data/",
+        "logFile": "/var/ops/mongodb1660620744008/log/log.log",
+        "confPath": "/var/ops/mongodb1660620744008/mongo.conf",
+        "authAble": false,
+        "runShCmd": null,
+        "type": 11,
+        "status": "无状态",
+        "monitorServerStatus": false,
+        "monitorTopAndOp": false,
+        "collectMongoLog": false,
+        "mongoLogFileOffset": 0,
+        "operaLogTemp": [],
+        "votes": 1,
+        "priority": 1.0,
+        "delay": 0,
+        "buildIndexes": true,
+        "procId": "",
+        "clusterId": "62f5bf0ac8b0132564c7d481",
+        "replId": null,
+        "clusterName": null,
+        "tags": {},
+        "configurationOptions": {},
+        "operateVersion": 0
+    }
+}
+~~~
+
+
+<br>
+
+
+
+###  14 添加mongos
+
+
+
+14.1 请求路径
+
+POST: http://{Server-Host}:{端口}/api/server/mongo/addMongoS/{{clusterId}}
+
+---
+
+14.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| mongoMember   |         Body           |            Mongo对象            |        Yes    | MongoMember          |  
+| clusterId   |         Path           |            集群id            |        Yes    | String          |  
+
+<br>
+
+![img_38.png](../Images/shardAddMongoS.png)
+
+~~~
+Ex. 创建单节点;mongoMember 如下所示:
+{
+    "hostName": "usdp",
+    "hostId": "62f343c86ccc6972abb87835",
+    "port": "29003",
+    "dataDirectory": "/home/guanfei/data/sharding3/mongos/data28/",
+    "logFile": "/home/guanfei/data/sharding3/mongos/data28/mongodb.log",
+    "version": "mongodb-linux-x86_64-enterprise-rhel70-3.2.21",
+    "configurationOptions": {
+        "storage.wiredTiger.engineConfig.cacheSizeGB": "1"
+    }
+}
+~~~
+
+----
+
+13.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| msg       |         返回消息         |             String           |        
+| eventId       |         事件id         |             String           |        
+| data       |         返回数据        |             JSON           |        
+
+![img_39.png](../Images/shardAddMongoS_r.png)
+
+~~~
+
+{
+    "msg": "正在执行",
+    "eventId": "62fb1061fe07726988b76246",
+    "code": 1000,
+    "data": {
+        "id": null,
+        "createTime": 0,
+        "updateTime": 0,
+        "memberName": "null:27017",
+        "hostName": null,
+        "hostId": null,
+        "port": "27017",
+        "version": null,
+        "upgradeVersion": null,
+        "userName": null,
+        "password": null,
+        "authDbName": "admin",
+        "currentTimeMillis": 1660620897087,
+        "dataDirectory": "/var/ops/mongodb1660620897087/data/",
+        "logFile": "/var/ops/mongodb1660620897087/log/log.log",
+        "confPath": "/var/ops/mongodb1660620897087/mongo.conf",
+        "authAble": false,
+        "runShCmd": null,
+        "type": 11,
+        "status": "无状态",
+        "monitorServerStatus": false,
+        "monitorTopAndOp": false,
+        "collectMongoLog": false,
+        "mongoLogFileOffset": 0,
+        "operaLogTemp": [],
+        "votes": 1,
+        "priority": 1.0,
+        "delay": 0,
+        "buildIndexes": true,
+        "procId": "",
+        "clusterId": "62f35136bae6034d49b2a0f9",
+        "replId": null,
+        "clusterName": null,
+        "tags": {},
+        "configurationOptions": {},
+        "operateVersion": 0
+    }
+}
+~~~
+
+<br>
 
 [comment]: <> (## MongoMember)
 

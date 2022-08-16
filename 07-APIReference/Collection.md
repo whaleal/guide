@@ -5,13 +5,13 @@
 
 有些接口调用时需用到hostId、agentId、clusterId、eventId
 ~~~
-hostId在“根据主机名模糊查询主机基本信息”接口处获取。
+hostId 在“根据主机名模糊查询主机基本信息”接口处获取。
 
-agentId在"生成agentId"接口处获取。
+agentId 在"生成agentId"接口处获取。
 
-eventId在"获取集群日志信息"接口处找到所需事件的id
+eventId 在"获取集群日志信息"接口处找到所需事件的id
 
-clusterId在“查找mongoDB集群信息数据”接口返回结果集中。
+clusterId 在“查找mongoDB集群信息数据”接口返回结果集中。
 ~~~
 
 
@@ -21,7 +21,7 @@ agentId在"生成agentId"接口处获取。
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
-| Accept-Encoding        |         gzip, deflate, br |     
+| Accept-Encoding        |         gzip,deflate,br |     
 | Connection          |         keep-alive           |          
 | Content-Type          |         application/json |    
 | agentId          |         "agentId"           |     
@@ -34,14 +34,14 @@ agentId在"生成agentId"接口处获取。
 ###  1 保存agent端的日志记录.
 
 
-1.1 请求路径：
+1.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/agent/save/log
+POST: http://{Server-Host}:{端口}/api/collection/agent/save/log
 
 
 ---
 
-1.2 请求参数：
+1.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -51,8 +51,7 @@ POST http://{Server-Host}:{端口}/api/collection/agent/save/log
 <br>
 
 
-![img.png](../Images/save_log.png)
-
+![img_5.png](../Images/save_log.png)
 
 
 ----
@@ -81,20 +80,20 @@ POST http://{Server-Host}:{端口}/api/collection/agent/save/log
 ###  2 更新agent的mongo文件信息.
 
 
-2.1 请求路径：
+2.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/agent/updateAgentMongoFile/{{agentId}}
+POST: http://{Server-Host}:{端口}/api/collection/agent/updateAgentMongoFile/{{agentId}}
 
 
 ---
 
-2.2 请求参数：
+2.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 |       agentId     |      Path    |           agentId     |        Yes        |String
-|       mongoFileList     |      Body   |           命令实体对象      |       Yes         |List
+|       mongoFileList     |      Body   |           mongo文件集合      |       Yes         |List
 
 
 <br>
@@ -147,14 +146,14 @@ Ex. 更新agent的mongo文件信息;其中MongoFileList 如下所示：
 ###  3 根据agentId查询该agent待执行的命令.
 
 
-3.1 请求路径：
+3.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/collection/command/agent/get/{{hostId}}
+GET: http://{Server-Host}:{端口}/api/collection/command/agent/get/{{hostId}}
 
 
 ---
 
-3.2 请求参数：
+3.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -164,8 +163,7 @@ GET http://{Server-Host}:{端口}/api/collection/command/agent/get/{{hostId}}
 <br>
 
 
-![img_2.png](../Images/get_by_hostId.png)
-
+![img_6.png](../Images/get_by_hostId.png)
 
 ----
 
@@ -179,9 +177,27 @@ GET http://{Server-Host}:{端口}/api/collection/command/agent/get/{{hostId}}
 
 <br>
 
+![img_7.png](../Images/get_by_hostId_r.png)
 
-
-![img_3.png](../Images/get_by_hostId_r.png)
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "id": "62fa1ca7fe07726988b761e6",
+            "createTime": 1660558503957,
+            "updateTime": 1660558503957,
+            "hostId": "62ecdb15dce5916b2b6f1b3c",
+            "commandType": 106,
+            "status": 0,
+            "eventId": "62fa1ca6fe07726988b761e4",
+            "commandNote": "检查端口是否被占用",
+            "content": "{\"port\":\"23462\"}",
+            "execResult": null
+        }
+    ]
+}
+~~~
 
 ---
 
@@ -194,14 +210,14 @@ GET http://{Server-Host}:{端口}/api/collection/command/agent/get/{{hostId}}
 ### 4 更新命令实体对象的状态.
 
 
-4.1 请求路径：
+4.1 请求路径
 
-PUT http://{Server-Host}:{端口}/api/collection/command/agent/update
+PUT: http://{Server-Host}:{端口}/api/collection/command/agent/update
 
 
 ---
 
-4.2 请求参数：
+4.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -254,14 +270,14 @@ Ex. 更新命令实体对象的状态;其中 CommandEntity 如下所示：
 ###  5 更新时间戳
 
 
-5.1 请求路径：
+5.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/collection/hostInfo/updateRunTime/{{hostId}}/{{timeStamp}}
+GET: http://{Server-Host}:{端口}/api/collection/hostInfo/updateRunTime/{{hostId}}/{{timeStamp}}
 
 
 ---
 
-5.2 请求参数：
+5.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -282,7 +298,7 @@ GET http://{Server-Host}:{端口}/api/collection/hostInfo/updateRunTime/{{hostId
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回消息        |           String              | 
+| msg       |         返回消息        |           String              | 
 
 <br>
 
@@ -298,13 +314,13 @@ GET http://{Server-Host}:{端口}/api/collection/hostInfo/updateRunTime/{{hostId
 ###  6 保存主机信息
 
 
-6.1 请求路径：
+6.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/hostInfo
+POST: http://{Server-Host}:{端口}/api/collection/hostInfo
 
 ---
 
-6.2 请求参数：
+6.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -370,7 +386,7 @@ Ex. 保存主机信息;其中 HostInfoMongoEntity 如下所示：
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回消息        |           String              | 
+| msg       |         返回消息        |           String              | 
 
 
 <br>
@@ -388,14 +404,14 @@ Ex. 保存主机信息;其中 HostInfoMongoEntity 如下所示：
 ###  7 保存主机实时信息
 
 
-7.1 请求路径：
+7.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/hostRealTime/addHostRealTimeData
+POST: http://{Server-Host}:{端口}/api/collection/hostRealTime/addHostRealTimeData
 
 
 ---
 
-7.2 请求参数：
+7.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -480,14 +496,14 @@ Ex. 保存主机信息;其中 HostInfoMongoEntity 如下所示：
 ###  8 agent调用此接口来获取server端的时间
 
 
-8.1 请求路径：
+8.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/collection/util/get/server/date
+GET: http://{Server-Host}:{端口}/api/collection/util/get/server/date
 
 
 ---
 
-8.2 请求：
+8.2 请求
 
 
 
@@ -503,7 +519,7 @@ GET http://{Server-Host}:{端口}/api/collection/util/get/server/date
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |          int             |    
-| data       |         时间戳        |             String           | 
+| data       |         时间戳        |             long           | 
 
 <br>
 
@@ -521,14 +537,14 @@ GET http://{Server-Host}:{端口}/api/collection/util/get/server/date
 ###  9 agent通过调用此接口来获取请求agent的ip
 
 
-9.1 请求路径：
+9.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/collection/util/get/agent/ip
+GET: http://{Server-Host}:{端口}/api/collection/util/get/agent/ip
 
 
 ---
 
-9.2 请求：
+9.2 请求
 
 
 ![img_14.png](../Images/get_agentip.png)
@@ -541,7 +557,7 @@ GET http://{Server-Host}:{端口}/api/collection/util/get/agent/ip
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |       int                |    
-| data       |         返回ip        |           String              | 
+| data       |         返回数据:ip        |           String              | 
 
 <br>
 
@@ -558,14 +574,14 @@ GET http://{Server-Host}:{端口}/api/collection/util/get/agent/ip
 ###  10 mongo进行日志记录
 
 
-10.1 请求路径：
+10.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/mongo/insertMongoClusterLog/{{clusterId}}/{{eventId}}
+POST: http://{Server-Host}:{端口}/api/collection/mongo/insertMongoClusterLog/{{clusterId}}/{{eventId}}
 
 
 ---
 
-10.2 请求参数：
+10.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -604,14 +620,14 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/insertMongoClusterLog/{{
 
 ###  11 插入mongo成员日志
 
-11.1 请求路径：
+11.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/mongo/insertMongoMemberLog/{{clusterId}}/{{memberInfo}}/{{eventId}}
+POST: http://{Server-Host}:{端口}/api/collection/mongo/insertMongoMemberLog/{{clusterId}}/{{memberInfo}}/{{eventId}}
 
 
 ---
 
-11.2 请求参数：
+11.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -651,14 +667,14 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/insertMongoMemberLog/{{c
 ###  12 更新mongo节点信息
 
 
-12.1 请求路径：
+12.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/mongo/updateMongo
+POST: http://{Server-Host}:{端口}/api/collection/mongo/updateMongo
 
 
 ---
 
-12.2 请求参数：
+12.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -667,24 +683,58 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/updateMongo
 
 <br>
 
-
-![img_4.png](../Images/updateMongo.png)
+![img_8.png](../Images/updateMongo.png)
 
 ~~~
 
 Ex. 更新mongo节点信息;其中 MongoMember 如下所示：
 {
-    "account": "231asd",
-    "areaCode": "86",
-    "createTime": "1657849074235",
-    "dingDingList": [],
-    "email": "1@q.com",
-    "password": "$2a$10$HDQuhJON2eOpXbPhrC53qeklYNhG9jGhYMK9g8UsNT94bi.lry2Li",
-    "phone": "2132423",
-    "receiveAlert": true,
-    "role": "admin",
-    "timezone": "Asia/Shanghai",
-    "updateTime": "1657849074235"
+  "id": "62f76749e011b442d7c91ec6",
+  "createTime": 0,
+  "updateTime": 1660466332000,
+  "memberName": "server200:39801",
+  "hostName": "server200",
+  "hostId": "62ecda96dce5916b2b6f1b39",
+  "port": "39801",
+  "version": "6.0.1",
+  "upgradeVersion": null,
+  "userName": "root",
+  "password": "123456",
+  "authDbName": "admin",
+  "currentTimeMillis": 1660381001974,
+  "dataDirectory": "/var/ops/mongodb1660381001974/data/",
+  "logFile": "/home/guanfei/data2/sharding8/data/mongos/data1/mongos.log",
+  "confPath": "/home/guanfei/data2/sharding8/config/mongos/mongos1.conf",
+  "authAble": true,
+  "runShCmd": "/home/guanfei/data2/server/mongodb-linux-x86_64-enterprise-rhel70-6.0.0/bin/mongos -f /home/guanfei/data2/sharding8/config/mongos/mongos1.conf",
+  "type": 61,
+  "status": "正在运行",
+  "monitorServerStatus": false,
+  "monitorTopAndOp": false,
+  "collectMongoLog": false,
+  "mongoLogFileOffset": 0,
+  "operaLogTemp": [],
+  "votes": 1,
+  "priority": 1,
+  "delay": 0,
+  "buildIndexes": true,
+  "procId": "46797",
+  "clusterId": "62f76747fe07726988b75f6b",
+  "replId": null,
+  "clusterName": null,
+  "tags": {},
+  "configurationOptions": {
+    "systemLog_destination": "file",
+    "systemLog_path": "/home/guanfei/data2/sharding8/data/mongos/data1/mongos.log",
+    "processManagement_fork": "true",
+    "systemLog_logAppend": "true",
+    "security_keyFile": "/home/guanfei/data2/sharding8/keyfile",
+    "net_bindIp": "0.0.0.0",
+    "net_port": "39801",
+    "securityKeyFileValue": "BeP6Mbxj23i1jaGsGiRwKmHed2mCqDhlH4ZudHjiftZBoh26OQrCOaX+cAe/28Op\r\n5Uwk57104dUFM1nZUuKmC0kPaGzgbIzSyYnam0ypUZn/jP+v7Nf0sd8ZFGxS0FbX\r\n5HnYXoZtWYZV5tizC6TlyJCnPqW5TnFQZKSV//Nlm2mcaDI2FciX0XP2hHyv3TVJ\r\nwbQgZUMn8JMxgeif+Q0YEiKO+oJSnP1N7gmxlQAZni+6MyphY4e7rjYleNN5JzGr\r\nn6Xfy3Fjt5ZmARkw0GhI/Gm1aDCdiuhE+bgNCdRLEfy8USOyTh39aj25jj8YcW0E\r\nRHeqKB/emqvi0zeKEu7dr4pxUEttjWWstJv+ZepdUpg0pyTSLw+E23CrQ0AhWbTu\r\njx+i36J3CuRiM5Lb2m89/H8lo5NDzbzcd34ENjAhzunGSO4g+owG2+iD7SJIt6A3\r\noFU+ONPWuTcAGOOrRsCvinelr+R1K522HjopNzQQHicoMo8CQcU2KLbyud2V2N0/\r\n7N46ZwfeCQ27vp9hZn6VpUFAQyUd+9hWcE1VxyMPsVHmoMh+gn1OrPWZiXI/3ejR\r\nuasEy+N8dsCNe15nxUFk0Y6Q7hSj26dcxcZzDwNunhLnPALSxiZkzgOPY2l5XT6d\r\nbS62uUN2zt4aRxHNSh/e0O7ygz5BF3UDUElJ7610Exg88DOZ2K3MXiBHTH7yl+QV\r\nGDjF8h0oO/hHRtXYr0UdVIA5cLwk3Ya6ImNQY3ZK241JCheoLgfOqpi3mJi12q2t\r\nBeoqZyUZk6rCaJi79oG1elOTZPEXunipfNvgwysa4jVzTPngSH7qqcMGGSu4lro7\r\nnMiHyxc9iyV9d3K4KXoz0pNLFVSi0v3ToteiKtCVxxuIW0Gco9LdS9RRkXJb23/p\r\nnGLfrhyT13GhUmm1zF7wdEMTVQ6Ktzu6pccRY7ZnMUFnT5XzlcexZzdEJe2Q6K4e\r\n/Dtbr6jjFNL+8iXp0m6k/52IHYYqAMPMk8Z+FzuExSpA+A9o",
+    "sharding_configDB": "mongo-cfg/192.168.3.190:36821,192.168.3.200:36821"
+  },
+  "operateVersion": 5723
 }
 ~~~
 
@@ -714,13 +764,13 @@ Ex. 更新mongo节点信息;其中 MongoMember 如下所示：
 ###  13 更新复制集信息
 
 
-13.1 请求路径：
+13.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/mongo/updateMongoRepl/{{isUpdateMemberList}}
+POST: http://{Server-Host}:{端口}/api/collection/mongo/updateMongoRepl/{{isUpdateMemberList}}
 
 ---
 
-13.2 请求参数：
+13.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -730,8 +780,7 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/updateMongoRepl/{{isUpda
 
 <br>
 
-
-![img_6.png](../Images/updateMongoRepl.png)
+![img_9.png](../Images/updateMongoRepl.png)
 
 ----
 
@@ -757,13 +806,13 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/updateMongoRepl/{{isUpda
 ###  14 更新集群信息
 
 
-14.1 请求路径：
+14.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/mongo/updateCluster
+POST: http://{Server-Host}:{端口}/api/collection/mongo/updateCluster
 
 ---
 
-14.2 请求参数：
+14.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -773,7 +822,10 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/updateCluster
 <br>
 
 
-![img_8.png](../Images/updateCluster.png)
+
+![img_10.png](../Images/updateCluster.png)
+
+
 
 ----
 
@@ -798,15 +850,15 @@ POST http://{Server-Host}:{端口}/api/collection/mongo/updateCluster
 
 ###  15 保存mongo成员的实时信息
 
+    
+15.1 请求路径
 
-15.1 请求路径：
-
-POST http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/one/{{tableName}}
+POST: http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/one/{{tableName}}
 
 
 ---
 
-15.2 请求参数：
+15.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -816,8 +868,107 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/one/{{ta
 
 <br>
 
+![img_11.png](../Images/realtime_save_one.png)
 
-![img_10.png](../Images/realtime_save_one.png)
+~~~
+Ex. 保存mongo成员的实时信息;MongodbNodeMetrics 如下所示：
+{
+	"anAssert" : {
+		"msg" : 0,
+		"regular" : 0,
+		"user" : 0,
+		"warning" : 0
+	},
+	"cacheFlow" : {
+		"brin" : 8717624,
+		"bwfr" : 6421369
+	},
+	"cacheUsage" : {
+		"bdirty" : 29300225,
+		"bused" : 9071610
+	},
+	"collectionLock" : {
+		"r" : 0.00,
+		"r_i" : 0.00,
+		"w" : 0.00,
+		"w_i" : 0.00
+	},
+	"collectionScan" : {
+		"total" : 0
+	},
+	"conn" : {
+		"avl" : 52357,
+		"us" : 70
+	},
+	"createTime" : "1660469450000",
+	"databaseLock" : {
+		"r" : 0.00,
+		"r_i" : 0.00,
+		"w" : 0.00,
+		"w_i" : 0.00
+	},
+	"deletedDocument" : {
+		"deleted" : 103,
+		"deletedByTTL" : 35
+	},
+	"documentOp" : {
+		"inserted" : 26,
+		"returned" : 0,
+		"updated" : 0
+	},
+	"hostId" : "62cbbd7607bebb71b8429e5e",
+	"hostName" : "server200",
+	"latency" : {
+		"r" : 717.90,
+		"w" : 3252.41
+	},
+	"lockCondition" : {
+		"r" : 0,
+		"w" : 0
+	},
+	"memory" : {
+		"resident" : 15452,
+		"virtual" : 17276
+	},
+	"net" : {
+		"cmpIn" : 15058,
+		"cmpOut" : 56052,
+		"in" : 15118,
+		"out" : 56052
+	},
+	"nodeId" : "62f49bb052bbf7002d41013d",
+	"pageFaults" : 0,
+	"port" : "29301",
+	"qps" : {
+		"cmd" : 3,
+		"delete" : 0,
+		"getMore" : 0,
+		"insert" : 26,
+		"query" : 3,
+		"update" : 1
+	},
+	"scanAndOrder" : {
+		"scanAndOrder" : 0
+	},
+	"targetQ" : {
+		"scanObject" : 340,
+		"scanned" : 0
+	},
+	"tickets" : {
+		"ravl" : 126,
+		"wavl" : 0
+	},
+	"timeGranularity" : 0,
+	"transactionCondition" : {
+		"currActive" : 0,
+		"currInactive" : 0,
+		"totalAborted" : 0,
+		"totalCommitted" : 0
+	},
+	"updateTime" : "1660469450000"
+}
+~~~
+
 
 ----
 
@@ -841,17 +992,18 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/one/{{ta
 <br>
 
 
-
+## Deprecated 已弃用
 ###  16 保存一批监控数据到数据库中
 
 
-16.1 请求路径：
 
-POST http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/many
+16.1 请求路径
+
+POST: http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/many
 
 ---
 
-16.2 请求参数：
+16.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -887,14 +1039,14 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/many
 ### 17 获取agent实例上的mongo节点信息
 
 
-17.1 请求路径：
+17.1 请求路径
 
 POST http://{Server-Host}:{端口}/api/collection/mongodb/agent/mongoMember/{{agentId}}
 
 
 ---
 
-17.2 请求参数：
+17.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -991,14 +1143,14 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/agent/mongoMember/{{ag
 ###  18 保存mongo.log日志
 
 
-18.1 请求路径：
+18.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoLog/{{mongoMemberId}}/{{fileOffset}}
+POST: http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoLog/{{mongoMemberId}}/{{fileOffset}}
 
 
 ---
 
-18.2 请求参数：
+18.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -1020,7 +1172,7 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoLog/{{mongoM
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         文件偏移        |         String                | 
+| data       |         文件偏移量        |         long                | 
 
 <br>
 
@@ -1038,14 +1190,14 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoLog/{{mongoM
 ###  19 保存 mongo top and op
 
 
-19.1 请求路径：
+19.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoTopAndOp
+POST: http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoTopAndOp
 
 
 ---
 
-19.2 请求参数：
+19.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -1056,6 +1208,41 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoTopAndOp
 
 
 ![img_17.png](../Images/save_mongoTopAndOp.png)
+
+
+[comment]: <> (~~~)
+
+[comment]: <> ([{)
+
+[comment]: <> (	"name" : "hostRealTimeDataMongoEntity",)
+
+[comment]: <> (	"type" : "collection",)
+
+[comment]: <> (	"options" : {)
+
+[comment]: <> (	},)
+
+[comment]: <> (	"storageSize" : 8836,)
+
+[comment]: <> (	"size" : 44721,)
+
+[comment]: <> (	"ns" : "ops.hostRealTimeDataMongoEntity",)
+
+[comment]: <> (	"indexSizes" : {)
+
+[comment]: <> (		"_id_" : 248,)
+
+[comment]: <> (		"createTime_1" : 152,)
+
+[comment]: <> (		"hostId_1" : 84,)
+
+[comment]: <> (		"hostId_1_createTime_1_timeGranularity_1" : 172)
+
+[comment]: <> (	})
+
+[comment]: <> (}])
+
+[comment]: <> (~~~)
 
 ----
 
@@ -1082,14 +1269,14 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoTopAndOp
 ###  20 更新fcv
 
 
-20.1 请求路径：
+20.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/collection/mongodb/updateFCV/{{clusterId}}/{{fcv}}
+GET: http://{Server-Host}:{端口}/api/collection/mongodb/updateFCV/{{clusterId}}/{{fcv}}
 
 
 ---
 
-20.2 请求参数：
+20.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -1129,14 +1316,14 @@ GET http://{Server-Host}:{端口}/api/collection/mongodb/updateFCV/{{clusterId}}
 ###  21 保存mongodb集合
 
 
-21.1 请求路径：
+21.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBCollections
+POST: http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBCollections
 
 
 ---
 
-21.2 请求参数：
+21.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -1146,7 +1333,46 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBCollections
 <br>
 
 
-![img_21.png](../Images/saveMongoDBCollections.png)
+~~~
+Ex. 保存mongodb集合;其中 MongoDBCollections 如下所示：
+{
+	"_id" : "62ea1db298c0825187aee96e",
+	"clusterId" : "62ea1db298c0825187aee96e",
+	"createTime" : "1659686288006",
+	"dbTables" : [
+		{
+			"name" : "fs.files",
+			"type" : "collection",
+			"options" : {
+				
+			},
+			"info" : {
+				"readOnly" : false,
+				"uuid" : {
+					"type" : 4,
+					"data" : "q/X3q+2aQVC9dGCnS4wKZA=="
+				}
+			},
+			"idIndex" : {
+				"v" : 2,
+				"key" : {
+					"_id" : 1
+				},
+				"name" : "_id_",
+				"ns" : "record.fs.files"
+			},
+			"storageSize" : 20,
+			"size" : 16,
+			"ns" : "record.fs.files"
+		}
+	],
+	"fromServerExe" : false,
+	"updateTime" : 0
+}
+
+~~~
+
+![img_12.png](../Images/saveMongoDBCollections.png)
 
 ----
 
@@ -1173,14 +1399,14 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBCollections
 ###  22 保存mongo成员用户
 
 
-22.1 请求路径：
+22.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterUser/{{clusterId}}
+POST: http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterUser/{{clusterId}}
 
 
 ---
 
-22.2 请求参数：
+22.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -1192,6 +1418,26 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterUser
 
 
 ![img_23.png](../Images/saveMongoDBClusterUser.png)
+
+~~~
+Ex. 保存mongo成员用户;其中 List 如下所示：
+[{
+	"name" : "hostRealTimeDataMongoEntity",
+	"type" : "collection",
+	"options" : {	
+	},
+	"storageSize" : 8836,
+	"size" : 44721,
+	"ns" : "ops.hostRealTimeDataMongoEntity",
+	"indexSizes" : {
+		"_id_" : 248,
+		"createTime_1" : 152,
+		"hostId_1" : 84,
+		"hostId_1_createTime_1_timeGranularity_1" : 172
+	}
+}]
+~~~
+
 
 ----
 
@@ -1218,14 +1464,14 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterUser
 ###  23 保存mongo成员角色
 
 
-23.1 请求路径：
+23.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterRole/{{clusterId}}
+POST: http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterRole/{{clusterId}}
 
 
 ---
 
-23.2 请求参数：
+23.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -1238,6 +1484,8 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterRole
 
 
 ![img_25.png](../Images/saveMongoDBClusterRole.png)
+
+
 
 ----
 
@@ -1254,6 +1502,62 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterRole
 
 ![img_26.png](../Images/saveMongoDBClusterRole_r.png)
 
+
+
+
+<br>
+
+
+###  24 巡检上传
+
+
+24.1 请求路径
+
+POST: http://localhost:9601/api/collection/file/mdiag/file/{{clusterId}}
+
+---
+
+24.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+|       clusterId      |       Path  |        集群id      |       Yes           |String
+|       file      |       Body  |        文件      |       Yes           |MultipartFile
+
+<br>
+
+
+
+![img.png](../Images/mdiag_file.png)
+
+
+
+----
+
+24.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回消息        |            String             | 
+
+<br>
+
+
+~~~
+{
+    "msg": "推送成功",
+    "code": 1000
+}
+
+~~~
+
+
+---
+
+<br>
 
 ---
 ---

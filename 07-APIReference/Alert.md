@@ -1,12 +1,12 @@
 
 
 # Alert接口
-接口调用时须在请求头中设置OPS-Token,返回内容为 JSON 格式的信息.
+接口调用时须在请求头中设置whaleal-Token,返回内容为 JSON 格式的信息。
 其参数为时间类型都以时间戳形式传递。
 
 接口调用时需用到hostId、objectId
 ~~~
-hostId在“根据主机名模糊查询主机基本信息”接口处获取。
+hostId 在“根据主机名模糊查询主机基本信息”接口处获取。
 
 objectId 为主机id或mongo节点id，mongo节点id在“查找mongoDB集群信息数据”接口返回结果集中data集合的中mongo集合的“id”。
 ~~~
@@ -17,7 +17,7 @@ objectId 为主机id或mongo节点id，mongo节点id在“查找mongoDB集群信
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
-| Accept-Encoding        |         gzip, deflate, br |     
+| Accept-Encoding        |         gzip,deflate,br |     
 | Connection          |         keep-alive           |          
 | Content-Type          |         application/json |    
 ---
@@ -28,14 +28,14 @@ objectId 为主机id或mongo节点id，mongo节点id在“查找mongoDB集群信
 ###  1 判断来自警告信息是否正确
 
 
-1.1 请求路径：
+1.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/alert/judgeAlertMsg
+POST: http://{Server-Host}:{端口}/api/alert/judgeAlertMsg
 
 
 ---
 
-1.2 请求参数：
+1.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -46,18 +46,21 @@ POST http://{Server-Host}:{端口}/api/alert/judgeAlertMsg
 <br>
 
 
-![img_16.png](../Images/judgeAlertMsg.png)
+
+![img_1.png](../Images/judgeAlertMsg.png)
 
 ~~~
 EX. 判断来自警告信息是否正确;其中AlertMsgEntity 如下所示：
 {
-	"_id" : "62b922795ba3cf1e7abf0dce",                 
-	"continuousGranularityStrategyList" : [ ],
-	"createTime" : "1656300153918",
-	"objectId" : "62b922795ba3cf1e7abf0dcd",
-	"timeFrequencyStrategyList" : [ ],
-	"type" : 1,                                             
-	"updateTime" : "1656300153918"
+    "alertStrategyId": "62fa15c51bf5144438e5290f",
+    "createTime": 1660556741231,
+    "endTime": 1660556741231,
+    "id": "62fa15c51bf5144438e5290d",
+    "msg": "test_alert",
+    "objectId": "62fa15c51bf5144438e5290e",
+    "objectType": 1,
+    "startTime": 1660556741231,
+    "updateTime": 1660556741231
 }
 ~~~
 
@@ -70,7 +73,7 @@ EX. 判断来自警告信息是否正确;其中AlertMsgEntity 如下所示：
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |           int            |    
-| data       |         返回信息        |                String         | 
+| data       |         返回消息       |                String         | 
 
 <br>
 
@@ -88,20 +91,21 @@ EX. 判断来自警告信息是否正确;其中AlertMsgEntity 如下所示：
 ###  2 获取告警策略
 
 
-2.1 请求路径：
+2.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/alert/getAlertStrategy
+GET: http://{Server-Host}:{端口}/api/alert/getAlertStrategy
 
 
 ---
 
-2.2 请求参数：
+2.2 请求参数
 
+    类型:1 agent,2 mongo
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 |     objectId        |        Params              |           对象id               |    Yes              |String
-|     type        |         Params       |    类型:1 agent,2 mongo    |           Yes       |String
+|     type        |         Params       |    类型    |           Yes       |int
 
 <br>
 
@@ -116,7 +120,7 @@ GET http://{Server-Host}:{端口}/api/alert/getAlertStrategy
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回数据        |             List            | 
+| data       |         返回数据        |             JSON            | 
 
 <br>
 
@@ -130,17 +134,17 @@ GET http://{Server-Host}:{端口}/api/alert/getAlertStrategy
 
 <br>
 
-###  3 获取所有成员警告策略
+###  3 获取所有成员警告策略(获取一台agent上所有mongodb节点告警策略)
 
 
-3.1 请求路径：
+3.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/alert/getAllMongoMemberAlertStrategy
+GET: http://{Server-Host}:{端口}/api/alert/getAllMongoMemberAlertStrategy
 
 
 ---
 
-3.2 请求参数：
+3.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -166,9 +170,35 @@ GET http://{Server-Host}:{端口}/api/alert/getAllMongoMemberAlertStrategy
 <br>
 
 
-![img_21.png](../Images/getAllMongoMemberAlertStrategy_r.png)
+![img_2.png](../Images/getAllMongoMemberAlertStrategy_r.png)
 
 
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "id": "62fa1679266fb301295fd555",
+            "createTime": 1660556921496,
+            "updateTime": 1660556923891,
+            "name": "",
+            "objectId": "62f5bf10c329264bb2d6deb1",
+            "type": 2,
+            "timeFrequencyStrategyList": [],
+            "continuousGranularityStrategyList": [
+                {
+                    "type": "qps_insert",
+                    "cmp": ">",
+                    "value": 80.0,
+                    "count": 20,
+                    "alarmFrequency": 30,
+                    "duration": 60
+                }
+            ]
+        }
+    ]
+}
+~~~
 
 ---
 
@@ -177,14 +207,14 @@ GET http://{Server-Host}:{端口}/api/alert/getAllMongoMemberAlertStrategy
 ###  4 更新警告信息
 
 
-4.1 请求路径：
+4.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/alert/update
+POST: http://{Server-Host}:{端口}/api/alert/update
 
 
 ---
 
-4.2 请求参数：
+4.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -204,13 +234,60 @@ POST http://{Server-Host}:{端口}/api/alert/update
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回数据        |              String           | 
+| data       |         返回数据        |              JSON           | 
 
 <br>
 
 
 
 ![img_23.png](../Images/alert_update_r.png)
+
+
+---
+
+
+<br>
+
+###  5 发送告警信息
+
+
+5.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/alert/sendAlertMsg
+
+
+---
+
+5.2 请求参数
+
+    type: 1 host,2 mongo
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+|     objectId        |        Params              |    host或mongo的id             |    Yes              |String
+|     msg        |        Params              |           通知消息              |    Yes              |String
+|     type        |        Params              |           通知类型              |    Yes              |int
+
+<br>
+
+
+![img_3.png](../Images/sendAlertMsg.png)
+
+----
+
+5.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| msg       |         返回消息      |              String           | 
+
+<br>
+
+
+
+![img_4.png](../Images/sendAlertMsg_r.png)
 
 
 ---
