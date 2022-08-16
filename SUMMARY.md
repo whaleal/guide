@@ -68,11 +68,11 @@
         * [Agent](./07-APIReference/Agent.md)
         * [Alert](./07-APIReference/Alert.md)
         * [Collection](./07-APIReference/Collection.md)
-        * [DBData](./07-APIReference/DBData.md)
+        * [DBData](./07-APIReference/MongoDbData.md)
         * [ErrorCodes](./07-APIReference/ErrorCodes.md)
         * [Files](./07-APIReference/Files.md)
         * [Member](./07-APIReference/Member.md)
-        * [Mongo](./07-APIReference/Mongos.md)
+        * [Mongo](./07-APIReference/MongoOperate.md)
         * [Other](./07-APIReference/Other.md)
         * [Third_party](./07-APIReference/Third_party.md)
 

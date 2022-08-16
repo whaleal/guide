@@ -1,5 +1,5 @@
 #Member接口
-接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+接口调用时须在请求头中设置whaleal-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
 
 
 
@@ -15,14 +15,14 @@ messageId为消息id，在“获取信息数据”接口处返回的实体类中
 
 ### 请求头默认格式，特殊情况特殊声明
     
-    OPS-Token在调用登录接口时返回，在之后调用接口时将OPS-Token放置请求头中。
+    whaleal-Token在调用登录接口时返回，在之后调用接口时将whaleal-Token放置请求头中。
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
-| Accept-Encoding        |         gzip, deflate, br |     
+| Accept-Encoding        |         gzip,deflate,br |     
 | Connection          |         keep-alive           |          
 | Content-Type          |         application/json |    
-| OPS-Token          |         "token"           |     
+| whaleal-Token          |         "token"           |     
 
 
 
@@ -34,14 +34,14 @@ messageId为消息id，在“获取信息数据”接口处返回的实体类中
 
 ####  1 登录
 
-1.1 请求路径：
+1.1 请求路径
 
 
-POST http://192.168.3.200:9600/api/server/member/login
+POST: http://{Server-Host}:{端口}/api/server/member/login
 
 ---
 
-1.2 请求参数：
+1.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -65,6 +65,7 @@ POST http://192.168.3.200:9600/api/server/member/login
 | data       |         返回数据|       JSON                 |        
 | generateAgentIdAble       |         是否有权限生成agentId         |         boolean               |        
 | token       |         Token令牌         |         String               |   
+| createMongoDBAble       |         是否有权限创建mongo集群         |         boolean               |   
 
 <br>
 
@@ -101,14 +102,14 @@ POST http://192.168.3.200:9600/api/server/member/login
 
 #### 2 保存新用户信息.
 
-2.1 请求路径：
+2.1 请求路径
 
 
-POST http://192.168.3.200:9600/api/server/member/register
+POST: http://{Server-Host}:{端口}/api/server/member/register
 
 ---
 
-2.2 请求参数：
+2.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -180,14 +181,14 @@ Ex. 保存新用户信息;其中 MemberMongoEntity 如下所示:
 ####  3 更新用户信息
 
 
-3.1 请求路径：
+3.1 请求路径
 
 
-POST http://192.168.3.200:9600/api/server/member/update
+POST: http://{Server-Host}:{端口}/api/server/member/update
 
 ---
 
-3.2 请求参数：
+3.2 请求参数
 
      
 
@@ -201,17 +202,27 @@ POST http://192.168.3.200:9600/api/server/member/update
 <br>
 
 
-![img_42.png](../Images/update.png)
 
+![img_14.png](../Images/updateMember.png)
 
 ~~~
 Ex. 更新用户信息;其中 MemberMongoEntity 如下所示:
 {
-    "id": "62c5669d006b7955deacf8d8",
-    "account": "chen123456",
-    "password": "654321",
-    "email": "987654321@qq.com",
-    "phone": "17699999999"
+    "id": "62be61c7cbeff906da28f6ff",
+    "createTime": 1659602792412,
+    "updateTime": 1659605792412,
+    "account": "chen123",
+    "password": "",
+    "email": "110236111@qq.com",
+    "areaCode": "86",
+    "phone": "17699999999",
+    "role": "admin",
+    "timezone": "A1",
+    "receiveAlert": true,
+    "dingDingList": [
+        "_"
+    ],
+    "avatar": ""
 }
 ~~~
 
@@ -259,14 +270,14 @@ Ex. 更新用户信息;其中 MemberMongoEntity 如下所示:
 
 #### 4 搜索用户
 
-4.1 请求路径：
+4.1 请求路径
 
 
-POST http://192.168.3.200:9600/api/server/member/findMemberData/{{pageSize}}/{{pageIndex}}
+POST: http://{Server-Host}:{端口}/api/server/member/findMemberData/{{pageSize}}/{{pageIndex}}
 
 ---
 
-4.2 请求参数：
+4.2 请求参数
 
 
 
@@ -274,20 +285,20 @@ POST http://192.168.3.200:9600/api/server/member/findMemberData/{{pageSize}}/{{p
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | pageSize          |         Path           |            每页大小            |        Yes       |int        |
 | pageIndex          |         Path           |            第几页            |        Yes       |int        |
-| map          |         Body           |            用户信息            |       No     |Map        |
+| map          |         Body           |            用户信息            |       Yes     |Map        |
 
 
 <br>
 
 
-![img_44.png](../Images/findMemberData.png)
+![img_15.png](../Images/findMemberData.png)
 
 ~~~
 Ex. 搜索用户;其中 Map 如下所示:
 {
-    "account": "chen123456",
-    "phone": "",
-    "email": ""
+    "account": "chen",
+    "phone": "176",
+    "email": "11"
 }
 ~~~
 
@@ -300,7 +311,7 @@ Ex. 搜索用户;其中 Map 如下所示:
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回数据|       JSON                 |        
+| data       |         返回数据|       List                 |        
 
 <br>
 
@@ -336,18 +347,18 @@ Ex. 搜索用户;其中 Map 如下所示:
 
 #### 5 查询用户数量
 
-5.1 请求路径：
+5.1 请求路径
 
-POST http://192.168.3.200:9600/api/server/member/findMemberCount
+POST: http://{Server-Host}:{端口}/api/server/member/findMemberCount
 
 ---
 
-5.2 请求参数：
+5.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| map          |         Body           |            用户信息            |       No     |Map        |
+| map          |         Body           |            用户信息            |       Yes     |Map        |
 
 
 <br>
@@ -373,11 +384,11 @@ Ex. 搜索用户;其中 Map 如下所示:
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回数量         |       int                 |        
+| data       |         返回数量         |       long                 |        
 
 <br>
 
-[comment]: <> (![img_47.png]&#40;../Images/findMemberCount_r.png&#41;)
+![img_47.png](../Images/findMemberCount_r.png)
 
 ---
 
@@ -386,14 +397,14 @@ Ex. 搜索用户;其中 Map 如下所示:
 
 #### 6 更新接收警报
 
-6.1 请求路径：
+6.1 请求路径
 
 
-GET http://192.168.3.200:9600/api/server/member/update/receiveAlert/{{memberId}}/{{value}}
+GET: http://{Server-Host}:{端口}/api/server/member/update/receiveAlert/{{memberId}}/{{value}}
 
 ---
 
-6.2 请求参数：
+6.2 请求参数
 
 
 
@@ -428,15 +439,16 @@ GET http://192.168.3.200:9600/api/server/member/update/receiveAlert/{{memberId}}
 
 #### 7 更新时区
 
-7.1 请求路径：
+7.1 请求路径
 
 
-GET http://192.168.3.200:9600/api/server/member/update/timezone/{{memberId}}
+GET: http://{Server-Host}:{端口}/api/server/member/update/timezone/{{memberId}}
 
 ---
 
-7.2 请求参数：
+7.2 请求参数
 
+    timezone:Asia/Shanghai
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -472,21 +484,22 @@ GET http://192.168.3.200:9600/api/server/member/update/timezone/{{memberId}}
 #### 8 更新角色
 
 
-8.1 请求路径：
+8.1 请求路径
 
 
-GET http://192.168.3.200:9600/api/server/member/update/role/{{memberId}}/{{value}}
+GET: http://{Server-Host}:{端口}/api/server/member/update/role/{{memberId}}/{{value}}
 
 ---
 
-8.2 请求参数：
+8.2 请求参数
 
+    value:user,admin
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
-| value          |         Path           |            角色:user,admin            |        Yes       |String        |
+| value          |         Path           |            角色            |        Yes       |String        |
 
 <br>
 
@@ -514,13 +527,13 @@ GET http://192.168.3.200:9600/api/server/member/update/role/{{memberId}}/{{value
 
 #### 9 更新是否可以创建mongodb
 
-9.1 请求路径：
+9.1 请求路径
 
-GET http://192.168.3.200:9600/api/server/member/update/createMongoDBAble/{{memberId}}/{{value}}
+GET: http://{Server-Host}:{端口}/api/server/member/update/createMongoDBAble/{{memberId}}/{{value}}
 
 ---
 
-9.2 请求参数：
+9.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -555,13 +568,13 @@ GET http://192.168.3.200:9600/api/server/member/update/createMongoDBAble/{{membe
 
 #### 10 更新是否可以创建agenid
 
-10.1 请求路径：
+10.1 请求路径
 
-GET http://192.168.3.200:9600/api/server/member/update/generateAgentIdAble/{{memberId}}/{{value}}
+GET: http://{Server-Host}:{端口}/api/server/member/update/generateAgentIdAble/{{memberId}}/{{value}}
 
 ---
 
-10.2 请求参数：
+10.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -598,21 +611,23 @@ GET http://192.168.3.200:9600/api/server/member/update/generateAgentIdAble/{{mem
 
 #### 11 更新用户资源信息
 
-11.1 请求路径：
+11.1 请求路径
 
-GET http://192.168.3.200:9600/api/server/member/update/userResourceInfo/{{memberId}}/{{objectId}}/{{type}}/{{value}}
+GET: http://{Server-Host}:{端口}/api/server/member/update/userResourceInfo/{{memberId}}/{{objectId}}/{{type}}/{{value}}
 
 ---
 
-11.2 请求参数：
+11.2 请求参数
 
+    value:read,write,null
+    type:mongodb,host
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | objectId          |         Path           |            根据type类型提供id            |        Yes       |String        |
-| type          |         Path           |            类型：mongo,host            |        Yes       |String        |
-| value          |         Path           |            值：read，write，nul            |        Yes       |String        |
+| type          |         Path           |            类型            |        Yes       |String        |
+| value          |         Path           |            权限            |        Yes       |String        |
 
 <br>
 
@@ -640,14 +655,14 @@ GET http://192.168.3.200:9600/api/server/member/update/userResourceInfo/{{member
 
 #### 12 删除用户
 
-12.1 请求路径：
+12.1 请求路径
 
 
-GET http://170.187.230.78:9602/api/server/member/delete/user/{{memberId}}
+GET: http://{Server-Host}:{端口}/api/server/member/delete/user/{{memberId}}
 
 ---
 
-12.2 请求参数：
+12.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -682,14 +697,14 @@ GET http://170.187.230.78:9602/api/server/member/delete/user/{{memberId}}
 
 #### 13 获取用户资源
 
-13.1 请求路径：
+13.1 请求路径
 
 
-GET http://{Server-Host}:{端口}/api/server/member/getUserResource/{{memberId}}
+GET: http://{Server-Host}:{端口}/api/server/member/getUserResource/{{memberId}}
 
 ---
 
-13.2 请求参数：
+13.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -712,7 +727,41 @@ GET http://{Server-Host}:{端口}/api/server/member/getUserResource/{{memberId}}
 
 <br>
 
-![img_63.png](../Images/getUserResource_r.png)
+![img_16.png](../Images/getUserResource_r.png)
+
+
+~~~
+{
+    "code": 1000,
+    "data": {
+        "id": "62eb99cdca0e230d4a13c423",
+        "createTime": 1659607501509,
+        "updateTime": 1660121964509,
+        "createMongoDBAble": true,
+        "generateAgentIdAble": true,
+        "mongoDBClusterList": [
+            {
+                "id": "62eb915e32f3671236d6a0be",
+                "competence": "write"
+            },
+            {
+                "id": "62ec7ac2ca0e230d4a13c490",
+                "competence": "write"
+            }
+        ],
+        "hostList": [
+            {
+                "id": "62ecaf96ca0e230d4a13c75f",
+                "competence": "write"
+            },
+            {
+                "id": "62ecb027ca0e230d4a13c764",
+                "competence": "write"
+            }
+        ]
+    }
+}
+~~~
 
 ---
 
@@ -722,22 +771,24 @@ GET http://{Server-Host}:{端口}/api/server/member/getUserResource/{{memberId}}
 
 #### 14 获取用户服务数据
 
-14.1 请求路径：
+14.1 请求路径
 
 
-GET https://{Server-Host}:{端口}/api/server/member/getUserServerResourceData/{{memberId}}/{{competence}}/{{pageSize}}/{{pageIndex}}
+GET: http://{Server-Host}:{端口}/api/server/member/getUserServerResourceData/{{memberId}}/{{competence}}/{{pageSize}}/{{pageIndex}}
 
 ---
 
-14.2 请求参数：
+14.2 请求参数
 
+    competence:write,read,null
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
-| competence          |         Path           |            权限:write,read,null            |        Yes       |String        |
+| competence          |         Path           |            权限            |        Yes       |String        |
 | pageSize          |         Path           |            每页大小            |        Yes       |int        |
 | pageIndex          |         Path           |            第几页            |        Yes       |int        |
+| hostName          |         Params           |            主机名称            |        No       |String        |
 
 <br>
 
@@ -751,13 +802,30 @@ GET https://{Server-Host}:{端口}/api/server/member/getUserServerResourceData/{
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |          int             |
-| data.hostName       |         主机名称|            String            |
-| data.osVersion       |         系统版本|         String               |
+| data       |         返回数据    |            List            |
 
 <br>
 
-![img_65.png](../Images/getUserServerResourceData_r.png)
+![img_17.png](../Images/getUserServerResourceData_r.png)
 
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "_id": "62eb906a32f3671236d6a0af",
+            "hostName": "server121",
+            "osVersion": "CentOS Linux release 7.7.1908 (Core)"
+        },
+        {
+            "_id": "62eb90ea32f3671236d6a0b7",
+            "hostName": "server90",
+            "osVersion": "CentOS Linux release 7.7.1908 (Core)"
+        }
+    ]
+}
+
+~~~
 
 
 ---
@@ -767,19 +835,20 @@ GET https://{Server-Host}:{端口}/api/server/member/getUserServerResourceData/{
 
 #### 15 获取用户服务数
 
-15.1 请求路径：
+15.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/member/getUserServerResourceCount/{{memberId}}/{{competence}}
+GET: http://{Server-Host}:{端口}/api/server/member/getUserServerResourceCount/{{memberId}}/{{competence}}
 
 ---
 
-15.2 请求参数：
+15.2 请求参数
 
+    competence:write,read,null
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
-| competence          |         Path           |            权限:write,read,null            |        Yes       |String        |
+| competence          |         Path           |            权限            |        Yes       |String        |
 
 <br>
 
@@ -794,7 +863,7 @@ GET http://{Server-Host}:{端口}/api/server/member/getUserServerResourceCount/{
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |
-| data       |         返回数量|           int             |
+| data       |         返回数量|           long             |
 
 <br>
 
@@ -808,28 +877,30 @@ GET http://{Server-Host}:{端口}/api/server/member/getUserServerResourceCount/{
 
 #### 16 获取用户mongo db集群资源数据
 
-16.1 请求路径：
+16.1 请求路径
 
 
-GET http://{Server-Host}:{端口}/api/server/member/getUserMongoDBClusterResourceData/{{memberId}}/{{competence}}/{{pageSize}}/{{pageIndex}}
+GET: http://{Server-Host}:{端口}/api/server/member/getUserMongoDBClusterResourceData/{{memberId}}/{{competence}}/{{pageSize}}/{{pageIndex}}
 
 ---
 
-16.2 请求参数：
+16.2 请求参数
 
+    competence:write,read,null 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
-| competence          |         Path           |            权限:write,read,null            |        Yes       |String        |
+| competence          |         Path           |            权限           |        Yes       |String        |
 | pageSize          |         Path           |            每页大小            |        Yes       |int        |
 | pageIndex          |         Path           |            第几页            |        Yes       |int        |
+| clusterName          |         Params           |            集群名称            |        No       |String        |
 
 
 <br>
 
+![img_18.png](../Images/getUserMongoDBClusterResourceData.png)
 
-![img_68.png](../Images/getUserMongoDBClusterResourceData.png)
 
 ----
 
@@ -840,12 +911,12 @@ GET http://{Server-Host}:{端口}/api/server/member/getUserMongoDBClusterResourc
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |          int             |
 | data.clusterName       |         集群名称|           String             |
-| data.type       |         类型:单节点,复制集,分片，纳管|       String                 |
+| data.type       |         类型:单节点,复制集,分片,纳管|       String                 |
 
 
 <br>
 
-![img_69.png](../Images/getUserMongoDBClusterResourceData_r.png)
+![img_19.png](../Images/getUserMongoDBClusterResourceData_r.png)
 
 ---
 
@@ -855,23 +926,26 @@ GET http://{Server-Host}:{端口}/api/server/member/getUserMongoDBClusterResourc
 
 #### 17 获取用户mongo db集群数
 
-17.1 请求路径：
+17.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/member/getUserMongoDBClusterResourceCount/{{memberId}}/{{competence}}
+GET: http://{Server-Host}:{端口}/api/server/member/getUserMongoDBClusterResourceCount/{{memberId}}/{{competence}}
 
 ---
 
-17.2 请求参数：
+17.2 请求参数
 
+    competence:write,read,null
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | memberId          |         Path           |            用户id            |        Yes       |String        |
-| competence          |         Path           |            权限:write,read,null            |        Yes       |String        |
+| competence          |         Path           |            权限            |        Yes       |String        |
+| clusterName          |         Params           |            集群名称            |        No       |String        |
+
 
 <br>
 
-![img_70.png](../Images/getUserMongoDBClusterResourceCount.png)
+![img_20.png](../Images/getUserMongoDBClusterResourceCount.png)
 
 ----
 
@@ -881,12 +955,11 @@ GET http://{Server-Host}:{端口}/api/server/member/getUserMongoDBClusterResourc
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |          int             |
-| data       |         返回数量|            int            |
+| data       |         返回数量|            long            |
 
 <br>
 
-![img_71.png](../Images/getUserMongoDBClusterResourceCount_r.png)
-
+![img_21.png](../Images/getUserMongoDBClusterResourceCount_r.png)
 
 
 ---
@@ -897,14 +970,15 @@ GET http://{Server-Host}:{端口}/api/server/member/getUserMongoDBClusterResourc
 
 #### 18 获取信息数据
 
-18.1 请求路径：
+18.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/member/getMessageData/{{memberId}}/{{pageSize}}/{{pageIndex}}
+GET: http://{Server-Host}:{端口}/api/server/member/getMessageData/{{memberId}}/{{pageSize}}/{{pageIndex}}
 
 
 ---
 
-18.2 请求参数：
+18.2 请求参数
+
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -914,11 +988,10 @@ GET http://{Server-Host}:{端口}/api/server/member/getMessageData/{{memberId}}/
 | pageIndex          |         Path           |            第几页            |        Yes       |int        |
 | operatorName          |         Params           |            操作者名称            |        No       |String        |
 | objectName          |         Params           |            被操作的对象名称            |        No       |String        |
-| type          |         Params           |            主机 mongodb 用户 告警            |        No       |String        |
-| status          |         Params           |            状态            |        Yes       |boolean        |
+| status          |         Params           |            状态            |        No       |boolean        |
 | message          |         Params           |            消息            |        No       |String        |
-| startTime          |         Params           |            开始时间            |        Yes       |long        |
-| endTime          |         Params           |            结束时间            |        Yes       |long        |
+| startTime          |         Params           |            开始时间            |        No       |long        |
+| endTime          |         Params           |            结束时间            |        No       |long        |
 
 <br>
 
@@ -932,12 +1005,33 @@ GET http://{Server-Host}:{端口}/api/server/member/getMessageData/{{memberId}}/
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |       int                |
-| data       |         返回数据|            JSON            |
+| data       |         返回数据|            List            |
 
 <br>
 
-![img_73.png](../Images/getMessageData_r.png)
+![img_22.png](../Images/getMessageData_r.png)
 
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "id": "62fb00088e34f36c92fb013d",
+            "createTime": 1660616712771,
+            "updateTime": 1660616712771,
+            "message": "主机:server190已宕机\r\n\t告警时间UTC:2022-08-16 02:22:56",
+            "type": "alert",
+            "objectId": "62f343406ccc6972abb87818",
+            "objectName": "server190",
+            "operatorId": null,
+            "operatorName": null,
+            "eventId": null,
+            "list": []
+        }
+    ]
+}
+
+~~~
 
 ---
 
@@ -947,15 +1041,15 @@ GET http://{Server-Host}:{端口}/api/server/member/getMessageData/{{memberId}}/
 
 #### 19 获取消息数量
 
-19.1 请求路径：
+19.1 请求路径
 
 
-GET http://{Server-Host}:{端口}/api/server/member/getMessageCount/{{memberId}}
+GET: http://{Server-Host}:{端口}/api/server/member/getMessageCount/{{memberId}}
 
 ---
 
 
-19.2 请求参数：
+19.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -963,11 +1057,10 @@ GET http://{Server-Host}:{端口}/api/server/member/getMessageCount/{{memberId}}
 | memberId          |         Path           |            用户id            |        Yes       |String        |
 | operatorName          |         Params           |            操作者名称            |        No       |String        |
 | objectName          |         Params           |            被操作的对象名称            |        No       |String        |
-| type          |         Params           |            主机 mongodb 用户 告警            |        No       |String        |
-| status          |         Params           |            状态            |        Yes       |boolean        |
+| status          |         Params           |            状态            |        No       |boolean        |
 | message          |         Params           |            消息            |        No       |String        |
-| startTime          |         Params           |            开始时间            |        Yes       |long        |
-| endTime          |         Params           |            结束时间            |        Yes       |long        |
+| startTime          |         Params           |            开始时间            |        No       |long        |
+| endTime          |         Params           |            结束时间            |        No       |long        |
 
 <br>
 
@@ -981,7 +1074,7 @@ GET http://{Server-Host}:{端口}/api/server/member/getMessageCount/{{memberId}}
 |               |     Description    |           Schema              |
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |
-| data     |         返回数量|             int           |
+| data     |         返回数量|             long           |
 
 <br>
 
@@ -996,13 +1089,13 @@ GET http://{Server-Host}:{端口}/api/server/member/getMessageCount/{{memberId}}
 
 #### 20 更新消息状态
 
-20.1 请求路径：
+20.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/member/update/messageStatus/{{memberId}}/{{messageId}}
+GET: http://{Server-Host}:{端口}/api/server/member/update/messageStatus/{{memberId}}/{{messageId}}
 
 ---
 
-20.2 请求参数：
+20.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -1039,14 +1132,14 @@ GET http://{Server-Host}:{端口}/api/server/member/update/messageStatus/{{membe
 
 #### 21 更新所有消息状态
 
-21.1 请求路径：
+21.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/member/update/allMessageStatus/{{memberId}}
+GET: http://{Server-Host}:{端口}/api/server/member/update/allMessageStatus/{{memberId}}
 
 ---
 
 
-21.2 请求参数：
+21.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |

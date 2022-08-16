@@ -1,6 +1,6 @@
 # MongoDBData接口
 
-接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+接口调用时须在请求头中设置whaleal-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
 其参数为时间的都以时间戳形式传递。
 
 
@@ -16,15 +16,15 @@ clusterId在“查找mongoDB集群信息数据”接口返回结果集中。
 
 ### 请求头默认格式，特殊情况特殊声明
 
-    OPS-Token在调用登录接口时返回，在之后调用接口时将token放置请求头中。
-[登录接口调用获取OPS-Token](Member.md)
+    whaleal-Token在调用登录接口时返回，在之后调用接口时将token放置请求头中。
+[登录接口调用获取whaleal-Token](Member.md)
 
 | KEY                |     VALUE      |
 | -------------------|----------------------|
 | Accept-Encoding        |         gzip, deflate, br |
 | Connection          |         keep-alive           |
 | Content-Type          |         application/json |
-| OPS-Token          |         "token"           |
+| whaleal-Token          |         "token"           |
 ---
 ---
 
@@ -35,16 +35,16 @@ clusterId在“查找mongoDB集群信息数据”接口返回结果集中。
 
 ## Deprecated 已弃用
 
-1.1 请求路径：
+1.1 请求路径
 
 
 
 
-GET http://{Server-Host}:{端口}/api/server/mongo/monitor/project/data/{{clusterName}}/{{projectType}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/monitor/project/data/{{clusterName}}/{{projectType}}
 
 ---
 
-1.2 请求参数：
+1.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -63,13 +63,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/project/data/{{cluste
 ###  2 获取群集大小前五名
 
 
-2.1 请求路径：
+2.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/monitor/cluster/size/top/five
+GET: http://{Server-Host}:{端口}/api/server/mongo/monitor/cluster/size/top/five
 
 ---
 
-2.2 请求参数：
+2.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -79,9 +79,8 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/cluster/size/top/five
 
 <br>
 
+![img_23.png](../Images/cluster_size_top_five.png)
 
-
-![img.png](../Images/cluster_size_top_five.png)
 
 ----
 
@@ -127,13 +126,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/cluster/size/top/five
 ###  3 获取集合大小前五名
 
 
-3.1 请求路径：
+3.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/monitor/collection/size/top/five
+GET: http://{Server-Host}:{端口}/api/server/mongo/monitor/collection/size/top/five
 
 ---
 
-3.2 请求参数：
+3.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -145,7 +144,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/collection/size/top/f
 
 
 
-![img_1.png](../Images/collection_size_top_five.png)
+![img_24.png](../Images/collection_size_top_five.png)
 
 ----
 
@@ -213,13 +212,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/collection/size/top/f
 ###  4 获取QPS大小前五
 
 
-4.1 请求路径：
+4.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/monitor/QPS/size/top/five
+GET: http://{Server-Host}:{端口}/api/server/mongo/monitor/QPS/size/top/five
 
 ---
 
-4.2 请求参数：
+4.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -230,8 +229,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/QPS/size/top/five
 
 <br>
 
-
-![img_2.png](../Images/QPS_size_top_five.png)
+![img_25.png](../Images/QPS_size_top_five.png)
 
 ----
 
@@ -274,13 +272,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/QPS/size/top/five
 ###  5 获取连接实例前五
 
 
-5.1 请求路径：
+5.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/monitor/connection/instance/top/five
+GET: http://{Server-Host}:{端口}/api/server/mongo/monitor/connection/instance/top/five
 
 ---
 
-5.2 请求参数：
+5.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -290,9 +288,8 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/connection/instance/t
 
 <br>
 
+![img_26.png](../Images/connection_size_top_five.png)
 
-
-![img_3.png](../Images/connection_size_top_five.png)
 
 ----
 
@@ -334,13 +331,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/connection/instance/t
 ###  6 获取慢查询前五
 
 
-6.1 请求路径：
+6.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/monitor/slowest/instance/top/five
+GET: http://{Server-Host}:{端口}/api/server/mongo/monitor/slowest/instance/top/five
 
 ---
 
-6.2 请求参数：
+6.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -350,9 +347,8 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/slowest/instance/top/
 
 <br>
 
+![img_27.png](../Images/slowest_size_top_five.png)
 
-
-![img_4.png](../Images/slowest_size_top_five.png)
 
 ----
 
@@ -389,22 +385,26 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/slowest/instance/top/
 ###  7 节点实时监控信息
 
             
-7.1 请求路径：
+7.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/monitor/data/{{nodeId}}/{{type}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/monitor/data/{{nodeId}}/{{timeType}}
 
 ---
 
-7.2 请求参数：
+7.2 请求参数
 
+    timeType:REAL_TIME,ONE_DAY,ONE_WEEK
+    dataType:qps,conn,pageFaults,memory,net,anAssert,cacheFlow,cacheUsage,latency,tickets,targetQ,scanAndOrder,collectionScan
+	    documentOp,lockCondition,databaseLock,collectionLock,transactionCondition,deletedDocument
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | nodeId          |         Path           |            节点id            |        Yes       |String
-| type          |         Path           |            查询类型            |        Yes       |String
-| timeGranularity          |         Params           |            时间粒度            |        Yes       |long
-| startTimeForTimeInterval          |         Params           |            开始时间间隔            |        Yes       |long
-| endTimeForTimeInterval          |         Params           |            结束时间间隔            |        Yes       |long
+| timeType          |         Path           |            查询时间类型            |        Yes       |String
+| timeGranularity          |         Params           |            时间粒度            |        No       |long
+| startTimeForTimeInterval          |         Params           |            开始时间间隔            |        No       |long
+| endTimeForTimeInterval          |         Params           |            结束时间间隔            |        No       |long
+| dataType          |         Params           |            数据类型            |        Yes       |long
 
 <br>
 
@@ -430,28 +430,82 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/data/{{nodeId}}/{{typ
  {
     "code": 1000,
     "data": {
-        "createTimeList": [],
-        "size": 0,
-        "metrics": [
-            {
-                "qps": {
-                    "query": [],
-                    "getMore": [],
-                    "insert": [],
-                    "update": [],
-                    "message": {
-                        "insert": "The average rate of inserts performed per second over the selected sample period",
-                        "delete": "The average rate of deletes performed per second over the selected sample period",
-                        "update": "The average rate of updates performed per second over the selected sample period",
-                        "query": "The average rate of queries performed per second over the selected sample period",
-                        "command": "The average rate of commands performed per second over the selected sample period",
-                    },
-                    "delete": [],
-                    "command": []
-                }
-            }
-            ...
+        "delete": [
+            0.0,
+            0.0,
+            0.0
+        ],
+        "insert": [
+            8.0,
+            15.0,
+            2.0
+        ],
+        "query": [
+            0.0,
+            0.0,
+            0.0
+        ],
+        "cmd": [
+            6.0,
+            5.0,
+            3.0
+        ],
+        "getMore": [
+            1.0,
+            2.0,
+            2.0
+        ],
+        "update": [
+            0.0,
+            0.0,
+            0.0
         ]
+    },
+    "createTime": [
+        1659511920000,
+        1659511980000,
+        1659512040000
+    ],
+    "name": "qps",
+    "message": {
+        "insert": "The average rate of inserts performed per second over the selected sample period",
+        "delete": "The average rate of deletes performed per second over the selected sample period",
+        "update": "The average rate of updates performed per second over the selected sample period",
+        "query": "The average rate of queries performed per second over the selected sample period",
+        "command": "The average rate of commands performed per second over the selected sample period",
+        "getMore": "The average rate of getMores performed per second on any cursor over the selected sample period. On a primary, this number can be high even if the query count is low as the secondaries \"getMore\" from the primary often as part of replication."
+    },
+    "info": {
+        "delete": {
+            "max": 10,
+            "min": 0,
+            "avg": "0.35"
+        },
+        "insert": {
+            "max": 32,
+            "min": 0,
+            "avg": "8.75"
+        },
+        "query": {
+            "max": 0,
+            "min": 0,
+            "avg": "0.01"
+        },
+        "cmd": {
+            "max": 10,
+            "min": 1,
+            "avg": "4.42"
+        },
+        "getMore": {
+            "max": 2,
+            "min": 0,
+            "avg": "0.93"
+        },
+        "update": {
+            "max": 0,
+            "min": 0,
+            "avg": "0.05"
+        }
     }
 }
 ~~~
@@ -466,13 +520,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/monitor/data/{{nodeId}}/{{typ
 ###  8 根据id查询集群信息
 
 
-8.1 请求路径：
+8.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/getMongoCluster/{{clusterId}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoCluster/{{clusterId}}
 
 ---
 
-8.2 请求参数：
+8.2 请求参数
 
 
 
@@ -495,7 +549,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoCluster/{{clusterId}}
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |           int            |    
-| data       |         返回数据         |          List              |        
+| data       |         返回数据         |          JSON              |        
 
 <br>
 
@@ -517,10 +571,10 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoCluster/{{clusterId}}
             "updateTime": 0,
             "replicaName": "test",
             "memberList": [
-              
+              //节点信息
               ...
             ],
-            "type": 1,
+            "type": 1,     //1:单节点,2:复制集,3:分片
             "clusterId": "62d67d21239d00094230b08f",
             "deleteDataAndLogAble": false,
             "status": "正在运行",
@@ -556,13 +610,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoCluster/{{clusterId}}
 ###  9 获取集群日志信息
 
 
-9.1 请求路径：
+9.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/getMongoClusterLogData/{{clusterId}}/{{pageIndex}}/{{pageSize}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoClusterLogData/{{clusterId}}/{{pageIndex}}/{{pageSize}}
 
 ---
 
-9.2 请求参数：
+9.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -570,8 +624,8 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoClusterLogData/{{clus
 | clusterId          |         Path           |            集群id            |        Yes       |int
 | pageIndex          |         Path           |            第几页            |        Yes       |int
 | pageSize          |         Path           |            每页大小            |        Yes       |String
-| memberName          |         Params           |            节点名称            |        No       |String
-| logContent          |         Params           |            日志内容            |        No       |String
+| memberName          |         Params           |            节点名称            |        Yes       |String
+| logContent          |         Params           |            日志内容            |        Yes       |String
 | startTime         |         Params           |            开始时间            |        No       |long
 | endTime         |         Params           |            结束时间            |        No       |long
 
@@ -628,13 +682,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoClusterLogData/{{clus
 ###  10 获取mongo集群日志数
 
 
-10.1 请求路径：
+10.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/getMongoClusterLogCount/{{clusterId}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoClusterLogCount/{{clusterId}}
 
 ---
 
-10.2 请求参数：
+10.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -642,8 +696,8 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoClusterLogCount/{{clu
 | clusterId          |         Path           |            集群id            |        Yes       |String
 | memberName          |         Params           |            节点名称            |        Yes       |String
 | logContent          |         Params           |            日志内容            |        Yes       |String
-| startTime          |         Params           |            开始时间            |        Yes       |long
-| endTime          |         Params           |            结束时间            |        Yes       |long
+| startTime          |         Params           |            开始时间            |        No       |long
+| endTime          |         Params           |            结束时间            |        No       |long
 
 <br>
 
@@ -659,7 +713,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoClusterLogCount/{{clu
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |            int|    
-| data       |         返回数量         |           int             |        
+| data       |         返回数量         |           long             |        
 
 <br>
 
@@ -674,19 +728,19 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoClusterLogCount/{{clu
 ###  11 查询mongoD的日志信息.
 
 
-11.1 请求路径：
+11.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDLogData/{{mongoMemberId}}/{{pageIndex}}/{{pageSize}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoDLogData/{{mongoMemberId}}/{{pageIndex}}/{{pageSize}}
 
 ---
 
-11.2 请求参数：
+11.2 请求参数
 
-    type类型：为空时查询全部，STORAGE，RECOVERY，CONTROL
+    type类型:为空时查询全部,SHARDING,STORAGE,RECOVERY,CONTROL
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| mongoMemberId          |         Path           |            mongo服务id            |        Yes       |String
+| mongoMemberId          |         Path           |            mongo节点id            |        Yes       |String
 | pageIndex          |         Path           |            第几页            |        Yes       |int
 | pageSize          |         Path           |            每页大小            |        Yes       |int
 | type          |         Params           |            类型            |        No       |String
@@ -741,23 +795,23 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDLogData/{{mongoMembe
 ###  12 查询mongoD的日志信息数
 
 
-12.1 请求路径：
+12.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDLogCount/{{mongoMemberId}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoDLogCount/{{mongoMemberId}}
 
 ---
 
-12.2 请求参数：
+12.2 请求参数
 
-    type类型：为空时查询全部，STORAGE，RECOVERY，CONTROL
+    type类型:为空时查询全部,STORAGE,RECOVERY,CONTROL
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | mongoMemberId          |         Path           |            mongo节点id            |        Yes       |String
 | type          |         Params           |            类型            |        Yes       |String
 | startTime          |         Params           |            开始时间            |        Yes       |String
-| endTime          |         Params           |            结束时间            |        Yes       |String
-| content          |         Params           |            搜索内容            |        Yes       |String
+| endTime          |         Params           |            结束时间            |        No       |String
+| content          |         Params           |            搜索内容            |        No       |String
 
 <br>
 
@@ -774,7 +828,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDLogCount/{{mongoMemb
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回数量         |          int              |        
+| data       |         返回数量         |          long              |        
 
 <br>
 
@@ -792,20 +846,21 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDLogCount/{{mongoMemb
 ###  13 获取mongo的 top与op
 
 
-13.1 请求路径：
+13.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/getMongoTopAndOp/{{mongoMemberId}}/{{type}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoTopAndOp/{{mongoMemberId}}/{{type}}
 
 ---
 
-13.2 请求参数：
+13.2 请求参数
 
+    type:1 top,2 op
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-| mongoMemberId          |         Path           |            集群id            |        Yes       |String
-| type          |         Path           |            类型：1 top,    2 op            |        Yes       |String
+| mongoMemberId          |         Path           |            mongo节点id            |        Yes       |String
+| type          |         Path           |            类型            |        Yes       |int
 
 <br>
 
@@ -838,13 +893,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoTopAndOp/{{mongoMembe
 ###  14 更新集群名称
 
 
-14.1 请求路径：
+14.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/updateClusterName/{{clusterId}}/{{newClusterName}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/updateClusterName/{{clusterId}}/{{newClusterName}}
 
 ---
 
-14.2 请求参数：
+14.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -881,13 +936,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/updateClusterName/{{clusterId
 ###  15 获取mongo统计信息
 
 
-15.1 请求路径：
+15.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/getMongoStatistics
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoStatistics
 
 ---
 
-15.2 请求：
+15.2 请求
 
 
 ![img_12.png](../Images/getMongoStatistics.png)
@@ -901,7 +956,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoStatistics
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回数据         |          List              |      
+| data       |         返回数据         |          JSON              |      
 
 <br>
 
@@ -917,13 +972,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoStatistics
 ###  16 根据事件id查询mongo事件
 
 
-16.1 请求路径：
+16.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/findMongoEventLogByEventId/{{eventId}}
+Get: http://{Server-Host}:{端口}/api/server/mongo/findMongoEventLogByEventId/{{eventId}}
 
 ---
 
-16.2 请求参数：
+16.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -976,14 +1031,15 @@ GET http://{Server-Host}:{端口}/api/server/mongo/findMongoEventLogByEventId/{{
 ###  17 获取mongo事件日志数据
 
 
-17.1 请求路径：
+17.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/getMongoEventLogData/{{clusterId}}/{{pageIndex}}/{{pageSize}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoEventLogData/{{clusterId}}/{{pageIndex}}/{{pageSize}}
 
 ---
 
-17.2 请求参数：
+17.2 请求参数
 
+    status:'初始化','正在运行','暂停','结束','异常结束' '中止'
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -1044,15 +1100,15 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoEventLogData/{{cluste
 ###  18 获取mongo事件日志数据数
 
 
-18.1 请求路径：
+18.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/getMongoEventLogCount/{{clusterId}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoEventLogCount/{{clusterId}}
 
 ---
 
-18.2 请求参数：
+18.2 请求参数
 
-    
+    status:'初始化','正在运行','暂停','结束','异常结束' '中止'
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -1074,7 +1130,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoEventLogCount/{{clust
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         返回数量         |           int             |        
+| data       |         返回数量         |           long             |        
 
 <br>
 
@@ -1089,28 +1145,28 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoEventLogCount/{{clust
 ###  19 查找mongoDB集群信息数据
 
 
-19.1 请求路径：
+19.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/findMongoDBClusterInfoData/{{pageIndex}}/{{pageSize}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/findMongoDBClusterInfoData/{{pageIndex}}/{{pageSize}}
 
 ---
 
-19.2 请求参数：
+19.2 请求参数
 
+    type:1 单节点,2 复制集,3 分片
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | pageIndex          |         Path           |        第几页               |        Yes       |int
 | pageSize          |         Path           |            每页大小            |        Yes       |int
-| type          |         params           |         集群类型            |        Yes       |int
+| type          |         params           |         集群类型            |        No       |int
 | clusterName          |         params           |      集群名称           |        No       |String
 | mongoMemberName          |         params           |       mongo成员名称          |        No       |String
 | fcv          |         params           |       fcv         |        No       |String
 
 <br>
 
-
-![img_19.png](../Images/findMongoDBClusterInfoData.png)
+![img_28.png](../Images/findMongoDBClusterInfoData.png)
 
 ----
 
@@ -1131,39 +1187,62 @@ GET http://{Server-Host}:{端口}/api/server/mongo/findMongoDBClusterInfoData/{{
     "code": 1000,
     "data": [
         {
-            "id": "62da3b1b239d00094230b463",
-            "createTime": 1658469280658,
-            "updateTime": 1658469280658,
-            "clusterName": "sharding",
-            "type": 3,
-            "mongoMember": null,
-            "mongoReplica": null,
-            "mongoShard": {
-                "id": "62da3b1b239d00094230b463",
-                "createTime": 1658469280658,
-                "updateTime": 1658469280658,
-                "clusterName": "sharding",
-                "clusterId": "62da3b1b239d00094230b463",
-                "config": {
-                      ...  
-                },
-                "mongoS": [
-                    ...
-                    }
-                ],
-                "shardingMap": {
-                    ...
-                },
-                "operaLog": [],
-                "deleteDataAndLogAble": false,
-                "authAble": false,
+            "id": "62fa2017fe07726988b761fa",
+            "createTime": 1660559406829,
+            "updateTime": 1660559406829,
+            "clusterName": "server100:36398",
+            "type": 1,
+            "mongoMember": {
+                "id": "62fa2017fe07726988b761fa",
+                "createTime": 0,
+                "updateTime": 1660618121809,
+                "memberName": "server100:36398",
+                "hostName": "server100",
+                "hostId": "62ecdb15dce5916b2b6f1b3c",
+                "port": "36398",
+                "version": "4.0.25",
+                "upgradeVersion": null,
                 "userName": "",
                 "password": "",
                 "authDbName": "admin",
-                "status": null
+                "currentTimeMillis": 1660559383622,
+                "dataDirectory": "/home/chen/data36398",
+                "logFile": "/home/chen/data36398/log.log",
+                "confPath": "/home/chen/data36398/server100_36398.conf",
+                "authAble": false,
+                "runShCmd": "/var/whaleal/agent//mongodb-linux-x86_64-enterprise-rhel70-4.0.25/bin/mongod -f /home/chen/data36398/server100_36398.conf",
+                "type": 11,
+                "status": "正在运行",
+                "monitorServerStatus": false,
+                "monitorTopAndOp": false,
+                "collectMongoLog": false,
+                "mongoLogFileOffset": 0,
+                "operaLogTemp": [],
+                "votes": 1,
+                "priority": 1.0,
+                "delay": 0,
+                "buildIndexes": true,
+                "procId": "46031",
+                "clusterId": "62fa2017fe07726988b761fa",
+                "replId": null,
+                "clusterName": null,
+                "tags": {},
+                "configurationOptions": {
+                    "systemLog_destination": "file",
+                    "storage_wiredTiger_engineConfig_cacheSizeGB": "0.3",
+                    "systemLog_path": "/home/chen/data36398/log.log",
+                    "processManagement_fork": "true",
+                    "storage_dbPath": "/home/chen/data36398",
+                    "systemLog_logAppend": "true",
+                    "net_bindIp": "0.0.0.0",
+                    "net_port": "36398"
+                },
+                "operateVersion": 3916
             },
+            "mongoReplica": null,
+            "mongoShard": null,
             "status": "正常",
-            "fcv": "4.2",
+            "fcv": "4.0",
             "tag": "",
             "create": true
         }
@@ -1180,20 +1259,21 @@ GET http://{Server-Host}:{端口}/api/server/mongo/findMongoDBClusterInfoData/{{
 ###  20 查找mongoDB集群信息数据数
 
 
-20.1 请求路径：
+20.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/findMongoDBClusterInfoCount
+GET: http://{Server-Host}:{端口}/api/server/mongo/findMongoDBClusterInfoCount
 
 ---
 
-20.2 请求参数：
+20.2 请求参数
 
+    type:1 单节点,2 复制集,3 分片
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | fcv          |         Params           |            fcv            |        Yes       |String
 | clusterName          |         Params           |            集群名称            |        No       |String
-| type          |         Params           |       集群类型             |        Yes       |int
+| type          |         Params           |       集群类型             |        No       |int
 | mongoMemberName          |         Params           |     mongo成员名称                |        No       |String
 
 <br>
@@ -1209,7 +1289,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/findMongoDBClusterInfoCount
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |           int            |    
-| data       |         返回数量         |          int              |        
+| data       |         返回数量         |          long              |        
 
 
 <br>
@@ -1226,18 +1306,19 @@ GET http://{Server-Host}:{端口}/api/server/mongo/findMongoDBClusterInfoCount
 ###  21 获取mongo db 集合
 
 
-21.1 请求路径：
+21.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBCollections/{{clusterId}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoDBCollections/{{clusterId}}/{{eventId}}
 
 ---
 
-21.2 请求参数：
+21.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | clusterId          |         Path           |            集群id            |        Yes       |String
+| eventId          |         Path           |            事件id            |        Yes       |String
 
 <br>
 
@@ -1297,13 +1378,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBCollections/{{clust
 ###  22 获取用户mongodb集群
 
 
-22.1 请求路径：
+22.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBClusterUser/{{clusterId}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoDBClusterUser/{{clusterId}}
 
 ---
 
-22.2 请求参数：
+22.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -1364,7 +1445,6 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBClusterUser/{{clust
                 }
             ]
         }
-        ...
     ]
 }
 ~~~
@@ -1378,13 +1458,13 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBClusterUser/{{clust
 ###  23 获取mongodb角色数据
 
 
-23.1 请求路径：
+23.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBClusterRole/{{clusterId}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoDBClusterRole/{{clusterId}}
 
 ---
 
-23.2 请求参数：
+23.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -1442,25 +1522,24 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBClusterRole/{{clust
 ###  24 执行一个计划
 
 
-24.1 请求路径：
+24.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/server/mongo/exeExplainPlan/{{clusterId}}/{{mongoMemberId}}
+POST: http://{Server-Host}:{端口}/api/server/mongo/exeExplainPlan/{{clusterId}}/{{mongoMemberId}}
 
 ---
 
-24.2 请求参数：
+24.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | clusterId          |         Path           |            集群id            |        Yes       |String
 | mongoMemberId          |         Path           |            mongo成员id            |        Yes       |String
-| document          |         Body           |       请求参数               |        Yes       |Document
+| document          |         Body           |       请求参数               |        Yes       |Map
 
 <br>
 
-
-![img_25.png](../Images/exeExplainPlan.png)
+![img_29.png](../Images/exeExplainPlan.png)
 
 ----
 
@@ -1475,8 +1554,132 @@ POST http://{Server-Host}:{端口}/api/server/mongo/exeExplainPlan/{{clusterId}}
 <br>
 
 
-![img_26.png](../Images/exeExplainPlan_r.png)
+![img_30.png](../Images/exeExplainPlan_r.png)
 
+~~~
+{
+    "code": 1000,
+    "data": {
+        "explain": {
+            "queryPlanner": {
+                "plannerVersion": 1,
+                "namespace": "test.order",
+                "indexFilterSet": false,
+                "parsedQuery": {},
+                "winningPlan": {
+                    "stage": "EOF"
+                },
+                "rejectedPlans": []
+            },
+            "executionStats": {
+                "executionSuccess": true,
+                "nReturned": 0,
+                "executionTimeMillis": 0,
+                "totalKeysExamined": 0,
+                "totalDocsExamined": 0,
+                "executionStages": {
+                    "stage": "EOF",
+                    "nReturned": 0,
+                    "executionTimeMillisEstimate": 0,
+                    "works": 1,
+                    "advanced": 0,
+                    "needTime": 0,
+                    "needYield": 0,
+                    "saveState": 0,
+                    "restoreState": 0,
+                    "isEOF": 1
+                },
+                "allPlansExecution": []
+            },
+            "serverInfo": {
+                "host": "server121",
+                "port": 47018,
+                "version": "4.4.12",
+                "gitVersion": "51475a8c4d9856eb1461137e7539a0a763cc85dc"
+            },
+            "ok": 1.0,
+            "$clusterTime": {
+                "clusterTime": {
+                    "array": false,
+                    "binary": false,
+                    "boolean": false,
+                    "bsonType": "TIMESTAMP",
+                    "dBPointer": false,
+                    "dateTime": false,
+                    "decimal128": false,
+                    "document": false,
+                    "double": false,
+                    "inc": 85,
+                    "int32": false,
+                    "int64": false,
+                    "javaScript": false,
+                    "javaScriptWithScope": false,
+                    "null": false,
+                    "number": false,
+                    "objectId": false,
+                    "regularExpression": false,
+                    "string": false,
+                    "symbol": false,
+                    "time": 1660618654,
+                    "timestamp": true,
+                    "value": 7132302810057539669
+                },
+                "signature": {
+                    "hash": {
+                        "data": "AAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+                        "type": 0
+                    },
+                    "keyId": 0
+                }
+            },
+            "operationTime": {
+                "array": false,
+                "binary": false,
+                "boolean": false,
+                "bsonType": "TIMESTAMP",
+                "dBPointer": false,
+                "dateTime": false,
+                "decimal128": false,
+                "document": false,
+                "double": false,
+                "inc": 85,
+                "int32": false,
+                "int64": false,
+                "javaScript": false,
+                "javaScriptWithScope": false,
+                "null": false,
+                "number": false,
+                "objectId": false,
+                "regularExpression": false,
+                "string": false,
+                "symbol": false,
+                "time": 1660618654,
+                "timestamp": true,
+                "value": 7132302810057539669
+            }
+        },
+        "documentsReturned": 0,
+        "queryExecutionTime": 0,
+        "indexKeysExamined": 0,
+        "documentsExamined": 0,
+        "stagList": [
+            {
+                "stage": "EOF",
+                "nReturned": 0,
+                "executionTimeMillisEstimate": 0,
+                "works": 1,
+                "advanced": 0,
+                "needTime": 0,
+                "needYield": 0,
+                "saveState": 0,
+                "restoreState": 0,
+                "isEOF": 1
+            }
+        ]
+    }
+}
+
+~~~
 
 ---
 
@@ -1486,13 +1689,13 @@ POST http://{Server-Host}:{端口}/api/server/mongo/exeExplainPlan/{{clusterId}}
 ###  25 获取所有mongo配置参数.
 
 
-25.1 请求路径：
+25.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBProcessArgument
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoDBProcessArgument
 
 ---
 
-25.2 请求：
+25.2 请求
 
 
 
@@ -1515,7 +1718,7 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBProcessArgument
     "code": 1000,
     "data": [
         {
-            "id": "62d511f4defb5d5af4a04045",
+            "id": "62faf2bcd0810e3aeace6dae",
             "createTime": 0,
             "updateTime": 0,
             "maxVersion": null,
@@ -1525,6 +1728,22 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBProcessArgument
                 {
                     "label": "1 (v)",
                     "value": "1"
+                },
+                {
+                    "label": "2 (vv)",
+                    "value": "2"
+                },
+                {
+                    "label": "3 (vvv)",
+                    "value": "3"
+                },
+                {
+                    "label": "4 (vvvv)",
+                    "value": "4"
+                },
+                {
+                    "label": "5 (vvvvv)",
+                    "value": "5"
                 }
             ],
             "path": "systemLog.verbosity",
@@ -1532,14 +1751,361 @@ GET http://{Server-Host}:{端口}/api/server/mongo/getMongoDBProcessArgument
             "shortName": "verbosity",
             "type": "INTEGER",
             "credential": false
+        },
+        {
+            "id": "62faf2bcd0810e3aeace6daf",
+            "createTime": 0,
+            "updateTime": 0,
+            "maxVersion": null,
+            "minVersion": null,
+            "name": "SYSTEM_LOG_QUIET",
+            "options": [
+                {
+                    "label": "TRUE",
+                    "value": "true"
+                },
+                {
+                    "label": "FALSE",
+                    "value": "false"
+                }
+            ],
+            "path": "systemLog.quiet",
+            "processTypes": "ALL",
+            "shortName": "quiet",
+            "type": "BOOLEAN",
+            "credential": false
         }
-
     ]
 }
 ~~~
 
 <br>
 
+
+
+###  26 获取mongodb集合
+
+
+26.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoDBCollections/{{clusterId}}/{{eventId}}
+
+---
+
+26.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| eventId          |         Path           |            事件id            |        Yes       |String
+
+![img.png](../Images/getMongoDBCollections.png)
+
+----
+
+26.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数据         |         List               |        
+
+
+<br>
+
+
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "name": "test",
+            "sub": [
+                {
+                    "name": "a",
+                    "type": "collection",
+                    "options": {},
+                    "info": {
+                        "readOnly": false,
+                        "uuid": {
+                            "type": 4,
+                            "data": "g6tXU8InRwCFt85bofFJHQ=="
+                        }
+                    },
+                    "idIndex": {
+                        "v": 2,
+                        "key": {
+                            "_id": 1
+                        },
+                        "name": "_id_",
+                        "ns": "test.a"
+                    },
+                    "storageSize": 1444,
+                    "size": 3222,
+                    "ns": "test.a"
+                }
+            ]
+        }
+    ]
+}
+~~~
+
+<br>
+
+
+
+###  27 查询集群库数据
+
+
+27.1 请求路径
+
+POST: http://{Server-Host}:{端口}/api/server/mongo/queryClusterDbData/{{clusterId}}/{{eventId}}
+
+---
+
+27.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| eventId          |         Path           |            事件id            |        Yes       |String
+| map          |         Body           |            查询条件              |        Yes       |Map
+
+~~~
+Ex. 查询集群库数据;其中 Map 如下所示:
+{
+    "ns": "test.a",
+    "query": "{}",
+    "pageSize": 10,
+    "pageIndex": 1
+}
+~~~
+
+
+![img_1.png](../Images/queryClusterDbData.png)
+
+----
+
+27.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数据         |         List               |        
+
+
+<br>
+
+
+
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "_id": {
+                "date": 1659684764000,
+                "timestamp": 1659684764
+            },
+            "a": 1.0
+        },
+        {
+            "_id": {
+                "date": 1659684764000,
+                "timestamp": 1659684764
+            },
+            "a": 2.0
+        },
+        {
+            "_id": {
+                "date": 1659684764000,
+                "timestamp": 1659684764
+            },
+            "a": 3.0
+        }
+    ]
+}
+~~~
+
+<br>
+
+
+
+###  28 创建索引
+
+
+28.1 请求路径
+
+POST: http://{Server-Host}:{端口}/api/server/mongo/createIndex/{{clusterId}}/{{eventId}}
+
+---
+
+28.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| eventId          |         Path           |            事件id            |        Yes       |String
+| map          |         Body           |            索引配置            |        Yes       |Map
+
+
+~~~
+Ex. 创建索引;其中 Map 如下所示:
+{
+    "indexName": "chen",
+    "ns": "test.coll",
+    "index": "{a:1}",                     //前三项配置即可添加，其余为选项内容
+    "buildIndexInTheBackground": false,
+    "createUniqueIndex": false,
+    "createTTL": "",
+    "partialFilterExpression": "",
+    "wildcardProjection": "",
+    "useCustomCollationLocale": "",
+    "useCustomCollationStrength": "",
+    "useCustomCollationCaseLevel": "",
+    "useCustomCollationCaseFirst": "",
+    "useCustomCollationNumericOrdering": "",
+    "useCustomCollationAlternate": "",
+    "useCustomCollationMaxVariable": "",
+    "useCustomCollationBackwards": "",
+    "useCustomCollationNormalization": ""
+}
+~~~
+
+
+
+![img_31.png](../Images/createIndex.png)
+
+----
+
+28.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| msg       |         返回消息       |         String               |        
+
+
+<br>
+
+
+![img_6.png](../Images/createIndex_r.png)
+
+<br>
+
+
+###  29 诊断数据
+
+
+29.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/server/mongo/mdiagData/{{clusterId}}/{{pageIndex}}/{{pageSize}}
+
+---
+
+29.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| pageIndex          |         Path           |            第几页            |        Yes       |int
+| pageSize          |         Path           |            每页大小            |        Yes       |int
+
+
+<br>
+
+
+![img_7.png](../Images/mdiagData.png)
+
+
+
+----
+
+29.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数据         |         List               |        
+
+
+~~~
+
+{
+    "code": 1000,
+    "data": [
+        {
+            "_id": "62ecf7a2a3a6e138ea1f00b0",
+            "filename": "mdiag_server100_1659696513419.gz",
+            "length": 1733449,
+            "chunkSize": 261120,
+            "uploadDate": "2022-08-05T10:57:38.925+00:00",
+            "metadata": {
+                "clusterId": "62ece46bdce25353bdcf32a4",
+                "createTime": 1659697058890
+            },
+            "id": "62ecf7a2a3a6e138ea1f00b0"
+        }
+    ]
+}
+
+~~~
+
+
+
+<br>
+
+
+
+
+
+###  30 获取诊断数
+
+
+30.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/server/mongo/mdiagCount/{{clusterId}}
+
+---
+
+30.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+
+![img_8.png](../Images/mdiagCount.png)
+
+----
+
+30.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数量         |         long    |        
+
+
+<br>
+
+
+![img_9.png](../Images/mdiagCount_r.png)
+
+<br>
+
+[comment]: <> (31更改事件状态)
+
+[comment]: <> (GET: http://localhost:9602/api/server/mongo/updateEventStatus/{{eventId}}/{{status}})
 
 [comment]: <> (## MongoMember)
 

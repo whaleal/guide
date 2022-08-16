@@ -108,7 +108,7 @@ b.预准备完成后在提示页面点击生成agent按钮，之后操作在主�
 
 ·复制下载AGENT_JAR命令并执行。
 
-    curl -H OPS-Token:"eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAB2MQQrCMBBF7zLrKiba6aQrEbosip4gmc7QQpu0aEEQ727q373H43_guQao4Xp77NqmvTR3KEDeM9QGSzqVZJEK8Mxpja_ccS_R2GOOhi4j2iBouOIgqu6AnbekqLqdTH4Yc2KW87LnNGU19ynKpip05P6D7w8MgJynggAAAA.tzBGp7n5fUCSZ69QK8yeDX4HQqNoV89_7AxoRotHbBmz_U_SXqQp0l1GbComVZzGK8015CzKdi74QWIRsuoTDw" -O http://cloud.whaleal.com:9600/api/server/agent/downAgentFile/62d8e617239d00094230b3b2/agent-collection-1.0.0.jar
+    curl -H whaleal-Token:"eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAB2MQQrCMBBF7zLrKiba6aQrEbosip4gmc7QQpu0aEEQ727q373H43_guQao4Xp77NqmvTR3KEDeM9QGSzqVZJEK8Mxpja_ccS_R2GOOhi4j2iBouOIgqu6AnbekqLqdTH4Yc2KW87LnNGU19ynKpip05P6D7w8MgJynggAAAA.tzBGp7n5fUCSZ69QK8yeDX4HQqNoV89_7AxoRotHbBmz_U_SXqQp0l1GbComVZzGK8015CzKdi74QWIRsuoTDw" -O http://cloud.whaleal.com:9600/api/server/agent/downAgentFile/62d8e617239d00094230b3b2/agent-collection-1.0.0.jar
 ![img.png](../../Images/download_agent.png)
 
 ·复制启动AGENT命令并执行。

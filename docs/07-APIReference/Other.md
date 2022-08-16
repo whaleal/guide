@@ -1,5 +1,5 @@
 # Other接口
-此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+此接口调用时须在请求头中设置whaleal-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
 
 
 
@@ -18,14 +18,14 @@
 ####  1 获取所有mongo版本信息.
 
 
-1.1 请求路径：
+1.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/other/getAllMongoVersion
+GET: http://{Server-Host}:{端口}/api/server/other/getAllMongoVersion
 
 
 ---
 
-1.2 请求：
+1.2 请求
 
 
 ![img.png](../Images/getAllMongoVersion.png)
@@ -55,14 +55,14 @@ GET http://{Server-Host}:{端口}/api/server/other/getAllMongoVersion
 ###  2 获取所有whaleal版本信息.
 
 
-2.1 请求路径：
+2.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/other/getWhalealVersion
+GET: http://{Server-Host}:{端口}/api/server/other/getWhalealVersion
 
 
 ---
 
-2.2 请求：
+2.2 请求
 
 
 ![img_2.png](../Images/getWhalealVersion.png)

@@ -2,30 +2,30 @@
 # Agent接口 
 
 
-接口调用时须在请求头中设置OPS-Token,返回内容为 JSON 格式的信息.
+接口调用时须在请求头中设置whaleal-Token,返回内容为 JSON 格式的信息.
 其参数为时间类型都以时间戳形式传递。
 
-接口调用时需若用到hostId、agentId、eventId，通过以下方式获取。
+接口调用时需若用到hostId、agentId、eventId通过以下方式获取。
 
 ~~~
-hostId在“根据主机名模糊查询主机基本信息”接口处获取。
+hostId 在“根据主机名模糊查询主机基本信息”接口处获取。
 
-agentId在"生成agentId"接口处获取。
+agentId 在"生成agentId"接口处获取。
 
-eventId在"获取集群日志信息"接口处找到所需事件的id
+eventId 在"获取集群日志信息"接口处找到所需事件的id
 ~~~
 
- **请求头默认格式，特殊情况特殊声明**
+ **请求头默认格式,特殊情况特殊声明**
 
-    OPS-Token在调用"登录"接口时返回，在之后调用接口时将token放置请求头中。
-[登录接口调用获取OPS-Token](Member.md)
+    whaleal-Token在调用"登录"接口时返回，在之后调用接口时将token放置请求头中。
+[登录接口调用获取whaleal-Token](Member.md)
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
-| Accept-Encoding        |         gzip, deflate, br |     
+| Accept-Encoding        |         gzip,deflate,br |     
 | Connection          |         keep-alive           |          
 | Content-Type          |         application/json |    
-| OPS-Token          |         "token"           |     
+| whaleal-Token          |         "token"           |     
 ---
 
 
@@ -35,17 +35,17 @@ eventId在"获取集群日志信息"接口处找到所需事件的id
 <br>
 
 
-1  根据主机名模糊查询主机基本信息（主机名和主机ID）
+### 1  根据主机名模糊查询主机基本信息（主机名和主机ID）
 
 
 
-1.1 请求路径：
+1.1 请求路径
 
 
-Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostId
+GET: http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostId
 
 ---
-1.2 请求参数：
+1.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -66,8 +66,8 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostI
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data.id       |         主机id         |          String|        
-| data.name      |         主机名称         |          String|    
+| id       |         主机id         |          String|        
+| name      |         主机名称         |          String|    
 
 <br>
 
@@ -105,15 +105,15 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAllAgentHostNameAndHostI
 
 <br>
 
-2 获取Agent的统计信息
+### 2 获取Agent的统计信息
 
 
-2.1 请求路径：
+2.1 请求路径
 
-Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
+GET: http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 
 ---
-2.2 请求：
+2.2 请求
 
 
 
@@ -121,20 +121,20 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 
 ---
 
-2.3 返回结果:
+2.3 返回结果
 
 
 |               |     Description    |           Schema              |  
 | -------------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |            long           |    
-| data.activeAgentNum    |         Agent存活数         |            long            |    
-| data.activeAgentCpuNum     |         Agent CPU存活数         |            long            |    
-| data.activeAgentDiskNum     |         Agent 磁盘存活数         |            long            |    
-| data.deadAgentMemoryNum     |         Agent 内存死亡数         |            long            |    
-| data.deadAgentCpuNum     |         Agent CPU死亡数         |            long            |    
-| data.activeAgentMemoryNum    |         Agent 内存存活数         |            long            |    
-| data.deadAgentNum     |         Agent 死亡数         |            long            |    
-| data.deadAgentDiskNum    |         Agent 磁盘死亡数         |            long            |    
+| activeAgentNum    |         Agent存活数         |            long            |    
+| activeAgentCpuNum     |         Agent CPU存活数         |            long            |    
+| activeAgentDiskNum     |         Agent 磁盘存活数         |            long            |    
+| deadAgentMemoryNum     |         Agent 内存死亡数         |            long            |    
+| deadAgentCpuNum     |         Agent CPU死亡数         |            long            |    
+| activeAgentMemoryNum    |         Agent 内存存活数         |            long            |    
+| deadAgentNum     |         Agent 死亡数         |            long            |    
+| deadAgentDiskNum    |         Agent 磁盘死亡数         |            long            |    
 
 <br>
 
@@ -162,18 +162,19 @@ Get : http://{Server-Host}:{端口}/api/server/agent/getAgentStatistics
 ---
 <br>
 
-3 获取所有主机信息
+### 3 获取所有主机信息
 
 
 
-3.1 请求路径：
+3.1 请求路径
 
-GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}}/{{pageSize}}
+GET: http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}}/{{pageSize}}
 
 ---
 
-3.2 请求参数：
+3.2 请求参数
 
+    status:true 正常,false 宕机
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -181,7 +182,7 @@ GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}
 | pageSize          |         Path         |            每页大小            |        Yes      |int        |
 | hostName          |         Params           |            主机名称            |        No       |String        |
 | ip          |         Params           |            主机ip            |        No       |String        |
-| status          |         Params           |            主机状态:true 正常，false 宕机            |        No       |boolean        |
+| status          |         Params           |            主机状态            |        No       |boolean        |
 
 <br>
 
@@ -211,8 +212,6 @@ GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}
     "code": 1000,
     "data": [
         {
-        
-       
             "id": "62b153a344ba1b7771c42df7",                               
             "createTime": 1658212423773,
             "updateTime": 1658459349919,
@@ -275,25 +274,26 @@ GET  http://{Server-Host}:{端口}/api/server/agent/getAllAgentData/{{pageIndex}
 
 <br>
 
-4  获取所有主机count
+### 4  获取所有主机count
 
 
-4.1 请求路径：
+4.1 请求路径
 
 
-GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
+GET: http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 
 ---
 
 
-4.2 请求参数：
+4.2 请求参数
 
+    status:true 正常,false 宕机
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostName          |         Params           |            主机名称            |        No       |String        |
 | ip          |         Params           |            主机ip            |        No       |String        |
-| status          |         Params           |  主机状态:true 正常，false 宕机           |        No       |boolean        |
+| status          |         Params           |  主机状态           |        No       |boolean        |
 
 <br>
 
@@ -308,7 +308,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int|    
-| data       |         返回数量         |         int              |        
+| data       |         返回数量         |         long              |        
 
 <br>
 
@@ -327,15 +327,15 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAllAgentCount
 
 <br>
 
-5  获取某主机静态信息
+### 5  获取某主机静态信息
 
 
-5.1 请求路径：
+5.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
+GET: http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 
 ---
-5.2 请求参数：
+5.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -428,31 +428,34 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentInfo/{{hostId}}
 <br>
 
 
-6  获取agent的监控信息
+### 6  获取agent的监控信息
 
 
 
-6.1 请求路径：
+6.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}}/{{type}}
+GET: http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/{{hostId}}/{{timeType}}
 
 ---
 
-6.2 请求参数：
+6.2 请求参数
     
-    type类型：REAL_TIME，ONE_DAY，ONE_WEEK
+    timeType:REAL_TIME,ONE_DAY,ONE_WEEK
+    dataType:netInAndOut,memory,diskInAndOut,cpu
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostId         |         Path           |            主机id            |        Yes       |String        |
-| type         |         Path           |            监控类型            |        Yes       |String        |
+| timeType         |         Path           |            监控类型            |        Yes       |String        |
 | startTimeForTimeInterval         |         Params           |      某时间段的开始时间            |        Yes       |long        |
 | endTimeForTimeInterval         |         Params           |            某时间段的结束时间    |        Yes       |long        |
 | timeGranularity         |         Params           |            时间粒度            |        Yes       |long        |
+| dataType         |         Params           |            数据类型            |        Yes       |String        |
 
 <br>
 
-![img_10.png](../Images/getAgentMonitor.png)
+
+![img.png](../Images/getAgentMonitor.png)
 
 ----
 
@@ -472,70 +475,50 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}
 {
     "code": 1000,
     "data": {
-        "内存/GB": {
-            "cache": [
-                93.48
-            ]
-            "message": {
-                "free": "空闲内存 单位GB",
-                "used": "已使用内存 单位GB",
-                "cache": "缓存内存 单位GB",
-                "ava": "可用内存 单位GB"
-            },
-            "ava": [
-                109.24
-            ]
-        },
-        "cpu/%": {
-            "sy": [
-                0.43
-            ],
-            "message": {
-                "id": "cpu空闲率 单位百分比%",
-                "us": "cpu用户使用率 单位百分比%",
-                "sy": "cpu系统使用率 单位百分比%"
-            },
-            "us": [
-                0.49
-            ]
-        },
-        "net/KB": {
-            "data": {
-                "lo": {
-                    "in": [
-                        3479.26
-                    ],
-                    "name": "lo",
-                    "out": [
-                        3479.26
-                    ]
-                }
-            },
-            "name": "net",
-            "message": {
-                "in": "流入流量 单位KB/S",
-                "out": "流出流量 单位KB/S"
-            }
-        },
-        "diskIO/KB": {
-                "dm-0": {
-                    "util": [
-                        0.25
-                    ]
-                }
-            },
-            "name": "diskIO",
-            "message": {
-                "util": "使用率 单位百分比",
-                "rkB": "读 单位KB/S",
-                "wkB": "写 单位KB/S"
-            }
-        }
+        "us": [
+            2.51,
+            2.29,
+            2.72,
+        ],
+        "sy": [
+            0.89,
+            0.84,
+            1.89,
+        ],
+        "id": [
+            96.57,
+            96.83,
+            94.97,
+        ]
     },
-    "size": 1,
     "createTime": [
-        1658275200000
-    ]
+        1659512400000,
+        1659512460000,
+        1659512520000
+    ],
+    "name": "cpu",
+    "message": {
+        "id": "cpu空闲率 单位百分比%",
+        "us": "cpu用户使用率 单位百分比%",
+        "sy": "cpu系统使用率 单位百分比%"
+    },
+    "info": {
+        "id": {
+            "max": "96.83",
+            "min": "86.81",
+            "avg": "94.29"
+        },
+        "us": {
+            "max": "9.58",
+            "min": "1.72",
+            "avg": "3.00"
+        },
+        "sy": {
+            "max": "3.25",
+            "min": "0.84",
+            "avg": "2.08"
+        }
+    }
 }
 
 ~~~
@@ -544,30 +527,30 @@ GET http://{Server-Host}:{端口}/api/server/agent/getAgentMonitor/map/{{hostId}
 
 <br>
 
-## 7.获取agent的日志信息，结果分页展示
+### 7 获取agent的日志信息，结果分页展示
 
 
 
-7.1 请求路径：
+7.1 请求路径
 
 
-GET http://{Server-Host}:{端口}/api/server/agent/logData/{{hostId}}/{{pageIndex}}/{{pageSize}}
+GET: http://{Server-Host}:{端口}/api/server/agent/logData/{{hostId}}/{{pageIndex}}/{{pageSize}}
 
 ---
 
-7.2 请求参数：
+7.2 请求参数
 
-    type类型：info,warn,trace,error,mongodb
+    type类型:info,warn,trace,error,mongodb
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostId         |         Path           |            主机id           |        Yes       |String        |
 | pageIndex          |         Path           |            第几页            |        Yes       |int        |
-| pageSize          |         Path           |            每页数量            |        Yes       |int        |
+| pageSize          |         Path           |            每页大小            |        Yes       |int        |
 | type          |         Params           |            日志类别            |        No       |String        |
-| startTime          |         Params           |            开始时间            |        Yes       |long        |
-| endTime          |         Params           |            结束时间            |        Yes       |long        |
-| content          |         Params           |            关键字            |        No       |String        |
+| startTime          |         Params           |            开始时间            |        No       |long        |
+| endTime          |         Params           |            结束时间            |        No       |long        |
+| content          |         Params           |            内容            |        No       |String        |
 
 <br>
 
@@ -611,27 +594,27 @@ GET http://{Server-Host}:{端口}/api/server/agent/logData/{{hostId}}/{{pageInde
 
 <br>
 
-## 8.获取agent的日志信息数量
+### 8 获取agent的日志信息数量
 
 
 
-8.1 请求路径：
+8.1 请求路径
 
 
-GET http://{Server-Host}:{端口}/api/server/agent/logCount/{{hostId}}
+GET: http://{Server-Host}:{端口}/api/server/agent/logCount/{{hostId}}
 
 ---
 
-8.2 请求参数：
+8.2 请求参数
 
-    type类型：info,warn,trace,error,mongodb
+    type类型:info,warn,trace,error,mongodb
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostId          |         Path           |            主机id           |        Yes       |String        |
 | type          |         Params           |            日志类别            |        No       |String        |
-| startTime          |         Params           |            开始时间            |        Yes       |long        |
-| endTime          |         Params           |            结束时间            |        Yes       |long        |
+| startTime          |         Params           |            开始时间            |        No       |long        |
+| endTime          |         Params           |            结束时间            |        No       |long        |
 | content          |         Params           |            关键字            |        No       |String        |
 
 <br>
@@ -647,7 +630,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/logCount/{{hostId}}
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回数量        |          int              |       
+| data       |         返回数量        |          long              |       
 
 <br>
 
@@ -671,24 +654,25 @@ GET http://{Server-Host}:{端口}/api/server/agent/logCount/{{hostId}}
 
 <br>
 
-## 9.操作agent的命令
+### 9 操作agent的命令
 
 
 
-9.1 请求路径：
+9.1 请求路径
 
 
-GET http://{Server-Host}:{端口}/api/server/agent/operate/{{hostId}}/{{operateType}}
+GET: http://{Server-Host}:{端口}/api/server/agent/operate/{{hostId}}/{{operateType}}
 
 ---
 
-9.2 请求参数：
+9.2 请求参数
 
+    operateType:delete,updateAgentInfo
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostId          |         Path           |            主机id            |        Yes       |String        |
-| operateType          |         Path           |   操作类别:mongo,host      |        Yes       |String        |
+| operateType          |         Path           |   操作类别      |        Yes       |String        |
 
 <br>
 
@@ -715,18 +699,18 @@ GET http://{Server-Host}:{端口}/api/server/agent/operate/{{hostId}}/{{operateT
 <br>
 
 
-## 10.生成agentId
+### 10 生成agentId
 
 
-10.1 请求路径：
+10.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/agent/generateAgentId
+GET: http://{Server-Host}:{端口}/api/server/agent/generateAgentId
 
 
 ---
 
 
-10.2 请求：
+10.2 请求
 
 
 ![img_18.png](../Images/generateAgentId.png)
@@ -739,12 +723,13 @@ GET http://{Server-Host}:{端口}/api/server/agent/generateAgentId
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data       |         agentId         |       String                 |        
+| data       |         返回数据:agentId         |       String                 |        
 
 <br>
 
 
 ![img_16.png](../Images/generateAgentId_r.png)
+
 
 [comment]: <> (~~~)
 
@@ -764,17 +749,17 @@ GET http://{Server-Host}:{端口}/api/server/agent/generateAgentId
 <br>
 
 
-## 11.下载agentFile
+### 11 下载agentFile
 
 
 
-11.1 请求路径：
+11.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/agent/downAgentFile/{{agentId}}/agent-collection-1.0.0.jar
+GET: http://{Server-Host}:{端口}/api/server/agent/downAgentFile/{{agentId}}/agent-collection-1.0.0.jar
 
 ---
 
-11.2 请求参数：
+11.2 请求参数
 
  
 
@@ -794,7 +779,6 @@ GET http://{Server-Host}:{端口}/api/server/agent/downAgentFile/{{agentId}}/age
 
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
-| code        |   状态符:1000成功,其余异常 |            int           |    
 | File       |         二进制流形式返回文件         |       File                 |        
 
 
@@ -802,26 +786,26 @@ GET http://{Server-Host}:{端口}/api/server/agent/downAgentFile/{{agentId}}/age
 
 <br>
 
-## 12.获取agent执行命令记录
+### 12 获取agent执行命令记录
 
-12.1 请求路径：
+12.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataList/{{hostId}}/{{pageIndex}}/{{pageSize}}
+GET: http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataList/{{hostId}}/{{pageIndex}}/{{pageSize}}
 
 ---
 
-12.2 请求参数：
+12.2 请求参数
 
-    Status类型：-1为全部，1为已下发，2正在执行，3成功完成，4异常执行，5异常完成
+    Status类型:-1为全部,1为已下发,2正在执行,3成功完成,4异常执行,5异常完成
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostId          |         Path           |            主机名称            |        Yes       |String        |
-| pageIndex          |         Path           |            分页页数            |        Yes       |int        |
-| pageSize          |         Path           |            分页大小            |        Yes       |int        |
+| pageIndex          |         Path           |            第几页            |        Yes       |int        |
+| pageSize          |         Path           |            每页大小            |        Yes       |int        |
 | status          |         Params           |            状态            |        No       |Int        |
-| startTime          |         Params           |            开始时间            |        Yes       |long        |
-| endTime          |         Params           |            结束时间            |        Yes       |long        |
+| startTime          |         Params           |            开始时间            |        No       |long        |
+| endTime          |         Params           |            结束时间            |        No       |long        |
 | content          |         Params           |            内容            |        No       |String        |
 | result          |         Params           |            结果            |        No       |String        |
 | eventId          |         Params           |            事件id            |        No       |String        |
@@ -839,7 +823,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataList/{{host
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data       |         返回数据         |             JSON            |        
+| data       |         返回数据         |             List            |        
 
 <br>
 
@@ -871,25 +855,25 @@ GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataList/{{host
 
 <br>
 
-## 13.获取agent执行命令记录数
+### 13 获取agent执行命令记录数
 
-13.1 请求路径：
+13.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataCount/{{hostId}}
+GET: http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataCount/{{hostId}}
 
 ---
 
 13.2 请求参数
 
-    Status类型：-1为全部，1为已下发，2正在执行，3成功完成，4异常执行，5异常完成
+    Status类型:-1为全部,1为已下发,2正在执行,3成功完成,4异常执行,5异常完成
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | hostId          |         Path           |            主机名称            |        Yes       |String        |
 | Status          |         Params           |            状态            |        No       |int|
-| startTime          |         Params           |            开始时间            |        Yes       |long        |
-| endTime          |         Params           |            结束时间            |        Yes       |long        |
+| startTime          |         Params           |            开始时间            |        No       |long        |
+| endTime          |         Params           |            结束时间            |        No       |long        |
 | content          |         Params           |            命令类型            |        No       |String        |
 | result          |         Params           |            结果            |        No       |String        |
 | eventId          |         Params           |            事件id            |        No       |String        |
@@ -909,7 +893,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataCount/{{hos
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |            int           |    
-| data       |         返回数数量         |            long            |        
+| data       |         返回数量         |            long            |        
 
 <br>
 
@@ -933,16 +917,16 @@ GET http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataCount/{{hos
 <br>
 
 
-##  14.获取主机cpu使用率前五
+###  14 获取主机cpu使用率前五
 
 
-14.1 请求路径：
+14.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
+GET: http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
 
 ---
 
-14.2 请求参数：
+14.2 请求参数
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -962,7 +946,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |           int            |    
-| data       |         返回数据         |         JSON               |        
+| data       |         返回数据         |         List               |        
 
 
 <br>
@@ -996,15 +980,15 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
 
 <br>
 
-##  15.获取主机内存使用率前五
+###  15.获取主机内存使用率前五
 
-15.1 请求路径：
+15.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
+GET: http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
 
 ---
 
-15.2 请求参数：
+15.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -1025,7 +1009,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |       int                |    
-| data      |         返回数据         |         JSON               |        
+| data      |         返回数据         |         List               |        
 
 
 <br>
@@ -1059,16 +1043,16 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
 
 <br>
 
-## 16.获取主机磁盘使用率前五
+### 16 获取主机磁盘使用率前五
 
 
-16.1 请求路径：
+16.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
+GET: http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
 
 ---
 
-16.2 请求参数：
+16.2 请求参数
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -1088,7 +1072,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data      |         返回数据         |         JSON               |        
+| data      |         返回数据         |         List               |        
 
 <br>
 
@@ -1121,17 +1105,17 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
 
 <br>
 
-##  17.获取网卡输入使用率前五
+###  17 获取网卡输入使用率前五
 
 
-17.1 请求路径：
+17.1 请求路径
 
 
-GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
+GET: http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
 
 ---
 
-17.2 请求参数：
+17.2 请求参数
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -1150,7 +1134,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |         int              |    
-| data     |         返回数据         |         String               |        
+| data     |         返回数据         |         List               |        
 
 [comment]: <> (| data.\[index].hostName       |         主机名称         |         String               |        )
 
@@ -1196,15 +1180,15 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
 <br>
 
 
-##  18.获取网卡输出使用率前五
+###  18 获取网卡输出使用率前五
 
-18.1 请求路径：
+18.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetOut/top/five
+GET: http://{Server-Host}:{端口}/api/server/agent/getHost/NetOut/top/five
 
 ---
 
-18.2 请求参数：
+18.2 请求参数
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
@@ -1224,7 +1208,7 @@ GET http://{Server-Host}:{端口}/api/server/agent/getHost/NetOut/top/five
 |               |     Description    |           Schema              |  
 | --------------|----------------------|---------------------------
 | code        |   状态符:1000成功,其余异常 |        int               |    
-| data     |         返回数据         |         JSON               |        
+| data     |         返回数据         |         List               |        
 
 
 <br>

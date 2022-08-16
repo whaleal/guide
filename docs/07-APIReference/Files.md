@@ -1,18 +1,18 @@
 # File接口
-此接口调用时须在请求头中设置OPS-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
+此接口调用时须在请求头中设置whaleal-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
 
 ### 请求头默认格式，特殊情况特殊声明
 
-    OPS-Token在调用登录接口时返回，在之后调用接口时将token放置请求头中。
-[登录接口调用获取OPS-Token](Member.md)
+    whaleal-Token在调用登录接口时返回，在之后调用接口时将token放置请求头中。
+[登录接口调用获取whaleal-Token](Member.md)
 
 
 | KEY                |     VALUE      |     
 | -------------------|----------------------|
-| Accept-Encoding        |         gzip, deflate, br |     
+| Accept-Encoding        |         gzip,deflate,br |     
 | Connection          |         keep-alive           |          
 | Content-Type          |multipart/form-data; boundary=\<calculated when request is sent> |    
-| OPS-Token          |         "token"           |     
+| whaleal-Token          |         "token"           |     
 ---
 
 <br>
@@ -20,23 +20,24 @@
 ###  1 上传文件到Server端
 
 
-1.1 请求路径：
+1.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/server/file/web/upload/file
+POST: http://{Server-Host}:{端口}/api/server/file/web/upload/file
 
 ---
 
-1.2 请求参数：
+1.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | File          |         Body           |            上传的文件            |        Yes       |MultipartFile
+| whaleal-Token          |         Params           |            token            |        Yes       |String
 
 <br>
 
+![img_13.png](../Images/uploadToServe.png)
 
-![img_32.png](../Images/upload.png)
 
 ----
 
@@ -63,15 +64,16 @@ POST http://{Server-Host}:{端口}/api/server/file/web/upload/file
 
 ###  2 删除server端文件
 
+     此处请求头的Content-Type为application/json 
 
 
-2.1 请求路径：
+2.1 请求路径
 
-GET http://{Server-Host}:{端口}/api/server/file/deleteFile/{{filename}}
+GET: http://{Server-Host}:{端口}/api/server/file/deleteFile/{{filename}}
 
 ---
 
-2.2 请求参数：
+2.2 请求参数
 
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
@@ -109,15 +111,15 @@ GET http://{Server-Host}:{端口}/api/server/file/deleteFile/{{filename}}
 
 ### 3 获取server端的文件信息.
 
+    此处请求头的Content-Type为application/json 
 
+3.1 请求路径
 
-3.1 请求路径：
-
-GET http://{Server-Host}:{端口}/api/server/file/getAllMongoFile
+GET: http://{Server-Host}:{端口}/api/server/file/getAllMongoFile
 
 ---
 
-3.2 请求：
+3.2 请求
 
 
 ![img_36.png](../Images/getAllMongoFile.png)
@@ -160,6 +162,138 @@ GET http://{Server-Host}:{端口}/api/server/file/getAllMongoFile
 ~~~
 
 ---
+
+<br>
+
+###  4 agent可以下载server端的文件
+
+
+
+4.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/server/file/agent/download/{{filename}}
+
+---
+
+4.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| filename          |         Path           |            文件名称            |        Yes       |String        |
+| agentId          |         Header           |            agentId         |        Yes       |String        |
+
+
+<br>
+
+![img_10.png](../Images/agentDownload.png)
+
+
+
+----
+
+4.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| 文件       |   返回文件 |         File              |    
+
+<br>
+
+
+[comment]: <> (![img_11.png]&#40;../Images/agentDownload_r.png&#41;)
+
+---
+
+
+<br>
+
+
+###  5 更新server端的文件信息
+
+    此处请求头的Content-Type为application/json 
+
+5.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/server/file/agent/updateAllMongoFileToAgent
+
+---
+
+5.2 请求
+
+
+<br>
+
+
+![img_12.png](../Images/updateAllMongoFileToAgent.png)
+
+
+----
+
+5.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |         int              |    
+| msg       |         返回消息         |            String            |        
+
+<br>
+
+
+![img_13.png](../Images/updateAllMongoFileToAgent_r.png)
+
+---
+
+
+<br>
+
+
+
+###  6 下载巡检日志
+
+
+
+6.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/server/file/download/mdiag/{{clusterId}}/{{fileID}}/{{filename}}
+
+---
+
+6.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String        |
+| fileID          |         Path           |            文件id            |        Yes       |String        |
+| filename          |         Path           |            文件名称            |        Yes       |String        |
+| whaleal-Token          |         Params           |            token            |        Yes       |String        |
+
+
+<br>
+
+
+![img_14.png](../Images/mdiagDownload.png)
+
+
+----
+
+6.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| mdiag       |   返回文件下载 |        File            |    
+
+<br>
+
+
+
+
+
+<br>
 
 
 
