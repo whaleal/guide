@@ -1,7 +1,6 @@
 # Summary
 
-* [Introduction](README.md)
-* Guide
+* [Whaleal](README.md)
     * Overview
         * [Introduction](./00-Overview/01-Introduction.md)
         * [Comparison](./00-Overview/02-Comparison.md)
