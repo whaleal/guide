@@ -36,7 +36,7 @@ agentId在"生成agentId"接口处获取。
 
 1.1 请求路径
 
-POST: http://{Server-Host}:{端口}/api/collection/agent/save/log
+POST: http://{Server-Host}:{端口}/api/collection/host/save/log
 
 
 ---
@@ -51,7 +51,7 @@ POST: http://{Server-Host}:{端口}/api/collection/agent/save/log
 <br>
 
 
-![img_5.png](../Images/save_log.png)
+![img_2.png](../Images/save_log.png)
 
 
 ----
@@ -65,7 +65,6 @@ POST: http://{Server-Host}:{端口}/api/collection/agent/save/log
 | msg       |         返回消息         |         String                | 
 
 <br>
-
 
 
 ![img_1.png](../Images/save_log_r.png)
@@ -82,7 +81,7 @@ POST: http://{Server-Host}:{端口}/api/collection/agent/save/log
 
 2.1 请求路径
 
-POST: http://{Server-Host}:{端口}/api/collection/agent/updateAgentMongoFile/{{agentId}}
+POST: http://{Server-Host}:{端口}/api/collection/host/updateAgentMongoFile/{{agentId}}
 
 
 ---
@@ -98,8 +97,7 @@ POST: http://{Server-Host}:{端口}/api/collection/agent/updateAgentMongoFile/{{
 
 <br>
 
-
-![img_29.png](../Images/updateAgentMongoFile.png)
+![img_4.png](../Images/updateAgentMongoFile.png)
 
 ~~~
 Ex. 更新agent的mongo文件信息;其中MongoFileList 如下所示：
@@ -133,7 +131,6 @@ Ex. 更新agent的mongo文件信息;其中MongoFileList 如下所示：
 
 <br>
 
-
 ![img_30.png](../Images/updateAgentMongoFile_r.png)
 
 ---
@@ -148,7 +145,7 @@ Ex. 更新agent的mongo文件信息;其中MongoFileList 如下所示：
 
 3.1 请求路径
 
-GET: http://{Server-Host}:{端口}/api/collection/command/agent/get/{{hostId}}
+GET: http://{Server-Host}:{端口}/api/collection/command/getCommand/{{hostId}}
 
 
 ---
@@ -163,7 +160,7 @@ GET: http://{Server-Host}:{端口}/api/collection/command/agent/get/{{hostId}}
 <br>
 
 
-![img_6.png](../Images/get_by_hostId.png)
+![img.png](../Images/get_by_hostId.png)
 
 ----
 
@@ -177,22 +174,22 @@ GET: http://{Server-Host}:{端口}/api/collection/command/agent/get/{{hostId}}
 
 <br>
 
-![img_7.png](../Images/get_by_hostId_r.png)
+![img_1.png](../Images/get_by_hostId_r.png)
 
 ~~~
 {
     "code": 1000,
     "data": [
         {
-            "id": "62fa1ca7fe07726988b761e6",
-            "createTime": 1660558503957,
-            "updateTime": 1660558503957,
-            "hostId": "62ecdb15dce5916b2b6f1b3c",
-            "commandType": 106,
+            "id": "632bfca83b74be1d9fe7ddb7",
+            "createTime": 1663827112988,
+            "updateTime": 1663827112988,
+            "hostId": "630eddeff3d9e72e3695ea48",
+            "commandType": 101,
             "status": 0,
-            "eventId": "62fa1ca6fe07726988b761e4",
-            "commandNote": "检查端口是否被占用",
-            "content": "{\"port\":\"23462\"}",
+            "eventId": null,
+            "commandNote": "updateHostInfo",
+            "content": "\"updateHostInfo\"",
             "execResult": null
         }
     ]
@@ -212,7 +209,7 @@ GET: http://{Server-Host}:{端口}/api/collection/command/agent/get/{{hostId}}
 
 4.1 请求路径
 
-PUT: http://{Server-Host}:{端口}/api/collection/command/agent/update
+PUT: http://{Server-Host}:{端口}/api/collection/command/update
 
 
 ---
@@ -226,7 +223,7 @@ PUT: http://{Server-Host}:{端口}/api/collection/command/agent/update
 
 <br>
 
-![img_4.png](../Images/agent_update.png)
+![img_6.png](../Images/agent_update.png)
 
 ~~~
 Ex. 更新命令实体对象的状态;其中 CommandEntity 如下所示：
@@ -267,12 +264,12 @@ Ex. 更新命令实体对象的状态;其中 CommandEntity 如下所示：
 <br>
 
 
-###  5 更新时间戳
+###  5 更新agent心跳信息.
 
 
 5.1 请求路径
 
-GET: http://{Server-Host}:{端口}/api/collection/hostInfo/updateRunTime/{{hostId}}/{{timeStamp}}
+GET: http://{Server-Host}:{端口}/api/collection/host/updateRunTime/{{hostId}}/{{timeStamp}}
 
 
 ---
@@ -287,8 +284,7 @@ GET: http://{Server-Host}:{端口}/api/collection/hostInfo/updateRunTime/{{hostI
 
 <br>
 
-
-![img_6.png](../Images/updateRunTime.png)
+![img_7.png](../Images/updateRunTime.png)
 
 ----
 
@@ -406,7 +402,7 @@ Ex. 保存主机信息;其中 HostInfoMongoEntity 如下所示：
 
 7.1 请求路径
 
-POST: http://{Server-Host}:{端口}/api/collection/hostRealTime/addHostRealTimeData
+POST: http://{Server-Host}:{端口}/api/collection/host/addHostRealTimeData
 
 
 ---
@@ -420,52 +416,73 @@ POST: http://{Server-Host}:{端口}/api/collection/hostRealTime/addHostRealTimeD
 
 <br>
 
-![img_10.png](../Images/addHostRealTimeData.png)
+![img_9.png](../Images/addHostRealTimeData.png)
 
 ~~~
-Ex. 保存主机信息;其中 HostInfoMongoEntity 如下所示：
+Ex. 保存主机信息;其中 hostRealTimeDataMongoEntity 如下所示：
 
 {
-	"_id" : "62cbbd7607bebb71b8429e5e",
-	"cpuInfo" : " Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz",
-	"cpuNum" : 40,
-	"hostId" : "62cbbd7607bebb71b8429e5e",
-	"hostName" : "server200",
-	"hostNameLong" : "server200",
-	"ipInfo" : [
-		{
-			"ip" : "172.17.0.1",
-			"type" : "ipv4"
-		}
-	],
-	"kernelInfo" : "3.10.0-1062.el7.x86_64",
-	"osVersion" : "CentOS Linux release 7.7.1908 (Core)",
-	"run" : true,
-	"systemPropertyInfo" : {
-		"fileSeparator" : "/",
-		"javaClassPath" : "agent-collection-1.0.0.jar",
-		"javaClassVersion" : "55.0",
-		"javaHome" : "/root/jdk-11.0.9",
-		"javaIoTmpdir" : "/tmp",
-		"javaLibraryPath" : "/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib",
-		"javaSpecificationName" : "Java Platform API Specification",
-		"javaSpecificationVendor" : "Oracle Corporation",
-		"javaVendor" : "Oracle Corporation",
-		"javaVersion" : "11.0.9",
-		"javaVmName" : "Java HotSpot(TM) 64-Bit Server VM",
-		"javaVmSpecificationName" : "Java Virtual Machine Specification",
-		"javaVmSpecificationVersion" : "11",
-		"javaVmVendor" : "Oracle Corporation",
-		"javaVmVersion" : "11.0.9+7-LTS",
-		"lineSeparator" : "\n",
-		"oSArch" : "amd64",
-		"oSName" : "Linux",
-		"oSVersion" : "3.10.0-1062.el7.x86_64",
-		"pathSeparator" : ":",
-		"userDir" : "/home/jmops",
-		"userHome" : "/root",
-		"userName" : "root"
-	}
+    "_id": "62c64f99f9872b46f1ce953a",
+    "cpuInfo": {
+        "hi": 0,
+        "id": 98.1,
+        "ni": 0,
+        "si": 0,
+        "st": 0,
+        "sy": 0.9,
+        "us": 1,
+        "wa": 0
+    },
+    "createTime": "1657163672000",
+    "diskInAndOutInfoList": [
+        {
+            "avgqu_sz": 0.05,
+            "avgrq_sz": 18.89,
+            "await": 0.34,
+            "device": "sda",
+            "r_await": 13.32,
+            "r_s": 0.17,
+            "rkB_s": 10.82,
+            "rrqm_s": 0.06,
+            "svctm": 0.05,
+            "util": 0.75,
+            "w_await": 0.32,
+            "w_s": 144.65,
+            "wkB_s": 1357.06,
+            "wrqm_s": 2.03
+        }
+    ],
+    "diskInfoList": [
+        {
+            "fileSystem": "devtmpfs",
+            "mountedOn": "/dev",
+            "size": 64349,
+            "type": "devtmpfs",
+            "used": 0,
+            "utilization": 0
+        }
+    ],
+    "hostId": "62b153a344ba1b7771c42df7",
+    "hostName": "server100",
+    "memoryInfo": {
+        "memAvail": 95150,
+        "memBuffCache": 26138,
+        "memFree": 69641,
+        "memTotal": 128722,
+        "memUsed": 32942,
+        "swapFree": 1958,
+        "swapTotal": 4095,
+        "swapUsed": 2137
+    },
+    "netInAndOutInfoList": [
+        {
+            "io": 0,
+            "networkCardName": "em3:",
+            "out": 0
+        }
+    ],
+    "timeGranularity": 1,
+    "updateTime": "1657163672000"
 }
 ~~~
 
@@ -576,7 +593,7 @@ GET: http://{Server-Host}:{端口}/api/collection/util/get/agent/ip
 
 10.1 请求路径
 
-POST: http://{Server-Host}:{端口}/api/collection/mongo/insertMongoClusterLog/{{clusterId}}/{{eventId}}
+POST: http://{Server-Host}:{端口}/api/collection/mongodb/insertMongoClusterLog/{{clusterId}}/{{eventId}}
 
 
 ---
@@ -592,8 +609,7 @@ POST: http://{Server-Host}:{端口}/api/collection/mongo/insertMongoClusterLog/{
 
 <br>
 
-
-![img.png](../Images/insertMongoClusterLog.png)
+![img_10.png](../Images/insertMongoClusterLog.png)
 
 ----
 
@@ -622,7 +638,7 @@ POST: http://{Server-Host}:{端口}/api/collection/mongo/insertMongoClusterLog/{
 
 11.1 请求路径
 
-POST: http://{Server-Host}:{端口}/api/collection/mongo/insertMongoMemberLog/{{clusterId}}/{{memberInfo}}/{{eventId}}
+POST: http://{Server-Host}:{端口}/api/collection/mongodb/insertMongoMemberLog/{{clusterId}}/{{memberInfo}}/{{eventId}}
 
 
 ---
@@ -639,8 +655,7 @@ POST: http://{Server-Host}:{端口}/api/collection/mongo/insertMongoMemberLog/{{
 
 <br>
 
-
-![img_2.png](../Images/insertMongoMemberLog.png)
+![img_11.png](../Images/insertMongoMemberLog.png)
 
 ----
 
@@ -669,7 +684,7 @@ POST: http://{Server-Host}:{端口}/api/collection/mongo/insertMongoMemberLog/{{
 
 12.1 请求路径
 
-POST: http://{Server-Host}:{端口}/api/collection/mongo/updateMongo
+POST: http://{Server-Host}:{端口}/api/collection/mongodb/updateMongoMember
 
 
 ---
@@ -683,7 +698,7 @@ POST: http://{Server-Host}:{端口}/api/collection/mongo/updateMongo
 
 <br>
 
-![img_8.png](../Images/updateMongo.png)
+![img_13.png](../Images/updateMongo.png)
 
 ~~~
 
@@ -766,7 +781,7 @@ Ex. 更新mongo节点信息;其中 MongoMember 如下所示：
 
 13.1 请求路径
 
-POST: http://{Server-Host}:{端口}/api/collection/mongo/updateMongoRepl/{{isUpdateMemberList}}
+POST: http://{Server-Host}:{端口}/api/collection/mongodb/updateMongoRepl/{{isUpdateMemberList}}
 
 ---
 
@@ -780,7 +795,7 @@ POST: http://{Server-Host}:{端口}/api/collection/mongo/updateMongoRepl/{{isUpd
 
 <br>
 
-![img_9.png](../Images/updateMongoRepl.png)
+![img_14.png](../Images/updateMongoRepl.png)
 
 ----
 
@@ -808,7 +823,7 @@ POST: http://{Server-Host}:{端口}/api/collection/mongo/updateMongoRepl/{{isUpd
 
 14.1 请求路径
 
-POST: http://{Server-Host}:{端口}/api/collection/mongo/updateCluster
+POST: http://{Server-Host}:{端口}/api/collection/mongodb/updateCluster
 
 ---
 
@@ -821,9 +836,8 @@ POST: http://{Server-Host}:{端口}/api/collection/mongo/updateCluster
 
 <br>
 
+![img_15.png](../Images/updateCluster.png)
 
-
-![img_10.png](../Images/updateCluster.png)
 
 
 
@@ -853,7 +867,7 @@ POST: http://{Server-Host}:{端口}/api/collection/mongo/updateCluster
     
 15.1 请求路径
 
-POST: http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/one/{{tableName}}
+POST: http://{Server-Host}:{端口}/api/collection/mongodb/realtime
 
 
 ---
@@ -868,7 +882,7 @@ POST: http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/one/{{t
 
 <br>
 
-![img_11.png](../Images/realtime_save_one.png)
+![img_16.png](../Images/realtime_save_one.png)
 
 ~~~
 Ex. 保存mongo成员的实时信息;MongodbNodeMetrics 如下所示：
@@ -882,24 +896,7 @@ Ex. 保存mongo成员的实时信息;MongodbNodeMetrics 如下所示：
 	"cacheFlow" : {
 		"brin" : 8717624,
 		"bwfr" : 6421369
-	},
-	"cacheUsage" : {
-		"bdirty" : 29300225,
-		"bused" : 9071610
-	},
-	"collectionLock" : {
-		"r" : 0.00,
-		"r_i" : 0.00,
-		"w" : 0.00,
-		"w_i" : 0.00
-	},
-	"collectionScan" : {
-		"total" : 0
-	},
-	"conn" : {
-		"avl" : 52357,
-		"us" : 70
-	},
+	}
 	"createTime" : "1660469450000",
 	"databaseLock" : {
 		"r" : 0.00,
@@ -921,43 +918,7 @@ Ex. 保存mongo成员的实时信息;MongodbNodeMetrics 如下所示：
 	"latency" : {
 		"r" : 717.90,
 		"w" : 3252.41
-	},
-	"lockCondition" : {
-		"r" : 0,
-		"w" : 0
-	},
-	"memory" : {
-		"resident" : 15452,
-		"virtual" : 17276
-	},
-	"net" : {
-		"cmpIn" : 15058,
-		"cmpOut" : 56052,
-		"in" : 15118,
-		"out" : 56052
-	},
-	"nodeId" : "62f49bb052bbf7002d41013d",
-	"pageFaults" : 0,
-	"port" : "29301",
-	"qps" : {
-		"cmd" : 3,
-		"delete" : 0,
-		"getMore" : 0,
-		"insert" : 26,
-		"query" : 3,
-		"update" : 1
-	},
-	"scanAndOrder" : {
-		"scanAndOrder" : 0
-	},
-	"targetQ" : {
-		"scanObject" : 340,
-		"scanned" : 0
-	},
-	"tickets" : {
-		"ravl" : 126,
-		"wavl" : 0
-	},
+	}
 	"timeGranularity" : 0,
 	"transactionCondition" : {
 		"currActive" : 0,
@@ -1041,7 +1002,7 @@ POST: http://{Server-Host}:{端口}/api/collection/mongodb/realtime/save/many
 
 17.1 请求路径
 
-POST http://{Server-Host}:{端口}/api/collection/mongodb/agent/mongoMember/{{agentId}}
+POST http://{Server-Host}:{端口}/api/collection/mongodb/getAgentMongoMember/{{agentId}}
 
 
 ---
@@ -1055,8 +1016,7 @@ POST http://{Server-Host}:{端口}/api/collection/mongodb/agent/mongoMember/{{ag
 
 <br>
 
-
-![img_14.png](../Images/agent_mongoMember.png)
+![img_17.png](../Images/agent_mongoMember.png)
 
 ----
 
@@ -1161,8 +1121,7 @@ POST: http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoLog/{{mongo
 
 <br>
 
-
-![img_15.png](../Images/save_mongoLog.png)
+![img_18.png](../Images/save_mongoLog.png)
 
 ----
 
@@ -1206,8 +1165,7 @@ POST: http://{Server-Host}:{端口}/api/collection/mongodb/save/mongoTopAndOp
 
 <br>
 
-
-![img_17.png](../Images/save_mongoTopAndOp.png)
+![img_19.png](../Images/save_mongoTopAndOp.png)
 
 
 [comment]: <> (~~~)
@@ -1508,12 +1466,12 @@ POST: http://{Server-Host}:{端口}/api/collection/mongodb/saveMongoDBClusterRol
 <br>
 
 
-###  24 巡检上传
+###  24 保存诊断数据.
 
 
 24.1 请求路径
 
-POST: http://localhost:9601/api/collection/file/mdiag/file/{{clusterId}}
+POST: http://{Server-Host}:9601/api/collection/mdiag/saveMdiagLog
 
 ---
 
@@ -1522,14 +1480,12 @@ POST: http://localhost:9601/api/collection/file/mdiag/file/{{clusterId}}
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
-|       clusterId      |       Path  |        集群id      |       Yes           |String
-|       file      |       Body  |        文件      |       Yes           |MultipartFile
+|      document      |       Body  |        巡检日志      |       Yes           |Document
 
 <br>
 
 
-
-![img.png](../Images/mdiag_file.png)
+![img_20.png](../Images/mdiag_file.png)
 
 
 
@@ -1546,18 +1502,60 @@ POST: http://localhost:9601/api/collection/file/mdiag/file/{{clusterId}}
 <br>
 
 
-~~~
-{
-    "msg": "推送成功",
-    "code": 1000
-}
-
-~~~
-
+![img_21.png](../Images/mdiag_file_r.png)
 
 ---
 
 <br>
+
+
+
+###  24 获取config信息.
+
+
+24.1 请求路径
+
+GET http://{Server-Host}:9601/api/collection/config/getConfig
+
+---
+
+24.2 请求参
+
+
+<br>
+
+
+![img_22.png](../Images/getConfig.png)
+
+
+
+----
+
+24.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数据       |            ConfigEntity             | 
+
+
+![img_23.png](../Images/getConfig_r.png)
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 ---
