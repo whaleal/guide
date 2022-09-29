@@ -74,4 +74,7 @@
         * [Mongo](./07-APIReference/MongoOperate.md)
         * [Other](./07-APIReference/Other.md)
         * [Third_party](./07-APIReference/Third_party.md)
+        * [Configuration](./07-APIReference/Configuration.md)
+        * [Analysis](./07-APIReference/Analysis.md)
+        * [Project](./07-APIReference/Project.md)
 

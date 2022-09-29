@@ -1,4 +1,4 @@
-# Mongo接口
+# MongoOperate接口
 接口调用时须在请求头中设置whaleal-Token ，填写参数发起请求，返回内容为 JSON 格式的信息，返回特殊实体类将在最后提供实体类表格。
 其参数为时间的都以时间戳形式传递。
 
@@ -29,7 +29,7 @@ clusterId在“查找mongoDB集群信息数据”接口返回结果集中。
 | Accept-Encoding        |         gzip,deflate,br |     
 | Connection          |         keep-alive           |          
 | Content-Type          |         application/json |    
-| whaleal-Token          |         "token"           |     
+| whaleal-token          |         "token"           |     
 ---
 
 
@@ -173,6 +173,7 @@ GET: http://{Server-Host}:{端口}/api/server/mongo/standaloneToReplicate/{{clus
 
 
 ![postman_mongo_standaloneToReplicate](../Images/standaloneToReplicate.png)
+
 ----
 
 2.3 返回结果
@@ -1182,7 +1183,7 @@ Ex. 创建单节点;mongoMember 如下所示:
 
 ----
 
-13.3 返回结果
+14.3 返回结果
 
 
 |               |     Description    |           Schema              |  
@@ -1240,6 +1241,366 @@ Ex. 创建单节点;mongoMember 如下所示:
     }
 }
 ~~~
+
+###  15 更新集群名称
+15.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/server/mongo/updateClusterName/{{clusterId}}/{{newClusterName}}
+
+---
+
+15.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| newClusterName          |         Path           |            新名称           |        Yes       |String
+
+<br>
+
+
+![img_10.png](../Images/updateClusterName.png)
+
+
+----
+
+15.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |        int               |    
+| msg       |         返回消息         |            String            |        
+
+<br>
+
+![img_11.png](../Images/updateClusterName_r.png)
+
+
+---
+
+<br>
+
+
+
+
+
+
+
+
+###  16 执行一个计划
+
+16.1 请求路径
+
+POST: http://{Server-Host}:{端口}/api/server/mongo/exeExplainPlan/{{clusterId}}/{{mongoMemberId}}
+
+---
+
+16.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| mongoMemberId          |         Path           |            mongo成员id            |        Yes       |String
+| document          |         Body           |       请求参数               |        Yes       |Map
+
+<br>
+
+![img_29.png](../Images/exeExplainPlan.png)
+
+----
+
+16.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数据         |            JSON            |        
+
+<br>
+
+
+![img_30.png](../Images/exeExplainPlan_r.png)
+
+~~~
+{
+    "code": 1000,
+    "data": {
+        "explain": {
+            "queryPlanner": {
+                "plannerVersion": 1,
+                "namespace": "test.order",
+                "indexFilterSet": false,
+                "parsedQuery": {},
+                "winningPlan": {
+                    "stage": "EOF"
+                },
+                "rejectedPlans": []
+            },
+            "executionStats": {
+                "executionSuccess": true,
+                "nReturned": 0,
+                "executionTimeMillis": 0,
+                "totalKeysExamined": 0,
+                "totalDocsExamined": 0,
+                "executionStages": {
+                    "stage": "EOF",
+                    "nReturned": 0,
+                    "executionTimeMillisEstimate": 0,
+                    "works": 1,
+                    "advanced": 0,
+                    "needTime": 0,
+                    "needYield": 0,
+                    "saveState": 0,
+                    "restoreState": 0,
+                    "isEOF": 1
+                },
+                "allPlansExecution": []
+            },
+            "serverInfo": {
+                "host": "server121",
+                "port": 47018,
+                "version": "4.4.12",
+                "gitVersion": "51475a8c4d9856eb1461137e7539a0a763cc85dc"
+            },
+            "ok": 1.0,
+            "$clusterTime": {
+                "clusterTime": {
+                    "array": false,
+                    "binary": false,
+                    "boolean": false,
+                    "bsonType": "TIMESTAMP",
+                    "dBPointer": false,
+                    "dateTime": false,
+                    "decimal128": false,
+                    "document": false,
+                    "double": false,
+                    "inc": 85,
+                    "int32": false,
+                    "int64": false,
+                    "javaScript": false,
+                    "javaScriptWithScope": false,
+                    "null": false,
+                    "number": false,
+                    "objectId": false,
+                    "regularExpression": false,
+                    "string": false,
+                    "symbol": false,
+                    "time": 1660618654,
+                    "timestamp": true,
+                    "value": 7132302810057539669
+                },
+                "signature": {
+                    "hash": {
+                        "data": "AAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+                        "type": 0
+                    },
+                    "keyId": 0
+                }
+            },
+            "operationTime": {
+                "array": false,
+                "binary": false,
+                "boolean": false,
+                "bsonType": "TIMESTAMP",
+                "dBPointer": false,
+                "dateTime": false,
+                "decimal128": false,
+                "document": false,
+                "double": false,
+                "inc": 85,
+                "int32": false,
+                "int64": false,
+                "javaScript": false,
+                "javaScriptWithScope": false,
+                "null": false,
+                "number": false,
+                "objectId": false,
+                "regularExpression": false,
+                "string": false,
+                "symbol": false,
+                "time": 1660618654,
+                "timestamp": true,
+                "value": 7132302810057539669
+            }
+        },
+        "documentsReturned": 0,
+        "queryExecutionTime": 0,
+        "indexKeysExamined": 0,
+        "documentsExamined": 0,
+        "stagList": [
+            {
+                "stage": "EOF",
+                "nReturned": 0,
+                "executionTimeMillisEstimate": 0,
+                "works": 1,
+                "advanced": 0,
+                "needTime": 0,
+                "needYield": 0,
+                "saveState": 0,
+                "restoreState": 0,
+                "isEOF": 1
+            }
+        ]
+    }
+}
+
+~~~
+
+---
+
+<br>
+
+
+
+
+
+###  17 复制集初始化
+
+17.1 请求路径
+
+POST: http://{Server-Host}:{端口}/api/server/mongo/mongoReplicaInit/{{clusterId}}/{{replicateId}}
+
+---
+
+17.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| replicateId          |         Path           |            复制集id            |        Yes       |String
+
+<br>
+
+![img_9.png](../Images/mongoReplicaInit.png)
+
+----
+
+17.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数据         |            JSON            |        
+
+<br>
+
+
+![img_10.png](../Images/mongoReplicaInit_r.png)
+
+<br>
+
+###  18 收集mongo集群日志
+
+18.1 请求路径
+
+POST: http://{Server-Host}:{端口}/api/server/mongo/collectMongoDLog/{{clusterId}}
+
+---
+
+18.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| startTime          |         Params           |            开始时间            |        Yes       |long
+| endTime          |         Params           |            结束时间            |        Yes       |long
+
+<br>
+
+![img_11.png](../Images/collectMongoDLog.png)
+
+----
+
+18.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| msg       |         返回消息         |            String            |        
+
+<br>
+
+![img_12.png](../Images/collectMongoDLog_r.png)
+
+<br>
+
+###  19 移除节点
+
+19.1 请求路径
+
+POST: http://{Server-Host}:{端口}/api/server/mongo/removeShard/{{clusterId}}/{{shardReplId}}
+
+---
+
+19.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| shardReplId          |         Path           |          分片复制集id            |        Yes       |String
+
+<br>
+
+![img_13.png](../Images/removeShard.png)
+
+----
+
+19.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| msg       |         返回消息      |            String            |        
+
+![postman_mongo_operate_result](../Images/operate_cluster_r.png)
+
+<br>
+
+
+
+###  19 创建用户
+
+19.1 请求路径
+
+POST: http://{Server-Host}:{端口}/api/server/mongo/createMongoUser/{{clusterId}}
+
+---
+
+19.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String
+| map          |         Body           |          用户信息            |        Yes       |Map
+
+<br>
+
+![img_14.png](../Images/createMongoUser.png)
+
+----
+
+19.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| msg       |         返回消息         |            String            |        
+
+<br>
+
+![img_15.png](../Images/createMongoUser_r.png)
 
 <br>
 
