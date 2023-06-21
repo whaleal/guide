@@ -157,7 +157,7 @@ Ex. 创建mongodb单例;其中 MongoMember 如下所示:
 
 2.1 请求路径
 
-GET: http://{Server-Host}:{端口}/api/server/mongo/standaloneToReplicate/{{clusterId}}
+GET: http://{Server-Host}:{端口}/api/server/mongo/standaloneToReplicate/{{clusterId}}/{{replName}}
 
 ---
 
@@ -167,6 +167,7 @@ GET: http://{Server-Host}:{端口}/api/server/mongo/standaloneToReplicate/{{clus
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
 | clusterId          |         Path           |            集群id            |        Yes       |String        |
+| replName          |         Path           |            复制集名称            |        Yes       |String        |
 
 
 <br>
