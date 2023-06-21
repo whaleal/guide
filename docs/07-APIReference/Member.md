@@ -22,7 +22,7 @@ messageId为消息id，在“获取信息数据”接口处返回的实体类中
 | Accept-Encoding        |         gzip,deflate,br |     
 | Connection          |         keep-alive           |          
 | Content-Type          |         application/json |    
-| whaleal-Token          |         "token"           |     
+| whaleal-token          |         "token"           |     
 
 
 
@@ -566,7 +566,7 @@ GET: http://{Server-Host}:{端口}/api/server/member/update/createMongoDBAble/{{
 
 
 
-#### 10 更新是否可以创建agenid
+#### 10 更新是否可以创建agentId权限
 
 10.1 请求路径
 
@@ -875,7 +875,7 @@ GET: http://{Server-Host}:{端口}/api/server/member/getUserServerResourceCount/
 
 
 
-#### 16 获取用户mongo db集群资源数据
+#### 16 获取用户mongoDB集群资源数据
 
 16.1 请求路径
 
@@ -924,7 +924,7 @@ GET: http://{Server-Host}:{端口}/api/server/member/getUserMongoDBClusterResour
 
 
 
-#### 17 获取用户mongo db集群数
+#### 17 获取用户mongoDB集群数
 
 17.1 请求路径
 
@@ -972,7 +972,7 @@ GET: http://{Server-Host}:{端口}/api/server/member/getUserMongoDBClusterResour
 
 18.1 请求路径
 
-GET: http://{Server-Host}:{端口}/api/server/member/getMessageData/{{memberId}}/{{pageSize}}/{{pageIndex}}
+GET: http://{Server-Host}:{端口}/api/server/member/getMessageData/{{pageSize}}/{{pageIndex}}
 
 
 ---
@@ -1044,7 +1044,7 @@ GET: http://{Server-Host}:{端口}/api/server/member/getMessageData/{{memberId}}
 19.1 请求路径
 
 
-GET: http://{Server-Host}:{端口}/api/server/member/getMessageCount/{{memberId}}
+GET: http://{Server-Host}:{端口}/api/server/member/getMessageCount
 
 ---
 
@@ -1152,7 +1152,7 @@ GET: http://{Server-Host}:{端口}/api/server/member/update/allMessageStatus/{{m
 
 ----
 
-7.3 返回结果
+21.3 返回结果
 
 
 |               |     Description    |           Schema              |
@@ -1164,7 +1164,126 @@ GET: http://{Server-Host}:{端口}/api/server/member/update/allMessageStatus/{{m
 
 ![img_79.png](../Images/allMessageStatus_r.png)
 
+<br>
 
+#### 22 获取所有成员id与名称
+
+22.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/server/member/getAllMemberIdAndName
+
+---
+
+
+22.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| memberName          |         Params           |            用户名称            |        Yes       |String        |
+
+<br>
+
+![img_6.png](../Images/getAllMemberIdAndName.png)
+
+----
+
+22.3 返回结果
+
+
+|               |     Description    |           Schema              |
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |        int               |
+| data       |         返回数据|         List               |
+
+
+
+
+<br>
+
+
+~~~
+{
+    "code": 1000,
+    "data": [
+        {
+            "id": "63031cb149d5ad2d50af5d15",
+            "name": "admin"
+        },
+        {
+            "id": "630321262ef5221f75e9f0c6",
+            "name": "chen"
+        }
+    ]
+}
+~~~
+
+
+<br>
+
+
+#### 23 获取所有成员id与名称
+
+23.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/server/member/resetPassword/{{memberId}}
+
+---
+
+
+23.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| memberId          |         Path           |            用户id            |        Yes       |String        |
+
+<br>
+
+![img_7.png](../Images/resetPassword.png)
+
+----
+
+23.3 返回结果
+
+
+|               |     Description    |           Schema              |
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |        int               |
+| data       |         返回数据|         List               |
+
+
+
+
+<br>
+
+![img_8.png](../Images/resetPassword_r.png)
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
 
 [comment]: <> (---)
 

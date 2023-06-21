@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>DBData · GitBook</title>
+        <title>DBData · Whaleal Platform</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -1147,6 +1147,45 @@
             
         </li>
     
+        <li class="chapter " data-level="1.1.8.11" data-path="Configuration.html">
+            
+                <a href="Configuration.html">
+            
+                    
+                    Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.12" data-path="Analysis.html">
+            
+                <a href="Analysis.html">
+            
+                    
+                    Analysis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.13" data-path="Project.html">
+            
+                <a href="Project.html">
+            
+                    
+                    Project
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1162,13 +1201,12 @@
 
     <li class="divider"></li>
 
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
-        </a>
-    </li>
+    <!--<li>-->
+        <!--<a href="https://www.gitbook.com" target="blank" class="gitbook-link">-->
+            <!--Published with GitBook-->
+        <!--</a>-->
+    <!--</li>-->
 </ul>
-
 
                 </nav>
             
@@ -1235,7 +1273,7 @@ clusterId&#x5728;&#x201C;&#x67E5;&#x627E;mongoDB&#x96C6;&#x7FA4;&#x4FE1;&#x606F;
 <td>application/json</td>
 </tr>
 <tr>
-<td>whaleal-Token</td>
+<td>whaleal-token</td>
 <td>&quot;token&quot;</td>
 </tr>
 </tbody>
@@ -3908,6 +3946,175 @@ dataType:qps,conn,pageFaults,memory,net,anAssert,cacheFlow,cacheUsage,latency,ti
 <p><br></p>
 <p><img src="../Images/mdiagCount_r.png" alt="img_9.png"></p>
 <p><br></p>
+<h3 id="31-&#x66F4;&#x65B0;&#x4E8B;&#x4EF6;&#x72B6;&#x6001;">31 &#x66F4;&#x65B0;&#x4E8B;&#x4EF6;&#x72B6;&#x6001;</h3>
+<p>31.1 &#x8BF7;&#x6C42;&#x8DEF;&#x5F84;</p>
+<p>GET: <a href="http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/updateEventStatus//" target="_blank">http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/updateEventStatus//</a></p>
+<hr>
+<p>31.2 &#x8BF7;&#x6C42;&#x53C2;&#x6570;</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eventId</td>
+<td>Path</td>
+<td>&#x4E8B;&#x4EF6;id</td>
+<td>Yes</td>
+<td>String</td>
+</tr>
+<tr>
+<td>clusterId</td>
+<td>Path</td>
+<td>&#x72B6;&#x6001;</td>
+<td>Yes</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../Images/updateEventStatus.png" alt="img.png"></p>
+<hr>
+<p>31.3 &#x8FD4;&#x56DE;&#x7ED3;&#x679C;</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>&#x72B6;&#x6001;&#x7B26;:1000&#x6210;&#x529F;,&#x5176;&#x4F59;&#x5F02;&#x5E38;</td>
+<td>int</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>&#x8FD4;&#x56DE;&#x6D88;&#x606F;</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><img src="../Images/updateEventStatus_r.png" alt="img_1.png"></p>
+<p><br></p>
+<h3 id="32-&#x83B7;&#x5DE1;&#x68C0;&#x65E5;&#x5FD7;">32 &#x83B7;&#x5DE1;&#x68C0;&#x65E5;&#x5FD7;</h3>
+<p>32.1 &#x8BF7;&#x6C42;&#x8DEF;&#x5F84;</p>
+<p>GET: <a href="http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/getMdiagLog//" target="_blank">http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/getMdiagLog//</a></p>
+<hr>
+<p>32.2 &#x8BF7;&#x6C42;&#x53C2;&#x6570;</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eventId</td>
+<td>Path</td>
+<td>&#x4E8B;&#x4EF6;id</td>
+<td>Yes</td>
+<td>String</td>
+</tr>
+<tr>
+<td>clusterId</td>
+<td>Path</td>
+<td>&#x72B6;&#x6001;</td>
+<td>Yes</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../Images/getMdiagLog.png" alt="img.png"></p>
+<hr>
+<p>32.3 &#x8FD4;&#x56DE;&#x7ED3;&#x679C;</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>&#x72B6;&#x6001;&#x7B26;:1000&#x6210;&#x529F;,&#x5176;&#x4F59;&#x5F02;&#x5E38;</td>
+<td>int</td>
+</tr>
+<tr>
+<td>data</td>
+<td>&#x8FD4;&#x56DE;&#x6570;&#x636E;</td>
+<td>List</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h3 id="33-&#x83B7;&#x53D6;&#x6240;&#x6709;&#x96C6;&#x7FA4;id&#x4E0E;&#x540D;&#x79F0;">33 &#x83B7;&#x53D6;&#x6240;&#x6709;&#x96C6;&#x7FA4;id&#x4E0E;&#x540D;&#x79F0;</h3>
+<p>33.1 &#x8BF7;&#x6C42;&#x8DEF;&#x5F84;</p>
+<p>GET: <a href="http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/getAllClusterIdAndName" target="_blank">http://{Server-Host}:{&#x7AEF;&#x53E3;}/api/server/mongo/getAllClusterIdAndName</a></p>
+<hr>
+<p>33.2 &#x8BF7;&#x6C42;&#x53C2;&#x6570;</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clusterName</td>
+<td>Params</td>
+<td>&#x96C6;&#x7FA4;&#x540D;&#x79F0;</td>
+<td>false</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../Images/getAllClusterIdAndName.png" alt="img_1.png"></p>
+<hr>
+<p>33.3 &#x8FD4;&#x56DE;&#x7ED3;&#x679C;</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>&#x72B6;&#x6001;&#x7B26;:1000&#x6210;&#x529F;,&#x5176;&#x4F59;&#x5F02;&#x5E38;</td>
+<td>int</td>
+</tr>
+<tr>
+<td>data</td>
+<td>&#x8FD4;&#x56DE;&#x6570;&#x91CF;</td>
+<td>long</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><img src="../Images/getAllClusterIdAndName_r.png" alt="img_2.png"></p>
+<h2 id="---">--- </h2>
+<p><br></p>
 
                                 
                                 </section>
@@ -3951,7 +4158,7 @@ dataType:qps,conn,pageFaults,memory,net,anAssert,cacheFlow,cacheUsage,latency,ti
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"DBData","level":"1.1.8.4","depth":3,"next":{"title":"ErrorCodes","level":"1.1.8.5","depth":3,"path":"07-APIReference/ErrorCodes.md","ref":"./07-APIReference/ErrorCodes.md","articles":[]},"previous":{"title":"Collection","level":"1.1.8.3","depth":3,"path":"07-APIReference/Collection.md","ref":"./07-APIReference/Collection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"07-APIReference/MongoDbData.md","mtime":"2022-08-16T07:21:34.278Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-09-01T05:29:02.771Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"DBData","level":"1.1.8.4","depth":3,"next":{"title":"ErrorCodes","level":"1.1.8.5","depth":3,"path":"07-APIReference/ErrorCodes.md","ref":"./07-APIReference/ErrorCodes.md","articles":[]},"previous":{"title":"Collection","level":"1.1.8.3","depth":3,"path":"07-APIReference/Collection.md","ref":"./07-APIReference/Collection.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Whaleal Platform","gitbook":"*"},"file":{"path":"07-APIReference/MongoDbData.md","mtime":"2022-09-27T03:27:55.936Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-06-21T10:35:45.423Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -3962,6 +4169,10 @@ dataType:qps,conn,pageFaults,memory,net,anAssert,cacheFlow,cacheUsage,latency,ti
     
         
         <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

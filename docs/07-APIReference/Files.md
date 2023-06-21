@@ -12,7 +12,7 @@
 | Accept-Encoding        |         gzip,deflate,br |     
 | Connection          |         keep-alive           |          
 | Content-Type          |multipart/form-data; boundary=\<calculated when request is sent> |    
-| whaleal-Token          |         "token"           |     
+| whaleal-token          |         "token"           |     
 ---
 
 <br>
@@ -290,12 +290,83 @@ GET: http://{Server-Host}:{端口}/api/server/file/download/mdiag/{{clusterId}}/
 <br>
 
 
+<br>
+
+
+
+###  7 下载mongo集群文件
+
+
+
+7.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/server/file/download/mongoClusterFile/{{clusterId}}/{{filename}}
+
+---
+
+7.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterId          |         Path           |            集群id            |        Yes       |String        |
+| filename          |         Path           |            文件名称            |        Yes       |String        |
+| fileIdList          |         Params           |            文件id列表            |        Yes       |List        |
+| whaleal-Token          |         Params           |            token            |        Yes       |String        |
+
+
+<br>
+
+![img_5.png](../Images/download_mongoClusterFile.png)
+
+
+
+----
+
+7.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| file       |   返回文件下载 |        File            |    
 
 
 
 <br>
 
+8.1 请求路径
 
+GET: http://{Server-Host}:{端口}/api/server/agent/downAgentFile/{{agentId}}/{{fileName}}
+
+---
+
+8.2 请求参数
+
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| agentId          |         Path           |            agentId            |        Yes       |String        |
+| fileName          |         Path           |            文件名称            |        Yes       |String        |
+
+<br>
+
+
+![img_20.png](../Images/downAgentFile.png)
+
+----
+
+8.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| File       |         二进制流形式返回文件         |       File                 |        
+
+
+---
+
+<br>
 
 
 

@@ -24,7 +24,7 @@ clusterId在“查找mongoDB集群信息数据”接口返回结果集中。
 | Accept-Encoding        |         gzip, deflate, br |
 | Connection          |         keep-alive           |
 | Content-Type          |         application/json |
-| whaleal-Token          |         "token"           |
+| whaleal-token          |         "token"           |
 ---
 ---
 
@@ -384,7 +384,7 @@ GET: http://{Server-Host}:{端口}/api/server/mongo/monitor/slowest/instance/top
 
 ###  7 节点实时监控信息
 
-            
+
 7.1 请求路径
 
 GET: http://{Server-Host}:{端口}/api/server/mongo/monitor/data/{{nodeId}}/{{timeType}}
@@ -670,7 +670,7 @@ GET: http://{Server-Host}:{端口}/api/server/mongo/getMongoClusterLogData/{{clu
     ]
 }
 ~~~
- 
+
 
 
 ---
@@ -2100,6 +2100,138 @@ GET: http://{Server-Host}:{端口}/api/server/mongo/mdiagCount/{{clusterId}}
 
 
 ![img_9.png](../Images/mdiagCount_r.png)
+
+<br>
+
+
+
+
+
+
+
+
+###  31 更新事件状态
+
+
+31.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/server/mongo/updateEventStatus/{{eventId}}/{{status}}
+
+---
+
+31.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| eventId          |         Path           |            事件id            |        Yes       |String
+| clusterId          |         Path           |            状态|        Yes       |String
+
+![img.png](../Images/updateEventStatus.png)
+
+----
+
+31.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| msg       |         返回消息       |         String    |        
+
+
+<br>
+
+![img_1.png](../Images/updateEventStatus_r.png)
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+###  32 获巡检日志
+
+
+32.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/server/mongo/getMdiagLog/{{clusterId}}/{{eventId}}
+
+---
+
+32.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| eventId          |         Path           |            事件id            |        Yes       |String
+| clusterId          |         Path           |            状态|        Yes       |String
+
+![img.png](../Images/getMdiagLog.png)
+
+----
+
+32.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数据        |         List    |        
+
+
+<br>
+
+
+
+
+###  33 获取所有集群id与名称
+
+
+33.1 请求路径
+
+GET: http://{Server-Host}:{端口}/api/server/mongo/getAllClusterIdAndName
+
+---
+
+33.2 请求参数
+
+
+| Name                |     Located in     |           Description         |     Required    |        Schema   |
+| -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| clusterName          |         Params           |            集群名称            |        false       |String
+
+![img_1.png](../Images/getAllClusterIdAndName.png)
+
+----
+
+33.3 返回结果
+
+
+|               |     Description    |           Schema              |  
+| --------------|----------------------|---------------------------
+| code        |   状态符:1000成功,其余异常 |          int             |    
+| data       |         返回数量         |         long    |        
+
+
+<br>
+
+![img_2.png](../Images/getAllClusterIdAndName_r.png)
+
+
+
+
+--- 
+---
 
 <br>
 

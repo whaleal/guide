@@ -25,7 +25,7 @@ eventId 在"获取集群日志信息"接口处找到所需事件的id
 | Accept-Encoding        |         gzip,deflate,br |     
 | Connection          |         keep-alive           |          
 | Content-Type          |         application/json |    
-| whaleal-Token          |         "token"           |     
+| whaleal-token          |         "token"           |     
 ---
 
 
@@ -917,12 +917,12 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getExecCommandDataCount/{{ho
 <br>
 
 
-###  14 获取主机cpu使用率前五
+###  14 获取主机cpu使用率
 
 
 14.1 请求路径
 
-GET: http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
+GET: http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/{{count}}
 
 ---
 
@@ -930,13 +930,14 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| count          |         Path           |            获取个数           |        Yes       |int        |
 | beginTime          |         Params           |            开始时间            |        Yes       |long        |
 | endTime          |         Params           |            结束时间            |        Yes       |long        |
 
 <br>
 
 
-![img_25.png](../Images/CpuUsage.png)
+![img.png](../docs/Images/CpuUsage.png)
 
 ----
 
@@ -960,16 +961,34 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
     "code": 1000,
     "data": [
         {
-            "_id": "62bbfbe9a46517610435d615",
-            "hostId": "62bbfbe9a46517610435d615",
-            "hostName": "chen",
+            "_id": "630ddf510901ea6464159609",
+            "hostId": "630ddf510901ea6464159609",
+            "hostName": "server190",
             "usage": 100.0
         },
         {
-            "_id": "62cbbd7607bebb71b8429e5e",
-            "hostId": "62cbbd7607bebb71b8429e5e",
-            "hostName": "server200",
-            "usage": 29.7
+            "_id": "6305fa4491c2f64abf18c581",
+            "hostId": "6305fa4491c2f64abf18c581",
+            "hostName": "server100",
+            "usage": 100.0
+        },
+        {
+            "_id": "631837b0e8f4ff5c079e9c55",
+            "hostId": "631837b0e8f4ff5c079e9c55",
+            "hostName": "server14",
+            "usage": 100.0
+        },
+        {
+            "_id": "6316dbf322197b14b79a4793",
+            "hostId": "6316dbf322197b14b79a4793",
+            "hostName": "server84",
+            "usage": 100.0
+        },
+        {
+            "_id": "630eddeff3d9e72e3695ea48",
+            "hostId": "630eddeff3d9e72e3695ea48",
+            "hostName": "chen",
+            "usage": 100.0
         }
     ]
 }
@@ -980,11 +999,11 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/CpuUsage/top/five
 
 <br>
 
-###  15.获取主机内存使用率前五
+###  15.获取主机内存使用率
 
 15.1 请求路径
 
-GET: http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
+GET: http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/{{count}}
 
 ---
 
@@ -993,13 +1012,13 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| count          |         Path           |            获取个数           |        Yes       |int        |
 | beginTime          |         Params           |            开始时间            |        Yes       |long        |
 | endTime          |         Params           |            结束时间            |        Yes       |long        |
 
 <br>
 
-
-![img_27.png](../Images/MemUsage.png)
+![img_1.png](../docs/Images/MemUsage.png)
 
 ----
 
@@ -1023,16 +1042,22 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
     "code": 1000,
     "data": [
         {
-            "_id": "62cbbd7607bebb71b8429e5e",
-            "hostId": "62cbbd7607bebb71b8429e5e",
-            "usage": "32.32GB",
+            "_id": "63031ffab652427a5bb8a667",
+            "hostId": "63031ffab652427a5bb8a667",
+            "usage": "58.68GB",
             "hostName": "server200"
         },
         {
-            "_id": "62b153a344ba1b7771c42df7",
-            "hostId": "62b153a344ba1b7771c42df7",
-            "usage": "15.81GB",
+            "_id": "6305fa4491c2f64abf18c581",
+            "hostId": "6305fa4491c2f64abf18c581",
+            "usage": "44.73GB",
             "hostName": "server100"
+        },
+        {
+            "_id": "630eddeff3d9e72e3695ea48",
+            "hostId": "630eddeff3d9e72e3695ea48",
+            "usage": "32.17GB",
+            "hostName": "chen"
         }
     ]
 }
@@ -1043,12 +1068,12 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/MemUsage/top/five
 
 <br>
 
-### 16 获取主机磁盘使用率前五
+### 16 获取主机磁盘使用率
 
 
 16.1 请求路径
 
-GET: http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
+GET: http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/{{count}}
 
 ---
 
@@ -1056,13 +1081,13 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| count          |         Path           |            获取个数           |        Yes       |int        |
 | beginTime          |         Params           |            开始时间            |        Yes       |long        |
 | endTime          |         Params           |            结束时间            |        Yes       |long        |
 
 <br>
 
-
-![img_29.png](../Images/DiskUsage.png)
+![img_2.png](../docs/Images/DiskUsage.png)
 
 ----
 
@@ -1085,16 +1110,22 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
     "code": 1000,
     "data": [
         {
-            "_id": "62d626969026c712d786e707",
-            "hostId": "62d626969026c712d786e707",
-            "hostName": "usdp",
-            "usage": 65.64
+            "_id": "631837b0e8f4ff5c079e9c55",
+            "hostId": "631837b0e8f4ff5c079e9c55",
+            "hostName": "server14",
+            "usage": 22.81
         },
         {
-            "_id": "62bbfbe9a46517610435d615",
-            "hostId": "62bbfbe9a46517610435d615",
-            "hostName": "chen",
-            "usage": 57.41
+            "_id": "63031ffab652427a5bb8a667",
+            "hostId": "63031ffab652427a5bb8a667",
+            "hostName": "server200",
+            "usage": 10.01
+        },
+        {
+            "_id": "6305fa4491c2f64abf18c581",
+            "hostId": "6305fa4491c2f64abf18c581",
+            "hostName": "server100",
+            "usage": 9.49
         }
     ]
 }
@@ -1105,13 +1136,13 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/DiskUsage/top/five
 
 <br>
 
-###  17 获取网卡输入使用率前五
+###  17 获取网卡输入使用率
 
 
 17.1 请求路径
 
 
-GET: http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
+GET: http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/{{count}}
 
 ---
 
@@ -1119,13 +1150,13 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| count          |         Path           |            获取个数           |        Yes       |int        |
 | beginTime          |         Params           |            开始时间            |        Yes       |long        |
 | endTime          |         Params           |            结束时间            |        Yes       |long        |
 
 <br>
 
-
-![img_31.png](../Images/NetIn.png)
+![img_3.png](../docs/Images/NetIn.png)
 
 ----
 
@@ -1150,24 +1181,19 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
     "code": 1000,
     "data": [
         {
-            "_id": "62cbbd7607bebb71b8429e5e",
-            "usage": "33.26MB/s",
+            "_id": "63031ffab652427a5bb8a667",
+            "usage": "121.42MB/s",
             "hostName": "server200"
         },
         {
-            "_id": "62b153a344ba1b7771c42df7",
-            "usage": "29.84MB/s",
-            "hostName": "server100"
-        },
-        {
-            "_id": "62bbfbe9a46517610435d615",
-            "usage": "2.76MB/s",
+            "_id": "630eddeff3d9e72e3695ea48",
+            "usage": "81.28MB/s",
             "hostName": "chen"
         },
         {
-            "_id": "62d626969026c712d786e707",
-            "usage": "131.00KB/s",
-            "hostName": "usdp"
+            "_id": "6316dbf322197b14b79a4793",
+            "usage": "78.8MB/s",
+            "hostName": "server84"
         }
     ]
 }
@@ -1180,11 +1206,11 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/NetIn/top/five
 <br>
 
 
-###  18 获取网卡输出使用率前五
+###  18 获取网卡输出使用率
 
 18.1 请求路径
 
-GET: http://{Server-Host}:{端口}/api/server/agent/getHost/NetOut/top/five
+GET: http://{Server-Host}:{端口}/api/server/agent/getHost/NetOut/{{count}}
 
 ---
 
@@ -1192,13 +1218,13 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/NetOut/top/five
 
 | Name                |     Located in     |           Description         |     Required    |        Schema   |
 | -------------------|----------------------|-------------------------------|-----------------|-----------   |
+| count          |         Path           |            获取个数           |        Yes       |int        |
 | beginTime          |         Params           |            开始时间            |        Yes       |long        |
 | endTime          |        Params           |            结束时间            |        Yes       |long        |
 
 <br>
 
-
-![img_33.png](../Images/NetOut.png)
+![img_4.png](../docs/Images/NetOut.png)
 
 ----
 
@@ -1221,24 +1247,19 @@ GET: http://{Server-Host}:{端口}/api/server/agent/getHost/NetOut/top/five
     "code": 1000,
     "data": [
         {
-            "_id": "62cbbd7607bebb71b8429e5e",
-            "usage": "16.44MB/s",
+            "_id": "63031ffab652427a5bb8a667",
+            "usage": "121.42MB/s",
             "hostName": "server200"
         },
         {
-            "_id": "62b153a344ba1b7771c42df7",
-            "usage": "5.98MB/s",
-            "hostName": "server100"
+            "_id": "6322b50f0b810f7b5109403c",
+            "usage": "6.39MB/s",
+            "hostName": "server202"
         },
         {
-            "_id": "62bbfbe9a46517610435d615",
-            "usage": "2.76MB/s",
+            "_id": "630eddeff3d9e72e3695ea48",
+            "usage": "2.61MB/s",
             "hostName": "chen"
-        },
-        {
-            "_id": "62d626969026c712d786e707",
-            "usage": "131.00KB/s",
-            "hostName": "usdp"
         }
     ]
 }
