@@ -1,4 +1,4 @@
 {
-"plugins":["expandable-chapters"],
-"title": "Whaleal Platform"
+"plugins":["expandable-chapters","-lunr"],
+"title": "whaleal"
 }

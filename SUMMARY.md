@@ -1,80 +1,160 @@
 # Summary
-
 * [Whaleal](README.md)
-    * Overview
-        * [Introduction](./00-Overview/01-Introduction.md)
-        * [Comparison](./00-Overview/02-Comparison.md)
-    * Install
-        * [requirement](./01-Intstall/00-requirement.md)
-        * [Installation](./01-Intstall/01-Installation.md)
-    * Usage
-        * Account
-            * [AccountCenter](./02-Usage/Account/AccountCenter.md)
-            * [Config](./02-Usage/Account/Config.md)
-            * [Users](./02-Usage/Account/Users.md)
-        * Host
-            * [AddHost](./02-Usage/Host/AddHost.md)
-            * [HostInfos](./02-Usage/Host/HostInfos.md)
-            * [RemoveHost](./02-Usage/Host/RemoveHost.md)
-        * MongoDB
-            * CreateDeployment
-                * [CreateReplicaSet](./02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md)
-                * [CreateShardedCluster](./02-Usage/MongoDB/CreateDeployment/CreateShardedCluster.md)
-                * [CreateStandalone](./02-Usage/MongoDB/CreateDeployment/CreateStandalone.md)
-            * ManageCluster
-                * ReplicaSet
-                    * [ClusterLogs](./02-Usage/MongoDB/ManageCluster/ReplicaSet/ClusterLogs.md)
-                    * [Data](./02-Usage/MongoDB/ManageCluster/ReplicaSet/Data.md)
-                    * [EventLogs](./02-Usage/MongoDB/ManageCluster/ReplicaSet/EventLogs.md)
-                    * [Info](./02-Usage/MongoDB/ManageCluster/ReplicaSet/Info.md)
-                    * [Operation](./02-Usage/MongoDB/ManageCluster/ReplicaSet/Operation.md)
-                    * [RoleAndUser](./02-Usage/MongoDB/ManageCluster/ReplicaSet/RoleAndUser.md)
-                * Sharding
-                    * [ClusterLogs](./02-Usage/MongoDB/ManageCluster/Sharding/ClusterLogs.md)
-                    * [Data](./02-Usage/MongoDB/ManageCluster/Sharding/Data.md)
-                    * [EventLogs](./02-Usage/MongoDB/ManageCluster/Sharding/EventLogs.md)
-                    * [Info](./02-Usage/MongoDB/ManageCluster/Sharding/Info.md)
-                    * [Operation](./02-Usage/MongoDB/ManageCluster/Sharding/Operation.md)
-                    * [RoleAndUser](./02-Usage/MongoDB/ManageCluster/Sharding/RoleAndUser.md)
-                * Standalone
-                    * [ClusterLogs](./02-Usage/MongoDB/ManageCluster/Standalone/ClusterLogs.md)
-                    * [Data](./02-Usage/MongoDB/ManageCluster/Standalone/Data.md)
-                    * [EventLogs](./02-Usage/MongoDB/ManageCluster/Standalone/EventLogs.md)
-                    * [Info](./02-Usage/MongoDB/ManageCluster/Standalone/Info.md)
-                    * [Operation](./02-Usage/MongoDB/ManageCluster/Standalone/Operation.md)
-                    * [RoleAndUser](./02-Usage/MongoDB/ManageCluster/Standalone/RoleAndUser.md)
-            * [UploadMongoTar](./02-Usage/MongoDB/UploadMongoTar.md)
-            * [ManageCluster](./02-Usage/MongoDB/ManageCluster.md)
-            * [ExistingMongoDBDeployment](./02-Usage/MongoDB/ExistingMongoDBDeployment.md)
-    * UseCases
-        * [HowToCreateReplicaSet](./03-UseCases/HowToCreateReplicaSet.md)
-        * [HowToCreateShardedCluster](./03-UseCases/HowToCreateShardedCluster.md)
-        * [HowToCreateStandalone](./03-UseCases/HowToCreateStandalone.md)
-        * [HowToFindBottleNeckinHost](./03-UseCases/HowToFindBottleNeckinHost.md)
-        * [HowToFindBottleNeckinMongoDB](./03-UseCases/HowToFindBottleNeckinMongoDB.md)
-    * Troubleshooting
-        * [AddHostFailed](./04-Troubleshooting/AddHostFaild.md)
-        * [LoginFailed](./04-Troubleshooting/LoginFaild.md)
-        * [MongoFailed](./04-Troubleshooting/MongoFaild.md)
-    * ReleaseNotes
-        * [releaseNote-1.0.0](./05-ReleaseNotes/releaseNote-1.0.0.md)
-    * FAQ
-        * [ForOpsManagerUser](./06-FAQ/ForOpsManagerUser.md)
-        * [ForPMMUser](./06-FAQ/ForPMMUser.md)
-        * [ForZabbixUser](./06-FAQ/ForZabbixUser.md)
-        * [QA](./06-FAQ/QA.md)
-    * APIReference
-        * [Agent](./07-APIReference/Agent.md)
-        * [Alert](./07-APIReference/Alert.md)
-        * [Collection](./07-APIReference/Collection.md)
-        * [DBData](./07-APIReference/MongoDbData.md)
-        * [ErrorCodes](./07-APIReference/ErrorCodes.md)
-        * [Files](./07-APIReference/Files.md)
-        * [Member](./07-APIReference/Member.md)
-        * [Mongo](./07-APIReference/MongoOperate.md)
-        * [Other](./07-APIReference/Other.md)
-        * [Third_party](./07-APIReference/Third_party.md)
-        * [Configuration](./07-APIReference/Configuration.md)
-        * [Analysis](./07-APIReference/Analysis.md)
-        * [Project](./07-APIReference/Project.md)
+  * [Whaleal Platform](./whalelaPlatform/README.md)
+      * Overview
+          * [Introduction](./whalelaPlatform/00-Overview/01-Introduction.md)
+          * [Comparison](./whalelaPlatform/00-Overview/02-Comparison.md)
+      * Install
+          * [requirement](./whalelaPlatform/01-Intstall/00-requirement.md)
+          * [Installation](./whalelaPlatform/01-Intstall/01-Installation.md)
+      * Usage
+          * Account
+              * [AccountCenter](./whalelaPlatform/02-Usage/Account/AccountCenter.md)
+              * [Config](./whalelaPlatform/02-Usage/Account/Config.md)
+              * [Users](./whalelaPlatform/02-Usage/Account/Users.md)
+          * Host
+              * [AddHost](./whalelaPlatform/02-Usage/Host/AddHost.md)
+              * [HostInfos](./whalelaPlatform/02-Usage/Host/HostInfos.md)
+              * [RemoveHost](./whalelaPlatform/02-Usage/Host/RemoveHost.md)
+          * MongoDB
+              * CreateDeployment
+                  * [CreateReplicaSet](./whalelaPlatform/02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md)
+                  * [CreateShardedCluster](./whalelaPlatform/02-Usage/MongoDB/CreateDeployment/CreateShardedCluster.md)
+                  * [CreateStandalone](./whalelaPlatform/02-Usage/MongoDB/CreateDeployment/CreateStandalone.md)
+              * ManageCluster
+                  * ReplicaSet
+                      * [ClusterLogs](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/ReplicaSet/ClusterLogs.md)
+                      * [Data](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/ReplicaSet/Data.md)
+                      * [EventLogs](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/ReplicaSet/EventLogs.md)
+                      * [Info](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/ReplicaSet/Info.md)
+                      * [Operation](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/ReplicaSet/Operation.md)
+                      * [RoleAndUser](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/ReplicaSet/RoleAndUser.md)
+                  * Sharding
+                      * [ClusterLogs](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/Sharding/ClusterLogs.md)
+                      * [Data](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/Sharding/Data.md)
+                      * [EventLogs](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/Sharding/EventLogs.md)
+                      * [Info](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/Sharding/Info.md)
+                      * [Operation](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/Sharding/Operation.md)
+                      * [RoleAndUser](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/Sharding/RoleAndUser.md)
+                  * Standalone
+                      * [ClusterLogs](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/Standalone/ClusterLogs.md)
+                      * [Data](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/Standalone/Data.md)
+                      * [EventLogs](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/Standalone/EventLogs.md)
+                      * [Info](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/Standalone/Info.md)
+                      * [Operation](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/Standalone/Operation.md)
+                      * [RoleAndUser](./whalelaPlatform/02-Usage/MongoDB/ManageCluster/Standalone/RoleAndUser.md)
+              * [UploadMongoTar](./whalelaPlatform/02-Usage/MongoDB/UploadMongoTar.md)
+              * [ManageCluster](./whalelaPlatform/02-Usage/MongoDB/ManageCluster.md)
+              * [ExistingMongoDBDeployment](./whalelaPlatform/02-Usage/MongoDB/ExistingMongoDBDeployment.md)
+      * UseCases
+          * [HowToCreateReplicaSet](./whalelaPlatform/03-UseCases/HowToCreateReplicaSet.md)
+          * [HowToCreateShardedCluster](./whalelaPlatform/03-UseCases/HowToCreateShardedCluster.md)
+          * [HowToCreateStandalone](./whalelaPlatform/03-UseCases/HowToCreateStandalone.md)
+          * [HowToFindBottleNeckinHost](./whalelaPlatform/03-UseCases/HowToFindBottleNeckinHost.md)
+          * [HowToFindBottleNeckinMongoDB](./whalelaPlatform/03-UseCases/HowToFindBottleNeckinMongoDB.md)
+      * Troubleshooting
+          * [AddHostFailed](./whalelaPlatform/04-Troubleshooting/AddHostFaild.md)
+          * [LoginFailed](./whalelaPlatform/04-Troubleshooting/LoginFaild.md)
+          * [MongoFailed](./whalelaPlatform/04-Troubleshooting/MongoFaild.md)
+      * ReleaseNotes
+          * [releaseNote-1.0.0](./whalelaPlatform/05-ReleaseNotes/releaseNote-1.0.0.md)
+      * FAQ
+          * [ForOpsManagerUser](./whalelaPlatform/06-FAQ/ForOpsManagerUser.md)
+          * [ForPMMUser](./whalelaPlatform/06-FAQ/ForPMMUser.md)
+          * [ForZabbixUser](./whalelaPlatform/06-FAQ/ForZabbixUser.md)
+          * [QA](./whalelaPlatform/06-FAQ/QA.md)
+      * APIReference
+          * [Agent](./whalelaPlatform/07-APIReference/Agent.md)
+          * [Alert](./whalelaPlatform/07-APIReference/Alert.md)
+          * [Collection](./whalelaPlatform/07-APIReference/Collection.md)
+          * [DBData](./whalelaPlatform/07-APIReference/MongoDbData.md)
+          * [ErrorCodes](./whalelaPlatform/07-APIReference/ErrorCodes.md)
+          * [Files](./whalelaPlatform/07-APIReference/Files.md)
+          * [Member](./whalelaPlatform/07-APIReference/Member.md)
+          * [Mongo](./whalelaPlatform/07-APIReference/MongoOperate.md)
+          * [Other](./whalelaPlatform/07-APIReference/Other.md)
+          * [Third_party](./whalelaPlatform/07-APIReference/Third_party.md)
+          * [Configuration](./whalelaPlatform/07-APIReference/Configuration.md)
+          * [Analysis](./whalelaPlatform/07-APIReference/Analysis.md)
+          * [Project](./whalelaPlatform/07-APIReference/Project.md)
+  * [Whaleal-data](./whalealData/README.md)
+      * InstallationDeployment
+          * [InstallationRequirements](./whalealData/InstallationDeployment/InstallationRequirements.md)
+          * [JDKInstallationDeployment](./whalealData/InstallationDeployment/JDKInstallationDeployment.md)
+          * [MYSQLInstallationDeployment](./whalealData/InstallationDeployment/MYSQLInstallationDeployment.md)
+          * [NginxInstallationDeployment](./whalealData/InstallationDeployment/NginxInstallationDeployment.md)
+          * [RedisInstallationDeployment](./whalealData/InstallationDeployment/RedisInstallationDeployment.md)
+          * [ZookeeperInstallationDeployment](./whalealData/InstallationDeployment/ZookeeperInstallationDeployment.md)
+          * [Whaleal-dataInstallationDeployment](./whalealData/InstallationDeployment/Whaleal-dataInstallationDeployment.md)
+      * Whaleal-data Manual
+          * LoginPage
+              * [UserFirstLogin](./whalealData/UserManual/LoginPage/UserFirstLogin.md)
+              * [UserRegistration](./whalealData/UserManual/LoginPage/UserRegistration.md)
+          * [HomepageDisplay](./whalealData/UserManual/HomepageDisplay/HomepageDisplay.md)
+          * ConfigurationManagement
+              * [DataSourceManagement](./whalealData/UserManual/ConfigurationManagement/DataSourceManagement.md)
+              * [DestinationSourceManagement](./whalealData/UserManual/ConfigurationManagement/DestinationSourceManagement.md)
+              * [TableJobConfiguration](./whalealData/UserManual/ConfigurationManagement/TableJobConfiguration.md)
+              * [TaskConfiguration](./whalealData/UserManual/ConfigurationManagement/TaskConfiguration.md)
+          * TaskManagement
+              * [TaskScheduling](./whalealData/UserManual/TaskManagement/TaskScheduling.md)
+              * [WarmTaskMonitoring](./whalealData/UserManual/TaskManagement/WarmTaskMonitoring.md)
+              * [ColdTaskMonitoring](./whalealData/UserManual/TaskManagement/ColdTaskMonitoring.md)
+              * [S3TaskMonitoring](./whalealData/UserManual/TaskManagement/S3TaskMonitoring.md)
+          * ArchiveManagement
+              * [ColdTaskLogQuery](./whalealData/UserManual/ArchiveManagement/ColdTaskLogQuery.md)
+              * [FileInspectionManagement](./whalealData/UserManual/ArchiveManagement/FileInspectionManagement.md)
+              * [FileFullTextSearch](./whalealData/UserManual/ArchiveManagement/FileFullTextSearch.md)
+          * SystemManagement
+              * [UserManagement](./whalealData/UserManual/SystemManagement/UserManagement.md)
+              * [RoleManagement](./whalealData/UserManual/SystemManagement/RoleManagement.md)
+              * [MenuManagement](./whalealData/UserManual/SystemManagement/MenuManagement.md)
+              * [SystemSettings](./whalealData/UserManual/SystemManagement/SystemSettings.md)
+              * [OperationLog](./whalealData/UserManual/SystemManagement/OperationLog.md)
+              * [ErrorLog](./whalealData/UserManual/SystemManagement/ErrorLog.md)
+          * StatisticalReports
+              * [TableJobExecutionStatistics](./whalealData/UserManual/StatisticalReports/TableJobExecutionStatistics.md)
+              * [AbnormalJobExecutionStatistics](./whalealData/UserManual/StatisticalReports/AbnormalJobExecutionStatistics.md)
+              * [SystemAccessStatistics](./whalealData/UserManual/StatisticalReports/SystemAccessStatistics.md)
+              * [RollbackRecordsStatistics](./whalealData/UserManual/StatisticalReports/RollbackRecordsStatistics.md)
+              * [JobDetails](./whalealData/UserManual/StatisticalReports/JobDetails.md)
+              * [DataHistoricalFlow](./whalealData/UserManual/StatisticalReports/DataHistoricalFlow.md)
+      * use Cases
+          * [UserRegistration](./whalealData/use cases/UserRegistration.md)
+          * [UserLogin](./whalealData/use cases/UserLogin.md)
+          * [AddDataSource](./whalealData/use cases/AddDataSource.md)
+          * [AddDestinationSource](./whalealData/use cases/AddDestinationSource.md)
+          * [AddWarmDataFullLoadJob](./whalealData/use cases/AddWarmDataFullLoadJob.md)
+          * [AddColdDataFullLoadJob](./whalealData/use cases/AddColdDataFullLoadJob.md)
+          * [AddS3FullLoadJob](./whalealData/use cases/AddS3FullLoadJob.md)
+          * [AddWarmDataIncrementalJob](./whalealData/use cases/AddWarmDataIncrementalJob.md)
+          * [AddColdDataIncrementalJob](./whalealData/use cases/AddColdDataIncrementalJob.md)
+          * [AddS3IncrementalJob](./whalealData/use cases/AddS3IncrementalJob.md)
+          * [CreateSingleTask](./whalealData/use cases/CreateSingleTask.md)
+          * [CreateManualTask](./whalealData/use cases/CreateManualTask.md)
+          * [CreateLoopTask](./whalealData/use cases/CreateLoopTask.md)
+          * [TaskExecutionMonitoring](./whalealData/use cases/TaskExecutionMonitoring.md)
+          * [RetryAbnormalTask](./whalealData/use cases/RetryAbnormalTask.md)
+          * [AbnormalTaskFeedback](./whalealData/use cases/AbnormalTaskFeedback.md)
+          * [SystemDeleteSourceData](./whalealData/use cases/SystemDeleteSourceData.md)
+          * [ManuallyDeleteSourceData](./whalealData/use cases/ManuallyDeleteSourceData.md)
+          * [ColdDataWriteBack](./whalealData/use cases/ColdDataWriteBack.md)
+          * [ColdDataFullTextSearch](./whalealData/use cases/ColdDataFullTextSearch.md)
+          * [SMTPConfig](./whalealData/use cases/SMTPConfig.md)
+          * [WarmJobDemo](./whalealData/use cases/WarmJobDemo.md)
+          * [ColdWorkDemo](./whalealData/use cases/ColdWorkDemo.md)
+          * [S3JobDemo](./whalealData/use cases/S3JobDemo.md)
+  * [Document Data Transfer](./documentDataTransfer/README.md)
+      * Overview
+        * [Architecture](./documentDataTransfer/Introduction/Architecture.md)
+        * [CustomerCase](./documentDataTransfer/Introduction/CustomerCase.md)
+      * Install
+        * [Requirements](./documentDataTransfer/Install/Requirements.md)
+        * [Installation](./documentDataTransfer/Install/Installation.md)
+        * [QuickStart](./documentDataTransfer/Install/QuickStart.md)
+        * [Configuring](./documentDataTransfer/Install/Configuring.md)
+      * Use Case
+        * [FunctionalTest](./documentDataTransfer/Usecase/FunctionalTest.md)
+        * [FullTesting](./documentDataTransfer/Usecase/FullTesting.md)
+        * [RealTimeTest](./documentDataTransfer/Usecase/RealTimeTest.md)
 
