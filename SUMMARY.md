@@ -77,7 +77,7 @@
           * [Configuration](./whalelaPlatform/07-APIReference/Configuration.md)
           * [Analysis](./whalelaPlatform/07-APIReference/Analysis.md)
           * [Project](./whalelaPlatform/07-APIReference/Project.md)
-  * [Whaleal-data](./whalealData/README.md)
+  * [Whaleal Data](./whalealData/README.md)
       * InstallationDeployment
           * [InstallationRequirements](./whalealData/InstallationDeployment/InstallationRequirements.md)
           * [JDKInstallationDeployment](./whalealData/InstallationDeployment/JDKInstallationDeployment.md)
