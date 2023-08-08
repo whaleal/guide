@@ -5,7 +5,7 @@
           * [Introduction](./whalelaPlatform/00-Overview/01-Introduction.md)
           * [Comparison](./whalelaPlatform/00-Overview/02-Comparison.md)
       * Install
-          * [requirement](./whalelaPlatform/01-Intstall/00-requirement.md)
+          * [Requirement](./whalelaPlatform/01-Intstall/00-requirement.md)
           * [Installation](./whalelaPlatform/01-Intstall/01-Installation.md)
       * Usage
           * Account
@@ -52,12 +52,12 @@
           * [HowToCreateStandalone](./whalelaPlatform/03-UseCases/HowToCreateStandalone.md)
           * [HowToFindBottleNeckinHost](./whalelaPlatform/03-UseCases/HowToFindBottleNeckinHost.md)
           * [HowToFindBottleNeckinMongoDB](./whalelaPlatform/03-UseCases/HowToFindBottleNeckinMongoDB.md)
-      * Troubleshooting
+      * TroubleShooting
           * [AddHostFailed](./whalelaPlatform/04-Troubleshooting/AddHostFaild.md)
           * [LoginFailed](./whalelaPlatform/04-Troubleshooting/LoginFaild.md)
           * [MongoFailed](./whalelaPlatform/04-Troubleshooting/MongoFaild.md)
       * ReleaseNotes
-          * [releaseNote-1.0.0](./whalelaPlatform/05-ReleaseNotes/releaseNote-1.0.0.md)
+          * [ReleaseNote-1.0.0](./whalelaPlatform/05-ReleaseNotes/releaseNote-1.0.0.md)
       * FAQ
           * [ForOpsManagerUser](./whalelaPlatform/06-FAQ/ForOpsManagerUser.md)
           * [ForPMMUser](./whalelaPlatform/06-FAQ/ForPMMUser.md)
@@ -86,7 +86,7 @@
           * [RedisInstallationDeployment](./whalealData/InstallationDeployment/RedisInstallationDeployment.md)
           * [ZookeeperInstallationDeployment](./whalealData/InstallationDeployment/ZookeeperInstallationDeployment.md)
           * [Whaleal-dataInstallationDeployment](./whalealData/InstallationDeployment/Whaleal-dataInstallationDeployment.md)
-      * Whaleal-data Manual
+      * Whaleal data Manual
           * LoginPage
               * [UserFirstLogin](./whalealData/UserManual/LoginPage/UserFirstLogin.md)
               * [UserRegistration](./whalealData/UserManual/LoginPage/UserRegistration.md)
