@@ -1,208 +1,145 @@
 ### 功能操作说明
 
-#### 1.全量任务
-```
-# D2T.properties 配置文件
-#任务名。不写则默认生成
-taskName=mongoTask
-#程序名名。不写则默认生成
-proName=mongoPro
-#source端mongodb的url。必写
-sourceDsUrl=mongodb://root:123456@192.168.3.190:27001/admin
-#target端mongodb的url。必写
-targetDsUrl=mongodb://root:123456@192.168.3.100:47018/admin
-#同步模式
-# 全量:all  全量同步表,不同步同步期间对源表进行的操作
-syncMode=all
-#全量同步时,是否按照依次同步表或多表并行同步。默认为false即多表并行同步
-parallelSynchronizationMultipleTables=false
-#需要同步的表,使用正则表达式书写。例如同步mongodb库下的所有表：mongodb\\..+   默认同步全部表：.+
-dbTableWhite=.+
-#全量同步情况下:是否删除目标库已经存在的源表。默认false即不删除
-autoDropExistDbTable=false
-#全量同步情况下:是否同步源表的索引信息。默认true即同步。在true时,当源表数据同步60%时开始同步源表的索引
-autoCreateIndex=true
-#全量同步情况下读取源表的线程数。最小为2，最大为50。默认值为2
-sourceThreadNum=4
-#全量同步情况下执行写入目标库的线程数。最小为4，最大为50 。默认值为6
-#建议targetThreadNum是sourceThreadNum的3倍
-targetThreadNum=12
-##下面三个参数cacheBucketSize,cacheBucketNum,dataBatchSize共同决定全量情况下,内存中缓存的数据条数,注意内存溢出的情况。
-##均采用默认值则内存缓存20*20*128条数据,若每条数据100kb,则最大占用内存4.88G
-#每个缓存桶缓存批次数量。默认为20
-cacheBucketSize=10
-#缓存区个数。默认为20
-cacheBucketNum=60
-#每批次数据的大小。默认为128
-dataBatchSize=128
+#### 1.参数含义
+当设置 MongoDB 数据同步任务时，以下是每个参数的详细含义：
 
-#在数据传输前，预处理：同步集群中DDL信息
-# 1:打印输出集群全部用户信息
-# 2:同步库表表结构
-# 3:同步库表索引信息
-# 4:全部库开启库分片
-# 5:同步库表shard key
-# 6:同步config.setting表
-# 7:库表预切分chunk
-# 可以组合使用 例如 123456 123457 1237 默认值2
-clusterDDL=1234567
-# D2T-Control端地址
-serverUrl=http://127.0.0.1:8001
-```
+1. **workName**:
+    - 含义：任务名称
+    - 说明：用于标识数据同步任务的名称，如果未提供，则默认生成为 "workNameDefault"。
 
-#### 2.实时任务
-```
-# D2T.properties 配置文件
-#任务名。不写则默认生成
-taskName=mongoTask
-#程序名名。不写则默认生成
-proName=mongoPro
-#source端mongodb的url。必写
-sourceDsUrl=mongodb://root:123456@192.168.3.190:27001/admin
-#target端mongodb的url。必写
-targetDsUrl=mongodb://root:123456@192.168.3.100:47018/admin
-#同步模式
-# 实时:realTime 实时同步
-syncMode=realTime
-dbTableWhite=.+
-# 需要同步的DDL
-# 实时同步情况下可以同步drop,create,createIndexes,dropIndexes,renameCollection,convertToCapped,dropDatabase。默认值为*,即同步所有DDL操作
-# 多个DDL中间使用英文逗号隔离。若多个DDL中包含*,则同步所有DDL操作
-ddlFilterSet=*
-#在实时同步时,设置读取oplog的开始时间。默认值为程序启动时刻的10位时间戳，否则则书写10位时间戳
-startOplogTime=
-#在实时同步时,设置读取oplog的结束时间。默认值为0即没有结束时间，否则则书写10位时间戳
-endOplogTime=
-#在实时同步时,设置读取oplog的延迟时间。默认值为0即没有延迟时间
-delayTime=
-#在实时同步中每个数据源解析数据的线程。最小为4，最大为50。默认值为8
-realTimeThreadNum=12
-```
+2. **sourceDsUrl**:
+    - 含义：源端 MongoDB 连接 URL
+    - 说明：指定源端 MongoDB 数据库的连接 URL，可以为单节点、复制集或分片。
 
-#### 3.全量加增量
-```
-# D2T.properties 配置文件
-#任务名。不写则默认生成
-taskName=mongoTask
-#程序名名。不写则默认生成
-proName=mongoPro
-#source端mongodb的url。必写
-sourceDsUrl=mongodb://root:123456@192.168.3.190:27001/admin
-#target端mongodb的url。必写
-targetDsUrl=mongodb://root:123456@192.168.3.100:47018/admin
-#同步模式
-# 全量和增量:allAndIncrement 全量同步后,仅同步同步期间对源表进行的操作。增量同步的开始时间为全量同步的开始时间,增量同步的结束时间为全量同步的结束时间
-syncMode=allAndIncrement
-#全量同步时,是否按照依次同步表或多表并行同步。默认为false即多表并行同步
-parallelSynchronizationMultipleTables=false
-#需要同步的表,使用正则表达式书写。例如同步mongodb库下的所有表：mongodb\\..+   默认同步全部表：.+
-dbTableWhite=.+
-# 需要同步的DDL
-# 实时同步情况下可以同步drop,create,createIndexes,dropIndexes,renameCollection,convertToCapped,dropDatabase。默认值为*,即同步所有DDL操作
-# 多个DDL中间使用英文逗号隔离。若多个DDL中包含*,则同步所有DDL操作
-ddlFilterSet=*
-#全量同步情况下:是否删除目标库已经存在的源表。默认false即不删除
-autoDropExistDbTable=false
-#全量同步情况下:是否同步源表的索引信息。默认true即同步。在true时,当源表数据同步60%时开始同步源表的索引
-autoCreateIndex=true
-#全量同步情况下读取源表的线程数。最小为2，最大为50。默认值为2
-sourceThreadNum=4
-#全量同步情况下执行写入目标库的线程数。最小为4，最大为50 。默认值为6
-#建议targetThreadNum是sourceThreadNum的3倍
-targetThreadNum=12
-##下面三个参数cacheBucketSize,cacheBucketNum,dataBatchSize共同决定全量情况下,内存中缓存的数据条数,注意内存溢出的情况。
-##均采用默认值则内存缓存20*20*128条数据,若每条数据100kb,则最大占用内存4.88G
-#每个缓存桶缓存批次数量。默认为20
-cacheBucketSize=10
-#缓存区个数。默认为20
-cacheBucketNum=60
-#每批次数据的大小。默认为128
-dataBatchSize=128
-#在实时同步时,设置读取oplog的开始时间。在全量加增量情况下,该参数由程序确定
-startOplogTime=
-#在实时同步时,设置读取oplog的结束时间。在全量加增量情况下,该参数由程序确定
-endOplogTime=
-#在实时同步时,设置读取oplog的延迟时间。在全量加增量情况下,该参数由程序确定
-delayTime=
-#在实时同步中每个数据源解析数据的线程。最小为4，最大为50。默认值为8
-realTimeThreadNum=12
+3. **targetDsUrl**:
+    - 含义：目标端 MongoDB 连接 URL
+    - 说明：指定目标端 MongoDB 数据库的连接 URL，可以为单节点、复制集或分片。
 
-#在数据传输前，预处理：同步集群中DDL信息
-# 1:打印输出集群全部用户信息
-# 2:同步库表表结构
-# 3:同步库表索引信息
-# 4:全部库开启库分片
-# 5:同步库表shard key
-# 6:同步config.setting表
-# 7:库表预切分chunk
-# 可以组合使用 例如 123456 123457 1237 默认值2
-clusterDDL=1234567
-# D2T-Control端地址
-serverUrl=http://127.0.0.1:8001
-```
+4. **syncMode**:
+    - 含义：同步模式
+    - 说明：指定数据同步的模式，可以是以下几种选项：
+        - "all": 全量模式，同步所有表，不同步同步期间对源表进行的操作。
+        - "allAndRealTime": 全量加实时模式，先进行全量同步，然后开始实时同步。
+        - "allAndIncrement": 全量加增量模式，进行全量同步后，仅同步同步期间对源表进行的操作。
+        - "realTime": 实时模式，根据配置的开始和结束时间进行实时同步。
 
-#### 4.全量加实时
-```
-# D2T.properties 配置文件
-#任务名。不写则默认生成
-taskName=mongoTask
-#程序名名。不写则默认生成
-proName=mongoPro
-#source端mongodb的url。必写
-sourceDsUrl=mongodb://root:123456@192.168.3.190:27001/admin
-#target端mongodb的url。必写
-targetDsUrl=mongodb://root:123456@192.168.3.100:47018/admin
-#同步模式
-# 全量和实时:allAndRealTime  全量同步后,开始进行实时同步,实时同步的开始时间为全量同步的开始时间
-syncMode=allAndRealTime
-#全量同步时,是否按照依次同步表或多表并行同步。默认为false即多表并行同步
-parallelSynchronizationMultipleTables=false
-#需要同步的表,使用正则表达式书写。例如同步mongodb库下的所有表：mongodb\\..+   默认同步全部表：.+
-dbTableWhite=.+
-# 需要同步的DDL
-# 实时同步情况下可以同步drop,create,createIndexes,dropIndexes,renameCollection,convertToCapped,dropDatabase。默认值为*,即同步所有DDL操作
-# 多个DDL中间使用英文逗号隔离。若多个DDL中包含*,则同步所有DDL操作
-ddlFilterSet=*
-#全量同步情况下:是否删除目标库已经存在的源表。默认false即不删除
-autoDropExistDbTable=false
-#全量同步情况下:是否同步源表的索引信息。默认true即同步。在true时,当源表数据同步60%时开始同步源表的索引
-autoCreateIndex=true
-#全量同步情况下读取源表的线程数。最小为2，最大为50。默认值为2
-sourceThreadNum=4
-#全量同步情况下执行写入目标库的线程数。最小为4，最大为50 。默认值为6
-#建议targetThreadNum是sourceThreadNum的3倍
-targetThreadNum=12
-##下面三个参数cacheBucketSize,cacheBucketNum,dataBatchSize共同决定全量情况下,内存中缓存的数据条数,注意内存溢出的情况。
-##均采用默认值则内存缓存20*20*128条数据,若每条数据100kb,则最大占用内存4.88G
-#每个缓存桶缓存批次数量。默认为20
-cacheBucketSize=10
-#缓存区个数。默认为20
-cacheBucketNum=60
-#每批次数据的大小。默认为128
-dataBatchSize=128
-#在实时同步时,设置读取oplog的开始时间。全量加实时模式下:该参数由程序确定
-startOplogTime=
-#在实时同步时,设置读取oplog的结束时间。默认值为0即没有结束时间，否则则书写10位时间戳
-endOplogTime=
-#在实时同步时,设置读取oplog的延迟时间。默认值为0即没有延迟时间
-delayTime=
-#在实时同步中每个数据源解析数据的线程。最小为4，最大为50。默认值为8
-realTimeThreadNum=12
+5. **realTimeType**:
+    - 含义：实时任务类型
+    - 说明：选择实时任务使用的类型，可以是 "oplog" 或 "changestream"。
+    - 详细说明：
+        - "oplog": 使用 MongoDB 的 oplog 进行实时同步，适用于源端为复制集，支持 DDL 操作，速度较快。
+        - "changestream": 使用 MongoDB 的 changestream 进行实时同步，适用于源端为复制集或 mongos，不支持 DDL 操作，速度一般。
 
-#在数据传输前，预处理：同步集群中DDL信息
-# 1:打印输出集群全部用户信息
-# 2:同步库表表结构
-# 3:同步库表索引信息
-# 4:全部库开启库分片
-# 5:同步库表shard key
-# 6:同步config.setting表
-# 7:库表预切分chunk
-# 可以组合使用 例如 123456 123457 1237 默认值2
-clusterDDL=1234567
-# D2T-Control端地址
-serverUrl=http://127.0.0.1:8001
+6. **fullType**:
+    - 含义：全量任务类型
+    - 说明：选择全量任务使用的类型，可以是 "sync" 或 "reactive"。
+    - 详细说明：
+        - "sync": 使用稳定的传输方式进行全量同步。
+        - "reactive": 使用更快的传输方式进行全量同步。
+
+7. **dbTableWhite**:
+    - 含义：需要同步的表
+    - 说明：使用正则表达式指定需要同步的表，例如同步 mongodb 库下的所有表：mongodb\\..+，默认为同步全部表。
+
+8. **ddlFilterSet**:
+    - 含义：需要同步的 DDL 操作
+    - 说明：指定需要同步的 DDL 操作，多个操作之间用英文逗号隔开，默认为 *，代表同步所有 DDL 操作。
+
+9. **sourceThreadNum**:
+    - 含义：源端任务线程数（全量模式）
+    - 说明：指定全量同步情况下读取源端任务的线程数。
+
+10. **targetThreadNum**:
+    - 含义：目标端任务线程数（全量模式）
+    - 说明：指定全量同步情况下写入目标端任务的线程数。
+
+11. **createIndexThreadNum**:
+    - 含义：建立索引的并发线程数（全量模式）
+    - 说明：指定全量同步情况下建立索引的并发线程数。
+
+12. **batchSize**:
+    - 含义：每批次数据大小
+    - 说明：指定每次传输的数据批次大小，默认为 128。
+
+13. **bucketNum**:
+    - 含义：缓存桶个数
+    - 说明：指定内存中的缓存桶个数，默认为 20。
+
+14. **bucketSize**:
+    - 含义：每个缓存桶缓存批次数量
+    - 说明：指定每个缓存桶缓存的数据批次数量，默认为 20。
+
+15. **startOplogTime**:
+    - 含义：实时同步的开始时间
+    - 说明：在实时同步模式下，指定读取 oplog 的开始时间，默认为程序启动时刻的 10 位时间戳。
+
+16. **endOplogTime**:
+    - 含义：实时同步的结束时间
+    - 说明：在实时同步模式下，指定读取 oplog 的结束时间，默认为 0，表示没有结束时间。
+
+17. **delayTime**:
+    - 含义：实时同步的延迟时间
+    - 说明：在实时同步模式下，指定读取 oplog 的延迟时间，默认为 0，表示没有延迟时间。
+
+18. **nsBucketThreadNum**:
+    - 含义：解析桶的线程数（实时同步）
+    - 说明：在实时同步中解析桶的线程数，默认为系统计算值。
+
+19. **writeThreadNum**:
+    - 含义：写数据的线程数（实时同步）
+    - 说明：在实时同步中写数据的线程数，默认为系统计算值。
+
+20. **ddlWait**:
+    - 含义：每个 DDL 操作最大耗时
+    - 说明：设置同步中每个 DDL 操作的最大耗时，单位为秒。
+
+21. **clusterInfoSet**:
+    - 含义：全量同步时的预处理操作
+    - 说明：设置全量同步时的预处理操作，用逗号隔开，可组合多个操作，例如 "0,1,2,3,4,5,6,7"，默认为空。每个操作的含义如下：
+        - 0: 是否删除目标端已经存在的表
+        - 1: 打印输出集群全部用户信息
+        - 2: 同步库表结构
+        - 3: 同步库表索引信息
+        - 4: 全部库开启库分片
+        - 5: 同步库表 shard key
+        - 6: 同步 config.setting 表
+        - 7: 库
+
+表预切分 chunk
+
+22. **bind_ip**:
+    - 含义：开启 monitor 监控时的本机 IP 地址
+    - 说明：在开启监控时，配置监控所绑定的本机 IP 地址。
+
+通过配置这些参数，您可以根据您的需求，定制 MongoDB 数据同步任务的行为和特性。
+
+#### 2.参数使用范围
 ```
-#### 5.数据校验
+| 参数                   | 实时任务 | 全量任务 | 全量加增量任务 | 全量加实时任务 |
+|----------------------|--------|--------|-------------|--------------|
+| workName             | ✔️     | ✔️     | ✔️          | ✔️           |
+| sourceDsUrl          | ✔️     | ✔️     | ✔️          | ✔️           |
+| targetDsUrl          | ✔️     | ✔️     | ✔️          | ✔️           |
+| syncMode             | ✔️     | ✔️     | ✔️          | ✔️           |
+| realTimeType         | ✔️     |        | ✔️          | ✔️           |
+| fullType             |        | ✔️     | ✔️          | ✔️           |
+| dbTableWhite         | ✔️     | ✔️     | ✔️          | ✔️           |
+| ddlFilterSet         | ✔️     |        | ✔️          | ✔️           |
+| batchSize            | ✔️     | ✔️     | ✔️          | ✔️           |
+| bucketNum            | ✔️     | ✔️     | ✔️          | ✔️           |
+| bucketSize           | ✔️     | ✔️     | ✔️          | ✔️           |
+| startOplogTime       | ✔️     |        |             |              |
+| endOplogTime         | ✔️     |        | ✔️          | ✔️           |
+| delayTime            | ✔️     |        |             |              |
+| nsBucketThreadNum    | ✔️     |        |             |              |
+| writeThreadNum       | ✔️     |        |             |              |
+| ddlWait              | ✔️     | ✔️     | ✔️          | ✔️           |
+| clusterInfoSet       | ✔️     | ✔️     | ✔️          | ✔️           |
+| bind_ip              | ✔️     | ✔️     | ✔️          | ✔️           |
+
+
+```
+#### 3.数据校验
 ```
 #校验数据脚本
 # 0:多线程进行校验:配置后1-8的校验方式,可以并发的进行处理

@@ -2,25 +2,25 @@
 
 ## 启动步骤
 
-#### 1.下载D2T
+#### 1.下载DDT
 
-  访问 https://github.com/whaleal/D2T/releases
+  访问 https://github.com/whaleal/DocumentDataTransfer/releases
 
-  下载最近版本的D2T.tar.gz
+  下载最近版本的DDT.tar.gz
 
 #### 2.解压缩
 
 ```
-mkdir D2T
-tar -zxvf mngodbT.tar.gz  -C D2T
+mkdir DDT
+tar -zxvf DDT.tar.gz  -C DDT
 ```
 
 #### 3.配置文件修改
 [配置介绍](./Configuring.md)
 
 ```
-cd D2T/config
-vi D2T.properties
+cd DDT/config
+vi DDT.properties
 ```
 
 
@@ -28,16 +28,16 @@ vi D2T.properties
 
 ```
 cd bin
-./start.sh
+./start-all.sh
 ```
 
-#### 5.查看日志
+#### 5.查看运行情况
 
 ```
-cd logs/
-tail -f logs.log
-tail -f error.log
+访问web监控页面
+http://bind_ip:58000/DDT_WEB/#/home
 ```
+
 
 #### 6.查看目标端的数据量，对比数据一致性。
 
@@ -50,5 +50,5 @@ tail -f error.log
 
 2 手动校验数据
 ```
-java -jar checkData.jar /配置文件路径/D2T.properties
+java -jar checkData.jar /配置文件路径/DDT.properties
 ```
