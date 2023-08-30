@@ -4,11 +4,13 @@ The Archiving Platform is a data archiving software that supports different type
 
 ### Platform Architecture
 
-![Platform Architecture](../../images/whalealDataImages/Platform_Architecture.png)
+![Platform Architecture](../../../images/whalealDataImages/Platform_Architecture.png)
+
+![Platform Architecture](../../../images/whalealDataImages/Platform_Architecture.png)
 
 ### Software Structure
 
-![Software Structure](../../images/whalealDataImages/Software_Structure.png)
+![Software Structure](../../../images/whalealDataImages/Software_Structure.png)
 
 ## Whaleal Platform Introduction
 

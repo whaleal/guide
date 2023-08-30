@@ -1,9 +1,8 @@
 {
-"plugins":["expandable-chapters","-lunr","multilingual-index","insert-logo"],
+ "language": "zh-hans",
+
+"plugins":["expandable-chapters","-lunr","multilingual-index","insert-logo","-search","search-pro"],
   "pluginsConfig": {
-
-
-
     "multilingual-index": {
       "enableSuper": true,
       "index":"./index.html"
@@ -12,7 +11,6 @@
       "url": "https://mongotlogo.s3.amazonaws.com/logo.png",
       "style": "background: none; max-height: 80px; min-height: 80px"
     }
-
   },
 "title": "whaleal"
 }
