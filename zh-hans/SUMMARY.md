@@ -157,4 +157,22 @@
         * [FunctionalTest](documentDataTransfer/Usecase/FunctionalTest.md)
         * [FullTesting](documentDataTransfer/Usecase/FullTesting.md)
         * [RealTimeTest](documentDataTransfer/Usecase/RealTimeTest.md)
-
+  * [Whaleal Account](whalealAccount/README.md)
+      * Oauth2 
+        * [Oauth2](whalealAccount/Oauth2/oauth2.md)
+      * UserManual
+        * [Register](whalealAccount/UserManual/register.md)
+        * [Login](whalealAccount/UserManual/login.md)
+        * [PasswordReset](whalealAccount/UserManual/passwordReset.md)
+        * [UserInfo](whalealAccount/UserManual/userInfo.md)
+        * [Organization](whalealAccount/UserManual/organization.md)
+        * [Client](whalealAccount/UserManual/client.md)
+  * [Whaleal Support](whalealSupport/README.md)
+      * UserManual
+        * [Login](whalealSupport/UserManual/login.md)
+        * [Create Case According To SLA](whalealSupport/UserManual/createCaseAccordingToSLA.md)
+        * [MyCaseList](whalealSupport/UserManual/myCaseList.md)
+        * [CaseDetails](whalealSupport/UserManual/caseDetails.md)
+        * [ProductionAndDocument](whalealSupport/UserManual/productionAndDocument.md)
+        * [Notification](whalealSupport/UserManual/notification.md)
+        * [AddressList](whalealSupport/UserManual/addressList.md)
