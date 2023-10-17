@@ -93,7 +93,7 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
+#docs/_build/
 
 # PyBuilder
 target/
@@ -133,7 +133,7 @@ ENV/
 .DS_Store
 
 # gitbook
-docs
+#docs
 
 # node.js
 node_modules

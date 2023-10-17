@@ -4,7 +4,7 @@
 
 __前往 **whaleal Account** 注册应用__ （[访问地址](https://account.whaleal.com)）
 
-![clientRegister.png](../../../Images/whalealAccount/clientRegister.png)
+![clientRegister.png](../../../images/whalealAccount/clientRegister.png)
 
 __注册参数说明__
 
@@ -22,22 +22,22 @@ __保存应用信息__
 
 __应用详情__
 
-![clientDetails.png](../../../Images/whalealAccount/clientDetails.png)
+![clientDetails.png](../../../images/whalealAccount/clientDetails.png)
 
 __获取应用密钥__
 
 获取应用密钥需要经过用户的邮箱接收验证码进行验证,验证成功后会在页面展示密钥,同时发送密钥到用户邮箱
 
-![clientSecretPage.png](../../../Images/whalealAccount/clientSecretPage.png)
+![clientSecretPage.png](../../../images/whalealAccount/clientSecretPage.png)
 
-![clientSecretPage1.png](../../../Images/whalealAccount/clientSecretPage1.png)
+![clientSecretPage1.png](../../../images/whalealAccount/clientSecretPage1.png)
 
 
 ## 二、前置工作-应用配置
 
 __应用详情页面__
 
-![clientDetailsPage.png](../../../Images/whalealAccount/clientDetailsPage.png)
+![clientDetailsPage.png](../../../images/whalealAccount/clientDetailsPage.png)
 
 __配置应用回调地址__
 
@@ -47,13 +47,13 @@ __配置授权作用域__
 
 配置应用授权信息的范围
 
-![scopeConfig.png](../../../Images/whalealAccount/scopeConfig.png)
+![scopeConfig.png](../../../images/whalealAccount/scopeConfig.png)
 
 __配置权限__
 
 应用拥有的权限,应用关联的组织的权限池包含此处的权限
 
-![authorityConfig.png](../../../Images/whalealAccount/authorityConfig.png)
+![authorityConfig.png](../../../images/whalealAccount/authorityConfig.png)
 
 __配置授权模式__
 
@@ -61,7 +61,7 @@ Oauth2的授权模式
 
 根据需求去配置相应的授权模式
 
-![Oauth2Config.png](../../../Images/whalealAccount/Oauth2Config.png)
+![Oauth2Config.png](../../../images/whalealAccount/Oauth2Config.png)
 
 ## 三. 授权码模式接入
 
@@ -85,11 +85,11 @@ __参数说明__
 
 __认证页面__
 
-![authenticationPage.png](../../../Images/whalealAccount/authenticationPage.png)
+![authenticationPage.png](../../../images/whalealAccount/authenticationPage.png)
 
 __授权页面__
 
-![authorizationPage.png](../../../Images/whalealAccount/authorizationPage.png)
+![authorizationPage.png](../../../images/whalealAccount/authorizationPage.png)
 
 __后端发起请求获取access_token__
 
@@ -119,7 +119,7 @@ __参数说明__
 
 __postman调用响应结果__
 
-![response.png](../../../Images/whalealAccount/response.png)
+![response.png](../../../images/whalealAccount/response.png)
 
 __注:如果应用配置了refresh_token的授权模式响应结果中就会返回刷新令牌,不配置则不会携带__
 
@@ -150,7 +150,7 @@ __请求参数__
 
 __响应结果__
 
-![response1.png](../../../Images/whalealAccount/response1.png)
+![response1.png](../../../images/whalealAccount/response1.png)
 
 
 
