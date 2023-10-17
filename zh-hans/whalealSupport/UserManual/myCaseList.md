@@ -4,15 +4,15 @@ __创建工单__
 
 找到我的工单页面,点击创建工单按钮开始创建工单,填写完工单信息点击确定即可创建成功
 
-![myCaseCreateCase.png](../../../Images/whalealSupport/myCaseCreateCase.png)
+![myCaseCreateCase.png](../../../images/whalealSupport/myCaseCreateCase.png)
 
 或者点击右下方悬浮的工单按钮也可快速创建
 
-![createCaseByBottom.png](../../../Images/whalealSupport/createCaseByBottom.png)
+![createCaseByBottom.png](../../../images/whalealSupport/createCaseByBottom.png)
 
 __表格说明__
 
-![createCase.png](../../../Images/whalealSupport/createCase.png)
+![createCase.png](../../../images/whalealSupport/createCase.png)
 
 | 表格项  | 是否必须 | 说明                                                                                              |
 |------|------|-------------------------------------------------------------------------------------------------|
@@ -31,13 +31,13 @@ __保存为草稿__
 
 点击保存为草稿按钮,该工单将保存在客户的草稿箱中
 
-![userDraftList.png](../../../Images/whalealSupport/userDraftList.png)
+![userDraftList.png](../../../images/whalealSupport/userDraftList.png)
 
 __草稿的正式发布__
 
 点击草稿右侧的编辑按钮点击提交草稿即可发布为正式工单
 
-![publishDraft.png](../../../Images/whalealSupport/publishDraft.png)
+![publishDraft.png](../../../images/whalealSupport/publishDraft.png)
 
 
 

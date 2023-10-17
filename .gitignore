@@ -7,8 +7,8 @@
 ## https://docs.npmjs.com/misc/faq#should-i-check-my-node_modules-folder-into-git
 node_modules
 
-# Book build output
-docs
+## Book build output
+#docs
 
 # eBook build output
 *.epub
@@ -93,7 +93,7 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
+#docs/_build/
 
 # PyBuilder
 target/
@@ -133,7 +133,7 @@ ENV/
 .DS_Store
 
 # gitbook
-docs
+#docs
 
 # node.js
 node_modules

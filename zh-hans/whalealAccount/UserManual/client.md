@@ -4,15 +4,15 @@ __应用页__
 
 用户可通过左侧应用菜单进入应用页
 
-![client.png](../../../Images/whalealAccount/client.png)
+![client.png](../../../images/whalealAccount/client.png)
 
 __创建应用__
 
 点击右侧创建按钮
 
-![createClient1.png](../../../Images/whalealAccount/createClient1.png)
+![createClient1.png](../../../images/whalealAccount/createClient1.png)
 
-![createClient2.png](../../../Images/whalealAccount/createClient2.png)
+![createClient2.png](../../../images/whalealAccount/createClient2.png)
 
 | 表格项    | 是否必须 | 说明                                      |
 |--------|------|-----------------------------------------|
@@ -26,17 +26,17 @@ __应用详情页__
 
 应用创建完成后,点击应用进入应用详情
 
-![clientDetails1.png](../../../Images/whalealAccount/clientDetails1.png)
+![clientDetails1.png](../../../images/whalealAccount/clientDetails1.png)
 
-![clientDetails2.png](../../../Images/whalealAccount/clientDetails2.png)
+![clientDetails2.png](../../../images/whalealAccount/clientDetails2.png)
 
 __获取应用密钥__
 
 获取应用密钥需要经过用户的邮箱接收验证码进行验证,验证成功后会在页面展示密钥,同时发送密钥到用户邮箱
 
-![clientSecretPage.png](../../../Images/whalealAccount/clientSecretPage.png)
+![clientSecretPage.png](../../../images/whalealAccount/clientSecretPage.png)
 
-![clientSecretPage1.png](../../../Images/whalealAccount/clientSecretPage1.png)
+![clientSecretPage1.png](../../../images/whalealAccount/clientSecretPage1.png)
 
 __配置应用回调地址__
 
@@ -46,13 +46,13 @@ __配置授权作用域__
 
 配置应用授权信息的范围
 
-![scopeConfig.png](../../../Images/whalealAccount/scopeConfig.png)
+![scopeConfig.png](../../../images/whalealAccount/scopeConfig.png)
 
 __配置权限__
 
 应用拥有的权限,应用关联的组织的权限池包含此处的权限
 
-![authorityConfig.png](../../../Images/whalealAccount/authorityConfig.png)
+![authorityConfig.png](../../../images/whalealAccount/authorityConfig.png)
 
 __配置授权模式__
 
@@ -60,4 +60,4 @@ Oauth2的授权模式
 
 根据需求去配置相应的授权模式
 
-![Oauth2Config.png](../../../Images/whalealAccount/Oauth2Config.png)
+![Oauth2Config.png](../../../images/whalealAccount/Oauth2Config.png)
