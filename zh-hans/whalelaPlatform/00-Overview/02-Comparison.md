@@ -3,46 +3,47 @@
 #### MongoDB Ops Manager Server
 
 ```
-Safely, securely, and seamlessly manage MongoDB in your own environment. Available through the MongoDB Enterprise Advanced subscription, Ops Manager eliminates operational overhead by automating key administration tasks such as deployment, upgrades, and more.
+在您自己的环境中安全、可靠、无缝地管理MongoDB。通过MongoDB Enterprise Advanced订阅提供，Ops Manager通过自动化关键的管理任务，如部署、升级等，消除了运维方面的繁琐工作。
 ```
 
-- Monitoring
-> Monitor, visualize, and alert on 100+ performance metrics
+- 监控
+> 对 100 多个性能指标进行监控、可视化和警报
 
-- Backup
-> Capture continuous, incremental backups, with point-in-time recovery
+- 备份
+> 捕获连续增量备份，并进行时间点恢复
 
 - Automation
-> Perform single-click installations, upgrades, and index maintenance, with zero downtime
+> 执行单击安装、升级和索引维护，零停机时间
 
-- Query Optimization
-> Seamlessly identify and address slow-running queries with the Visual Query Profiler, index suggestions, and automated index roll-outs
+- 查询优化
+> 通过可视化查询分析器、索引建议以及自动索引发布，无缝识别和解决运行缓慢的查询。
 
 #### Zabbix 
 ```
-Zabbix is an open source monitoring software tool for diverse IT components, including networks, servers, virtual machines (VMs) and cloud services. Zabbix provides monitoring metrics, such as network utilization, CPU load and disk space consumption.
+Zabbix是一款开源的监控软件工具，用于监控各种it组件，包括网络、服务器、虚拟机（VMs）和云服务。Zabbix提供监控指标，如网络利用率、CPU负载和磁盘空间消耗。
 ```
 
-> collect from any source
+> 从任何来源收集数据
 
-> flexible metric collection
+> 灵活的度量收集
 
-> agent/agent-less mointoring
+> agent/agent-less监控
 
-> custom collection method
+> 自定义采集方式
 
 #### Percona Monitoring and Management
+
 ```
-Percona Monitoring and Management Percona Monitoring and Management (PMM) is an open source database monitoring, management, and observability solution for MySQL, PostgreSQL, and MongoDB.
+Percona Monitoring and Management（PMM）是一款开源的数据库监控、管理和可观测性解决方案，适用于MySQL、PostgreSQL和MongoDB。
 
-It allows you to observe the health of your database systems, explore new patterns in their behavior, troubleshoot them and perform database management operations no matter where they are located - on-prem or in the cloud.
+它使您能够观察数据库系统的健康状况，探索其行为中的新模式，进行故障排除，并执行数据库管理操作，无论这些系统位于本地还是云端。
 ```
 
-> PMM collects thousands of out-of-the-box performance metrics from databases and their hosts.
+> PMM从数据库及其主机中收集数千个即插即用的性能指标。
 
-> The PMM web UI visualizes data in dashboards.
+> PMM Web用户界面通过仪表板将数据可视化呈现。
 
-> Additional features include advisors for database health assessments.
+> 额外的功能包括用于数据库健康评估的顾问。
 
 
 #### Homogeneous Comparison
@@ -59,5 +60,4 @@ It allows you to observe the health of your database systems, explore new patter
 | 使用限制  | 企业版 | 开源 | 开源 | 开源 |
 | 优势点  | 官方工具、最全面的平台 | 企业最广泛的监控平台，易集成其他组件； | 开源MySQL的监控平台，集成了MongoDB； | 多年的排障经验沉淀，更符合国人的使用习惯 |
 | 劣势点  | 要求对MongoDB一定了解，使用门槛偏高；| 指标不够详细，不易排查诊断； |Dashboard过多，很难直观排查；  | 现阶段仅支持CentOS6/7/8 |
-
 
