@@ -12,23 +12,21 @@ Sharded Cluster 部署方式提供高可用机制 与 水平拓展。推荐生�
 
 ### Prerequisites
 
-在部署 Sharded Cluster 前必须确保 Host 已被 Whaleal Platform 管理。若没有，请先[添加Host](../../Host/AddHost.md)。
+在部署 Sharded Cluster 前必须确保 Host 已被 WAP 管理。若没有，请先[添加Host](../../Host/AddHost.md)。
 
-在部署 Sharded Cluster 前必须确保 Whaleal Platform 中有可使用的 MongoTars。若没有，请先[上传 MongoTar](../UploadMongoTar.md)。
+在部署 Sharded Cluster 前必须确保 WAP 中有可使用的 MongoTar。若没有，请先[上传 MongoTar](../UploadMongoTar.md)。
 
 ### Procedure
 
-Step-1. 进入导航目录
+**1、进入导航目录**
 
-a. 进入页面左侧导航栏
+a. 点击 MongoDB 选项按钮
 
-b. 点击 MongoDB 选项按钮
+b. 选择 MongoList 选项，页面展示所有用户可操作 MongoDB Cluster
 
-c. 选择 MongoList 选项，页面展示所有用户可操作 MongoDB Cluster
+![1](../../../../../images/whalealPlatformImages/mongodb.png)
 
-
-
-Step-2. 创建 ReplicaSet
+**2、创建 ReplicaSet**
 
 a. 点击右侧 创建项目 按钮
 
@@ -36,58 +34,62 @@ b. 选择 分片 选项
 
 
 
-Step-3. 配置 Sharded Cluster
+**3、配置 Sharded Cluster**
+
+![1](../../../../../images/whalealPlatformImages/CreateShardedCluster1.png)
+
+
 
 分片集群配置
 
 | 配置项       | 值                                                           |
 | ------------ | ------------------------------------------------------------ |
+| 所属项目     | 选择所属的Project                                            |
 | 集群名称     | 分片集群名                                                   |
-| 标签         | 配置中 tag                                                   |
-| 是否开启认证 | true：开启认证，需配置用户名、密码 <br/>false：关闭认证      |
-| 用户名       | 开启认证，Sharded Cluster 中管理员用户。认证库为 admin ，role 为 root |
-| 密码         | 开启认证，Sharded Cluster 中管理员密码                       |
+| 是否开启认证 | 未开启任何认证: 不设置用户密码 <br/>账号和密码: 开启认证并设置用户密码 <br/>账号和密码且CA证书: 开启认证设置用户密码并使用CA证书 |
+| 版本         | 选择创建 Standalone 版本所对应 MongoTar                      |
 
 成员配置
 
 Shard Settings
 
-| 配置项   | 值                                                           |
-| -------- | ------------------------------------------------------------ |
-| 成员     | 成员类型：<br>成员节点：承载数据的节点，具有投票权，可以被选举为主节点<br/>仲裁节点：不承载集群中的数据，只用做投票、选举<br/>隐藏节点：承载数据的节点，具有投票权，配置参数为 hidden<br/>隐藏延迟节点：承载数据的节点，具有投票权，配置参数为 slaveDelay and hidden |
-| 主机名   | 选择部署 Sharded Cluster 节点 所在主机                       |
-| 端口     | 节点所使用端口                                               |
-| 版本号   | 创建 Sharded Cluster 节点 版本所对应 MongoTar                |
-| 投票     | 复制集选举期间的投票数                                       |
-| 优先级   | 复制集选举期间的优先级，优先级为0，则节点不能被选举为主节点  |
-| 延迟     | 节点落后于主节点的时间（单位：秒），仅用于成员为 隐藏延迟节点 |
-| 构建索引 | true：MongoDB构建索引<br/>false：MongoDB不构建索引           |
-| 数据目录 | Sharded Cluster 节点数据文件存储目录（绝对路径）             |
-| 日志文件 | Sharded Cluster 节点日志输出文件（绝对路径）                 |
+| 配置项    | 值                                                           |
+| --------- | ------------------------------------------------------------ |
+| 成员      | 成员类型：<br>成员节点：承载数据的节点，具有投票权，可以被选举为主节点<br/>隐藏节点：承载数据的节点，具有投票权，配置参数为 hidden<br/>隐藏延迟节点：承载数据的节点，具有投票权，配置参数为 slaveDelay and hidden |
+| 主机名    | 选择部署 Sharded Cluster 节点 所在主机                       |
+| 端口      | 节点所使用端口                                               |
+| 投票      | 复制集选举期间的投票数                                       |
+| 优先级    | 复制集选举期间的优先级，优先级为0，则节点不能被选举为主节点  |
+| 延迟      | 节点落后于主节点的时间（单位：秒），仅用于成员为 隐藏延迟节点 |
+| 构建索引  | true：MongoDB构建索引<br/>false：MongoDB不构建索引           |
+| 数据目录  | Sharded Cluster 节点数据文件存储目录（绝对路径）             |
+| 日志文件  | Sharded Cluster 节点日志输出文件（绝对路径）                 |
+| add       | 添加成员节点                                                 |
+| add Shard | 添加一个的shard集群                                          |
 
 config Settings
 
 | 配置项   | 值                                                           |
 | -------- | ------------------------------------------------------------ |
-| 成员     | 成员类型：<br>成员节点：承载数据的节点，具有投票权，可以被选举为主节点<br/>仲裁节点：不承载集群中的数据，只用做投票、选举<br/>隐藏节点：承载数据的节点，具有投票权，配置参数为 hidden<br/>隐藏延迟节点：承载数据的节点，具有投票权，配置参数为 slaveDelay and hidden |
+| 成员     | 成员类型：<br>成员节点：承载数据的节点，具有投票权，可以被选举为主节点<br/>隐藏节点：承载数据的节点，具有投票权，配置参数为 hidden |
 | 主机名   | 选择部署 Sharded Cluster 节点 所在主机                       |
 | 端口     | 节点所使用端口                                               |
-| 版本号   | 创建 Sharded Cluster 节点 版本所对应 MongoTar                |
 | 投票     | 复制集选举期间的投票数                                       |
 | 优先级   | 复制集选举期间的优先级，优先级为0，则节点不能被选举为主节点  |
 | 延迟     | 节点落后于主节点的时间（单位：秒），仅用于成员为 隐藏延迟节点 |
 | 构建索引 | true：MongoDB构建索引<br/>false：MongoDB不构建索引           |
 | 数据目录 | Sharded Cluster 节点数据文件存储目录（绝对路径）             |
 | 日志文件 | Sharded Cluster 节点日志输出文件（绝对路径）                 |
+| add      | 添加成员节点                                                 |
 
 Mongos Settings
 
-| 配置项   | 值                                   |
-| -------- | ------------------------------------ |
-| 主机名   | 选择部署 mongos 节点 所在主机        |
-| 端口     | 节点所使用端口                       |
-| 版本号   | 创建 mongos 节点 版本所对应 MongoTar |
-| 日志文件 | Mongos 日志输出文件（绝对路径）      |
+| 配置项   | 值                              |
+| -------- | ------------------------------- |
+| 主机名   | 选择部署 mongos 节点 所在主机   |
+| 端口     | 节点所使用端口                  |
+| 日志文件 | Mongos 日志输出文件（绝对路径） |
+| add      | 添加mongos节点                  |
 
 集群配置
 
@@ -103,6 +105,8 @@ Mongos Settings
 
 高级配置
 
+![1](../../../../../images/whalealPlatformImages/CreateShardedCluster2.png)
+
 a. 点击 Add Option 按钮
 
 b. 选择添加启动配置项，点击 确定 按钮添加
@@ -111,6 +115,6 @@ c. 设置 配置选项 值
 
 
 
-Step-4. 创建
+**4、创建**
 
 点击 创建 按钮，创建 Sharded Cluster。
