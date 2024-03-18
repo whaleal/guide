@@ -2,9 +2,9 @@
 
 #### MongoDB Ops Manager Server
 
-```
 在您自己的环境中安全、可靠、无缝地管理MongoDB。通过MongoDB Enterprise Advanced订阅提供，Ops Manager通过自动化关键的管理任务，如部署、升级等，消除了运维方面的繁琐工作。
-```
+
+
 
 - 监控
 > 对 100 多个性能指标进行监控、可视化和警报

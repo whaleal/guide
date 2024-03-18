@@ -14,7 +14,7 @@ Users 提供以下操作：
 
 Whaleal 可以为用户配置管理员权限，管理员可以执行删除用户的操作。
 
-![image-20220726111238304](../../../../images/whalealPlatformImages/AccountUsers1.png)
+![1](../../../../images/whalealPlatformImages/AccountUsers1.png)
 
 
 

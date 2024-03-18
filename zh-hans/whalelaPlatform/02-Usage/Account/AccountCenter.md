@@ -9,11 +9,13 @@ Account Center 可以配置以下内容：
 
 a. 进入页面左侧导航栏
 
+![image-20220726105726846](../../../../images/whalealPlatformImages/Account.png)
+
 b. 点击 Account 选项按钮，选择 个人中心 选项
 
 c. 点击 编辑资料 选项按钮，进行个人信息修改
 
-![image-20220726105726846](../../../../images/whalealPlatformImages/AccountCenter1.png)
+![image-20220726105726846](../../../../images/whalealPlatformImages/Account1.png)
 
 
 
