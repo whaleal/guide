@@ -1,10 +1,8 @@
 ## Whaleal Platform Introduction
 
-````python
+
+
 Whaleal Platform（WAP）是一款智能运维托管平台，7*24实时监控和管理您的 MongoDB 服务。作为一项开源的 MongoDB 数据库监控解决方案，WAP 提供即时的故障排除和诊断功能，以确保您的 MongoDB 数据库持续稳定运行，并提高工作效率。同时，WAP 还支持自动备份和恢复，为您提供全面的数据保护，确保数据安全可靠。选择 WAP，您将体验到智能化运维的便捷与高效。
-````
-
-
 
 
 

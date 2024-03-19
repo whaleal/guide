@@ -39,7 +39,6 @@
                   * [UserManagement](whalelaPlatform/02-Usage/MongoDB/ManageCluster/UserManagement.md)
                   * [Certification](whalelaPlatform/02-Usage/MongoDB/ManageCluster/Certification.md)
                   * [MonitorMongoDB](whalelaPlatform/02-Usage/MongoDB/ManageCluster/MonitorMongoDB.md)
-              * [ManageCluster](whalelaPlatform/02-Usage/MongoDB/ManageCluster.md)
           * [Backuprestore]()
               * [Backub](whalelaPlatform/02-Usage/Backuprestore/Backub.md)
               * [Restore](whalelaPlatform/02-Usage/Backuprestore/Restore.md)
@@ -61,9 +60,6 @@
           * [Support]()
               * [patrolinspection](whalelaPlatform/02-Usage/Support/patrolinspection.md)
       * UseCases
-          * [HowToCreateReplicaSet](whalelaPlatform/03-UseCases/HowToCreateReplicaSet.md)
-          * [HowToCreateShardedCluster](whalelaPlatform/03-UseCases/HowToCreateShardedCluster.md)
-          * [HowToCreateStandalone](whalelaPlatform/03-UseCases/HowToCreateStandalone.md)
           * [HowToFindBottleNeckinHost](whalelaPlatform/03-UseCases/HowToFindBottleNeckinHost.md)
           * [HowToFindBottleNeckinMongoDB](whalelaPlatform/03-UseCases/HowToFindBottleNeckinMongoDB.md)
       * TroubleShooting

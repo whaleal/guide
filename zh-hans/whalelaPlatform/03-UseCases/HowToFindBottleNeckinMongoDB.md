@@ -20,6 +20,8 @@ Find BottleNeck In MongoDB 分为以下两部分：
 
 ### Adjust and Optimize
 
+
+
 mongodb 分片集群优化思路：
 
 分片集群中出现某个分片负载特别高的情况。（往往是某个分片负载高，如果是多个分片节点负载都高，则需要逐个进行分析）
