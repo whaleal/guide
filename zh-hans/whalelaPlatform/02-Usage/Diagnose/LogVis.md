@@ -1,6 +1,6 @@
 ## LogVis
 
-LogVis 可以查看选择的mongodb 的日志信息,包括筛选出的审计日志,慢日志分析等
+LogVis 可以查看选择的mongodb 的日志信息,包括筛选出的审计日志,慢日志分析等需要[开启日志收集](../MongoDB/ManageCluster/clusteroperations/Enablelogcollection.md)
 
 查看日志
 

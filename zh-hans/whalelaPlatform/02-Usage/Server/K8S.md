@@ -1,6 +1,6 @@
 ### K8S
 
-在添加 k8s 主机之前，请确保已在平台中导入了相应的 Kubernetes 配置文件。
+在添加 k8s 主机之前，请确保已在平台中导入了相应的 [Kubernetes 配置文件](../Settings/Kubernetesconfiguration.md)。
 
 ![](../../../../images/whalealPlatformImages/K8S.png)
 

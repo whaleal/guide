@@ -2,7 +2,7 @@
 
 **监控monogdb**
 
-使用监控之前要先查看群集是否[开启监控]()
+使用监控之前要先查看群集是否[开启监控](../ManageCluster/clusteroperations/Turnonmonitoring.md)
 
 a. 点击 MongoDB 选项按钮
 

@@ -10,9 +10,9 @@ Create Standalone 分为以下两部分操作内容：
 
 ### Prerequisites
 
-在部署 Standalone 前必须确保 Host 已被 WAP 管理。若没有，请先[添加Host](../../Host/AddHost.md)。
+在部署 Standalone 前必须确保 Host 已被 WAP 管理。若没有，请先[添加EC2](../../Server/EC2.md)或[添加K8S](../../Server/K8S.md)。
 
-在部署 Standalone 前必须确保 WAP 中有可使用的 MongoTar。若没有，请先[上传 MongoTar](../UploadMongoTar.md)。
+在部署 Standalone 前必须确保 WAP 中有可使用的 MongoTar。若没有，请先[上传 MongoTar](../../Settings/UploadMongoDBTARfile.md)。
 
 ### Procedure
 

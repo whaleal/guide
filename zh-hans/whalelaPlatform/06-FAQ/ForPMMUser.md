@@ -20,7 +20,7 @@ Whaleal 支持创建 MongoDB 集群：
 
 ### Whaleal 是否支持纳管现有 MongoDB 集群？
 
-Whaleal 支持对现有 MongoDB 集群的监控和管理。通过 [ExistingMongoDBDeployment]() 添加对 MongoDB 集群监控管理。
+Whaleal 支持对现有 MongoDB 集群的监控和管理。通过 [ExistingMongoDBDeployment](../02-Usage/MongoDB/CreateDeployment/ExistingMongoDBDeployment.md) 添加对 MongoDB 集群监控管理。
 
 **Whaleal 支持通过一个节点配置，发现集群中所有节点并进行监控。**
 

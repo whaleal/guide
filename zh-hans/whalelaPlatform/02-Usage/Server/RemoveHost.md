@@ -2,7 +2,7 @@
 
 
 ```
-Add Host 分为以下两部分操作内容：
+ Remove Host 分为以下两部分操作内容：
  - Prerequisites
  - Procedure
 ```

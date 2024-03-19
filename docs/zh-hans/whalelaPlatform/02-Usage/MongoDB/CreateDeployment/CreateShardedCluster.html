@@ -215,34 +215,21 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.1.3" data-path="../../Project.html">
+        <li class="chapter " data-level="1.1.1.3" >
             
-                <a href="../../Project.html">
+                <span>
             
                     
-                    Project
+                    Usage
             
-                </a>
+                </span>
             
 
             
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.1.1.3.1" data-path="../../Project.html">
-            
-                <a href="../../Project.html">
-            
-                    
-                    Project
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.1.1.3.2" >
+        <li class="chapter " data-level="1.1.1.3.1" >
             
                 <span>
             
@@ -256,7 +243,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.1.1.3.2.1" data-path="../../Account/AccountCenter.html">
+        <li class="chapter " data-level="1.1.1.3.1.1" data-path="../../Account/AccountCenter.html">
             
                 <a href="../../Account/AccountCenter.html">
             
@@ -269,7 +256,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.1.3.2.2" data-path="../../Account/Config.html">
+        <li class="chapter " data-level="1.1.1.3.1.2" data-path="../../Account/Config.html">
             
                 <a href="../../Account/Config.html">
             
@@ -282,7 +269,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.1.3.2.3" data-path="../../Account/Users.html">
+        <li class="chapter " data-level="1.1.1.3.1.3" data-path="../../Account/Users.html">
             
                 <a href="../../Account/Users.html">
             
@@ -297,6 +284,19 @@
     
 
             </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.2" data-path="../../Project.html">
+            
+                <a href="../../Project.html">
+            
+                    
+                    Project
+            
+                </a>
+            
+
             
         </li>
     
@@ -2865,8 +2865,8 @@
 </code></pre><p>Sharded Cluster &#x90E8;&#x7F72;&#x65B9;&#x5F0F;&#x63D0;&#x4F9B;&#x9AD8;&#x53EF;&#x7528;&#x673A;&#x5236; &#x4E0E; &#x6C34;&#x5E73;&#x62D3;&#x5C55;&#x3002;&#x63A8;&#x8350;&#x751F;&#x4EA7;&#x4E2D;&#x4F7F;&#x7528;&#x3002;</p>
 <p>&#x4F7F;&#x7528; Whaleal Platform &#x53EF;&#x4EE5;&#x521B;&#x5EFA; Sharded Cluster &#xFF0C;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x8282;&#x70B9;&#xFF0C;&#x5347;&#x964D;&#x7EA7;&#x3002;</p>
 <h3 id="prerequisites">Prerequisites</h3>
-<p>&#x5728;&#x90E8;&#x7F72; Sharded Cluster &#x524D;&#x5FC5;&#x987B;&#x786E;&#x4FDD; Host &#x5DF2;&#x88AB; WAP &#x7BA1;&#x7406;&#x3002;&#x82E5;&#x6CA1;&#x6709;&#xFF0C;&#x8BF7;&#x5148;<a href="../../Host/AddHost.md">&#x6DFB;&#x52A0;Host</a>&#x3002;</p>
-<p>&#x5728;&#x90E8;&#x7F72; Sharded Cluster &#x524D;&#x5FC5;&#x987B;&#x786E;&#x4FDD; WAP &#x4E2D;&#x6709;&#x53EF;&#x4F7F;&#x7528;&#x7684; MongoTar&#x3002;&#x82E5;&#x6CA1;&#x6709;&#xFF0C;&#x8BF7;&#x5148;<a href="../UploadMongoTar.md">&#x4E0A;&#x4F20; MongoTar</a>&#x3002;</p>
+<p>&#x5728;&#x90E8;&#x7F72; Sharded Cluster &#x524D;&#x5FC5;&#x987B;&#x786E;&#x4FDD; Host &#x5DF2;&#x88AB; WAP &#x7BA1;&#x7406;&#x3002;&#x82E5;&#x6CA1;&#x6709;&#xFF0C;&#x8BF7;&#x5148;<a href="../../Server/EC2.html">&#x6DFB;&#x52A0;EC2</a>&#x6216;<a href="../../Server/K8S.html">&#x6DFB;&#x52A0;K8S</a>&#x3002;</p>
+<p>&#x5728;&#x90E8;&#x7F72; Sharded Cluster &#x524D;&#x5FC5;&#x987B;&#x786E;&#x4FDD; WAP &#x4E2D;&#x6709;&#x53EF;&#x4F7F;&#x7528;&#x7684; MongoTar&#x3002;&#x82E5;&#x6CA1;&#x6709;&#xFF0C;&#x8BF7;&#x5148;<a href="../../Settings/UploadMongoDBTARfile.html">&#x4E0A;&#x4F20; MongoTar</a>&#x3002;</p>
 <h3 id="procedure">Procedure</h3>
 <p><strong>1&#x3001;&#x8FDB;&#x5165;&#x5BFC;&#x822A;&#x76EE;&#x5F55;</strong></p>
 <p>a. &#x70B9;&#x51FB; MongoDB &#x9009;&#x9879;&#x6309;&#x94AE;</p>
@@ -3127,7 +3127,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"CreateShardedCluster","level":"1.1.1.3.4.1.2","depth":6,"next":{"title":"CreateStandalone","level":"1.1.1.3.4.1.3","depth":6,"path":"whalelaPlatform/02-Usage/MongoDB/CreateDeployment/CreateStandalone.md","ref":"whalelaPlatform/02-Usage/MongoDB/CreateDeployment/CreateStandalone.md","articles":[]},"previous":{"title":"CreateReplicaSet","level":"1.1.1.3.4.1.1","depth":6,"path":"whalelaPlatform/02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md","ref":"whalelaPlatform/02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","-lunr","multilingual-index","insert-logo","-search","search-pro"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"multilingual-index":{"enableSuper":true,"index":"./index.html"},"insert-logo":{"style":"background: none; max-height: 80px; min-height: 80px","url":"https://mongotlogo.s3.amazonaws.com/logo.png"},"expandable-chapters":{},"search-pro":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"whaleal","language":"zh-hans","gitbook":"*"},"file":{"path":"whalelaPlatform/02-Usage/MongoDB/CreateDeployment/CreateShardedCluster.md","mtime":"2024-03-12T06:12:36.585Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-03-18T10:17:55.165Z"},"basePath":"../../../..","book":{"language":"zh-hans"}});
+            gitbook.page.hasChanged({"page":{"title":"CreateShardedCluster","level":"1.1.1.3.4.1.2","depth":6,"next":{"title":"CreateStandalone","level":"1.1.1.3.4.1.3","depth":6,"path":"whalelaPlatform/02-Usage/MongoDB/CreateDeployment/CreateStandalone.md","ref":"whalelaPlatform/02-Usage/MongoDB/CreateDeployment/CreateStandalone.md","articles":[]},"previous":{"title":"CreateReplicaSet","level":"1.1.1.3.4.1.1","depth":6,"path":"whalelaPlatform/02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md","ref":"whalelaPlatform/02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","-lunr","multilingual-index","insert-logo","-search","search-pro"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"multilingual-index":{"enableSuper":true,"index":"./index.html"},"insert-logo":{"style":"background: none; max-height: 80px; min-height: 80px","url":"https://mongotlogo.s3.amazonaws.com/logo.png"},"expandable-chapters":{},"search-pro":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"whaleal","language":"zh-hans","gitbook":"*"},"file":{"path":"whalelaPlatform/02-Usage/MongoDB/CreateDeployment/CreateShardedCluster.md","mtime":"2024-03-19T02:52:55.046Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-03-19T05:31:24.755Z"},"basePath":"../../../..","book":{"language":"zh-hans"}});
         });
     </script>
 </div>

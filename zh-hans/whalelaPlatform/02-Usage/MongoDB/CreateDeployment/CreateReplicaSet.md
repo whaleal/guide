@@ -12,7 +12,7 @@ ReplicaSet 部署方式提供高可用机制。推荐生产中使用。
 
 ### Prerequisites
 
-在部署 ReplicaSet 前必须确保 Host 已被 WAP 管理。若没有，请先[添加Host](../../Host/AddHost.md)。
+在部署 ReplicaSet 前必须确保 Host 已被 WAP 管理。若没有，请先[添加EC2](../../Server/EC2.md)或[添加K8S](../../Server/K8S.md)。
 
 在部署 ReplicaSet 前必须确保 WAP 中有可使用的 MongoTar。若没有，请先[上传 MongoTar](../../Settings/UploadMongoDBTARfile.md)。
 
