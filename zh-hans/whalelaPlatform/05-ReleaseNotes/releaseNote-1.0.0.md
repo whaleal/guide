@@ -24,7 +24,7 @@
 
 <br>
 
-#### 2.首页
+#### 2.首页 (Home)
 
 
 - Host
@@ -46,26 +46,33 @@
 
 <br>
 
+#### 3. 项目 (Project)
 
-#### 3.主机列表
+* 通过项目
+  * 你可以定义权限和访问控制，确保只有授权的用户能够访问和管理项目中的资源
 
-- 主机统计
-  
+#### 4. 主机列表 (Server)
+
+* 主机统计
+
   - 页面将已被平台纳管的主机大致信息进行展示，同时可以对主机进行脱离纳管更新数据等操作。
 
-- 添加主机
+* 添加主机
 
-  - 点击添加主机按钮可以进行主机的添加，详情添加过程在[AddHost](../02-Usage/Host/AddHost.md)。
+  * EC2 
 
-- 主机信息
-  
-  - 点击主机名称进入主机的详情页面页面内有主机的基本信息、监控、日志、命令、告警等。详情在[HostInfos](../02-Usage/Host/HostInfos.md)处有介绍.
+    添加 EC2 主机
+
+  * K8S
+
+    创建 k8s 主机,修改添加主机资源配置
+
+* 主机信息
+  * 点击主机名称进入主机的详情页面页面内有主机的基本信息、监控、日志、命令、告警等。详情在[HostInfos](../02-Usage/Host/HostInfos.md)处有介绍
 
 <br>
 
-
-
-#### 4.Mongo列表
+#### 5.Mongo列表 (MongoDB)
 
 - Mongo静态信息
 
@@ -78,19 +85,120 @@
     - 创建单节点详细步骤-->[CreateStandalone](../02-Usage/MongoDB/CreateDeployment/CreateStandalone.md)
     - 创建复制集详细步骤-->[CreateReplicaSet](../02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md)
     - 创建分片详细步骤-->[CreateShardedCluster](../02-Usage/MongoDB/CreateDeployment/CreateShardedCluster.md)
+    - 纳管MongoDB步骤-->[ExistingMongoDBDeployment](../02-Usage/MongoDB/CreateDeployment/ExistingMongoDBDeployment.md)
 
 - Mongo集群操作
 
+  * 连接集群
+  * 更新集群信息
+  * 启动
+  * 关闭
+  * 重启
+  * 脱离纳管
+  * 重命名
+  * 版本变更
+  * 群集变更
+  * 转为复制集
+  * 转为分片集群
+  * 开启监控
+  * 开启收集日志
 
-- Mongo介质包管理
+- Mongodb监控
 
-  - 在创建集群时选择不同mongo版本进行创建，此版本mongo可通过MongoTars页面进行上传.
-    - 上传介质包详情步骤-->[UploadMongoTar](../02-Usage/MongoDB/UploadMongoTar.md)
+  * 点击群集名--> 点击查看监控,可以看到mongodb监控信息
+
+- 安全管理
+
+  *  用户创建
+
+    创建mongodb用户
+
+  *  认证管理
+
+    修改mongodb用户的认证方式比如用户名密码,或者ca证书
+
+<br>
+
+#### 6.备份 (Backup)
+
+* [Backup](../02-Usage/Backuprestore/Backub.md)
+* [Restore](../02-Usage/Backuprestore/Restore.md)
+
+<br>
+
+#### 7.告警 (Alert)
+
+* [告警配置](../02-Usage/Alert.md)
+  * 添加告警配置,可以配置host告警、mongo告警、project告警
+
+<br>
+
+#### 8.诊断 (Diagnose)
+
+* [群集信息](../02-Usage/Diagnose/Info.md) (Info)
+
+  info页面，提供集群信息、复制集配置和节点状态。管理员可以在此查看集群概要信息、复制集配置（如主从节点设置）以及每个节点的详细信息
+
+* [快速诊断](../02-Usage/Diagnose/Health.md) (Health)
+
+  快速诊断出当前主机和MongoDB的资源以及配置信息,这些信息可以帮助评估 MongoDB 的性能、可用性和健康状况
+
+* [实时监控](../02-Usage/Diagnose/Performance.md) (Performance)
+
+  实时监控可以实时跟踪和记录 MongoDB 数据库系统的性能指
+
+* [日志分析](../02-Usage/Diagnose/LogVis.md) (LogVis)
+
+  查看当前MongoDB群集的慢日志,以及MongoDB审计日志
+
+* [执行计划](../02-Usage/Diagnose/ExplainPlan.md) (ExplainPlan)
+
+  通过分析执行计划，管理员可以了解查询的执行情况，发现潜在的性能瓶颈，并进行优化。
+
+<br>
+
+#### 9.通知 (Message)
+
+* 平台操作通知
+  * 平台中所有的操作信息通知
+
+<br>
+
+#### 10.审计 (Audit)
+
+* 审计列表
+  * 审计通知,包含用户操作、请求方式、群集操作、用户登陆等信息
+
+<br>
+
+#### 11.设置 (Settings)
+
+* 介质包管理
+  * Mongo介质包管理
+
+    - 在创建集群时选择不同mongo版本进行创建，此版本mongo可通过MongoTars页面进行上传.
+      - 上传介质包详情步骤-->[UploadMongoTar](../02-Usage/Settings/UploadMongoDBTARfile.md)
+* [邮件配置](../02-Usage/Settings/Emailconfiguration.md)
+  * 配置告警邮件,告警信息会通过这个邮箱发送给用户
+* [采集颗粒度配置](../02-Usage/Settings/Collectiongranularityconfiguration.md)
+  * 采集颗粒度配置可以在监控中设定数据采集的频率
+* [Kubernetes配置](../02-Usage/Settings/Kubernetesconfiguration.md)
+  * k8s配置,要添加k8s主机必须把Kubernetes配置文件添加到WAP平台.
+* [巡检S3配置](../02-Usage/Settings/InspectingS3configuration.md)
+  * 巡检需要配置,巡检文件存储到的s3,
+
+<br>
+
+#### 12.支持 (Support)
+
+* 巡检
+* [工单](https://support.whaleal.com/)
+  * Whaleal Support工单
+
+<br>
 
 
-
-
-####  5.用户中心
+####  13.用户中心
 
 - 个人中心
 
@@ -105,15 +213,17 @@
 
   - 账户配置页面可以设置时区，同时可以设置是否接受告警通知。
 
-####  6.Support & Help
+<br>
+
+####  14.Support & Help
 
 
 - [文档专栏](https://docs.whaleal.com/)
-  - 鲸云社区文档专栏
+  - Whaleal社区文档专栏
 
 
 - [社区地址](https://www.whaleal.com/)
-  - 鲸云社区
+  - Whaleal社区
 
 <br>
 <br>

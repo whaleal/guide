@@ -5,9 +5,13 @@ Existing MongoDB Deployment 可以执行以下操作：
  - Existing MongoDB Deployment
 ```
 
-### Existing MongoDB Deployment
+### 纳管主机
 
 **进入导航目录**
+
+>  注意: 
+>
+> 纳管的MongoDB主机,不能修改主机名称 修改后会影响WAP平台对主机的管理.
 
 a. 点击 MongoDB 选项按钮
 
@@ -36,3 +40,4 @@ c. 点击 创建项目 选项按钮，选择 纳管
 
 
 配置完成点击 提交 按钮
+

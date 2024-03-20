@@ -2,9 +2,11 @@
 
 
 
-采集颗粒度配置
+**采集颗粒度配置**
 
-修改采集颗粒度配置,可以修改主机、mongo的颗粒度配置,以及mongodb节点日志保留的时间
+采集颗粒度配置可以在监控中设定数据采集的频率,修改采集颗粒度配置,可以修改主机、MongoDB的颗粒度配置,以及MongoDB节点日志保留的时间
+
+
 
 ![1](../../../../images/whalealPlatformImages/Collectiongranularityconfiguration.png)
 
