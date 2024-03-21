@@ -15,6 +15,7 @@ WAP 支持创建 MongoDB 集群：
 1. 创建单节点：[CreateStandalone](../02-Usage/MongoDB/CreateDeployment/CreateStandalone.md)
 2. 创建复制集集群：[CreateReplicaSet](../02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md)
 3. 创建分片集群：[CreateShardedCluster](../02-Usage/MongoDB/CreateDeployment/CreateShardedCluster.md)
+4. 纳管群集：[ExistingMongoDBDeployment](../02-Usage/MongoDB/CreateDeployment/ExistingMongoDBDeployment.md)
 
 
 

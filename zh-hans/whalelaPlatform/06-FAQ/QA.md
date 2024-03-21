@@ -28,6 +28,7 @@
     - 创建单节点[CreateStandalone](../02-Usage/MongoDB/CreateDeployment/CreateStandalone.md)
     - 创建复制集[CreateReplicaSet](../02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md)
     - 创建分片[CreateShardedCluster](../02-Usage/MongoDB/CreateDeployment/CreateShardedCluster.md)
+    - 纳管群集[ExistingMongoDBDeployment](../02-Usage/MongoDB/CreateDeployment/ExistingMongoDBDeployment.md)
 
 
 
