@@ -7,6 +7,8 @@ Account Center 可以配置以下内容：
  - Dingding URL
 ```
 
+个人中心,可以修改个人资料信息包含邮件、电话等信息
+
 a. 进入页面左侧导航栏
 
 ![image-20220726105726846](../../../../images/whalealPlatformImages/Account.png)

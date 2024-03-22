@@ -1,33 +1,47 @@
 ## Whaleal Platform Introduction
 
-Whaleal Platform (WAP) is an intelligent operations and hosting platform designed for continuous monitoring and management, operating 24/7.
+  Whaleal Platform (WAP) is an intelligent operation and maintenance hosting platform that monitors and manages your MongoDB service in real time 24/7. As an open source MongoDB database monitoring solution, WAP provides instant troubleshooting and diagnostic capabilities to ensure the continued stable operation of your MongoDB database and increase productivity. At the same time, WAP also supports automatic backup and recovery, providing you with comprehensive data protection to ensure data security and reliability. By choosing WAP, you will experience the convenience and efficiency of intelligent operation and maintenance.
 
-WAP is an open-source MongoDB database supervision and control solution, providing functionalities for troubleshooting and diagnosis of MongoDB.
 
-![img.png](../../images/whalealPlatformImages/Whaleal_Logo.png)
+
+## Whaleal Platform
+
+![waphome页面](../../images/whalealPlatformImages/WAPhome.png)
 
 ## Architecture Introduction
-![img.png](../../images/whalealPlatformImages/Architecture_diagram.png)
 
-The architecture diagram illustrates the overall structure of the system, showcasing the relationships between various modules. The division of functional modules involves breaking down a complex system into smaller, single-functional modules. Through analysis of system functionality, specific functional modules for the data sharing and exchange system are summarized.
+![Architecture Diagram](../../images/whalealPlatformImages/Architecture_diagram.png)
 
-## WAP Features
-- WAP allows highly customizable deployment of MongoDB nodes based on business, data, and security requirements.
-- WAP offers global control over each MongoDB node, ensuring precise awareness.
-- WAP ensures communication encryption to guarantee data security and privacy.
-- WAP audits operational logs to provide historical traceability, effectively reducing troubleshooting time.
-- WAP associates time-grouped logs to establish clear dependencies between operations.
-- WAP links Host monitoring with MongoDB monitoring, enabling correlated investigation and in-depth analysis.
-- WAP supports real-time diagnosis of MongoDB, Slowest Operation analysis, Explain functionality, and more.
-- WAP incorporates years of experience in MongoDB usage and operations from our company.
+The system architecture diagram depicts the overall structure of the system, which reflects the relationship between the various modules of the system.
+Functional module division is to divide a complex system into multiple functional modules with single functions through layer-by-layer decomposition.
+Based on the analysis and sorting of the system's functions, the specific functional modules of the data sharing and exchange system are summarized.
 
-## WAP Roadmap
-- WAP will add an automatic inspection feature.
-- WAP will introduce an intelligent diagnosis module.
-- WAP will implement a data archiving module.
-- WAP will include a real-time data migration module.
-- WAP will gradually integrate with AWS, GCP, Azure, Alibaba Cloud, Huawei Cloud, Tencent Cloud, and more.
-- WAP will progressively support other mainstream OS distributions.
-- WAP will further optimize performance.
-- WAP will address and fix bugs.
+## WAP Feature
 
+* **Flexible deployment**
+
+  WAP supports highly customized MongoDB nodes according to business needs to achieve rapid and flexible deployment.
+
+* **Global monitoring**
+
+  The platform comprehensively monitors each MongoDB node, intelligently correlates Host monitoring, and provides intuitive troubleshooting methods.
+
+* **Audit operation log**
+
+  Recording detailed audit operation logs effectively supports historical review, helping to quickly troubleshoot and solve problems, and shortening troubleshooting time.
+
+* **Automatic backup and recovery**
+
+  WAP supports automatic backup and recovery functions, providing users with comprehensive data protection to ensure data security and reliability.
+
+* **Communication encryption guarantee**
+
+  WAP uses communication encryption technology to ensure the security of data transmission between MongoDB services and effectively prevent the leakage of sensitive information.
+
+* **MongoDB real-time diagnostics**
+
+  WAP supports real-time diagnosis, LogVis, Performance, ExplainPlan and other functions, providing comprehensive and accurate database performance monitoring.
+
+* **Real-time alarm**
+
+  WAP has a real-time alarm system that can quickly capture abnormalities in MongoDB nodes, such as performance degradation, insufficient storage, etc., and promptly notify administrators to ensure sensitive perception and rapid response to potential problems.

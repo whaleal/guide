@@ -1,32 +1,34 @@
 ## Account Center
 
 ```
-Account Center allows you to configure the following:
+Account Center The following can be configured：
  - Email
  - Phone Number
  - Dingding URL
 ```
 
-a. Navigate to the left sidebar on the page.
+Personal center, you can modify personal information including email, phone number and other information
 
-b. Click on the "Account" option button and select the "Personal Center" option.
+a. Enter the navigation bar on the left side of the page
 
-c. Click on the "Edit Profile" option button to modify your personal information.
+![image-20220726105726846](../../../../images/whalealPlatformImages/Account.png)b. Click the Account option button and select the Personal Center option
 
-![image-20220726105726846](../../../../images/whalealPlatformImages/AccountCenter1.png)
+c. Click the Edit Profile option button to modify personal information
 
-
+![image-20220726105726846](../../../../images/whalealPlatformImages/Account1.png)
 
 ### Email
 
-Modify the email address in the personal information section while editing your profile. In Whaleal, after configuring alerts, notification emails will be sent to your personal email address.
+Modify the email address in personal information in the edit profile, and after configuring the alarm in Whaleal, the alarm notification will be sent to the personal mailbox simultaneously.
+
+
 
 ### Phone Number
 
-Modify the phone number in the personal information section while editing your profile. In Whaleal, after configuring alerts, alert notifications will be sent to your phone as text messages.
+After modifying the phone number in personal information in the edit profile and configuring the alarm in Whaleal, the alarm notification will be sent to the personal mobile phone synchronously in the form of text messages.
 
 ### Dingding URL
 
-You can add a robot in your Dingding (DingTalk) group. After adding it, you will receive a Webhook URL that contains an `access_token` value. Configure this `access_token` value in the Whaleal Account Center page. Alert notifications will be sent to the Dingding group.
+Robots can be added to the DingTalk group. After the addition is completed, the Webhook URL will be provided. The access_token value in the address will be configured to the Whaleal personal center page. Alarm notifications will be sent to the DingTalk group simultaneously.
 
 ![image-20220726110500286](../../../../images/whalealPlatformImages/AccountCenter2.png)

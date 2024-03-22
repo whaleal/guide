@@ -2,7 +2,7 @@
 
 **1、开启备份**
 
-WAP 可以将 MongoDB 数据备份存储到 Linode S3、Amazon S3 中，以便安全可靠地存储和管理你的数据。
+WAP 可以将 MongoDB 数据备份存储到 Linode S3、Amazon S3   中，以便安全可靠地存储和管理你的数据。
 
 a. 进入页面左侧导航栏
 

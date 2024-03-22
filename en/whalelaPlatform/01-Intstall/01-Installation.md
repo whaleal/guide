@@ -1,327 +1,316 @@
 ## Installation
 
-Whaleal Platform (WAP) supports the following two installation methods:
-- VM Appliance
-- Docker
+```
+Whaleal Platform（WAP）Supports the following installation methods:
+ - VM Appliance
+```
 
 #### VM Appliance
 
-Step 1. Install JDK
+**Step-1. Install JDK**
 
-a. Download JDK
+1、download JDK
 
-Visit the [Oracle official website](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) to download an appropriate version of JDK for installation.
+​	Enter [Oracle Official website](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) Download the appropriate JDK version and prepare for installation。
 
-> Note:
+>  Notice：
 >
-> The following example uses jdk-8u151-linux-x64.tar.gz. If you download a different version, make sure the file extension is .tar.gz.
+>  The following takes jdk-8u151-linux-x64.tar.gz as an example. If you download other versions, please note that the file suffix is .tar.gz.
 
-b. Create a directory
+2、Create a directory
 
-Execute the following command to create a `java` directory under the `/usr/` directory.
+Execute the following command to create the java directory in the /usr/ directory.
 
-   ```
-   mkdir /usr/java
-   cd /usr/java
-   ```
+```
+mkdir /usr/java
+cd /usr/java
+```
 
-c. Copy the downloaded file `jdk-8u151-linux-x64.tar.gz` to the `/usr/java/` directory and unpack it.
+3、Copy the downloaded file jdk-8u151-linux-x64.tar.gz to the /usr/java/ directory.
 
-   ```
-   tar -zxvf jdk-8u151-linux-x64.tar.gz
-   ```
+4、Decompress JDK Execute the following command to decompress the file.
 
-d. Set environment variables
+```
+tar -zxvf jdk-8u151-linux-x64.tar.gz
+```
 
-Edit the `/etc/profile` file and add the following content. Save the file afterward.
+5、Set environment variables
 
-   ```bash
-   # Set Java environment
-   JAVA_HOME=/usr/java/jdk1.8.0_151
-   JRE_HOME=/usr/java/jdk1.8.0_151/jre
-   CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
-   PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
-   export JAVA_HOME JRE_HOME CLASS_PATH PATH
-   ```
+```
+# Edit the /etc/profile file, add the following content and save it
 
-> Note:
+set java environment
+JAVA_HOME=/usr/java/jdk1.8.0_151        
+JRE_HOME=/usr/java/jdk1.8.0_151/jre     
+CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
+PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+export JAVA_HOME JRE_HOME CLASS_PATH PATH
+```
+
+>Notice：
 >
-> Make sure to adjust the paths for `JAVA_HOME` and `JRE_HOME` according to your actual installation paths and JDK version.
+>Among them, JAVA_HOME and JRE_HOME should be configured according to your actual installation path and JDK version.
 
-Apply the changes to the current session.
+To make the modification effective, execute the following：
 
-   ```
-   source /etc/profile
-   ```
+```
+source /etc/profile
+```
 
-e. Test
+6、test
 
-Test the JDK installation by running the following command.
+```
+# Execute the following command to test.
+java -version
 
-   ```
-   java -version
-   ```
+# If the Java version information is displayed, the JDK installation is successful.
+java version "1.8.0_151"
+Java(TM) SE Runtime Environment (build 1.8.0_151-b12)
+Java HotSpot(TM) 64-Bit Server VM (build 25.151-b12, mixed mode)
+```
 
-If it displays Java version information, the JDK is successfully installed:
+**Step-2. Install NACOS**
 
-   ```
-   java version "1.8.0_151"
-   Java(TM) SE Runtime Environment (build 1.8.0_151-b12)
-   Java HotSpot(TM) 64-Bit Server VM (build 25.151-b12, mixed mode)
-   ```
+NACOS minimum version requirement is 1.4.
 
-Step 2. Install NACOS
+[download link](https://github.com/alibaba/nacos/releases)，Select the corresponding version
 
-[Installation Guide](https://nacos.io/zh-cn/docs/cluster-mode-quick-start.html) - NACOS version 1.4 or higher is required.
+1、unzip files 
 
-Step 3. Install MongoDB
+```
+tar zxvf nacos-server-1.4.3.tar.gz
+mv nacos /usr/local/nacos
+```
 
-[Installation Guide]()
+2、Start nacos
 
-Step 4. Install Whaleal
+```
+cd /usr/local/nacos/bin
 
-a. Gateway Module
+./startup.cmd -m standalone
+```
 
-Modify the project configuration file `server/ops-gateway-dev.yml`:
+**Step-3. Install MongoDB**
 
-```yaml
+[download link](https://www.mongodb.com/try/download/community),Download mongodb installation package
+
+1、Install dependency packages
+
+```
+yum install libcurl openssl
+```
+
+2、Unzip after download is complete
+
+```
+tar -zxvf mongodb-linux-x86_64-ubuntu1604-4.2.8.tgz
+# Copy the unzipped package to the specified directory 
+mv mongodb-src-r4.2.8 /usr/local/mongodb 
+```
+
+3、Add environment variables
+
+```
+export PATH=/usr/local/mongodb/bin:$PATH
+```
+
+4、Add configuration file
+
+```
+mkdir -p /data/appdb/{conf,data,log}
+
+vi /data/appdb/conf/mongodb.conf
+net:
+  bindIp: 0.0.0.0
+  port: 27017
+processManagement:
+  fork: "true"
+storage:
+  dbPath: /data/appdb/data
+  journal:
+      enabled: true
+  engine: wiredTiger
+  wiredTiger:
+    engineConfig:
+      cacheSizeGB: 1
+systemLog:
+  destination: file
+  path: /data/appdb/log/mongodb.log
+  logAppend: true
+security:
+  authorization: enabled
+```
+
+5、Start mongodb
+
+```
+/usr/local/mongodb/bin/mongod -f /data/appdb/conf/mongodb.conf
+```
+
+6、Configure mongodb password
+
+```
+# Login
+mongo --port 27017
+use admin
+
+# Configured as username: root Password: pass123
+db.createUser({user:"root",pwd:"pass123",roles:[{role:"root",db:"admin"}]})
+
+# After the configuration is complete, log out and then log in again.
+exit 
+
+mongo --port 27017 -uroot -p pass123
+```
+
+**Step-4. Whaleal installation**
+
+1、Gateway module
+
+```
+# Modify project configuration file server/ops-gateway-pro.yml
 spring:
   cloud:
     nacos:
       discovery:
-        server-addr: ****** # Configure Nacos address
+        server-addr: ****** # Configure nacos address
+
+
+# Start the network management module
+nohup java -jar /root/whaleal/server/ops-gateway-1.0.0.jar --spring.config.location=ops-gateway-pro.yml > whaleal-geteway.log &
 ```
 
-Start the gateway module:
 
-```bash
-nohup java -jar /root/whaleal/server/ops-gateway-1.0.0.jar --spring.config.location=ops-gateway-dev.yml > whaleal-geteway.log &
+
+2、data collection module
+
 ```
+# Modify project configuration file server/data-collection-api-dev.yml
 
-b. Data Collection Module
-
-Modify the project configuration file `server/data-collection-api-dev.yml`:
-
-```yaml
 spring:
   data:
     mongodb:
-      uri: mongodb://****** # Configure AppDB database address
+      uri: mongodb://****** # AppDB Database address
       database: ******
   application:
     name: data-os-collection
   cloud:
     nacos:
       discovery:
-        server-addr: ****** # Configure Nacos address
+        server-addr: ****** # Nacos address
+
+
+# Start the data collection module
+nohup java -jar /root/whaleal/server/data-collection-api-1.0.0.jar --spring.config.location=data-collection-api-pro.yml > data-collection-api.log &
 ```
 
-Start the data collection module:
+3、web module
 
-```bash
-nohup java -jar /root/whaleal/server/data-collection-api-1.0.0.jar --spring.config.location=data-collection-api-dev.yml > data-collection-api.log &
 ```
+# Modify project configuration file server/ops-server-web-pro.yml
 
-c. Web Module
-
-Modify the project configuration file `server/ops-server-web-dev.yml`:
-
-```yaml
 server:
   port: 9602
 spring:
   cloud:
     nacos:
       discovery:
-        server-addr: ****** # Configure Nacos address
+        server-addr: ****** # Nacos address
   data:
     mongodb:
-      uri: mongodb://****** # Configure AppDB database address
+      uri: mongodb://****** # AppDB Database address
       database: ******
 file:
   root:
-    path: /home/whaleal/server/ # Whaleal Platform database medium package storage directory
+    path: /home/whaleal/server/ # Whaleal Platform Database media package storage directory
+
+# logging:
+#   config: classpath:log4j2.yml
+
+
+
+# Start the web module
+nohup java -jar /root/whaleal/server/ops-server-web-1.0.0.jar --spring.config.location=ops-server-web-pro.yml  > ops-server-web.log &
 ```
 
-Start the web module:
+4、Agent module
 
-```bash
-nohup java -jar /root/whaleal/server/ops-server-web-1.0.0.jar --spring.config.location=ops-server-web-dev.yml  > ops-server-web.log &
+Copy agent-collection-1.0.0.jar to the file.root.path directory of the ops-server-web module
+
 ```
-
-d. Alert Module
-
-Configure the project configuration file `server/ops-alert-dev.yml`:
-
-```yaml
-spring:
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ****** # Configure Nacos address
-  data:
-    mongodb:
-      uri: mongodb://****** # Configure AppDB database address
-      database: ******
-feign:
-  url: http://******/ # Whaleal project gateway address (http://IP:Port/)
-```
-
-Start the alert module:
-
-```bash
-nohup java -jar /root/whaleal/server/ops-alert-1.0.0.jar --spring.config.location=ops-alert-dev.yml > ops-alert.log &
-```
-
-e
-
-. Archive Module
-
-Configure the project configuration file `server/ops-archive-dev.yml`:
-
-```yaml
-spring:
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ****** # Configure Nacos address
-  data:
-    mongodb:
-      uri: mongodb://****** # Configure AppDB database address
-      database: ******
-```
-
-Start the archive module:
-
-```bash
-nohup java -jar /root/whaleal/server/ops-archive-1.0.0.jar --spring.config.location=ops-archive-dev.yml > ops-archive.log &
-```
-
-f. Third-Party Module
-
-Configure the project configuration file `server/ops-third-party-dev.yml`:
-
-```yaml
-spring:
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ******** # Configure Nacos address
-  third:
-    sms:
-      host: http://****** # SMS platform address
-      appcode: *** # AppCode
-      from: *** # Sender's phone number
-  mail:
-    protocol: *** # Email service protocol
-    port: ****** # Email server port
-    host: ****** # Email platform address
-    from: ****** # Email sender
-    title: ****** # Email content title
-    username: ****** # SMTP server account
-    password: ****** # SMTP server password
-    default-encoding: ******
-    properties.mail.smtp.ssl.enable: ****** # Enable SSL transmission
-    properties.mail.smtp.ssl.required: ****** # Require SSL transmission
-    properties.mail.smtp.port: ****** # SMTP server port number
-```
-
-Start the third-party module:
-
-```bash
-nohup java -jar /root/whaleal/server/ops-third-party-1.0.0.jar --spring.config.location=ops-third-party-dev.yml > ops-third-party.log &
-```
-
-g. Agent Module
-
-Copy `agent-collection-1.0.0.jar` to the `file.root.path` directory of the `ops-server-web` module:
-
-```bash
 cp /root/whaleal/server/agent-collection-1.0.0.jar /home/whaleal/server/
 ```
 
-Step 5. Startup and Shutdown Commands for All Modules
+**Step-5. All module startup and termination commands**
 
-Start
+1、start up
 
-```bash
-nohup java -jar /root/whaleal/server/ops-gateway-1.0.0.jar --spring.config.location=ops-gateway-dev.yml > whaleal-geteway.log &
+```
+nohup java -jar /root/whaleal/server/ops-gateway-1.0.0.jar --spring.confi
+g.location=ops-gateway-pro.yml > whaleal-geteway.log &
 
-nohup java -jar /root/whaleal/server/data-collection-api-1.0.0.jar --spring.config.location=data-collection-api-dev.yml > data-collection-api.log &
+nohup java -jar /root/whaleal/server/data-collection-api-1.0.0.jar --spring.config.location=data-collection-api-pro.yml > data-collection-api.log &
 
-nohup java -jar /root/whaleal/server/ops-server-web-1.0.0.jar --spring.config.location=ops-server-web-dev.yml  > ops-server-web.log &
-
-nohup java -jar /root/whaleal/server/ops-alert-1.0.0.jar --spring.config.location=ops-alert-dev.yml > ops-alert.log &
-
-nohup java -jar /root/whaleal/server/ops-archive-1.0.0.jar --spring.config.location=ops-archive-dev.yml > ops-archive.log &
-
-nohup java -jar /root/whaleal/server/ops-third-party-1.0.0.jar --spring.config.location=ops-third-party-dev.yml > ops-third-party.log &
+nohup java -jar /root/whaleal/server/ops-server-web-1.0.0.jar --spring.config.location=ops-server-web-pro.yml  > ops-server-web.log &
 ```
 
-Shutdown
+2、termination
 
-```bash
+```
 ps  -ef | grep java | grep whaleal-server-web-1.0 | cut -c 9-15 | xargs kill -9
 ps  -ef | grep java | grep data-collection-api-1.0 | cut -c 9-15 | xargs kill -9
-ps  -ef | grep java | grep whaleal-alert-1.0 | cut -c 9-15 | xargs kill -9
-ps  -ef | grep java | grep whaleal-third-party-1.0 | cut -c 9-15 | xargs kill -9
-ps  -ef | grep java | grep agent-collection-1. | cut -c 9-15 | xargs kill -9
-ps  -ef | grep java | grep whaleal-archive-1.0 | cut -c 9-15 | xargs kill -9
 ps  -ef | grep java | grep whaleal-gateway-1.0 | cut -c 9-15 | xargs kill -9
 ```
 
-Step 6. Deploy Nginx for Front-End
+**Step-6. Front-end deployment Nginx**
 
-Modify the Nginx configuration file:
+[download link](http://nginx.org/download/), Download nginx installation package
 
-```nginx
-server {
-    listen       ******; # External service port
-    listen       ******; # Backend service address
-    server_name  ******;
+1、lnstall dependent environment
 
-    location / {
-        root   /www/dist; # Static files directory
-        index  index.html index.htm;
-    }
-}
+```
+yum install -y pcre pcre-devel zlib zlib-devel gcc++ gcc make
 ```
 
-Restart Nginx:
+2、After downloading, unzip the nginx installation package
 
-```bash
+```
+tar -zxvf nginx-1.21.1.tar.gz
+```
+
+3、Compile and install
+
+```
+cd nginx-1.21.1
+
+./configure --prefix=/usr/local/nginx
+
+make && make install
+
+ln -s /usr/local/nginx/sbin/nginx /usr/local/sbin/
+```
+
+4、Start nginx
+
+```
+ nginx                  # start nginx
+ nginx -s reload        # Restart nginx
+ nginx -s stops         # Stop nginx
+```
+
+5、Configure front-end files
+
+```
+# Execute the following command to configure <gateway service external ip>
+
+find  /usr/local/nginx/html -type f -exec sed -i 's/gateWayServer:8080/<Gateway service external ip>:8080/g' {} +
+
+
+# Restart nginx
 nginx -s reload
 ```
 
-Step 7. Access via Web Browser
+**Step-7. Browser access**
 
-Access the URL in the web browser: http://cloud.whaleal.com:8080/
+Browser access address：http://ip:8080/
 
-#### Docker
-
-Step 1. Install Docker
-
-```bash
-curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
-
-# Restart the Docker service
-systemctl restart docker
-```
-
-Step 2. Pull Docker Image
-
-```bash
-docker pull whaleal/whaleal:lstest
-```
-
-TODO: Start AppDB separately
-
-Step 3. Run Docker Container
-
-```bash
-docker run -d -p 8080:8080 -p 9600:9600 whaleal
-```
-
-Step 4. Access via Web Browser
-
-Access the URL in the web browser: http://IP:8080/dist/

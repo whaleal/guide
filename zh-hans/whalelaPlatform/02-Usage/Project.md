@@ -20,6 +20,10 @@ MongoDB 的创建必须存在于一个项目中，你可以为每个项目添加
 
 ![image-20240307162543576](../../../images/whalealPlatformImages/uProject.png)
 
+点击 编辑 可以添加/删除 主机,成员,群集
+
+
+
 **删除Project**
 
 删除Project后,Project中的mongodb群集也会被删除掉

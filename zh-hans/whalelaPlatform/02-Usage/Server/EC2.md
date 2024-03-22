@@ -58,6 +58,6 @@
 
   ![](../../../../images/whalealPlatformImages/4agent.png)
 
-* 启动后查看
+* 启动后平台查看
 
   ![](../../../../images/whalealPlatformImages/6agent.png)

@@ -35,3 +35,15 @@ c. 点击 确定
 
 d. 等待上传进度条完成，上传成功
 
+
+
+Step-3. 删除文件
+
+a.点击删除文件
+
+![1](../../../../images/whalealPlatformImages/UploadMongoDBTARfile1.png)
+
+b. 点击 确定
+
+
+

@@ -8,11 +8,19 @@ Users 提供以下操作：
  - MongoDB
 ```
 
+用户管理,WAP用户管理可以配置账号权限,修改密码,删除用户等操作
+
+a. 进入页面左侧导航栏
+
+![image-20220726105726846](../../../../images/whalealPlatformImages/Account.png)
+
+b. 点击 Account 选项按钮，选择 用户管理 选项
+
 
 
 ### Operation
 
-Whaleal 可以为用户配置管理员权限，管理员可以执行删除用户的操作。
+WAP 可以为用户配置管理员权限，管理员可以执行删除用户的操作。
 
 ![1](../../../../images/whalealPlatformImages/AccountUsers1.png)
 
@@ -20,7 +28,7 @@ Whaleal 可以为用户配置管理员权限，管理员可以执行删除用户
 
 ### Management
 
-Whaleal 可以配置是否有权限创建Server、创建MongoDB。
+WAP 可以配置是否有权限创建Server、创建MongoDB。
 
 ![image-20220726111853859](../../../../images/whalealPlatformImages/AccountUsers2.png)
 
@@ -28,7 +36,7 @@ Whaleal 可以配置是否有权限创建Server、创建MongoDB。
 
 ### Server
 
-Whaleal 提供了对服务器资源的访问限制。
+WAP 提供了对服务器资源的访问限制。
 
 ![image-20220726112029484](../../../../images/whalealPlatformImages/AccountUsers3.png)
 
@@ -36,6 +44,6 @@ Whaleal 提供了对服务器资源的访问限制。
 
 ### MongoDB
 
-Whaleal 提供了对MongoDB资源的访问限制。
+WAP 提供了对MongoDB资源的访问限制。
 
 ![image-20220726112220457](../../../../images/whalealPlatformImages/AccountUsers4.png)

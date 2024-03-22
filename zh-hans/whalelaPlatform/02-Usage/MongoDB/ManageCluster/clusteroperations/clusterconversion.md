@@ -2,7 +2,7 @@
 
 **群集转换**
 
-wap平台支持把MongoDB单实例转换为MongoDB复制集,MongoDB复制集转换为分片集群.
+WAP平台支持把MongoDB单实例转换为MongoDB复制集,MongoDB复制集转换为分片集群.
 
 
 
