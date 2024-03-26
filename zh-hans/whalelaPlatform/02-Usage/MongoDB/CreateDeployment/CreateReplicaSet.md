@@ -6,7 +6,7 @@ Create ReplicaSet 分为以下两部分操作内容：
  - Procedure
 ```
 
-ReplicaSet 部署方式提供高可用机制。推荐生产中使用。
+MongoDB ReplicaSet 是一组MongoDB实例的集合，其中包括一个主节点和多个从节点。主节点处理写入操作，并将数据复制到从节点，从而提供数据冗余和高可用性。如果主节点不可用，系统会自动选择新的主节点，确保系统的持续运行和故障恢复。ReplicaSet 部署方式提供高可用机制。推荐生产中使用。
 
 使用 WAP 可以创建 ReplicaSet ，可以添加 ReplicaSet 节点，升降级。
 

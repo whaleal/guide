@@ -7,6 +7,8 @@ Existing MongoDB Deployment 可以执行以下操作：
 
 ### 纳管主机
 
+WAP 提供了 MongoDB 纳管服务的整解决方案，让用户能够将自己的 MongoDB 群集托管到WAP平台上。WAP提供简化的管理、监控 MongoDB 数据库环境，还包括自动化的备份和告警诊断等功能，以确保数据的安全和可靠性。
+
 **进入导航目录**
 
 >  注意: 

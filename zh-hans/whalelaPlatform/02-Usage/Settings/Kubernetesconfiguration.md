@@ -4,10 +4,12 @@
 
 WAP平台支持云平台的Kubernetes,包括 Linode的K8S 、AWS EKS 、GCP GKE
 
+a. 点击 Settings 选择 Kubernetes配置
+
 ![1](../../../../images/whalealPlatformImages/Kubernetesconfiguration.png)
 
 
 
-a. 填写群集名称,选择类型,配置k8s文件 
+b. 填写群集名称,选择类型,配置k8s文件 
 
-b. 配置完成后点击 保存
+c. 配置完成后点击 保存

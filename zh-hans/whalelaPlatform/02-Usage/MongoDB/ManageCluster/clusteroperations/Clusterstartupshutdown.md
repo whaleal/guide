@@ -1,5 +1,9 @@
 ## Cluster startup shutdown
 
+通过操作启动/关闭功能,对整个集群进行启动/关闭操作,针对的是整个集群内的所有节点
+
+如果需要关闭/启动集群中的某个节点请参考[节点操作](../Nodeoperations.md)
+
 **1、启动MongoDB群集**
 
 a. 点击 MongoDB 选项按钮

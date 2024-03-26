@@ -6,7 +6,7 @@ Create Standalone 分为以下两部分操作内容：
  - Procedure
 ```
 
-使用 WAP 可以创建 Standalone 。Standalone 可用于测试与开发，不推荐在生产环境中使用 Standalone 部署方式，Standalone 部署方式没有高可用机制。对于生产环境中推荐使用 [ReplicaSet](CreateReplicaSet.md) 部署方式。
+使用 WAP 可以创建 Standalone 。Standalone 所有的数据都存储在该单节点上，没有数据分布或数据冗余。可用于测试与开发，不推荐在生产环境中使用 Standalone 部署方式，Standalone 部署方式没有高可用机制。对于生产环境中推荐使用 [ReplicaSet](CreateReplicaSet.md) 部署方式。
 
 ### Prerequisites
 

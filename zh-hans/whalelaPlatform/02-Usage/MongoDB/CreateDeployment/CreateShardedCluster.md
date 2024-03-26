@@ -6,7 +6,7 @@ Create Sharded Cluster 分为以下两部分操作内容：
  - Procedure
 ```
 
-Sharded Cluster 部署方式提供高可用机制 与 水平拓展。推荐生产中使用。
+MongoDB Sharded Cluster是一种用于扩展MongoDB数据库性能和容量的解决方案。它通过将数据分散存储在多个服务器上来实现横向扩展，从而提高了读取和写入操作的性能，并允许存储更大量的数据。Sharded Cluster 部署方式提供高可用机制 与 水平拓展。推荐生产中使用。
 
 使用 Whaleal Platform 可以创建 Sharded Cluster ，可以添加节点，升降级。
 

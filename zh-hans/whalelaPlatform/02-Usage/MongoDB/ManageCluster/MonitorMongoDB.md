@@ -1,6 +1,8 @@
 ## Monitor MongoDB
 
-**监控monogdb**
+**监控MongoDB**
+
+监控 MongoDB 是确保数据库系统健康和性能的关键方面之一。通过监控 MongoDB 关键指标和资源利用情况，您可以及时发现潜在问题并采取适当的措施来解决它们，以确保系统的稳定性和可靠性。
 
 使用监控之前要先查看群集是否[开启监控](../ManageCluster/clusteroperations/Turnonmonitoring.md)
 

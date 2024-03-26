@@ -12,10 +12,10 @@
 
 
 
-* 点击 开始诊断  , 就开始进行诊断了,等待诊断完成
+a. 点击 开始诊断 , 就开始进行诊断了,等待诊断完成
 
 ![1](../../../../images/whalealPlatformImages/Health1.png)
 
-* 诊断完成后,下面可以查看诊断结果
+b. 诊断完成后,下面可以查看诊断结果
 
 ![1](../../../../images/whalealPlatformImages/Health2.png)
