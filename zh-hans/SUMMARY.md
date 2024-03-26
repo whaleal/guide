@@ -39,6 +39,7 @@
                   * [UserManagement](whalelaPlatform/02-Usage/MongoDB/ManageCluster/UserManagement.md)
                   * [Certification](whalelaPlatform/02-Usage/MongoDB/ManageCluster/Certification.md)
                   * [MonitorMongoDB](whalelaPlatform/02-Usage/MongoDB/ManageCluster/MonitorMongoDB.md)
+                  * [Nodeoperations](whalelaPlatform/02-Usage/MongoDB/ManageCluster/Nodeoperations.md)
           * [Backuprestore]()
               * [Backub](whalelaPlatform/02-Usage/Backuprestore/Backub.md)
               * [Restore](whalelaPlatform/02-Usage/Backuprestore/Restore.md)
