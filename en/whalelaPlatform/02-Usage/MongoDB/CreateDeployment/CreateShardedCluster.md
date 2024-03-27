@@ -1,116 +1,120 @@
 ## Create Sharded Cluster
 
 ```
-Creating a Sharded Cluster involves the following sections:
+Create Sharded Cluster The operation content is divided into the following two parts:
  - Prerequisites
  - Procedure
 ```
 
-Sharded Cluster deployment provides both high availability and horizontal scalability mechanisms. It is recommended for production use.
+MongoDB Sharded Cluster is a solution for scaling MongoDB database performance and capacity. It enables horizontal scalability by spreading data across multiple servers, improving the performance of read and write operations and allowing larger amounts of data to be stored. Sharded Cluster deployment method provides high availability mechanism and horizontal expansion. Recommended for use in production.
 
-Using the Whaleal Platform, you can create a Sharded Cluster, add nodes, and scale up or down.
+Sharded Cluster can be created using Whaleal Platform, and nodes can be added, upgraded or downgraded.
 
 ### Prerequisites
 
-Before deploying a Sharded Cluster, ensure that the host has been managed by the Whaleal Platform. If not, please first [Add Host](../../Host/AddHost.md).
+Before deploying Sharded Cluster, you must ensure that the Host has been managed by WAP. If not, please [add EC2](../../Server/EC2.md) or [add K8S](../../Server/K8S.md) first
 
-Before deploying a Sharded Cluster, ensure that the Whaleal Platform has an available MongoTars. If not, please first [Upload MongoTar](../UploadMongoTar.md).
+Before deploying Sharded Cluster, you must ensure that MongoTar is available in the WAP. If not, please [upload MongoTar](../../Settings/UploadMongoDBTARfile.md) first
 
 ### Procedure
 
-Step 1. Navigate to the MongoDB Cluster List
+**1. Enter the navigation directory**
 
-a. Navigate to the left-side navigation bar.
+a. Click the MongoDB options button
 
-b. Click on the "MongoDB" option.
+b. Select the MongoList option. The page displays the MongoDB Cluster that all users can operate.
 
-c. Select the "MongoList" option. The page will display all the MongoDB Clusters that the user can operate on.
+![1](../../../../../images/whalealPlatformImages/mongodb.png)
 
+**2. Create ReplicaSet**
 
+a. Click the Create Project button on the right
 
-Step 2. Create a Sharded Cluster
-
-a. Click on the "Create Project" button on the right side.
-
-b. Select the "Sharding" option.
+b. Select the Sharding option
 
 
 
-Step 3. Configure the Sharded Cluster
+**3. Configure Sharded Cluster**
 
-Sharded Cluster Configuration
+![1](../../../../../images/whalealPlatformImages/CreateShardedCluster1.png)
 
-| Configuration Item | Value                                                    |
-| ------------------ | -------------------------------------------------------- |
-| Cluster Name       | The name of the Sharded Cluster                         |
-| Tags               | The value of `tag` in the configuration                 |
-| Enable Authentication | true: Enable authentication, configure username and password <br> false: Disable authentication |
-| Username            | If authentication is enabled, the admin user of the Sharded Cluster. Authentication database is `admin` and role is `root` |
-| Password            | If authentication is enabled, the admin password of the Sharded Cluster |
 
-Member Configuration
+
+Sharded cluster configuration
+
+| Configuration items              | value                                                        |
+| -------------------------------- | ------------------------------------------------------------ |
+| Affiliated project               | Select the affiliated project                                |
+| Cluster name                     | Sharded cluster name                                         |
+| Whether to enable authentication | No authentication is enabled: Do not set user password <br/>Account number and password: Turn on authentication and set user password <br/>Account and password and CA certificate: Turn on authentication, set user password and use CA certificate |
+| Version                          | Select the MongoTar corresponding to the Standalone version to create |
+
+Member configuration
 
 Shard Settings
 
-| Configuration Item | Value                                                    |
-| ------------------ | -------------------------------------------------------- |
-| Member Type        | Member type in the Sharded Cluster: <br>Member Node: The node in the Sharded Cluster that holds data and has voting rights. It can be elected as the primary node.<br>Arbiter Node: A node that does not store data in the cluster and is used only for voting and elections.<br>Hidden Node: A node in the Sharded Cluster that holds data and has voting rights. Configuration parameter is `hidden`.<br>Hidden Delayed Node: A node in the Sharded Cluster that holds data and has voting rights. Configuration parameters are `slaveDelay` and `hidden`. |
-| Hostname           | The host where you want to deploy the Sharded Cluster node |
-| Port               | The port to be used by the node                           |
-| Version            | The version of the MongoTar corresponding to the node version |
-| Votes              | The number of votes for elections during the Sharded Cluster elections |
-| Priority           | The priority during the Sharded Cluster elections. If priority is 0, the node cannot be elected as the primary node |
-| Delay              | The time (in seconds) the node is behind the primary node, only applicable to Hidden Delayed Node |
-| Build Index        | true: Build indexes in MongoDB <br> false: Do not build indexes in MongoDB |
-| Data Directory     | The absolute path to the Sharded Cluster node data files |
-| Log File           | The absolute path to the Sharded Cluster node log output file |
+| Configuration items | value                                                        |
+| ------------------- | ------------------------------------------------------------ |
+| member              | member type：<br>member node：Nodes that carry data have voting rights and can be elected as master nodes.<br/>hidden node：Node that carries data, has voting rights, and the configuration parameter is hidden<br/>Hide delay nodes：The node that carries data has voting rights and the configuration parameters are slaveDelay and hidden |
+| hostname            | Select the host where the Sharded Cluster node is deployed   |
+| port                | The port used by the node                                    |
+| vote                | Number of votes cast during replica set election             |
+| priority            | The priority during replication set election. If the priority is 0, the node cannot be elected as the primary node. |
+| Delay               | The time the node lags behind the master node (unit: seconds), only used for members who are hidden delayed nodes |
+| Build index         | true：MongoDB build index<br/>false：MongoDB does not build index |
+| data directory      | Sharded Cluster node data file storage directory (absolute path) |
+| log file            | Sharded Cluster node log output file (absolute path)         |
+| add                 | Add member node                                              |
+| add Shard           | Add a shard cluster                                          |
 
-Config Settings
+config Settings
 
-| Configuration Item | Value                                                    |
-| ------------------ | -------------------------------------------------------- |
-| Member Type        | Member type in the Sharded Cluster: <br>Member Node: The node in the Sharded Cluster that holds data and has voting rights. It can be elected as the primary node.<br>Arbiter Node: A node that does not store data in the cluster and is used only for voting and elections.<br>Hidden Node: A node in the Sharded Cluster that holds data and has voting rights. Configuration parameter is `hidden`.<br>Hidden Delayed Node: A node in the Sharded Cluster that holds data and has voting rights. Configuration parameters are `slaveDelay` and `hidden`. |
-| Hostname           | The host where you want to deploy the Sharded Cluster node |
-| Port               | The port to be used by the node                           |
-| Version            | The version of the MongoTar corresponding to the node version |
-| Votes              | The number of votes for elections during the Sharded Cluster elections |
-| Priority           | The priority during the Sharded Cluster elections. If priority is 0, the node cannot be elected as the primary node |
-| Delay              | The time (in seconds) the node is behind the primary node, only applicable to Hidden Delayed Node |
-| Build Index        | true: Build indexes in MongoDB <br> false: Do not build indexes in MongoDB |
-| Data Directory     | The absolute path to the Sharded Cluster node data files |
-| Log File           | The absolute path to the Sharded Cluster node log output file |
+| Configuration items | value                                                        |
+| ------------------- | ------------------------------------------------------------ |
+| member              | member type：<br>member node：Nodes that carry data have voting rights and can be elected as master nodes.<br/>hidden node：Node that carries data, has voting rights, and the configuration parameter is hidden |
+| hostname            | Select the host where the Sharded Cluster node is deployed   |
+| port                | The port used by the node                                    |
+| vote                | Number of votes cast during replica set election             |
+| priority            | The priority during replication set election. If the priority is 0, the node cannot be elected as the primary node. |
+| Delay               | The time the node lags behind the master node (unit: seconds), only used for members who are hidden delayed nodes |
+| Build index         | true：MongoDB build index<br/>false：MongoDB does not build index |
+| data directory      | Sharded Cluster node data file storage directory (absolute path) |
+| log file            | Sharded Cluster node log output file (absolute path)         |
+| add                 | Add member node                                              |
 
 Mongos Settings
 
-| Configuration Item | Value                                   |
-| ------------------ | --------------------------------------- |
-| Hostname           | The host where you want to deploy the mongos node |
-| Port               | The port to be used by the node         |
-| Version            | The version of the MongoTar corresponding to the mongos node |
-| Log File           | The absolute path to the mongos log output file |
+| Configuration items | value                                             |
+| ------------------- | ------------------------------------------------- |
+| hostname            | Select the host where the mongos node is deployed |
+| port                | The port used by the node                         |
+| log file            | Mongos log output file (absolute path)            |
+| add                 | Add mongos node                                   |
 
-Cluster Configuration
+Cluster configuration
 
-| Configuration Item | Value                                                    |
-| ------------------ | -------------------------------------------------------- |
-| Protocol Version   | ReplicaSet replication protocol version                 |
-| Chaining Allowed   | true: Allow data replication from secondary nodes <br> false: Do not allow data replication from secondary nodes |
-| Write Concern Majority Journal Default | Write to majority of nodes before returning |
-| Heartbeat Timeout (secs) | Time between heartbeat checks between member nodes |
-| Election Timeout (ms) | Time between checks when a member is unreachable |
-| CatchUp Timeout (ms) | Time for a newly elected primary node to catch up with the latest writes |
-| CatchUp Takeover Delay (ms) | Time to wait before taking over when a member node leads the primary node |
+| Configuration items                    | value                                                        |
+| -------------------------------------- | ------------------------------------------------------------ |
+| Protocol Version                       | The replication protocol version used by the replica set     |
+| Chaining Allowed                       | true：Allow data to be replicated from secondary nodes<br>false：Allow data to be replicated from secondary nodes |
+| Write Concern Majority Journal Default | Whether to return after writing to the majority of nodes     |
+| Heartbeat Timeout(secs)                | Heartbeat detection time between member nodes                |
+| Election Timeout(ms)                   | When the member node is unreachable from the master node, check the time |
+| CatchUp Timeout(ms)                    | The catch-up time between the newly elected master node and the latest write operation |
+| CatchUp Takeover Delay(ms)             | After the member node leads the master node, it waits for the master node time |
 
-Advanced Configuration
+Advanced configuration
 
-a. Click on the "Add Option" button.
+![1](../../../../../images/whalealPlatformImages/CreateShardedCluster2.png)
 
-b. Select the startup configuration item to add, then click the "Confirm" button to add.
+a. Click the Add Option button
 
-c. Set the value of the configuration item.
+b. Select to add a startup configuration item and click the OK button to add it.
+
+c. Set configuration option value
 
 
 
-Step 4. Create Sharded Cluster
+**4. Create**
 
-Click the "Create" button to create the Sharded Cluster.
+Click the Create button to create a Sharded Cluster.

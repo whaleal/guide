@@ -2,7 +2,7 @@
 
 **Kubernetes配置**
 
-WAP平台支持云平台的Kubernetes,包括 Linode的K8S 、AWS EKS 、GCP GKE
+WAP平台支持云平台的Kubernetes,包括 Linode的K8S 、AWS EKS 
 
 a. 点击 Settings 选择 Kubernetes配置
 

@@ -1,30 +1,36 @@
-## Find Bottleneck in Host
+## Find BottleNeck In Host
 
-You can identify and address bottlenecks on a host using the following operations:
+```
+Find BottleNeck In Host This can be done by doing the following：
+ - Check the monitor
+ - CPU
+ - RAM
+ - I/O
+```
 
-### Check the Monitor
+### Check the monitor
 
-On Linux systems, the primary bottlenecks are typically related to memory (RAM), computation (CPU), or I/O operations (disk). For memory, speed could be a factor, and running out of memory is a significant issue. For the CPU, if older hardware is used, the performance of each CPU core may be slow, and there might not be enough processing power. Regarding I/O, reading from mechanical hard drives and excessive disk writes can be problematic.
+​			On Linux, the main bottlenecks are memory (RAM), compute (CPU), or I/O (disk operations). Speed may be a factor when it comes to memory, which is a big problem if you've run out of memory. With CPUs, if you're using older hardware, each CPU core will work much slower, and probably not enough. For I/O, reading from mechanical hard drives and excessive disk writes can be the problem.
 
 ### CPU
 
-Check CPU monitoring data to inspect CPU usage. If the CPU reaches 95% or more while memory (Mem) and swap (Swp) are within normal ranges, it indicates a CPU bottleneck.
+​			View CPU monitoring data to check CPU usage. While the application is providing services, if the CPU reaches more than 95% and the memory (Mem) and swap (Swp) are within the normal usage range, it proves that the CPU has reached a bottleneck.
 
-If the application or process isn't running at the expected performance level and consistently shows 95%+ CPU utilization, you can take the following steps:
+​			If an application or process is not running at the correct performance level and you see a constant 95% + CPU utilization, you can do the following:
 
-* **Immediate Solution**: Add more CPU cores to the server.
-* **Troubleshooting**: Investigate and locate the problematic application and address the issues accordingly.
+* Emergency solution: Increase the number of CPUs for the server
+* Troubleshooting: Check and locate the application, and troubleshoot and solve the corresponding problems
 
-If adding more CPU cores still results in CPU utilization above 95%, but the application's performance and throughput improve, consider adding CPUs to address the problem. Otherwise, focus on troubleshooting issues within the application.
+​			If after increasing the number of CPUs, the CPU usage is still above 95%, but it provides better performance and throughput to the application service, then consider adding more CPUs to solve the problem. Otherwise, consider troubleshooting the problem in the application.
 
 ### RAM
 
-Review RAM monitoring data. If Memory usage is at 100%, and Swap usage is at 50%, the system is likely swapping heavily. Swapping is the process of moving content between disk and main memory (using a specialized swap partition), and with Memory at 100%, the system will become significantly slower as it continues to swap.
+​			Looking at the RAM monitoring data, if Memory is using 100% and Swap is using 50%, the system is almost certainly doing a lot of swapping. Swapping is the process of exchanging content between disk and main memory (using a special swap partition). Because Memory is used at 100%, once the system boots and continues to swap, it will become extremely slow.
 
-For example, you might see that only 20% of memory is actively used, yet a lot of memory remains free. This might indicate that the operating system has moved some infrequently used memory regions to disk to optimize the main memory. As long as there is still plenty of free memory available, this situation is not a problem.
+​			For example, there might be 20% of memory in use, but a lot of memory remaining. This may indicate that the operating system has moved some infrequently used memory areas to disk to optimize main memory. Since there is still a lot of memory free, there is no problem with this situation.
 
 ### I/O
 
-When observing monitoring data and neither CPU nor RAM appear to be bottlenecks, you should focus on I/O.
+​			When we observe the monitoring data, we find that neither CPU nor RAM has reached the bottleneck. Next, we need to look at I/O.
 
-For example, if you notice that I/O on an SSD is not very high, but there is heavy read/write I/O to an HDD, you'll need to address the I/O issue. This could involve actions such as stopping some excessive write operations, upgrading the I/O system, replacing slower I/O devices with faster ones, or upgrading to faster SSDs.
+​			For example, we see that the I/O in SSD is not very high, but the read and write I/O to HDD per second is quite intensive. In this case, we need to solve the I/O problem, such as stopping some rewriting and upgrading. I/O system, replace I/O devices with faster reading and writing, or replace with faster SSD.

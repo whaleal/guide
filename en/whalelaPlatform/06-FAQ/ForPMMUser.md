@@ -1,59 +1,68 @@
-## For PMM (Persona Monitoring and Management) User
+## For PMM(Persona Monitoring and Management) User
 
-### Does Whaleal support user permission segregation?
+### Does WAP support user rights segmentation?
 
-Whaleal's administrator users can restrict resource access for platform users, controlling whether they can access Server or MongoDB resources.
+WAP administrator users can restrict resource access to platform users and restrict whether users can access Server and MongoDB resources.
 
 ![image-20220725191359227](../../../images/whalealPlatformImages/ForPMMUser.png)
 
-### Does Whaleal support creating MongoDB clusters?
 
-Whaleal supports creating MongoDB clusters in various configurations:
 
-1. Create Standalone: [CreateStandalone](../02-Usage/MongoDB/CreateDeployment/CreateStandalone.md)
-2. Create Replica Set Cluster: [CreateReplicaSet](../02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md)
-3. Create Sharded Cluster: [CreateShardedCluster](../02-Usage/MongoDB/CreateDeployment/CreateShardedCluster.md)
+### Does WAP support creating MongoDB clusters?
 
-### Does Whaleal support managing existing MongoDB clusters?
+WAP supports creating MongoDB clusters:
 
-Whaleal supports monitoring and managing existing MongoDB clusters. You can use [ExistingMongoDBDeployment]() to add monitoring and management capabilities to an existing MongoDB cluster.
+1. Create a single node：[CreateStandalone](../02-Usage/MongoDB/CreateDeployment/CreateStandalone.md)
+2. Create a replica set cluster：[CreateReplicaSet](../02-Usage/MongoDB/CreateDeployment/CreateReplicaSet.md)
+3. Create a sharded cluster：[CreateShardedCluster](../02-Usage/MongoDB/CreateDeployment/CreateShardedCluster.md)
+4. Managed cluster：[ExistingMongoDBDeployment](../02-Usage/MongoDB/CreateDeployment/ExistingMongoDBDeployment.md)
 
-**Whaleal supports discovering all nodes in a cluster through a single node configuration and monitors them.**
 
-### Does Whaleal support operations on MongoDB clusters?
 
-Whaleal provides users with common operations used in usage and maintenance processes, enabling users to make changes to clusters through configuration and clicks on the platform interface.
+### Does WAP support hosting existing MongoDB clusters?
 
-### What MongoDB operations does Whaleal provide?
+WAP supports monitoring and management of existing MongoDB clusters. Add MongoDB cluster monitoring and management through [ExistingMongoDBDeployment](../02-Usage/MongoDB/CreateDeployment/ExistingMongoDBDeployment.md).
 
-#### Diagnostic Analysis
+**WAP supports discovering and monitoring all nodes in the cluster through one node configuration.**
 
-By combining real-time diagnostic data such as Top, Op, and Explain, Whaleal helps confirm the cause of current node issues and provides solutions.
 
-#### Alert Monitoring
 
-By configuring alert threshold parameters, users can receive alert notifications through email, SMS, DingTalk, and other means when nodes experience abnormal conditions and increased pressure.
+### Does WAP support operations on MongoDB clusters?
 
-#### Data Management
+WAP provides users with all commonly used operations during use, operation and maintenance, allowing users to complete changes to the cluster through configuration and clicks on the page.
 
-Whaleal provides a display box to showcase data obtained from user-customized queries, making it easy and user-friendly to visualize data.
+
+
+### What operations does WAP provide for MongoDB?
+
+#### diagnostic analysis
+
+Through combined analysis of Info, Health, Performance, LogVis, and ExplainPlan in real-time diagnostic data, we can confirm the cause of the current node problem and come up with a solution.
+
+#### Alarm monitoring
+
+By configuring the alarm parameter threshold, when an abnormality occurs on a node and the pressure increases, alarm information can be sent through email, SMS, DingTalk, etc. in the user configuration.
+
+#### Data management
+
+WAP provides a page display box to display user-defined page display of queried data, displaying data conveniently and friendlyly.
 
 #### User Management
 
-Displays all roles and users in the cluster, along with detailed permissions for roles and users.
+Display all roles and users in the cluster, and display the permissions of roles and users in detail.
 
-#### Node Management
+#### Node management
 
-Users can use Whaleal to easily add nodes to Replica Set clusters and Sharded clusters/shard/config. This helps avoid potential failures due to incorrect command-line inputs.
+Users can add nodes to the replica set cluster and shard cluster shard/config with one click through WAP to avoid adding failures caused by user input errors in the command line.
 
-#### Authentication Management
+#### Certification management
 
-Users can enable cluster authentication with a single click through Whaleal. Whaleal restarts the cluster in a rolling manner, ensuring minimal service disruption.
+Users can enable cluster authentication with one click through WAP, and WAP restarts the cluster in a rolling manner without affecting service usage.
 
-#### Version Changes
+#### Version changes
 
-Whaleal offers rolling upgrade and downgrade operations, enabling version changes between **adjacent versions** of clusters without affecting service usage.
+WAP provides rolling upgrade and downgrade operations to make version changes between **adjacent versions** of the cluster without affecting service usage.
 
-#### Architecture Changes
+#### Architecture changes
 
-Whaleal provides the ability to change the architecture from Standalone to Replica Set.
+WAP provides the function of changing the Standalone architecture to the ReplicaSet architecture.

@@ -1,90 +1,89 @@
 ## Create ReplicaSet
 
 ```
-Creating a ReplicaSet involves the following sections:
+Create ReplicaSet The operation content is divided into the following two parts:：
  - Prerequisites
  - Procedure
 ```
 
-ReplicaSet deployment provides high availability mechanisms. It is recommended for production use.
+MongoDB ReplicaSet is a collection of MongoDB instances, including a master node and multiple slave nodes. The master node handles write operations and replicates data to slave nodes, providing data redundancy and high availability. If the master node is unavailable, the system will automatically select a new master node to ensure continuous operation and fault recovery of the system. The ReplicaSet deployment method provides a high availability mechanism. Recommended for use in production.
 
-Using Whaleal Platform, you can create a ReplicaSet, add ReplicaSet nodes, and scale up or down.
+You can use WAP to create a ReplicaSet, add ReplicaSet nodes, and upgrade or downgrade them.
 
 ### Prerequisites
 
-Before deploying a ReplicaSet, ensure that the host has been managed by the Whaleal Platform. If not, please first [Add Host](../../Host/AddHost.md).
+Before deploying ReplicaSet, you must ensure that the Host has been managed by WAP. If not, please [add EC2](../../Server/EC2.md) or [add K8S](../../Server/K8S.md) first.
 
-Before deploying a ReplicaSet, ensure that the Whaleal Platform has an available MongoTars. If not, please first [Upload MongoTar](../UploadMongoTar.md).
+Before deploying a ReplicaSet, you must ensure that a MongoTar is available in the WAP. If not, please [upload MongoTar](../../Settings/UploadMongoDBTARfile.md) first
 
 ### Procedure
 
-Step 1. Navigate to the MongoDB Cluster List
+**1. Enter the navigation directory**
 
-a. Navigate to the left-side navigation bar.
+a. Click the MongoDB options button
 
-b. Click on the "MongoDB" option.
+b. Select the MongoList option. The page displays the MongoDB Cluster that all users can operate.
 
-c. Select the "MongoList" option. The page will display all the MongoDB Clusters that the user can operate on.
+![1](../../../../../images/whalealPlatformImages/mongodb.png)
 
+**2. Create a ReplicaSet**
 
+a. Click the Create Project button on the right
 
-Step 2. Create a ReplicaSet
-
-a. Click on the "Create Project" button on the right side.
-
-b. Select the "ReplicaSet" option.
+b. Select the Replica Set option
 
 
 
-Step 3. Configure the ReplicaSet
+**3. Configure ReplicaSet**
 
-ReplicaSet Configuration
+![1](../../../../../images/whalealPlatformImages/CreateReplicaSet1.png)
 
-| Configuration Item | Value                                                    |
-| ------------------ | -------------------------------------------------------- |
-| ReplicaSet Name    | The value of `replSetName` in the ReplicaSet configuration |
-| Tags               | The value of `tag` in the ReplicaSet configuration       |
-| Enable Authentication | true: Enable authentication, configure username and password <br/> false: Disable authentication |
-| Username            | If authentication is enabled, the admin user of the ReplicaSet. Authentication database is `admin` and role is `root` |
-| Password            | If authentication is enabled, the admin password of the ReplicaSet |
+Replica set configuration
 
-Member Configuration
+| Configuration items              | value                                                        |
+| -------------------------------- | ------------------------------------------------------------ |
+| It's not played                  | Select the name of your project                              |
+| Replica set name                 | ReplicaSet configuration replSetName                         |
+| Whether to enable authentication | No authentication is enabled: Do not set user password <br/>Account number and password: Turn on authentication and set user password <br/>Account and password and CA certificate: Turn on authentication, set user password and use CA certificate |
+| version number                   | Select the MongoTar corresponding to the created mongodb version |
 
-| Configuration Item | Value                                                    |
-| ------------------ | -------------------------------------------------------- |
-| Member Type        | Member type in the ReplicaSet: <br>Member Node: The node in the ReplicaSet that holds data and has voting rights. It can be elected as the primary node.<br>Arbiter Node: A node that does not store data in the cluster and is used only for voting and elections.<br>Hidden Node: A node in the ReplicaSet that holds data and has voting rights. Configuration parameter is `hidden`.<br>Hidden Delayed Node: A node in the ReplicaSet that holds data and has voting rights. Configuration parameters are `slaveDelay` and `hidden`. |
-| Hostname           | The host where you want to deploy the ReplicaSet node    |
-| Port               | The port to be used by the node                           |
-| Version            | The version of the MongoTar corresponding to the node version |
-| Votes              | The number of votes for elections during the ReplicaSet elections |
-| Priority           | The priority during the ReplicaSet elections. If priority is 0, the node cannot be elected as the primary node |
-| Delay              | The time (in seconds) the node is behind the primary node, only applicable to Hidden Delayed Node |
-| Build Index        | true: Build indexes in MongoDB <br>false: Do not build indexes in MongoDB |
-| Data Directory     | The absolute path to the ReplicaSet data files            |
-| Log File           | The absolute path to the ReplicaSet log output file      |
+Member configuration
 
-Cluster Configuration
+| Configuration items | value                                                        |
+| ------------------- | ------------------------------------------------------------ |
+| member              | Replica set member type：<br>member node：The node that carries data in the replication set has voting rights and can be elected as the master node.<br/>hidden node：The node that carries data in the replication set has voting rights. The replication set configuration parameter is hidden.<br/>Hide delay nodes：The node that carries data in the replication set has voting rights. The configuration parameters of the replication set are slaveDelay and hidden. |
+| hostname            | Select the host where the ReplicaSet node is deployed        |
+| port                | The port used by the node                                    |
+| vote                | Number of votes cast during replica set election             |
+| priority            | The priority during replication set election. If the priority is 0, the node cannot be elected as the primary node. |
+| Delay               | The time the node lags behind the master node (unit: seconds), only used for members who are hidden delayed nodes |
+| Build index         | true：MongoDB build index<br/>false：MongoDB does not build index |
+| data directory      | ReplicaSet data file storage directory (absolute path)       |
+| log file            | ReplicaSet log output file                                   |
+| Add                 | Add new member                                               |
 
-| Configuration Item | Value                                                    |
-| ------------------ | -------------------------------------------------------- |
-| Protocol Version   | ReplicaSet replication protocol version                 |
-| Chaining Allowed   | true: Allow data replication from secondary nodes <br> false: Do not allow data replication from secondary nodes |
-| Write Concern Majority Journal Default | Write to majority of nodes before returning |
-| Heartbeat Timeout (secs) | Time between heartbeat checks between member nodes |
-| Election Timeout (ms) | Time between checks when a member is unreachable |
-| CatchUp Timeout (ms) | Time for a newly elected primary node to catch up with the latest writes |
-| CatchUp Takeover Delay (ms) | Time to wait before taking over when a member node leads the primary node |
+Cluster configuration
 
-Advanced Configuration
+| Configuration items                    | value                                                        |
+| -------------------------------------- | ------------------------------------------------------------ |
+| Protocol Version                       | The replication protocol version used by the replica set     |
+| Chaining Allowed                       | true：Allow data to be replicated from secondary nodes<br>false：Do not allow data to be copied from secondary nodes |
+| Write Concern Majority Journal Default | Whether to return after writing to the majority of nodes     |
+| Heartbeat Timeout(secs)                | Heartbeat detection time between member nodes                |
+| Election Timeout(ms)                   | When the member node is unreachable from the master node, check the time |
+| CatchUp Timeout(ms)                    | The catch-up time between the newly elected master node and the latest write operation |
+| CatchUp Takeover Delay(ms)             | After the member node leads the master node, it waits for the master node time |
 
-a. Click on the "Add Option" button.
+Advanced configuration
 
-b. Select the startup configuration item to add, then click the "Confirm" button to add.
+![1](../../../../../images/whalealPlatformImages/CreateReplicaSet2.png)
 
-c. Set the value of the configuration item.
+a. Click the Add Option button
 
+b. Select to add a startup configuration item and click the OK button to add it.
 
+c. Set configuration option value
 
-Step 4. Create ReplicaSet
+**4. Create**
 
-Click the "Create" button to create the ReplicaSet.
+Click the Create button to create a ReplicaSet.

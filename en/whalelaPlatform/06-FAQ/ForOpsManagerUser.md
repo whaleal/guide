@@ -1,21 +1,29 @@
 ## For OpsManager User
 
-### Can Whaleal help troubleshoot issues using monitoring data?
+### Can WAP troubleshoot problems by monitoring data？
 
-Whaleal provides extensive monitoring metrics with a granularity of up to 1 second. Combined with real-time diagnostic information collection such as Top, Op, and Explain, it can help users quickly troubleshoot and pinpoint issues, facilitating rapid issue resolution.
+WAP provides a very rich set of monitoring indicators, and the granularity is as fine as 1 second. Together with the collection of Info, Health, Performance, LogVis, and ExplainPlan information in real-time diagnosis, it can help users quickly troubleshoot, locate problems, and solve problems quickly.
 
-### What alerting methods are supported by Whaleal?
 
-Whaleal not only supports email alerts, but also provides SMS and DingTalk (a messaging app) alerting methods. This ensures that users can receive alert notifications through various means, allowing them to stay informed about the cluster's status anytime and anywhere.
 
-### Does Whaleal support changes to cluster architecture?
+### What alarm methods does WAP support？
 
-Whaleal supports changing the architecture from Standalone to ReplicaSet. It automates the complex process of architectural changes, allowing users to accomplish the transition with a single click through the platform interface.
+WAP not only provides email alerts, but also provides SMS and DingTalk alerts to meet user usage and communication methods, ensuring that users can receive alert information anytime and anywhere and grasp cluster status in a timely manner.
 
-### Does Whaleal support changing the version of a cluster?
 
-Whaleal offers the functionality to upgrade and downgrade clusters. Through simple page configurations, users can perform version changes between adjacent versions of MongoDB clusters. This feature not only supports upgrades but also provides straightforward downgrade operations. These version changes can be performed in a rolling manner without causing any service disruption.
 
-### Which MongoDB versions does Whaleal support?
+### Does WAP support changes to the cluster architecture?
 
-Without changing the version of Whaleal, it supports 98% of MongoDB versions available in the market, ranging from MongoDB 3.4 to 5.0.
+WAP provides the function of changing the Standalone architecture to the ReplicaSet architecture. Integrate complex operations of architecture changes into automated solutions and complete them with one click through page operations.
+
+
+
+### Does WAP support cluster version changes?
+
+WAP provides the function of upgrading and downgrading the cluster. Through page information configuration, it can complete version changes between adjacent versions of the cluster. It not only supports upgrade operations, but also provides downgrade operations as simple as upgrades. In a state where the application is unaware, the cluster is upgraded or downgraded in a rolling manner.
+
+
+
+### What MongoDB versions does WAP support?
+
+Without changing the WAP version, WAP supports 98% of MongoDB currently on the market, and the supported versions are 5.0 ~ 7.0.

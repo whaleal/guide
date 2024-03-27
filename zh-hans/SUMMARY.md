@@ -41,7 +41,7 @@
                   * [MonitorMongoDB](whalelaPlatform/02-Usage/MongoDB/ManageCluster/MonitorMongoDB.md)
                   * [Nodeoperations](whalelaPlatform/02-Usage/MongoDB/ManageCluster/Nodeoperations.md)
           * [Backuprestore]()
-              * [Backub](whalelaPlatform/02-Usage/Backuprestore/Backub.md)
+              * [Backup](whalelaPlatform/02-Usage/Backuprestore/Backup.md)
               * [Restore](whalelaPlatform/02-Usage/Backuprestore/Restore.md)
           * [Alert](whalelaPlatform/02-Usage/Alert.md)
           * [Diagnose]()
@@ -68,7 +68,7 @@
           * [LoginFailed](whalelaPlatform/04-Troubleshooting/LoginFaild.md)
           * [MongoFailed](whalelaPlatform/04-Troubleshooting/MongoFaild.md)
       * ReleaseNotes
-          * [ReleaseNote-1.0.0](whalelaPlatform/05-ReleaseNotes/releaseNote-1.0.0.md)
+          * [ReleaseNote-2.0.0](whalelaPlatform/05-ReleaseNotes/releaseNote-2.0.0.md)
       * FAQ
           * [ForOpsManagerUser](whalelaPlatform/06-FAQ/ForOpsManagerUser.md)
           * [ForPMMUser](whalelaPlatform/06-FAQ/ForPMMUser.md)

@@ -1,47 +1,55 @@
-## Find Bottleneck in MongoDB
+## Find BottleNeck In MongoDB
 
-Finding bottlenecks in MongoDB can be divided into the following two parts:
+```
+Find BottleNeck In MongoDB Divided into the following two parts：
+ - Find BottleNeck
+ - Adjust and Optimize
+```
 
-### Find Bottleneck
+### Find BottleNeckin
 
-* Review MongoDB monitoring data to observe metrics such as reads per second, executed commands, read-write queue lengths, network throughput, and connection counts for nodes.
+* Use MongoDB monitoring data to view indicators such as the number of node reads per second, executed commands, number of read and write waiting queues, network throughput, number of connections, etc.
 
-* Performance monitoring data provides insight into the overall connection count, read and write request counts, as well as the ratio between reads and writes for MongoDB instances.
+* Through this performance monitoring data, you can understand the overall number of connections, the number of read and write requests, and the read and write ratio of the mongodb instance (some businesses have a high proportion of read requests, and some businesses have a high proportion of write requests).
 
-* Pay attention to the read-write queue lengths. If this value exceeds 3 or the number of CPU cores, it indicates that CPU resources are constrained, and there is a backlog of business requests.
+* You need to focus on the number of read and write waiting queues. If the value exceeds 3 or exceeds the number of CPU cores, it means that CPU resources are tight and business requests have begun to backlog.
 
-* Analyze MongoDB real-time diagnostic data to identify tables with high query times. Following the Pareto principle, focus on analyzing and optimizing slow queries for the "hot" tables that contribute to more than 80% of the request time.
+* By analyzing MongoDB real-time diagnostic data and confirming tables with higher request times, according to the 28/20 theorem, we can choose to conduct targeted performance analysis and optimization for slow queries on hot tables that take up more than 80% of the request time.
 
-* Examine diagnostic data to see the specific slow query requests currently executed by the MongoDB instance. For databases with frequent aggregation analysis requests, queries that take more than 100 seconds to execute might be observed. This leads to intense CPU and IO resource usage. To prevent disruptions to normal business operations, you might need to temporarily terminate many accumulated slow queries.
+* By implementing diagnostic data, you can view the specific slow query requests executed by the current mongodb instance. For business libraries with many aggregate analysis requests, aggregate analysis statements that take more than 100 seconds are often executed from time to time. As a result, CPU and IO resources are very tight. At this time, in order not to affect the normal business process, we can only temporarily kill many accumulated slow query statements first.
 
 ### Adjust and Optimize
 
-Optimization strategies for a MongoDB sharded cluster:
 
-If a specific shard in the sharded cluster exhibits high load:
 
-* **Part-1**: Start by checking the MongoDB monitoring page to understand the overall concurrent load and read-write ratio of the system. Identify where the bottleneck is likely located.
+Mongodb sharded cluster optimization ideas:
 
-* **Part-2**: If the load concentrates on a particular node, record the tables that have frequent operations using real-time diagnostic data.
+In a sharded cluster, a certain shard has a particularly high load. (It is often the load on a certain shard that is high. If the loads on multiple shard nodes are high, you need to analyze them one by one)
 
-* **Part-3**: Analyze the top 10 slow queries that occur during periods of high load using diagnostic data.
+* Part-1: First, use the MongoDB monitoring page to understand the approximate concurrent load and read-write ratio of the system, and observe the specific bottlenecks of the system.
 
-* **Part-4**: Identify the target tables for optimization and focus on query optimization.
+* Part-2: If the load only occurs concentratedly on a certain node, use real-time diagnostic data to record tables with frequent operations.
 
-Often, Part-2 and Part-3 will reveal many common tables. Frequently accessed tables and slow queries often share similar tables. These tables are your optimization targets.
+* Part-3: Analyze the TOP10 slow queries that occur during business peak periods by implementing diagnostic data.
 
-Key points for MongoDB sharding optimization:
+* Part-4: Locate the target table that needs optimization and perform query optimization.
 
-* a. Review table shard keys, data distribution, total data volume, and data storage space. Pay attention to whether the data shard key settings are appropriate and if data distribution is uniform.
+ Usually Part-2 and Part-3 will have many identical tables. Because operations are more frequent and slow queries often exist in the same tables. These tables are the targets we need to optimize.
 
-* b. Examine the specific queries in the slow query information printed in the diagnostic data. Check if there are suitable indexes on the slow query tables to fulfill the query conditions. Analyze the specific execution plans of slow queries using `explain()`.
+Mongodb sharding optimization has the following points:
 
-* c. Extract original query statements related to slow query tables from the original logs of the MongoDB instance during peak business periods. Record these queries for communication with development teams to discuss potential optimizations based on business scenarios.
+ a. View information such as table sharding keys, data distribution, total data volume, and data occupied space. Focus on whether the data sharding key settings are reasonable and whether the data distribution is even;
 
-* d. For log-type tables (logs, events, sessions, etc.), retain only valid data within a certain time frame based on business requirements. Coordinate with development teams to determine the retention period. Once determined, use MongoDB TTL index features to create an index on the specific time field and set a record expiration time.
+ b. The slow query information printed in the diagnostic data contains the query conditions for each slow query. Confirm whether there is a suitable index on the slow query table that meets the query conditions. It is necessary to combine explain() to analyze the specific execution plan of the slow query.
 
-* **Part-5**: Implement read-write separation optimization at the architecture level.
+ c. Select the original logs of the mongodb instance during the peak business period and filter the original query statements related to the slow query table. Record these original query statements to facilitate subsequent communication with development colleagues to see if corresponding optimization can be carried out based on business scenarios.
 
-If the top 10 slow queries identified in Part-3 include queries that can effectively use indexes, the execution time should be normally fast (within 200ms). If this issue cannot be resolved, consider implementing read-write separation optimization at the architectural level. High-concurrency reads and writes to hotspot tables can overwhelm the CPU and cause blockages for normally efficient queries.
+ d. For log type tables such as logs, events, session information, etc., you can retain only valid data within a certain period of time based on event fields according to business needs. Usually this needs to be clearly communicated to the development business. After confirming the retention time, you can use the mongodb TTL index feature to create an index on a specific time field and set the record expiration time limit.
 
-In summary, the key to MongoDB optimization is identifying system bottlenecks and root causes of problems. After pinpointing tables that require optimization, a simple addition of an index or implementation of read-write separation often effectively resolves performance issues.
+* Part-5: Optimize the read-write separation in the architecture.
+
+​	If many of the TOP10 slow queries found in Part-3 are simple queries that can effectively utilize the index, under normal circumstances, the execution should be very fast (within 200ms).
+
+​	If it cannot be solved, you need to consider optimizing the read-write separation in the architecture. Because the high concurrent reading and writing of the hotspot table will overwhelm the CPU, causing normal queries to be blocked.
+
+​	In short, the key to mongodb optimization is to find system bottlenecks and root causes of problems. After locating the target table that needs to be optimized, simply add an index or separate reading and writing, and performance problems are often easily solved.

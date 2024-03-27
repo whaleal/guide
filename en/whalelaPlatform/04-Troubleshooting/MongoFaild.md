@@ -25,6 +25,7 @@
 ### Authentication Enable/Disable Failed
 
 - Authentication toggles are only available for the "admin" database and use the username/password method.
+- There are three authentication methods: no authentication is turned on, account and password, account and password and CA certificate.
 
 ### Sharded Cluster Addition Failed
 
