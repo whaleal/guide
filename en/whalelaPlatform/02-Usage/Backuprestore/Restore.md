@@ -26,7 +26,7 @@ e. After the configuration is completed, click run Restore to start the recovery
 
 f. Snapshot operation
 
-![1](/Users/jinmu/Desktop/guide/images/whalealPlatformImages/Restore2.png)
+![1](../../../../images/whalealPlatformImages/Restore2.png)
 
 - download  Download snapshot to local
 - delete  Delete backup snapshot file

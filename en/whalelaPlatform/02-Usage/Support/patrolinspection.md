@@ -8,7 +8,7 @@ Systematically review and evaluate the MongoDB database system to ensure the per
 
 >  Notice:
 >
-> [Configuring S3](../02-Usage/Settings/InspectingS3configuration.md) connection information is required before inspection
+> [Configuring S3](../Settings/InspectingS3configuration.md) connection information is required before inspection
 
 
 
