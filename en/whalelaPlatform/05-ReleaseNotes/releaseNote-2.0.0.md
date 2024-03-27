@@ -237,7 +237,7 @@ Register an account: When registering an account, there is no need to verify the
 
 
 
-##### Whaleal Platform Agent V1.0.0
+##### Whaleal Platform Agent V2.0.0
 
 ```
 
