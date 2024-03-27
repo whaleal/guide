@@ -49,7 +49,7 @@ a.Host information
 
     Mainly displays some basic static information of the host
 
-![img_5.png](/Users/jinmu/Desktop/guide/images/whalealPlatformImages/infomation.png)
+![img_5.png](../../../../images/whalealPlatformImages/infomation.png)
 
 <br>
 
@@ -60,7 +60,7 @@ b.monitor
     （2）Data can be hidden and displayed by clicking the graphic button.
     （3）Click the question mark icon to the right of the indicator name to view indicator details.
 
-![img_7.png](/Users/jinmu/Desktop/guide/images/whalealPlatformImages/monitor.png)
+![img_7.png](../../../../images/whalealPlatformImages/monitor.png)
 
 <br>
 
@@ -70,7 +70,7 @@ c.log
     The log records the activities of the host, including the operator's operations, regularly executed tasks, etc. Display specific execution events, event execution status and execution details.（1）处是对日志的筛选功能，比如只看某Time period or log information of a certain type or with certain content.
     （2）The searched log information is displayed on the front-end page.
 
-![img_8.png](/Users/jinmu/Desktop/guide/images/whalealPlatformImages/host_log.png)
+![img_8.png](../../../../images/whalealPlatformImages/host_log.png)
 
 <br>
 
@@ -86,7 +86,7 @@ d.命令
     （3）处点事件组日志可查看详细的事件执行情况。
 
 
-![img_9.png](/Users/jinmu/Desktop/guide/images/whalealPlatformImages/host_command.png)
+![img_9.png](../../../../images/whalealPlatformImages/host_command.png)
 
 
 
