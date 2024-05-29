@@ -187,3 +187,12 @@
         * [ProductionAndDocument](whalealSupport/UserManual/productionAndDocument.md)
         * [Notification](whalealSupport/UserManual/notification.md)
         * [AddressList](whalealSupport/UserManual/addressList.md)
+  * [Whaleal JMC_1.7](JMC_1.7/2.PlatformOverview.md)
+      * UserManual
+          * [Host Page](JMC_1.7/1.HomePage.md)
+          * [Platform Overview](JMC_1.7/2.PlatformOverview.md)
+          * [Platform Layout Introduction](JMC_1.7/3.PlatformLayoutIntroduction.md)
+          * [Module](JMC_1.7/module/4.1.Module.md)
+          * [API](JMC_1.7/module/4.2.API.md)
+          * [Basic Concept](JMC_1.7/module/4.3.JMCInfomation.md)
+          * [QA](JMC_1.7/9.QA.md)
