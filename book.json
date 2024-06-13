@@ -8,7 +8,7 @@
       "index":"./index.html"
     },
     "insert-logo": {
-      "url": "/images/logo.png",
+      "url": "https://docs.whaleal.com/guide/images/logo.png",
       "style": "background: none; max-height: 50px; min-height: 50px;"
     }
   },
