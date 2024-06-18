@@ -3385,7 +3385,26 @@ private static JSONObject send(String baseKey, String type, String from, String 
     String bodyStr = doc.body().ownText();
     return JSON.parseObject(bodyStr);
 }
-</code></pre><h2 id="&#x6CE8;&#x610F;&#x4E8B;&#x9879;">&#x6CE8;&#x610F;&#x4E8B;&#x9879;</h2>
+</code></pre><h2 id="&#x5E94;&#x7528;&#x53D1;&#x4FE1;api">&#x5E94;&#x7528;&#x53D1;&#x4FE1;API</h2>
+<h5 id="&#x63A5;&#x53E3;&#x8BF4;&#x660E;">&#x63A5;&#x53E3;&#x8BF4;&#x660E;</h5>
+<p>&#x63A8;&#x8350;&#x4F7F;&#x7528;POST&#x8BF7;&#x6C42;&#x3002;</p>
+<p>&#x63A5;&#x53E3;&#x5730;&#x5740;: <a href="https://sms.jinmuinfo.com/beta/send" target="_blank">https://sms.jinmuinfo.com/beta/send</a>
+&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;: POST</p>
+<p>&#x63A5;&#x53E3;&#x63CF;&#x8FF0;: &#x5E94;&#x7528;&#x53D1;&#x4FE1;&#x63A5;&#x53E3;</p>
+<p>&#x5E94;&#x7528;&#x53D1;&#x4FE1;&#x8BF7;&#x6C42;&#x8BBE;&#x7F6E;:</p>
+<pre><code>curl --location &apos;https://sms.jinmuinfo.com/beta/send&apos; \
+--header &apos;Content-Type: application/json&apos; \
+--data &apos;{
+        &quot;appKey&quot; : &quot;{appKey}&quot;,
+        &quot;appSecret&quot; : &quot;{appSecret}&quot;,
+        &quot;from&quot; : &quot;{from}&quot;,
+        &quot;to&quot; : &quot;{to}&quot;,
+        &quot;type&quot; : &quot;{type}&quot;,
+        &quot;content&quot; : &quot;{content}&quot;
+}&apos;
+</code></pre><p><img src="../../../images/JMC/&#x5E94;&#x7528;&#x53D1;&#x4FE1;.png" alt="image4-9"></p>
+<p><strong>&#x56FE;&#x4F8B;4-9</strong> &#x5E94;&#x7528;&#x53D1;&#x4FE1;</p>
+<h2 id="&#x6CE8;&#x610F;&#x4E8B;&#x9879;">&#x6CE8;&#x610F;&#x4E8B;&#x9879;</h2>
 <ul>
 <li>callback&#x5730;&#x5740;&#x7684;&#x534F;&#x8BAE;&#x8981;&#x662F;http&#x6216;https&#x534F;&#x8BAE;&#xFF0C;&#x6682;&#x65F6;&#x4E0D;&#x652F;&#x6301;&#x5176;&#x4ED6;&#x534F;&#x8BAE;&#x3002;</li>
 <li>&#x54CD;&#x5E94;&#x7801;&#x4E3A;23&#xFF0C;&#x8BF4;&#x660E;callback&#x53C2;&#x6570;&#x683C;&#x5F0F;&#x6709;&#x8BEF;&#xFF0C;&#x8BF7;&#x68C0;&#x67E5;url&#x662F;&#x5426;&#x6709;&#x8BEF;&#x3002;</li>
@@ -3434,7 +3453,7 @@ private static JSONObject send(String baseKey, String type, String from, String 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"API","level":"1.1.6.1.5","depth":4,"next":{"title":"Basic Concept","level":"1.1.6.1.6","depth":4,"path":"JMC_1.7/module/4.3.JMCInfomation.md","ref":"JMC_1.7/module/4.3.JMCInfomation.md","articles":[]},"previous":{"title":"Module","level":"1.1.6.1.4","depth":4,"path":"JMC_1.7/module/4.1.Module.md","ref":"JMC_1.7/module/4.1.Module.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","-lunr","multilingual-index","insert-logo","-search","search-pro"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"multilingual-index":{"enableSuper":true,"index":"./index.html"},"insert-logo":{"style":"background: none; max-height: 50px; min-height: 50px;","url":"https://docs.whaleal.com/guide/images/logo.png"},"expandable-chapters":{},"search-pro":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"whaleal","language":"zh-hans","gitbook":"*"},"file":{"path":"JMC_1.7/module/4.2.API.md","mtime":"2024-06-11T09:25:15.410Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-06-13T05:41:18.514Z"},"basePath":"../..","book":{"language":"zh-hans"}});
+            gitbook.page.hasChanged({"page":{"title":"API","level":"1.1.6.1.5","depth":4,"next":{"title":"Basic Concept","level":"1.1.6.1.6","depth":4,"path":"JMC_1.7/module/4.3.JMCInfomation.md","ref":"JMC_1.7/module/4.3.JMCInfomation.md","articles":[]},"previous":{"title":"Module","level":"1.1.6.1.4","depth":4,"path":"JMC_1.7/module/4.1.Module.md","ref":"JMC_1.7/module/4.1.Module.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","-lunr","multilingual-index","insert-logo","-search","search-pro"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"multilingual-index":{"enableSuper":true,"index":"./index.html"},"insert-logo":{"style":"background: none; max-height: 50px; min-height: 50px;","url":"https://docs.whaleal.com/guide/images/logo.png"},"expandable-chapters":{},"search-pro":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"whaleal","language":"zh-hans","gitbook":"*"},"file":{"path":"JMC_1.7/module/4.2.API.md","mtime":"2024-06-18T03:51:57.728Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-06-18T05:18:48.890Z"},"basePath":"../..","book":{"language":"zh-hans"}});
         });
     </script>
 </div>
