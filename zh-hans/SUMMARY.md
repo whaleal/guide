@@ -190,10 +190,11 @@
   * [Whaleal JMC](JMC/2.PlatformOverview.md)
       * UserManual
           * [Quick Start](JMC/4.QuickStart.md)
-          * [Host Page](JMC/1.HomePage.md)
+          * [Home Page](JMC/1.HomePage.md)
           * [Platform Overview](JMC/2.PlatformOverview.md)
           * [Platform Layout Introduction](JMC/3.PlatformLayoutIntroduction.md)
           * [Module](JMC/module/4.1.Module.md)
           * [API](JMC/module/4.2.API.md)
+          * [SenderID](JMC/5.SenderID.md)
           * [Basic Concept](JMC/module/4.3.JMCInfomation.md)
           * [QA](JMC/9.QA.md)
