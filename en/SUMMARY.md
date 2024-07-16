@@ -1,6 +1,8 @@
 # Summary
-* [Whaleal](README.md)
+* [Whaleal](HomePage.md)
   * [Whaleal Platform](whalelaPlatform/README.md)
+      * Home
+          * [Whaleal](HomePage.md)
       * Overview
           * [Introduction](whalelaPlatform/00-Overview/01-Introduction.md)
           * [Comparison](whalelaPlatform/00-Overview/02-Comparison.md)
@@ -89,6 +91,8 @@
           * [Analysis](whalelaPlatform/07-APIReference/Analysis.md)
           * [Project](whalelaPlatform/07-APIReference/Project.md)
   * [Whaleal Data](whalealData/README.md)
+      * Home
+          * [Whaleal](HomePage.md)
       * InstallationDeployment
           * [InstallationRequirements](whalealData/InstallationDeployment/InstallationRequirements.md)
           * [JDKInstallationDeployment](whalealData/InstallationDeployment/JDKInstallationDeployment.md)
@@ -156,6 +160,8 @@
           * [ColdWorkDemo](whalealData/use cases/ColdWorkDemo.md)
           * [S3JobDemo](whalealData/use cases/S3JobDemo.md)
   * [Document Data Transfer](documentDataTransfer/README.md)
+      * Home
+        * [Whaleal](HomePage.md)
       * Overview
         * [Architecture](documentDataTransfer/Introduction/Architecture.md)
         * [CustomerCase](documentDataTransfer/Introduction/CustomerCase.md)

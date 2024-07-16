@@ -1,6 +1,8 @@
 # Summary
-* [Whaleal](README.md)
+* [Whaleal](HomePage.md)
   * [Whaleal Platform](whalelaPlatform/README.md)
+      * Home
+          * [Whaleal](HomePage.md)
       * Overview
           * [Introduction](whalelaPlatform/00-Overview/01-Introduction.md)
           * [Comparison](whalelaPlatform/00-Overview/02-Comparison.md)
@@ -89,6 +91,8 @@
           * [Analysis](whalelaPlatform/07-APIReference/Analysis.md)
           * [Project](whalelaPlatform/07-APIReference/Project.md)
   * [Whaleal Data](whalealData/README.md)
+      * Home
+          * [Whaleal](HomePage.md)
       * InstallationDeployment
           * [InstallationRequirements](whalealData/InstallationDeployment/InstallationRequirements.md)
           * [JDKInstallationDeployment](whalealData/InstallationDeployment/JDKInstallationDeployment.md)
@@ -156,6 +160,8 @@
           * [ColdWorkDemo](whalealData/use cases/ColdWorkDemo.md)
           * [S3JobDemo](whalealData/use cases/S3JobDemo.md)
   * [Document Data Transfer](documentDataTransfer/README.md)
+      * Home
+          * [Whaleal](HomePage.md)
       * Overview
         * [Architecture](documentDataTransfer/Introduction/Architecture.md)
         * [CustomerCase](documentDataTransfer/Introduction/CustomerCase.md)
@@ -169,6 +175,8 @@
         * [FullTesting](documentDataTransfer/Usecase/FullTesting.md)
         * [RealTimeTest](documentDataTransfer/Usecase/RealTimeTest.md)
   * [Whaleal Account](whalealAccount/README.md)
+      * Home
+          * [Whaleal](HomePage.md)
       * Oauth2 
         * [Oauth2](whalealAccount/Oauth2/oauth2.md)
       * UserManual
@@ -179,6 +187,8 @@
         * [Organization](whalealAccount/UserManual/organization.md)
         * [Client](whalealAccount/UserManual/client.md)
   * [Whaleal Support](whalealSupport/README.md)
+      * Home
+          * [Whaleal](HomePage.md)
       * UserManual
         * [Login](whalealSupport/UserManual/login.md)
         * [Create Case According To SLA](whalealSupport/UserManual/createCaseAccordingToSLA.md)
@@ -188,6 +198,8 @@
         * [Notification](whalealSupport/UserManual/notification.md)
         * [AddressList](whalealSupport/UserManual/addressList.md)
   * [Whaleal JMC](JMC/2.PlatformOverview.md)
+      * Home
+          * [Whaleal](HomePage.md)
       * UserManual
           * [Quick Start](JMC/4.QuickStart.md)
           * [Home Page](JMC/1.HomePage.md)
