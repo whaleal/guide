@@ -75,17 +75,3 @@ Oplog delay synchronization allows for easy failover in case of issues.
 In real-time synchronization, users can set the start and end times for synchronizing the Oplog within a specified time range.
 
 There are additional features such as filtering the list of synchronized tables, data validation, and more.
-
-## Part 3: Company Overview
-
-Shanghai Jinmu Information Technology Co., Ltd. is a professional IT data consulting and service provider. The company is committed to delivering high-quality information products, consulting, and services to users. Established in 2015 in Shanghai, Jinmu Information has branches in Beijing, Shenzhen, and Guangzhou.
-
-Jinmu Information is a core partner for MongoDB in the Greater China region and a core partner for Akamai and Vonage in China. The company provides professional technical services, consulting, and application development to clients.
-
-As a technology-driven IT service provider prioritizing innovation and customer needs, Jinmu Information's products and services have gained recognition from leading domestic enterprises. The company has over 50 core clients and offers premium services and innovative product solutions in industries such as finance, insurance, securities, gaming, and e-commerce, covering mainland China and Hong Kong.
-
-<div style="text-align: right">
-        <p>Jinmu Information Website: www.jinmuinfo.com</p>
-        <p>Consultation Email: support@jinmuinfo.com</p>
-        <p>Contact Numbers: 021-58870038, 021-66696778</p>
-</div>

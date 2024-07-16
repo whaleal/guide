@@ -1,7 +1,7 @@
 
 
 
-## mongo各版本间同步影响
+## Impact of synchronization between MongoDB versions
 
 
 
